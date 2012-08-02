@@ -18,6 +18,16 @@ def make_shell_context():
     }
     return ctx
 
+class FcgiCommand(flaskext.script.Command):
+
+    def handle(self, app):
+        from flup.server.fcgi import WSGIServer
+        sock_path = os.path.join(app.instance_path, 'fcgi.sock')
+        server = WSGIServer(app, bindAddress=sock_path, umask=0, maxThreads=5)
+        server.run()
+
+manager.add_command('fcgi', FcgiCommand())
+
 if __name__=="__main__":
     manager.run()
 
