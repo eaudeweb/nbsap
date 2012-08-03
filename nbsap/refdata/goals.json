@@ -1,0 +1,67 @@
+[
+    {
+        "id": "1",
+        "title": {
+                "E": "Strategic Goal A",
+                "F": "",
+                "D": ""
+        },
+        "description": {
+                "E": "Address the underlying causes of biodiversity loss by mainstreaming biodiversity across government and society",
+                "F": "",
+                "D": ""
+       }
+    },
+    {
+        "id": "2",
+        "title": {
+                "E": "Strategic Goal B",
+                "F": "",
+                "D": ""
+        },
+        "description": {
+                "E": "Reduce the direct pressures on biodiversity and promote sustainable use",
+                "F": "",
+                "D": ""
+       }
+    },
+    {
+        "id": "3",
+        "title": {
+                "E": "Strategic Goal C",
+                "F": "",
+                "D": ""
+        },
+        "description": {
+                "E": "To improve the status of biodiversity by safeguarding ecosystems, species and genetic diversity",
+                "F": "",
+                "D": ""
+       }
+    },
+    {
+        "id": "4",
+        "title": {
+                "E": "Strategic Goal D",
+                "F": "",
+                "D": ""
+        },
+        "description": {
+                "E": "Enhance the benefits to all from biodiversity and ecosystem services",
+                "F": "",
+                "D": ""
+       }
+    },
+    {
+        "id": "5",
+        "title": {
+                "E": "Strategic Goal E",
+                "F": "",
+                "D": ""
+        },
+        "description": {
+                "E": "Enhance implementation through participatory planning, knowledge management and capacity building",
+                "F": "",
+                "D": ""
+       }
+    }
+]
