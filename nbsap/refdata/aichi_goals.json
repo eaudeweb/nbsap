@@ -2,66 +2,66 @@
     {
         "id": "1",
         "title": {
-                "E": "Strategic Goal A",
-                "F": "But strat\u00e9gique A",
-                "D": ""
+                "en": "Strategic Goal A",
+                "fr": "But strat\u00e9gique A",
+                "nl": ""
         },
         "description": {
-                "E": "Address the underlying causes of biodiversity loss by mainstreaming biodiversity across government and society",
-                "F": "G\u00e9rer les causes sous-jacentes de l\u2019appauvrissement de la diversit\u00e9 biologique en int\u00e9grant la diversit\u00e9 biologique dans l\u2019ensemble du gouvernement et de la soci\u00e9t\u00e9",
-                "D": ""
+                "en": "Address the underlying causes of biodiversity loss by mainstreaming biodiversity across government and society",
+                "fr": "G\u00e9rer les causes sous-jacentes de l\u2019appauvrissement de la diversit\u00e9 biologique en int\u00e9grant la diversit\u00e9 biologique dans l\u2019ensemble du gouvernement et de la soci\u00e9t\u00e9",
+                "nl": ""
        }
     },
     {
         "id": "2",
         "title": {
-                "E": "Strategic Goal B",
-                "F": "But strat\u00e9gique B",
-                "D": ""
+                "en": "Strategic Goal B",
+                "fr": "But strat\u00e9gique B",
+                "nl": ""
         },
         "description": {
-                "E": "Reduce the direct pressures on biodiversity and promote sustainable use",
-                "F": "R\u00e9duire les pressions directes exerc\u00e9es \nsur la diversit\u00e9 biologique et encourager l\u2019utilisation durable",
-                "D": ""
+                "en": "Reduce the direct pressures on biodiversity and promote sustainable use",
+                "fr": "R\u00e9duire les pressions directes exerc\u00e9es \nsur la diversit\u00e9 biologique et encourager l\u2019utilisation durable",
+                "nl": ""
        }
     },
     {
         "id": "3",
         "title": {
-                "E": "Strategic Goal C",
-                "F": "But strat\u00e9gique C",
-                "D": ""
+                "en": "Strategic Goal C",
+                "fr": "But strat\u00e9gique C",
+                "nl": ""
         },
         "description": {
-                "E": "To improve the status of biodiversity by safeguarding ecosystems, species and genetic diversity",
-                "F": "Am\u00e9liorer l\u2019\u00e9tat de la diversit\u00e9 biologique en \nsauvegardant les \u00e9cosyst\u00e8mes, les esp\u00e8ces et la diversit\u00e9 g\u00e9n\u00e9tique",
-                "D": ""
+                "en": "To improve the status of biodiversity by safeguarding ecosystems, species and genetic diversity",
+                "fr": "Am\u00e9liorer l\u2019\u00e9tat de la diversit\u00e9 biologique en \nsauvegardant les \u00e9cosyst\u00e8mes, les esp\u00e8ces et la diversit\u00e9 g\u00e9n\u00e9tique",
+                "nl": ""
        }
     },
     {
         "id": "4",
         "title": {
-                "E": "Strategic Goal D",
-                "F": "But strat\u00e9gique D",
-                "D": ""
+                "en": "Strategic Goal D",
+                "fr": "But strat\u00e9gique D",
+                "nl": ""
         },
         "description": {
-                "E": "Enhance the benefits to all from biodiversity and ecosystem services",
-                "F": "Renforcer les avantages retir\u00e9s pour tous de la \ndiversit\u00e9 biologique et des services fournis par les \u00e9cosyst\u00e8mes",
-                "D": ""
+                "en": "Enhance the benefits to all from biodiversity and ecosystem services",
+                "fr": "Renforcer les avantages retir\u00e9s pour tous de la \ndiversit\u00e9 biologique et des services fournis par les \u00e9cosyst\u00e8mes",
+                "nl": ""
        }
     },
     {
         "id": "5",
         "title": {
-                "E": "Strategic Goal E",
-                "F": "But strat\u00e9gique E",
-                "D": ""
+                "en": "Strategic Goal E",
+                "fr": "But strat\u00e9gique E",
+                "nl": ""
         },
         "description": {
-                "E": "Enhance implementation through participatory planning, knowledge management and capacity building",
-                "F": "Renforcer la mise en \u0153uvre au moyen d\u2019une \nplanification participative, de la gestion des connaissances et du \nrenforcement des capacit\u00e9s",
-                "D": ""
+                "en": "Enhance implementation through participatory planning, knowledge management and capacity building",
+                "fr": "Renforcer la mise en \u0153uvre au moyen d\u2019une \nplanification participative, de la gestion des connaissances et du \nrenforcement des capacit\u00e9s",
+                "nl": ""
        }
     }
 ]
