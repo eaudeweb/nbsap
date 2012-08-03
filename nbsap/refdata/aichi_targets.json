@@ -1,0 +1,282 @@
+[
+	{
+		"id": "1",
+		"goal_id": "1",
+		"title": {
+				"en": "Target 1",
+				"fr": "Objectif 1",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at the latest, people are aware of the values of biodiversity and the steps they can take to conserve and use it sustainably.",
+				"fr": "D\u2019ici \xe0 2020 au plus tard, les individus sont conscients de la \nvaleur de la diversit\xe9 biologique et des mesures qu\u2019ils peuvent prendre \npour la conserver et l\u2019utiliser de mani\xe8re durable",
+				"nl": ""
+		}
+	},
+	{
+		"id": "2",
+		"goal_id": "1",
+		"title": {
+				"en": "Target 2",
+				"fr": "Objectif 2",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at the latest, biodiversity values have been integrated into national and local development and poverty reduction strategies and planning processes and are being incorporated into national accounting, as appropriate, and reporting systems.",
+				"fr": "D\u2019ici \xe0 2020 au plus tard, les valeurs de la diversit\xe9 \nbiologique ont \xe9t\xe9 int\xe9gr\xe9es dans les strat\xe9gies et les processus de \nplanification nationaux et locaux de d\xe9veloppement et de r\xe9duction de \nla pauvret\xe9, et incorpor\xe9es dans les comptes nationaux, selon que de \nbesoin, et dans les syst\xe8mes de notification.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "3",
+		"goal_id": "1",
+		"title": {
+				"en": "Target 3",
+				"fr": "Objectif 3",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at the latest, incentives, including subsidies, harmful to biodiversity are eliminated, phased out or reformed in order to minimize or avoid negative impacts, and positive incentives for the conservation and sustainable use of biodiversity are developed and applied, consistent and in harmony with the Convention and other relevant international obligations, taking into account national socio economic conditions.",
+				"fr": "D\u2019ici \xe0 2020 au plus tard, les incitations, y compris les \nsubventions n\xe9fastes pour la diversit\xe9 biologique, sont \xe9limin\xe9es, \nr\xe9duites progressivement ou r\xe9form\xe9es, afin de r\xe9duire au minimum \nou d\u2019\xe9viter les impacts d\xe9favorables, et des incitations positives en \nfaveur de la conservation et de l\u2019utilisation durable de la diversit\xe9 \nbiologique sont \xe9labor\xe9es et appliqu\xe9es, d\u2019une mani\xe8re compatible et \nen harmonie avec les dispositions de la Convention et les obligations \ninternationales en vigueur, en tenant compte des conditions socio\xe9conomiques nationales.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "4",
+		"goal_id": "1",
+		"title": {
+				"en": "Target 4",
+				"fr": "Objectif 4",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at the latest, Governments, business and stakeholders at all levels have taken steps to achieve or have implemented plans for sustainable production and consumption and have kept the impacts of use of natural resources well within safe ecological limits.",
+				"fr": "D\u2019ici \xe0 2020 au plus tard, les gouvernements, les entreprises \net les parties prenantes, \xe0 tous les niveaux, ont pris des mesures ou \nont appliqu\xe9 des plans pour assurer une production et une consommation durables, et ont maintenu les incidences de l\u2019utilisation des \nressources naturelles dans des limites \xe9cologiques s\xfbres.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "5",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 5",
+				"fr": "Objectif 5",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, the rate of loss of all natural habitats, including forests, is at least halved and where feasible brought close to zero, and degradation and fragmentation is significantly reduced.",
+				"fr": "D\u2019ici \xe0 2020, le rythme d\u2019appauvrissement de tous les \nhabitats naturels, y compris les for\xeats, est r\xe9duit de moiti\xe9 au moins et \nsi possible ramen\xe9 \xe0 pr\xe8s de z\xe9ro, et la d\xe9gradation et la fragmentation \ndes habitats sont sensiblement r\xe9duites.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "6",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 6",
+				"fr": "Objectif 6",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020 all fish and invertebrate stocks and aquatic plants are managed and harvested sustainably, legally and applying ecosystem based approaches, so that overfishing is avoided, recovery plans and measures are in place for all depleted species, fisheries have no significant adverse impacts on threatened species and vulnerable ecosystems and the impacts of fisheries on stocks, species and ecosystems are within safe ecological limits.",
+				"fr": "D\u2019ici \xe0 2020, tous les stocks de poissons et d\u2019invert\xe9br\xe9s \net plantes aquatiques sont g\xe9r\xe9s et r\xe9colt\xe9s d\u2019une mani\xe8re durable, \nl\xe9gale et en appliquant des approches fond\xe9es sur les \xe9cosyst\xe8mes, \nde telle sorte que la surp\xeache soit \xe9vit\xe9e, que des plans et des mesures \nde r\xe9cup\xe9ration soient en place pour toutes les esp\xe8ces \xe9puis\xe9es, que \nles p\xeacheries n\u2019aient pas d\u2019impacts n\xe9gatifs marqu\xe9s sur les esp\xe8ces \nmenac\xe9es et les \xe9cosyst\xe8mes vuln\xe9rables, et que l\u2019impact de la p\xeache \nsur les stocks, les esp\xe8ces et les \xe9cosyst\xe8mes reste dans des limites \n\xe9cologiques s\xfbres.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "7",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 7",
+				"fr": "Objectif 7",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020 areas under agriculture, aquaculture and forestry are managed sustainably, ensuring conservation of biodiversity.",
+				"fr": "D\u2019ici \xe0 2020, les zones consacr\xe9es \xe0 l\u2019agriculture, l\u2019aquaculture et la sylviculture sont g\xe9r\xe9es d\u2019une mani\xe8re durable, afin d\u2019assurer \nla conservation de la diversit\xe9 biologique.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "8",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 8",
+				"fr": "Objectif 8",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, pollution, including from excess nutrients, has been brought to levels that are not detrimental to ecosystem function and biodiversity",
+				"fr": "D\u2019ici \xe0 2020, la pollution, notamment celle caus\xe9e par \nl\u2019exc\xe8s d\u2019\xe9l\xe9ments nutritifs, est ramen\xe9e \xe0 un niveau qui n\u2019a pas d\u2019effet \nn\xe9faste sur les fonctions des \xe9cosyst\xe8mes et la diversit\xe9 biologique.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "9",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 9",
+				"fr": "Objectif 9",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, invasive alien species and pathways are identified and prioritized, priority species are controlled or eradicated, and measures are in place to manage pathways to prevent their introduction and establishment.",
+				"fr": "D\u2019ici \xe0 2020, les esp\xe8ces exotiques envahissantes et les \nvoies d\u2019introduction sont identifi\xe9es et class\xe9es en ordre de priorit\xe9, \nles esp\xe8ces prioritaires sont contr\xf4l\xe9es ou \xe9radiqu\xe9es et des mesures \nsont en place pour g\xe9rer les voies de p\xe9n\xe9tration, afin d\u2019emp\xeacher \nl\u2019introduction et l\u2019\xe9tablissement de ces esp\xe8ces.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "10",
+		"goal_id": "2",
+		"title": {
+				"en": "Target 10",
+				"fr": "Objectif 10",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2015, the multiple anthropogenic pressures on coral reefs, and other vulnerable ecosystems impacted by climate change or ocean acidification are minimized, so as to maintain their integrity and functioning.",
+				"fr": "D\u2019ici \xe0 2015, les nombreuses pressions anthropiques \nexerc\xe9es sur les r\xe9cifs coralliens et les autres \xe9cosyst\xe8mes vuln\xe9rables \nmarins et c\xf4tiers affect\xe9s par les changements climatiques ou l\u2019acidification des oc\xe9ans sont r\xe9duites au minimum, afin de pr\xe9server leur \nint\xe9grit\xe9 et leur fonctionnement.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "11",
+		"goal_id": "3",
+		"title": {
+				"en": "Target 11",
+				"fr": "Objectif 11",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at least 17 per cent of terrestrial and inland water, and 10 per cent of coastal and marine areas, especially areas of particular importance for biodiversity and ecosystem services, are conserved through effectively and equitably managed, ecologically representative and well connected systems of protected areas and other effective area-based conservation measures, and integrated into the wider landscapes and seascapes.",
+				"fr": "D\u2019ici \xe0 2020, au moins 17% des zones terrestres et \nd\u2019eaux int\xe9rieures et 10% des zones marines et c\xf4ti\xe8res, y compris \nles zones qui sont particuli\xe8rement importantes pour la diversit\xe9 biologique et les services fournis par les \xe9cosyst\xe8mes, \nsont conserv\xe9es au moyen de r\xe9seaux \xe9cologiquement \nrepr\xe9sentatifs et bien reli\xe9s d\u2019aires prot\xe9g\xe9es g\xe9r\xe9es efficacement et \xe9quitablement et d\u2019autres mesures de conservation \nefficaces par zone, et int\xe9gr\xe9es dans l\u2019ensemble du paysage \nterrestre et marin.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "12",
+		"goal_id": "3",
+		"title": {
+				"en": "Target 12",
+				"fr": "Objectif 12",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020 the extinction of known threatened species has been prevented and their conservation status, particularly of those most in decline, has been improved and sustained.",
+				"fr": "D\u2019ici \xe0 2020, l\u2019extinction d\u2019esp\xe8ces menac\xe9es \nconnues est \xe9vit\xe9e et leur \xe9tat de conservation, en particulier \nde celles qui tombent le plus en d\xe9clin, est am\xe9lior\xe9 et maintenu.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "13",
+		"goal_id": "3",
+		"title": {
+				"en": "Target 13",
+				"fr": "Objectif 13",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, the genetic diversity of cultivated plants and farmed and domesticated animals and of wild relatives, including other socio-economically as well as culturally valuable species, is maintained, and strategies have been developed and implemented for minimizing genetic erosion and safeguarding their genetic diversity.",
+				"fr": "D\u2019ici \xe0 2020, la diversit\xe9 g\xe9n\xe9tique des plantes cultiv\xe9es, \ndes animaux d\u2019\xe9levage et domestiques et des parents pauvres, y \ncompris celle d\u2019autres esp\xe8ces qui ont une valeur socio-\xe9conomique \nou culturelle, est pr\xe9serv\xe9e, et des strat\xe9gies sont \xe9labor\xe9es et mises en \n\u0153uvre pour r\xe9duire au minimum l\u2019\xe9rosion g\xe9n\xe9tique et sauvegarder \nleur diversit\xe9 g\xe9n\xe9tique.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "14",
+		"goal_id": "4",
+		"title": {
+				"en": "Target 14",
+				"fr": "Objectif 14",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, ecosystems that provide essential services, including services related to water, and contribute to health, livelihoods and well-being, are restored and safeguarded, taking into account the needs of women, indigenous and local communities, and the poor and vulnerable.",
+				"fr": "D\u2019ici \xe0 2020, les \xe9cosyst\xe8mes qui fournissent des services \nessentiels, en particulier l\u2019eau et contribuent \xe0 la sant\xe9, aux moyens de \nsubsistance et au bien-\xeatre, sont restaur\xe9s et sauvegard\xe9s, compte tenu \ndes besoins des femmes, des communaut\xe9s autochtones et locales, et \ndes populations pauvres et vuln\xe9rables.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "15",
+		"goal_id": "4",
+		"title": {
+				"en": "Target 15",
+				"fr": "Objectif 15",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, ecosystem resilience and the contribution of biodiversity to carbon stocks has been enhanced, through conservation and restoration, including restoration of at least 15 per cent of degraded ecosystems, thereby contributing to climate change mitigation and adaptation and to combating desertification.",
+				"fr": "D\u2019ici \xe0 2020, la r\xe9silience des \xe9cosyst\xe8mes et la contribution de la diversit\xe9 biologique aux stocks de carbone sont am\xe9lior\xe9es, \ngr\xe2ce aux mesures de conservation et restauration, y compris la restauration d\u2019au moins 15% des \xe9cosyst\xe8mes d\xe9grad\xe9s, contribuant ainsi \xe0 \nl\u2019att\xe9nuation des changements climatiques et l\u2019adaptation \xe0 ceux-ci, \nainsi qu\u2019\xe0 la lutte contre la d\xe9sertification.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "16",
+		"goal_id": "4",
+		"title": {
+				"en": "Target 16",
+				"fr": "Objectif 16",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2015, the Nagoya Protocol on Access to Genetic Resources and the Fair and Equitable Sharing of Benefits Arising from their Utilization is in force and operational, consistent with national legislation.",
+				"fr": "D\u2019ici \xe0 2015, le Protocole de Nagoya sur l\u2019acc\xe8s aux \nressources g\xe9n\xe9tiques et le partage juste et \xe9quitable des avantages \nd\xe9coulant de leur utilisation est en vigueur et op\xe9rationnel, conform\xe9-\nment \xe0 la l\xe9gislation nationale.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "17",
+		"goal_id": "5",
+		"title": {
+				"en": "Target 17",
+				"fr": "Objectif 17",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2015 each Party has developed, adopted as a policy instrument, and has commenced implementing an effective, participatory and updated national biodiversity strategy and action plan.",
+				"fr": "D\u2019ici \xe0 2015, toutes les Parties ont \xe9labor\xe9 et adopt\xe9 en tant \nqu\u2019instrument de politique g\xe9n\xe9rale, et commenc\xe9 \xe0 mettre en \u0153uvre \nune strat\xe9gie et un plan d\u2019action nationaux efficaces, participatifs et \nactualis\xe9s pour la diversit\xe9 biologique.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "18",
+		"goal_id": "5",
+		"title": {
+				"en": "Target 18",
+				"fr": "Objectif 18",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, the traditional knowledge, innovations and practices of indigenous and local communities relevant for the conservation and sustainable use of biodiversity, and their customary use of biological resources, are respected, subject to national legislation and relevant international obligations, and fully integrated and reflected in the implementation of the Convention with the full and effective participation of indigenous and local communities, at all relevant levels.",
+				"fr": "D\u2019ici \xe0 2020, les connaissances, innovations et pratiques \ntraditionnelles des communaut\xe9s autochtones et locales qui pr\xe9sentent un int\xe9r\xeat pour la conservation et l\u2019utilisation durable de la diversit\xe9 biologique, ainsi que leur utilisation coutumi\xe8re durable, sont respect\xe9es, sous r\xe9serve des dispositions de la l\xe9gislation nationale et des \nobligations internationales en vigueur, et sont pleinement int\xe9gr\xe9es et \nprises en compte dans le cadre de l\u2019application de la Convention, avec \nla participation enti\xe8re et effective des communaut\xe9s autochtones et \nlocales, \xe0 tous les niveaux pertinents.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "19",
+		"goal_id": "5",
+		"title": {
+				"en": "Target 19",
+				"fr": "Objectif 19",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, knowledge, the science base and technologies relating to biodiversity, its values, functioning, status and trends, and the consequences of its loss, are improved, widely shared and transferred, and applied.",
+				"fr": "D\u2019ici \xe0 2020, les connaissances, la base scientifique et \nles technologies associ\xe9es \xe0 la diversit\xe9 biologique, ses valeurs, son \nfonctionnement, son \xe9tat et ses tendances, et les cons\xe9quences de son \nappauvrissement, sont am\xe9lior\xe9es, largement partag\xe9es et transf\xe9r\xe9es, \net appliqu\xe9es.",
+				"nl": ""
+		}
+	},
+	{
+		"id": "20",
+		"goal_id": "5",
+		"title": {
+				"en": "Target 20",
+				"fr": "Objectif 20",
+				"nl": ""
+		},
+		"description": {
+				"en": "By 2020, at the latest, the mobilization of financial resources for effectively implementing the Strategic Plan for Biodiversity 2011-2020 from all sources, and in accordance with the consolidated and agreed process in the Strategy for Resource Mobilization, should increase substantially from the current levels. This target will be subject to changes contingent to resource needs assessments to be developed and reported by Parties.",
+				"fr": "D\u2019ici \xe0 2020 au plus tard, la mobilisation des ressources \nfinanci\xe8res n\xe9cessaires \xe0 la mise en \u0153uvre effective du Plan strat\xe9-\ngique 2011-2020 pour la diversit\xe9 biologique de toutes les sources et \nconform\xe9ment au m\xe9canisme consolid\xe9 et convenu de la Strat\xe9gie de \nmobilisation des ressources, aura augment\xe9 consid\xe9rablement par \nrapport aux niveaux actuels. Cet objectif fera l\u2019objet de modifications \nen fonction des \xe9valuations des besoins de ressources que les Parties \ndoivent effectuer et notifier",
+				"nl": ""
+		}
+	}
+]
