@@ -1,6 +1,7 @@
 [
     {
         "id": "1",
+        "short_title": "A",
         "title": {
                 "en": "Strategic Goal A",
                 "fr": "But strat\u00e9gique A",
@@ -14,6 +15,7 @@
     },
     {
         "id": "2",
+        "short_title": "B",
         "title": {
                 "en": "Strategic Goal B",
                 "fr": "But strat\u00e9gique B",
@@ -27,6 +29,7 @@
     },
     {
         "id": "3",
+        "short_title": "C",
         "title": {
                 "en": "Strategic Goal C",
                 "fr": "But strat\u00e9gique C",
@@ -40,6 +43,7 @@
     },
     {
         "id": "4",
+        "short_title": "D",
         "title": {
                 "en": "Strategic Goal D",
                 "fr": "But strat\u00e9gique D",
@@ -53,6 +57,7 @@
     },
     {
         "id": "5",
+        "short_title": "E",
         "title": {
                 "en": "Strategic Goal E",
                 "fr": "But strat\u00e9gique E",
