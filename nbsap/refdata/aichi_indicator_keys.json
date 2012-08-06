@@ -1,0 +1,20 @@
+{
+   "status": "Status of development",
+   "scale": "Scale (global, regional, national, sub-national)",
+   "other_targets": "Other Relevant Aichi Targets",
+   "name": "Operational Indicator",
+   "classification": "Operational Classification",
+   "sources": "Data Sources",
+   "sensitivity": "Sensitivity (can it be used to make assessment by 2015?)",
+   "question": "Communication Question",
+   "links": "Related Links",
+   "validity": "Scientific Validity",
+   "conventions": "Other conventions/processes using indicator",
+   "sub_indicator": "Indicator Sub-topics",
+   "head_indicator": "Headline Indicator",
+   "ease_of_communication": "How easy can it be communicated?",
+   "requirements": "Data Requirements",
+   "relevant_target": "Most Relevant Aichi Target",
+   "measurer": "Who's responsible for measuring?",
+   "goal": "Strategic Goal"
+}

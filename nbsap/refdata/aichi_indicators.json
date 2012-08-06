@@ -1,0 +1,2120 @@
+[
+   {
+      "status":"Available for some habitats/regions e.g. coral reef condition for IndoPacific and Caribbean. Important for marine realm because fragmentation and extent less relevant. Condition is difficult to measure directly for many habitats, hence the use of population and extinction risk trends as surrogates.",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "7",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"Various",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Area of forest under sustainable management: degradation and deforestation",
+            "http://www.bipindicators.net/forestdegradation"
+         ]
+      ],
+      "validity":"Medium",
+      "measurer":"Various",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "ease_of_communication":"Medium",
+      "requirements":"Various",
+      "id":"1",
+      "name":"Trends in proportion of degraded/threatened habitats"
+   },
+   {
+      "status":"Available for birds, mammals, amphibians and corals globally in each (relevant) major habitat type. Further taxonomic groups being added over the next decade (e.g., sharks, groupers and wrasses, cycads, conifers, etc). Available globally, regionally and, over the next decade, nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). Habitat degradation is difficult to assess using remote sensing for many habitats. Trends in the status of populations and species that are characteristic of, dependent on, or specialists in, each habitat can be usefully used to assess degree of degradation. The latter can be measured in terms of trends in the extinction risk of sets of species using the Red List Index, providing a useful complement to the fomer for which population trends can be measured using the Living Planet Index, Wild Bird Index and similar indicators. Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "6",
+         "7",
+         "8",
+         "10",
+         "12",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Red List Index",
+            "http://www.bipindicators.net/rli"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"Ramsar, CMS (AEWA",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires assessment of habitat requirements and specificity.",
+      "id":"2",
+      "name":"Extinction risk trends of habitat dependent species in each major habitat type"
+   },
+   {
+      "status":"Total area of natural, semi-natural and anthropogenic land cover types and trends over time. This includes human modified landscapes, such as urban and croplands, and the pressures on biomes, ecosystems and habitats for example trends in land conversion (urbanization, conversion to agriculture). Indicator development is good for forests, poor for other biomes, moderate for urbanization and conversion to agricultural land. This is a key indicator and a high priority for development to cover other biomes/habitats/drivers.",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "7",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"Remote sensing, global land cover data sets exist (such as GLC 2000) and ground truthing, land cover stats, from many country databases. Red List of Ecosystems (under development)",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Extent of forests and forest types",
+            "http://www.bipindicators.net/forestextent"
+         ],
+         [
+            "BIP Indicator: Extent of marine habitats",
+            "http://www.bipindicators.net/marinehabitats"
+         ]
+      ],
+      "validity":"High",
+      "sub_indicator":"Trends in extent of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "ease_of_communication":"High",
+      "requirements":"Remote sensing, more detailed at national scale; classification schemes for biome types",
+      "id":"3",
+      "name":"Trends in extent of selected biomes, ecosystems and habitats"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "11",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "sub_indicator":"Trends in extent of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "id":"4",
+      "name":"Trends in condition and vulnerability of ecosystems"
+   },
+   {
+      "status":"Available for some drivers/habitats (e.g. forests)",
+      "classification":"For consideration at sub-global level",
+      "scale":"R, N",
+      "other_targets":[
+         "7",
+         "10",
+         "11",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"See inf1 + others for marine",
+      "sensitivity":"Medium",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "validity":"High",
+      "measurer":"See  inf 1",
+      "sub_indicator":"Trends in extent of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "ease_of_communication":"High",
+      "requirements":"Remote sensing, more detailed at national scale; classification schemes for biome types",
+      "id":"5",
+      "name":"Trends in the proportion of natural habitats converted"
+   },
+   {
+      "status":"Exists for some habitat types, for example forests (Intact Forest Index) and a static/baseline measure for rivers exists (River Fragmentation and Flow Regulation Index). Needs further development, particularly for rivers where it is a very important measure because extent is less relevant",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "7",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"different for different measures",
+      "sensitivity":"Medium",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Forest fragmentation",
+            "http://www.bipindicators.net/forestfragmentation"
+         ],
+         [
+            "BIP Indicator: River fragmentation and flow regulation",
+            "http://www.bipindicators.net/riverfragmentation"
+         ]
+      ],
+      "validity":"Medium",
+      "sub_indicator":"Trends in fragmentation of natural habitats",
+      "head_indicator":"Trends in extent, condition and vulnerability of ecosystems, biomes and habitats",
+      "requirements":"remote sensing for forests, rivers based on number of dams and flow (global data used in GBO3)",
+      "id":"6",
+      "name":"Trends in fragmentation of natural habitats "
+   },
+   {
+      "status":"Developed at the global (e.g., LPI), sub-global (e.g., ASTI) and national (e.g., Norway, Canada) level; Available for vertebrates (LPI), and for particular taxa/habitats (e.g. Wild Bird Index); in development globally for some subsets in development globally for some taxonomic subsets (e.g., Critically Endangered Bird Indicator; Global Butterfly Index); not yet developed, but planned, for other groups (e.g., population trends of threatened SRLI plants, or population trends of Alliance for Zero Extinction site-trigger species). A suitable indicator for monitoring changes in abundance of marine fishes remains elusive.  Generally derived from data for better studied species (e.g. LPI), but in some cases based on systematic surveys at randomised sites for all species in particular taxonomic groups (e.g. Wild Bird Index)",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "10",
+         "13",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"12",
+      "sources":"Living Planet Index database, Wild Bird Index databases etc",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Living Planet Index",
+            "http://www.bipindicators.net/lpi"
+         ],
+         [
+            "BIP Indicator: Wild Bird Index",
+            "http://www.bipindicators.net/wbi"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"CMS",
+      "measurer":"At the global level, there are existing processes to monitor and collate changes (e.g., ZSL and WWF for LPI; CAFF for ASTI; BirdLife/EBCC/USNABCI for WBI), but there is tremendous potential to encourage measurement at a national level, and to be reported by CBD national focal points",
+      "sub_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "head_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "ease_of_communication":"High",
+      "requirements":"At a minimum requires that population estimates from at least two data-points are derived using a comparable methodology. Ideally requires: i) choosing a representative set of species, ii) a representative set of sites, and iii) regular monitoring over a standardized time-frame. ",
+      "id":"7",
+      "name":"Trends in abundance of selected species "
+   },
+   {
+      "status":"Available for birds, mammals, amphibians and corals globally. Further taxonomic groups being added over the next decade (e.g., sharks, groupers and wrasses, cycads, conifers, etc). Available globally, regionally and, over the next decade, nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs. populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "10",
+         "13",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"12",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Red List Index",
+            "http://www.bipindicators.net/rli"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"UN MDGs, CMS",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "head_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols.",
+      "id":"8",
+      "name":"Trends in extinction risk of species "
+   },
+   {
+      "status":"Not developed",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "11",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"12",
+      "sources":"GBIF (occurrence data); IUCN Red List Partnership (extent of occurrence data); citizen science initiatives (e.g., ebird, WorldBirds)",
+      "sensitivity":"Medium",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "validity":"High",
+      "measurer":"Inter-goveR, Nmental processes (e.g., IpBES, GEO-BON)",
+      "sub_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "head_indicator":"Trends in abundance, distribution and extinction risk of species",
+      "ease_of_communication":"Medium",
+      "requirements":"Requires combining distribution data (e.g., occurrences or extent of occurrence) with modeling techniques and eventually remote sensing of habitat changes",
+      "id":"9",
+      "name":"Trends in distribution of selected species"
+   },
+   {
+      "status":"Partly available through FAO data and at national level through existing collections and reporting mechanisms.  Molecular data still under development.  ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "7",
+         "12",
+         "14",
+         "16"
+      ],
+      "goal":"C",
+      "relevant_target":"13",
+      "sources":"FAO DADIS database, CGIAR (national &amp; regional e.g. USDA, EURISCO), GENESYS",
+      "sensitivity":"High",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "links":[
+         [
+            "BIP Indicator: Ex-situ crop collections",
+            "http://www.bipindicators.net/cropcollections"
+         ],
+         [
+            "BIP Indicator: Genetic diversity of terrestrial domesticated animals",
+            "http://www.bipindicators.net/domesticatedanimals"
+         ]
+      ],
+      "validity":"Medium",
+      "measurer":"Genebanks, other conservation institutions... National data and reports submitted to FAO etc, aggregated to global level",
+      "sub_indicator":"Trends in genetic diversity of species",
+      "head_indicator":"Trends in genetic diversity of species",
+      "ease_of_communication":"High",
+      "requirements":"Percentage of diversity within species conserved (number of breeds, unique accessions) ",
+      "id":"10",
+      "name":"Trends in genetic diversity of cultivated plants, and farmed and domesticated animals and their wild relatives "
+   },
+   {
+      "status":"Need to prioritize which species to apply into the indicator to keep the problem representative, scalable and manageable [priority list of species per country / sub-region]",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "7",
+         "12",
+         "14",
+         "16"
+      ],
+      "goal":"C",
+      "relevant_target":"13",
+      "sources":"NGO field survey data are key, plus PA managers in terms of species present on sites, country data and biodiversity information facilities",
+      "sensitivity":"Medium",
+      "question":"State \u2013 How is the state of biodiversity changing?",
+      "validity":"Medium",
+      "measurer":"Local and national data collations, links with TRAFFIC / CITES,  ",
+      "sub_indicator":"Trends in genetic diversity of species",
+      "head_indicator":"Trends in genetic diversity of species",
+      "ease_of_communication":"High",
+      "requirements":"priority species lists, population and distribution data for those priority species",
+      "id":"11",
+      "name":"Trends in genetic diversity of selected species"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "requirements":"Remote sensing",
+      "id":"12",
+      "name":"Trends in primary productivity"
+   },
+   {
+      "status":"Under development",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "conventions":"UNCCD",
+      "measurer":"UNCCD &amp; national agencies",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"High",
+      "requirements":"Remote sensing &amp; national reporting",
+      "id":"13",
+      "name":"Trends in proportion of land affected by desertification"
+   },
+   {
+      "status":"Available regionally for farmland-specialist birds in agricultural landscapes. Under development for other regions. Could be developed for forest species in production forests &amp; for other taxa. Sustainability of production systems from a biodiversity perspective is challenging to measure, but population trends of those species characteristic of (and largely dependent on) farmland or forest can provide a useful surrogate.",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "12",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"7",
+      "sources":"Living Planet Index database, Wild Bird Index databases etc",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "conventions":"SEBI",
+      "measurer":"BirdLife/EBCC/USNABCI; ZSL/WWF",
+      "sub_indicator":"Trends in sustainability of agriculture, forestry &amp; aquaculture",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"High",
+      "requirements":"Population trends based on systematic monitoring within production systems. Identification of species characteristic/dependent/specialized on farmland and forest habitats.",
+      "id":"14",
+      "name":"Trends in population of forest and agriculture dependent species in production systems"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "8"
+      ],
+      "goal":"B",
+      "relevant_target":"7",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in sustainability of agriculture, forestry &amp; aquaculture",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"15",
+      "name":"Trends in production per input"
+   },
+   {
+      "classification":"Priority and ready for use globally",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "8",
+         "10",
+         "14"
+      ],
+      "goal":"A",
+      "relevant_target":"4",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Ecological Footprint",
+            "http://www.bipindicators.net/ecologicalfootprint"
+         ]
+      ],
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"16",
+      "name":"Trends in Ecological Footprint and/or related concepts"
+   },
+   {
+      "status":"For extinction risk trends: available for birds, mammals, and amphibians globally; further taxonomic groups being added over the next decade (e.g., sharks, groupers and wrasses, cycads, conifers, corals etc). Available globally, regionally and, over the next decade, nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). For population trends, available for vertebrates globally. Trends in the status of utilized species can be used as a surrogate for impacts of unsustainable utilization on species, although many are impacted by other threats too. Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "12",
+         "14",
+         "15"
+      ],
+      "goal":"A",
+      "relevant_target":"4",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols). Living Planet Index database.",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Status of Species in Trade",
+            "http://www.bipindicators.net/speciestrade"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"CITES",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ZSL/WWF for LPI.",
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. For population trends, requires population time-series. PLUS for both, requires identification of which species are utilized (included which are traded). ",
+      "id":"17",
+      "name":"Trends in population and extinction risk of utilized species, including species in trade"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "6",
+         "7",
+         "14"
+      ],
+      "goal":"A",
+      "relevant_target":"4",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "conventions":"See also target 12 of the GSPC",
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"18",
+      "name":"Ecological limits assessed in terms of sustainable production and consumption"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "4",
+         "6",
+         "8",
+         "9",
+         "10",
+         "11",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"7",
+      "sources":"IUCN SUSG",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"19",
+      "name":"Trends in proportion of products derived from sustainable sources"
+   },
+   {
+      "status":"Data available globally",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "sources":"National",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "measurer":"National agencies",
+      "sub_indicator":"Trends in sustainable utilisation of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"Medium",
+      "id":"20",
+      "name":"Trends in catch per unit effort"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"Medium",
+      "sub_indicator":"Trends in sustainable utilisation of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"21",
+      "name":"Trends in fishing effort capacity"
+   },
+   {
+      "status":"Available for bycatch species of seabirds and marine mammals globally. Will be available for sharks, groupers and wrasses and other marine groups over the next decade. Available globally, regionally and, potentially, nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs. populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Wild Commodities Index",
+            "http://www.bipindicators.net/wildcommoditiesindex"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"CMS (ACAP",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in sustainable utilization of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires identification of which species are targeted &amp; which caught as bycatch.",
+      "id":"22",
+      "name":"Trends in extinction risk of target and bycatch aquatic species"
+   },
+   {
+      "status":"Could be rapidly generated for marine vertebrates globally. Under development for seabird bycatch species. Could be developed for other taxa. Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs. populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "sources":"Living Planet Index database, Wild Bird Index databases etc",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Living Planet Index",
+            "http://www.bipindicators.net/lpi"
+         ],
+         [
+            "BIP Indicator: Wild Bird Index",
+            "http://www.bipindicators.net/wbi"
+         ],
+         [
+            "BIP Indicator: Wild Commodities Index",
+            "http://www.bipindicators.net/wildcommoditiesindex"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"ZSL, WWF, BirdLife/EBCC/USNABCI, fisheries agencies",
+      "sub_indicator":"Trends in sustainable utilization of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "ease_of_communication":"Medium",
+      "requirements":"Population time series. Identification of target and bycatch species.",
+      "id":"23",
+      "name":"Trends in population of target and bycatch aquatic species"
+   },
+   {
+      "status":"This is already produced by FAO, so quite feasible",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "4",
+         "7",
+         "10",
+         "12",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Wild Commodities Index",
+            "http://www.bipindicators.net/wildcommoditiesindex"
+         ]
+      ],
+      "sub_indicator":"Trends in sustainable utilization of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"24",
+      "name":"Trends in proportion of utilized stocks outside safe biological limits"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"R, N",
+      "other_targets":[
+         "5",
+         "7",
+         "10",
+         "11"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in sustainable utilization of target and bycatch populations",
+      "head_indicator":"Trends in pressures from unsustainable agriculture, forestry, fisheries and aquaculture",
+      "id":"25",
+      "name":"Trends in area, frequency, and/or intensity of destructive fishing practices"
+   },
+   {
+      "status":"Available globally for vertebrates in each major habitat type (Living Planet Index) and regionally for habitat-specialist birds in each major habitat type (Wild Bird Index) and for butterflies in European grasslands. Under development for habitat-specilaist birds in other regions. Available at national or subnational scale in some cases. Generally derived from data for better studied species (eg LPI), but in some cases based on systematic surveys at randomised sites for all species in particular taxonomic groups (eg Wild Bird Index). Habitat degradation is difficult to assess using remote sensing for many habitats. Trends in the status of populations and species that are characteristic of, dependent on, or specialists in, each habitat can be usefully used to assess degree of degradation. The latter can be measured in terms of trends in the extinction risk of sets of species using the Red List Index, providing a useful complement to the fomer for which population trends can be measured using the Living Planet Index, Wild Bird Index and similar indicators. Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs populations), have different levels of sensitivity (high for populaiotn trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "11",
+         "12",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"5",
+      "sources":"Living Planet Index database, Wild Bird Index databases etc",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Living Planet Index",
+            "http://www.bipindicators.net/lpi"
+         ],
+         [
+            "BIP Indicator: Wild Bird Index",
+            "http://www.bipindicators.net/wbi"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"SEBI",
+      "measurer":"ZSL/WWF; BirdLife/EBCC/USNABCI",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Time series of population trends linked to habitat types",
+      "id":"26",
+      "name":"Population trends of habitat dependent species in each major habitat type"
+   },
+   {
+      "status":"The Singapore Index on Cities\u2019 Biodiversity has been developed and tested by several cities and can be used by cities and subnational goveR, Nments. ",
+      "classification":"For consideration at sub-global level",
+      "scale":"S",
+      "other_targets":[
+         "2",
+         "12",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"4",
+      "sources":"Data sets would be readily available in many cities\n",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"Medium",
+      "measurer":"Cities testing and applying the index with coordination provided by the National Parks Board of Singapore and the Stockholm Resilience Center",
+      "sub_indicator":"Trends in degradation of natural habitats",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Data on several variables are required",
+      "id":"27",
+      "name":"Trends in biodiversity of cities"
+   },
+   {
+      "status":"Available for birds, mammals and amphibians globally. Further taxonomic groups being added over the next decade (e.g., sharks, groupers and wrasses, cycads, conifers, etc). Available globally, regionally and, over the next decade, nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). Shows the impact of invasive alien species (plants, animals, fungi, diseases etc) on trends in extinction risk of native species. ",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Trends in invasive alien species",
+            "http://www.bipindicators.net/invasivealienspecies"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in impact of invasive alien species",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires coding of drivers of recategorisations (threats driving deteriorations in status or threats overcome by successful conservation actions).",
+      "id":"28",
+      "name":"Trends in the impact of invasive alien species on extinction risk trends"
+   },
+   {
+      "status":"Available for some invasive alien species in some counties",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "2",
+         "10",
+         ""
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in impact of invasive alien species",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"29",
+      "name":"Trends in the economic impacts of selected invasive alien species"
+   },
+   {
+      "status":"Available for corals globally. May be available for reef fish in due course. Available globally &amp; regionally. Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs. populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "12",
+         "14"
+      ],
+      "name":"Extinction risk trends of coral and reef fish",
+      "relevant_target":"10",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Red List Index",
+            "http://www.bipindicators.net/rli"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols.",
+      "id":"30"
+   },
+   {
+      "status":"Baseline available for amphibians, birds &amp; corals globally. Could be expanded for other taxonomic groups globally (already underway regionally).  Shows trends in proportion of species susceptible to climate change impacts based on data collected in association with IUCN Red List assessments relating to life history traits rendering species sensitive, unadaptable or exposed to climate change impact.",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R",
+      "other_targets":[
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"10",
+      "sources":"Global IUCN Red List. ",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"Medium",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. ",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires assessments of sensitivity based on exposure, sensitivity and adaptability (the latter two derived from life history traits)",
+      "id":"31",
+      "name":"Trends in climate change impacts on extinction risk"
+   },
+   {
+      "status":"Available for % live cover for IndoPacific and Caribbean",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "12",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"10",
+      "sources":"Various",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "measurer":"Various, ReefCheck etc",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Various",
+      "id":"32",
+      "name":"Trends in coral reef condition"
+   },
+   {
+      "status":"Could be quickly developed for sea ice &amp; some other habitats/ecosystems",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"10",
+      "sources":"(e.g. TRY initiative; sea ice, alpine habitats, tundra, cloudforest, shellfish reefs etc)",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "measurer":"Various agencies",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Remote sensing data",
+      "id":"33",
+      "name":"Trends in extent, and rate of shifts of boundaries, of vulnerable ecosystems"
+   },
+   {
+      "status":"Available for European birds &amp; butterflies",
+      "classification":"For consideration at sub-global level",
+      "scale":"R",
+      "other_targets":[
+         "5",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"10",
+      "sources":"Distribution of species; temperature data",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"Medium",
+      "requirements":"Distribution of species; temperature data",
+      "id":"34",
+      "name":"Trends in climatic impacts on community composition"
+   },
+   {
+      "status":"Available for European birds. Under development for Africa &amp; N America. Based on systematic bird population monitoring. Shows the specific signal of climate change on population trends (as it is based on trends for species divided into two sets according to expected impacts derived from envelope modeling). Many other population trend datasets are available, but it is not yet possible to distinguish what component of any trends result from climate change.",
+      "classification":"For consideration at sub-global level",
+      "scale":"R",
+      "other_targets":[
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"10",
+      "sources":"Wild Bird Index database. Models of climate impacts.",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"High",
+      "measurer":"BirdLife/EBCC",
+      "sub_indicator":"Trends in integrity of ecosystems vulnerable to climate change",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"Medium",
+      "requirements":"Population trends based on systematic monitoring across species&#39; ranges; envelope models",
+      "id":"35",
+      "name":"Trends in climatic impacts on population trends"
+   },
+   {
+      "status":"Baseline for IAS available globally, trends for alien species available regionally",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10"
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "sources":"Various databases",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Trends in invasive alien species",
+            "http://www.bipindicators.net/invasivealienspecies"
+         ]
+      ],
+      "validity":"Medium",
+      "measurer":"IUCN ISSG, CABI, SANBI",
+      "sub_indicator":"Trends in number/extent of invasive alien species",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Occurrence data by year",
+      "id":"36",
+      "name":"Trends in number of invasive alien species"
+   },
+   {
+      "status":"Available for some diseases in some countries",
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "sources":"national agencies",
+      "sensitivity":"Medium",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "validity":"Medium",
+      "measurer":"national agencies",
+      "sub_indicator":"Trends in number/extent of invasive alien species",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"Frequency of outbreaks by year",
+      "id":"37",
+      "name":"Trends in incidence of wildlife diseases caused by invasive alien species"
+   },
+   {
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R",
+      "other_targets":[
+         "5",
+         "10",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"38",
+      "name":"Trends in incidence of hypoxic zones and algal blooms"
+   },
+   {
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "10",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "sources":"UNEP GEMS",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Water Quality Index for Biodiversity",
+            "http://www.bipindicators.net/wqib"
+         ]
+      ],
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"39",
+      "name":"Trends in water quality in aquatic ecosystems"
+   },
+   {
+      "status":"Could be developed rapidly, globally, for selected taxonomic groups (birds, mammals, amphibians, corals). Further taxonomic groups could be added over the next decade (e.g., sharks, groupers and wrasses, cycads, conifers, etc). Could also be developed nationally (many countries have produced national Red Lists (some using the IUCN methodology and others not) which when repeated could produce national RLIs). Shows the impact of pollution on trends in extinction risk of native species. ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Red List Index",
+            "http://www.bipindicators.net/rli"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. ",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires coding of drivers of recategorisations (threats driving deteriorations in status or threats overcome by successful conservation actions).",
+      "id":"40",
+      "name":"Impact of pollution on extinction risk trends"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "links":[
+         [
+            "BIP Indicator: Nitrogen Deposition",
+            "http://www.bipindicators.net/nitrogendeposition"
+         ]
+      ],
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"41",
+      "name":"Trends in pollution deposition rate"
+   },
+   {
+      "status":"Currently it is unclear whether there is adequate reporting on monitoring of this ecosystem service in a regular fashion easily compatible with the needs for the Aichi Biodiversity Targets.  There are however much underlying data available that has been compiled by various assessments at local, regional and global levels. These include, for example, Walling and Fang (2003), Syvitski et al. (2005), V&#246;r&#246;smarty et al. (1997, 2003) and Ericson et al. (2006). The Hydrologic Engineering Center (HEC), an organization within the Institute for Water Resources, is the designated Center of Expertise for the US Army Corps of Engineers in river hydraulics and sediment transport and maintains computer modeling software for this topic. There is also a relatively high degree of knowledge regarding land management and its impacts on soil erosion, and hence on potential drivers of sediment loads. For example, Uri and Lewis (1999) provide estimates of erosion from US cropland and Hu et al. (2008) likewise for erosion control measures in the Middle Yellow River Basin in China; Lal et al. (2004) and Montgomery (2007) give global overviews. ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10",
+         "14"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "sources":"remote sensing\n\nThe FAO AQUASTAT database contains the dataset &quot;Global river sediment yields&quot;. This contains data on annual sediment yields in worldwide rivers and reservoirs, searchable by river, country and continent. The database was compiled from different sources by HR Wallingford, UK, on behalf of the FAO Land and Water Development Division. Although this database has not been updated since 2000, it is maintained.",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"42",
+      "name":"Trends in sediment transfer rates"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"43",
+      "name":"Trend in emission to the environment of pollutants relevant for biodiversity"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "10",
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"44",
+      "name":"Trend in levels of contaminants in wildlife"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "4",
+         "7"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "sources":"N-Print",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"45",
+      "name":"Trends in nitrogen footprint of consumption activities"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G",
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"46",
+      "name":"Trends in ozone levels in natural ecosystems"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "10"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"47",
+      "name":"Trends in proportion of wastewater discharged after treatment"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G",
+      "other_targets":[
+         "10"
+      ],
+      "goal":"B",
+      "relevant_target":"8",
+      "sources":"remote sensing",
+      "question":"Pressures and underlying causes - Why are we losing biodiversity?",
+      "sub_indicator":"Trends in pollutant releases to the environment",
+      "head_indicator":"Trends in pressures from direct and underlying drivers",
+      "id":"48",
+      "name":"Trends in UV-radiation levels"
+   },
+   {
+      "classification":"Priority and ready for use globally",
+      "other_targets":[
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Biodiversity for food and medicine",
+            "http://www.bipindicators.net/foodandmedicine"
+         ]
+      ],
+      "sub_indicator":"Trends in benefits that humans derive from biodiversity and ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "id":"49",
+      "name":"Trends in benefits that humans derive from selected ecosystem services"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "sub_indicator":"Trends in benefits that humans derive from biodiversity and ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "id":"50",
+      "name":"Trends in delivery of multiple ecosystem services"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, N",
+      "other_targets":[
+         "2",
+         "4",
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"FAO, WCMC, NAFO",
+      "measurer":"FAO, WCMC, NAFO",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in benefits that humans derive from biodiversity and ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "requirements":"1. crop area, crop production; 2. CUE fish stock; 3. NDVI; 4. recreation days",
+      "id":"51",
+      "name":"Trends in economic and non-economic values value of selected ecosystem services"
+   },
+   {
+      "status":"Good",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "8"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"GoveR, Nmental data on sources of drinking water",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"High",
+      "conventions":"MDG 7.8",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"52",
+      "name":"Trends in proportion of  the population using improved  water services"
+   },
+   {
+      "classification":"Priority and ready for use globally",
+      "other_targets":[
+         "4",
+         "5",
+         "7"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "id":"53",
+      "name":"Trends in proportion of total freshwater resources used"
+   },
+   {
+      "status":"Good",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "7",
+         "18"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"National Statistics",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Health and wellbeing of communities directly dependent on ecosystem goods and services",
+            "http://www.bipindicators.net/healthofcommunities"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"54",
+      "name":"Trends in health and wellbeing of communities who depend directly on local ecosystem goods and services"
+   },
+   {
+      "status":"Good",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"National Statistics\nInsurance Companies\nDisaster databases",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Nutrition indicators for biodiversity",
+            "http://www.bipindicators.net/nutritionindicators"
+         ]
+      ],
+      "validity":"Medium",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "requirements":"No. of people affected\nAmount lost",
+      "id":"55",
+      "name":"Trends in human  and economic losses due to water or natural resource related disasters"
+   },
+   {
+      "status":"available globally",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G",
+      "other_targets":[
+         "7"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"INFOODS, FAO, National goveR, Nments, Research Centers and NGOS",
+      "measurer":"INFOODS Centers, Research Centers",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"56",
+      "name":"Trends in nutritional contribution of biodiversity: Food composition"
+   },
+   {
+      "status":"Not developed",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N, S",
+      "requirements":"Incidences",
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"Health Statistics\nGoveR, Nments \nWHO",
+      "sensitivity":"Medium",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"Low",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"57",
+      "name":"Trends in incidence of emerging zoonotic diseases"
+   },
+   {
+      "status":"Not developed",
+      "classification":"For consideration at sub-global level",
+      "scale":"N, S",
+      "requirements":"Huge",
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"National Statistics\nWorld Bank",
+      "sensitivity":"Low",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"Medium",
+      "id":"58",
+      "name":"Trends in inclusive wealth"
+   },
+   {
+      "status":"available globally",
+      "classification":"For consideration at sub-global level",
+      "scale":"G",
+      "other_targets":[
+         "7"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"National goveR, Nments, UN Research Centers and NGOS",
+      "measurer":"INFOODS Centers, Research Centers",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"59",
+      "name":"Trends in nutritional contribution of biodiversity: Food consumption"
+   },
+   {
+      "status":"Moderate",
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"National Statistics\nWorld Bank",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"Medium",
+      "conventions":"MDG 1.8",
+      "measurer":"GoveR, Nments",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"60",
+      "name":"Trends in prevalence of underweight children under-five years of age"
+   },
+   {
+      "status":"Moderate",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N, S",
+      "requirements":"Courts\nWater agencies",
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"Number of court cases",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"Medium",
+      "measurer":"Unclear responsibility",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"61",
+      "name":"Trends in natural resource conflicts"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "5"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "sub_indicator":"Trends in consequences of benefits derived from ecosystem services for human wellbeing",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "id":"62",
+      "name":"Trends in the condition of selected ecosystem services"
+   },
+   {
+      "status":"Available globally for extinction risk trends for pollinators (birds only at present; other groups being added; could be expanded to cover scavengers, seed-dispersers etc). Some populaiotn trend data available for some pollinator species too. Some guilds of species are particularly important for delivering specific ecosystem services. Tracking their status (in terms of extinction risk and population trends) provides information on trends in the capacity of ecosystems to deliver ecosystem services (although not necessarily trends in the benefits obtained by people). Extinction risk indicators and population trend indicators are complementary because they measure different levels of biodiversity (species vs populations), have different levels of sensitivity (high for population trends, moderate for extinction risk) and different levels of geographic &amp; species coverage (comprehensive for extinction risk for a number of taxonomic groups; much lower for population trends, which are based on better studied species).",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "12",
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sources":"Global IUCN Red List. National red lists (either those that apply IUCN criteria and guidelines at the sub-global level, or from other risk-ranking protocols)",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Red List Index",
+            "http://www.bipindicators.net/rli"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"IUCN and its Partners (BirdLife InteR, National, NatureServe, Conservation InteR, National, Kew etc) at the global level. National agencies developing or updating national red lists. For population trends: Global Pollinator Network.",
+      "sub_indicator":"Trends in natural capital that delivers multiple ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "requirements":"IUCN Red List categories for complete sets of species from two or more time-points. Requires genuine recategorisations to be distinguished from non-genuine changes following standard protocols. PLUS requires coding of which species are important for delivering which services.",
+      "id":"63",
+      "name":"Population trends and extinction risk trends of species that provide ecosystem services"
+   },
+   {
+      "status":"Good",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "5",
+         "7",
+         "14"
+      ],
+      "goal":"D",
+      "relevant_target":"15",
+      "sensitivity":"High",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in natural capital that delivers multiple ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "ease_of_communication":"High",
+      "id":"64",
+      "name":"Status and trends in extent and condition of habitats that provide carbon storage"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "5",
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "question":"Benefits - What are the implications of biodiversity loss?",
+      "sub_indicator":"Trends in natural capital that delivers multiple ecosystem services",
+      "head_indicator":"Trends in distribution, condition and sustainability of ecosystem services",
+      "id":"65",
+      "name":"Trends in biocapacity"
+   },
+   {
+      "status":"Systematic structured surveys provide the most effective indicator, but other surrogates may be useful",
+      "classification":"For consideration at sub-global level",
+      "scale":"S",
+      "other_targets":[
+         "2",
+         "4",
+         "17",
+         "18",
+         "19"
+      ],
+      "goal":"A",
+      "relevant_target":"1",
+      "sources":"Various",
+      "sensitivity":"Low",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Low",
+      "measurer":"Various",
+      "sub_indicator":"Trends in awareness, attitudes and public engagement in support of biological diversity",
+      "head_indicator":"Trends in awareness, attitudes and public engagement in support of biodiversity",
+      "ease_of_communication":"High",
+      "requirements":"Various",
+      "id":"66",
+      "name":"Trends in awareness and attitudes to biodiversity"
+   },
+   {
+      "status":"Some global datasets available; but mainly possible at national scale",
+      "classification":"For consideration at sub-global level",
+      "scale":"S",
+      "other_targets":[
+         "2",
+         "4",
+         "17",
+         "19"
+      ],
+      "goal":"A",
+      "relevant_target":"1",
+      "sources":"Various",
+      "sensitivity":"Low",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Low",
+      "measurer":"Various",
+      "sub_indicator":"Trends in awareness, attitudes and public engagement in support of biological diversity",
+      "head_indicator":"Trends in awareness, attitudes and public engagement in support of biodiversity",
+      "ease_of_communication":"High",
+      "requirements":"Various",
+      "id":"67",
+      "name":"Trends in public engagement with biodiversity"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "4"
+      ],
+      "goal":"A",
+      "relevant_target":"1",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in awareness, attitudes and public engagement in support of biodiversity",
+      "id":"68",
+      "name":"Trends in communication programmes and actions promoting social corporate responsibility"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "5"
+      ],
+      "goal":"E",
+      "relevant_target":"18",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in degree to which traditional knowledge and practices are fully respected in implementation of the Strategic Plan.",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"69",
+      "name":"Trends in land-use change and land tenure in the traditional territories of indigenous and local communities"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "5"
+      ],
+      "goal":"E",
+      "relevant_target":"18",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in degree to which traditional knowledge and practices are fully respected in implementation of the Strategic Plan.",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"70",
+      "name":"Trends in the practice of traditional occupations"
+   },
+   {
+      "status":"Available through FAO state of world reports and CGRFA documents",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "17"
+      ],
+      "goal":"C",
+      "relevant_target":"13",
+      "sources":"FAO / CGRFA ",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Medium",
+      "measurer":"National focal points to provide, FAO to aggregate",
+      "sub_indicator":"Trends in genetic diversity of species",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "ease_of_communication":"High",
+      "requirements":"Number of policy measures per country",
+      "id":"71",
+      "name":"Trends in number of effective policy mechanisms implemented to reduce genetic erosion and safeguard genetic diversity related to plant and animal genetic resources"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in impact of invasive alien species",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"72",
+      "name":"Trends in invasive alien species pathways management"
+   },
+   {
+      "status":"New indicator. Need to develop the definitions. Guidance and/or template on reporting for consistency of 5th and 6th National Reports. To include assessment of (1) broad participation; (2) mainstreaming; (3) resource mobilization; (4) political endorsement; and (5) synergies with other relevant Multi-lateral Environmental Agreements and regional processes. ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"R, N, S",
+      "other_targets":[
+         "1",
+         "2",
+         "3",
+         "4",
+         "5",
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "11",
+         "12",
+         "13",
+         "14",
+         "15",
+         "16",
+         "18",
+         "19",
+         "20"
+      ],
+      "goal":"E",
+      "relevant_target":"17",
+      "sources":"Report to COP 11, 5th and 6th National Reports.",
+      "sensitivity":"Medium",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Medium",
+      "measurer":"Parties",
+      "sub_indicator":"Trends in implementation of National Biodiversity Strategy and Action Plans (NBSAPs)",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "ease_of_communication":"Medium",
+      "requirements":"Status of development, adoption and implementation",
+      "id":"73",
+      "name":"Trends in implementation of National Biodiversity Strategies and Action Plans, including development, comprehensiveness, adoption and implementation"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "2",
+         "4",
+         "20"
+      ],
+      "goal":"A",
+      "relevant_target":"3",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in incorporation of biodiversity  and ecosystem services into incentive systems",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"74",
+      "name":"Trends in the number and value of incentives, including subsidies, harmful to biodiversity, removed, reformed or phased out"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "1",
+         "2",
+         "4",
+         "20"
+      ],
+      "goal":"A",
+      "relevant_target":"3",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in incorporation of biodiversity  and ecosystem services into incentive systems",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"75",
+      "name":"Trends in identification, assessment and establishment and strengthening of incentives that reward positive contribution to biodiversity and ecosystem services penalize adverse impacts"
+   },
+   {
+      "status":"Monetary values methods are well developed. Non-monetary values methods are not as well developed",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "4",
+         "19",
+         "20"
+      ],
+      "goal":"A",
+      "relevant_target":"2",
+      "sources":"Primary surveys",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Medium",
+      "measurer":"Gov/academic/ngo/business",
+      "sub_indicator":"Trends in knowledge of values of biodiversity and ecosystem services incl. Economic, social and spiritual",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "ease_of_communication":"Medium",
+      "requirements":"variable",
+      "id":"76",
+      "name":"Trends in number of countries that have assessed values of biodiversity, in accordance with the Convention"
+   },
+   {
+      "status":"certification programs exist for agriculture and aquaculture in addition to forests, indicator should be broadened to include programs and schemes beyond FSC. Requires further development",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "2",
+         "4",
+         "5",
+         "14",
+         "15"
+      ],
+      "goal":"B",
+      "relevant_target":"7",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Area of agricultural ecosystems under sustainable management",
+            "http://www.bipindicators.net/sustainableagriculture"
+         ]
+      ],
+      "sub_indicator":"Trends in proportion of production landscapes sustainably managed",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "ease_of_communication":"High",
+      "id":"77",
+      "name":"Trends in area of forest, agricultural and aquaculture ecosystems under sustainable management"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "3",
+         "4",
+         "14",
+         "15"
+      ],
+      "goal":"A",
+      "relevant_target":"2",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in reflection of biodiversity and ecosystem services  in policy decisions, planning and reporting processes",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"78",
+      "name":"Trends in number of countries incorporating natural resource, biodiversity, and ecosystem service values into national accounting systems"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "3",
+         "4",
+         "19"
+      ],
+      "goal":"A",
+      "relevant_target":"2",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in reflection of biodiversity and ecosystem services  in policy decisions, planning and reporting processes",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"79",
+      "name":"Trends in guidelines and applications of economic appraisal tools"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "4"
+      ],
+      "goal":"A",
+      "relevant_target":"2",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in reflection of biodiversity and ecosystem services  in policy decisions, planning and reporting processes",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"80",
+      "name":"Trends in integration of biodiversity and ecosystem service values into integrated in sectoral and development policies"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "4"
+      ],
+      "goal":"A",
+      "relevant_target":"2",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in reflection of biodiversity and ecosystem services  in policy decisions, planning and reporting processes",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"81",
+      "name":"Trends in policies considering biodiversity and ecosystem service  in environmental impact assessment and strategic environmental assessment"
+   },
+   {
+      "status":"Trend data available globally for inteR, National agreements and national legislation. Needs to be developed for management plans &amp; implementation including eradications.",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N",
+      "other_targets":[
+         "2",
+         "17"
+      ],
+      "goal":"B",
+      "relevant_target":"9",
+      "sources":"SANBI managed database",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "measurer":"SANBI, ISSG",
+      "sub_indicator":"Trends in responses to invasive alien species",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "ease_of_communication":"High",
+      "requirements":"Scores by IAS and country",
+      "id":"82",
+      "name":"Trends in policy responses, legislation and management plans to control and prevent spread of invasive alien species"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "2",
+         "3"
+      ],
+      "goal":"A",
+      "relevant_target":"4",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in sustainable consumption and production of goods and services",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"83",
+      "name":"Trends in extent to which biodiversity and ecosystem service values are incorporated into organizational accounting and reporting"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"R, N",
+      "other_targets":[
+         "12"
+      ],
+      "goal":"B",
+      "relevant_target":"6",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in sustainable utilisation of target and bycatch populations",
+      "head_indicator":"Trends in integration of biodiversity into planning, policy formulation and implementation",
+      "id":"84",
+      "name":"Trends in proportion  of depleted target and bycatch species with recovery plans"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "goal":"D",
+      "relevant_target":"16",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in access and equity of benefit sharing of genetic resources",
+      "head_indicator":"Trends in access and equity of benefit sharing of genetic resources",
+      "id":"85",
+      "name":"ABS indicator to be specified through the ABS process"
+   },
+   {
+      "status":"New indicator. Need to develop the definitions. Identification of data source required (cross reference to June expert workshop). Guidance and/or template on reporting for consistency of reporting. ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G",
+      "other_targets":[
+         "13",
+         "17"
+      ],
+      "goal":"E",
+      "relevant_target":"18",
+      "sources":"Multiple sources: including 5th and 6th national reports and ILCs",
+      "measurer":"Lead to be determined",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in degree to which traditional knowledge and practices are fully respected in implementation of the Strategic Plan.",
+      "head_indicator":"Trends in accessibility of scientific/technical/traditional knowledge and its application   ",
+      "ease_of_communication":"Low",
+      "requirements":"Integration, safeguarding (PIC, EIA, ABS, IP &amp; documentation) &amp; participation.",
+      "id":"86",
+      "name":"Trends in degree to which traditional knowledge and practices are respected through: full integration, participation and safeguards in national implementation of the Strategic Plan"
+   },
+   {
+      "classification":"Priority to be developed at global level and sub-global level",
+      "other_targets":[
+         "19"
+      ],
+      "goal":"E",
+      "relevant_target":"18",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Status and trends of linguistic diversity and numbers of speakers of indigenous languages",
+            "http://www.bipindicators.net/linguisticdiversity"
+         ]
+      ],
+      "sub_indicator":"Trends in degree to which traditional knowledge and practices are fully respected in implementation of the Strategic Plan.",
+      "head_indicator":"Trends in accessibility of scientific/technical/traditional knowledge and its application   ",
+      "id":"87",
+      "name":"Trends of linguistic diversity and numbers of speakers of indigenous languages"
+   },
+   {
+      "status":"New indicator.  Method needs development. Comprehensive assessments include biophysical, economic and social components.",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "1",
+         "2",
+         "17"
+      ],
+      "goal":"E",
+      "relevant_target":"19",
+      "sources":"Inventory of subglobal assessments? Maintained inventory? Function of IPBES",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"Medium",
+      "measurer":"WCMC/IPBES",
+      "sub_indicator":"Trends in improvement, sharing, transfer and application of knowledge",
+      "head_indicator":"Trends in accessibility of scientific/technical/traditional knowledge and its application   ",
+      "ease_of_communication":"High",
+      "requirements":"Availability of assessments. Method for assessing uptake",
+      "id":"88",
+      "name":"Trends in coverage of comprehensive policy-relevant sub-global assessments including related capacity building and knowledge transfer, plus trends in uptake into policy"
+   },
+   {
+      "classification":"For consideration at sub-global level",
+      "other_targets":[
+         "12",
+         "13"
+      ],
+      "goal":"E",
+      "relevant_target":"19",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "sub_indicator":"Trends in improvement, sharing, transfer and application of knowledge",
+      "head_indicator":"Trends in accessibility of scientific/technical/traditional knowledge and its application   ",
+      "id":"89",
+      "name":"Number of maintained species inventories being used to implement the Convention"
+   },
+   {
+      "status":"Available globally. Extent of marine protected areas (MPAs) provides a crude measure of absolute area protected. It is important that this is complemented by monitoring how well MPAs cover sites of particular importance for biodiversity (e.g. marine Important Bird Areas, coral Alliance for Zero Extinction sites and other Key Biodiversity Areas and Ecologically and Biologically Significant Areas). Furthermore, it is important to monitor the management effectiveness of MPAs using standard protocols. All these components can include other area-based (non-PA) management approaches.",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "10"
+      ],
+      "goal":"C",
+      "relevant_target":"11",
+      "sources":"WDPA and national sources for MPA information. Marine Important Bird Areas, coral Alliance for Zero extinction sites, Ecologically and Biologically Significant Areas.",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "conventions":"UN MDGs",
+      "measurer":"National protected area agencies (WDPA managed by UNEP-WCMC). BirdLife InteR, National for marine IBAs. Alliance for Zero Extinction. Various bodies for EBSAs.",
+      "sub_indicator":"Trends in area of sustainably used ecosystems",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"Digitised boundaries for PAs and key sites for biodiversity.",
+      "id":"90",
+      "name":"Trends in extent of marine protected areas, coverage of key biodiversity areas and management effectiveness"
+   },
+   {
+      "status":"Moderate",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "5",
+         "15"
+      ],
+      "goal":"D",
+      "relevant_target":"14",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in natural capital that delivers multiple ecosystem services",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "id":"91",
+      "name":"Trends in area of degraded ecosystems restored or being restored"
+   },
+   {
+      "status":"Likely to be developed for birds in at least some forest-restoration sites over the next decade. Measuring effectiveness of restoration activities in terms of benefits to biodiversity is challenging (but important) - population trends of habitat-dependent or specialist species provide a useful surrogate.",
+      "classification":"For consideration at sub-global level",
+      "scale":"N",
+      "other_targets":[
+         "5",
+         "14"
+      ],
+      "goal":"D",
+      "relevant_target":"15",
+      "sources":"Various",
+      "sensitivity":"Low",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "measurer":"Various",
+      "sub_indicator":"Trends in natural capital that delivers multiple ecosystem services",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"Population trends of forest-specialist species monitored systematically in restoration forests.",
+      "id":"92",
+      "name":"Population trends of forest-dependent species in forests under restoration"
+   },
+   {
+      "status":"national and global level; IUCN WCPA SSC taskforce is reviewing standards",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "12",
+         "13",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"11",
+      "sources":"Key Biodiversity Areas including Important Bird Areas, Important Plant Areas, Alliance for Zero Extinction, Ramsar, World Heritage ",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Management effectiveness of protected areas",
+            "http://www.bipindicators.net/pamanagement"
+         ]
+      ],
+      "validity":"High",
+      "measurer":"National, inteR, National organizations tracking KBA and IBA",
+      "sub_indicator":"Trends in protected areas coverage, representation and condition",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"PA location, boundaries, and establishment date; location of sites of particular importance for biodiversity. Standards for identification of sites of particular importance for biodiversity are currently being consolidated through a joint IUCN WCPA and SSC process, see http://www.iucn.org/biodiversity_and_protected_areas_taskforce",
+      "id":"93",
+      "name":"Trends in protected area condition and/or management effectiveness including more equitable management"
+   },
+   {
+      "status":"Available globally. Extent of protected areas (PAs) provides a crude measure of absolute area protected. It is important that this is complemented by monitoring how well PAs cover (a) sites of particular importance for biodiversity (e.g. Important Bird Areas, Alliance for Zero Extinction sites, Important Plant Areas and other Key Biodiversity Areas), and (b) broad ecosystems (inland water, terrestrial, and marine). Furthermore, it is important to monitor the management effectiveness of PAs using standard protocols. All these components can be extended to include other area-based (non-PA) management approaches.",
+      "classification":"Priority and ready for use globally",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "12",
+         "13",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"11",
+      "sources":"WDPA and national sources",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "links":[
+         [
+            "BIP Indicator: Coverage of protected areas",
+            "http://www.bipindicators.net/pacoverage"
+         ],
+         [
+            "BIP Indicator: Overlays with biodiversity",
+            "http://www.bipindicators.net/paoverlays"
+         ]
+      ],
+      "validity":"High",
+      "conventions":"UN MDGs",
+      "measurer":"National protected area agencies",
+      "sub_indicator":"Trends in protected areas coverage, representation and condition",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"PA location, boundaries, geographic area (ha), and IUCN management category, establishment date; and biomes/ecosystems to determine representation",
+      "id":"94",
+      "name":"Trends in representative coverage of protected areas and other area based approaches, including sites of particular importance for biodiversity, and of terrestrial, marine and inland water systems"
+   },
+   {
+      "status":"Connectivity: good for forest and wetlands; minimal for other ecosystems incl. Marine. Integration: some national datasets e.g. wide-ranging species, fire; but no global aggregation or synthesis",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, R, NS",
+      "other_targets":[
+         "5",
+         "6",
+         "7",
+         "8",
+         "9",
+         "10",
+         "12",
+         "13",
+         "14",
+         "15"
+      ],
+      "goal":"C",
+      "relevant_target":"11",
+      "sources":"Satellite data for forests; national datasets for others",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "sub_indicator":"Trends in protected areas coverage, representation and condition",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"Connectivity: matrix ecosystem type relative to PA ecosystems; transboundary areas; flyway locations; riparian areas. Integration: source-sink dynamics (esp. Marine); adjacent land use and tenure; movements of wide-ranging species; disturbance regimes (fire; hydrology). All especially relevant in the context of climate change adaptation (gradients).",
+      "id":"95",
+      "name":"Trends in the connectivity of protected  and other area based approaches integrated into land and sea scapes"
+   },
+   {
+      "status":"Toolkit for ecosystem service evaluation being developed and implemented at Important Bird Areas (many of which are Protected Areas) by BirdLife InteR, National. Coverage likely to expand but remain patchy at a global scale over next decade.",
+      "classification":"For consideration at sub-global level",
+      "scale":"G, R, N, S",
+      "other_targets":[
+         "1",
+         "2",
+         "5",
+         "6",
+         "7",
+         "10",
+         "12",
+         "13",
+         "14",
+         "15",
+         "20"
+      ],
+      "goal":"C",
+      "relevant_target":"11",
+      "sources":"Various",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "validity":"High",
+      "measurer":"BirdLife InteR, National and others",
+      "sub_indicator":"Trends in protected areas coverage, representation and condition",
+      "head_indicator":"Trends in coverage, condition, representativeness and effectiveness of protected areas",
+      "ease_of_communication":"High",
+      "requirements":"Various",
+      "id":"96",
+      "name":"Trends in the delivery of ecosystem services and equitable benefits from protected areas"
+   },
+   {
+      "status":"New indicators. Some elements well developed (e.g. ODA).  Included in Resource Management. Strategy. Need to avoid double-accounting. ",
+      "classification":"Priority to be developed at global level and sub-global level",
+      "scale":"G, N",
+      "other_targets":[
+         "2",
+         "3",
+         "14",
+         "15",
+         "16",
+         "17",
+         "19"
+      ],
+      "goal":"E",
+      "relevant_target":"20",
+      "sources":"Varies ",
+      "sensitivity":"High",
+      "question":"Responses - What do we do about biodiversity loss?",
+      "measurer":"Tbd (CBD Secretariat/UNEP?)",
+      "sub_indicator":"Trends in financial flows of funding for implementation of the Strategic Plan",
+      "head_indicator":"Trends in mobilisation of financial resources",
+      "ease_of_communication":"High",
+      "requirements":"National and inter, National environmental data reporting",
+      "id":"97",
+      "name":"Indicators agreed in decision X/3"
+   }
+]
