@@ -1,0 +1,4 @@
+#: nbsap/homepage.py:14
+msgid "Hello world my friends!"
+msgstr ""
+
