@@ -1,9 +1,12 @@
 import flask
+from flaskext.babel import Babel
 
 import homepage
 
 default_config = {
 }
+
+babel = Babel()
 
 def create_app(instance_path=None):
     app = flask.Flask(__name__,
@@ -13,6 +16,7 @@ def create_app(instance_path=None):
     app.config.from_pyfile("settings.py", silent=True)
 
     homepage.initialize_app(app)
+    babel.init_app(app)
 
     @app.route('/ping')
     def ping():
