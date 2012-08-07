@@ -1,0 +1,18 @@
+{% macro nav_tabs(active) -%}
+<ul class="nav nav-tabs">
+
+  <li class="{{ 'active' if active == 'goals' else '' }}">
+    <a href="{{ url_for('goals.home') }}">Goals</a>
+  </li>
+
+  <li class="{{ 'active' if active == 'targets' else '' }}">
+    <a href="">Targets</a>
+  </li>
+
+  <li class="{{ 'active' if active == 'indicators' else '' }}">
+    <a href="">Indicators
+    </a>
+  </li>
+
+</ul>
+{%- endmacro %}

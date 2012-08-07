@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('goals') }}
+
+    <div class="goal_listing">
+    {% for goal in goals %}
+        <h3> {{goal.title.en }}</h3>
+        <p class="goal_indent"> {{ goal.description.en }} </p>
+            {% for target in target_dict[goal.short_title] %}
+                <a href="" class="goal_indent">{{target.title.en}}</a>
+            {% endfor %}
+    {% endfor %}
+    </div>
+
+{% endblock content %}

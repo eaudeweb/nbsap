@@ -1,0 +1,451 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+hgroup {
+    margin-bottom: 15px;
+}
+
+footer {
+    margin-top: 45px;
+    padding: 35px 0 36px;
+    border-top: 1px solid #E5E5E5;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+a {
+    cursor: pointer;
+}
+
+input, textarea {
+    color: #333!important;
+}
+
+/* DataTables with Twitter Boostrap v2
+   http://datatables.net/blog/Twitter_Bootstrap_2
+   http://datatables.net/media/blog/bootstrap_2/DT_bootstrap.css */
+
+div.dataTables_length label { float: left; text-align: left; }
+div.dataTables_length select { width: 75px; }
+div.dataTables_filter label { float: right; }
+div.dataTables_info { padding-top: 8px; }
+div.dataTables_paginate { float: right; margin: 0; }
+table.table { clear: both; margin-bottom: 6px !important; }
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+
+table.table thead .sorting { background: url('../js/lib/datatables/images/sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('../js/lib/datatables/images/sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('../js/lib/datatables/images/sort_desc.png') no-repeat center right; }
+
+table.table thead .sorting_asc_disabled { background: url('../js/lib/datatables/images/sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('../js/lib/datatables/images/sort_desc_disabled.png') no-repeat center right; }
+table.table caption {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    margin-bottom: 2em;
+}
+
+#edit-participant fieldset legend {
+    margin-bottom: 0.2em;
+}
+
+#edit-participant .control-group {
+    margin-bottom: 0.5em;
+}
+
+.us_states_container {
+    list-style-type: none;
+    font-size: 10px;
+    margin: 0;
+    width: 36em;  /* room for 3 columns */
+}
+.us_states_container li {
+    float: left;
+    width: 12em;  /* accommodate the widest item */
+}
+
+.us_states_container .title {
+    font-weight: bold;
+    float: left;
+    width: 26px;
+}
+
+dl.phrases {
+    margin-top: -4px;
+    display: none;
+    magin: 0;
+}
+dl.phrases textarea {
+    width: 100%;
+    height: 250px;
+}
+dl.phrases h3 {
+    margin-bottom: 15px;
+}
+
+dl.phrases dd {
+    margin: 0;
+}
+
+/* meeting_verified_short_list */
+.container {
+    position: relative;
+}
+.container .header h1,
+.container .header h4,
+.container .subheader {
+    text-align: center;
+}
+.container .subheader {
+    margin: 15px 250px;
+    background: #ccc;
+    padding: 0.5em;
+    border: 1px solid black;
+    box-shadow:4px 4px #000;
+}
+.container .subheader ul {
+    list-style-type: none;
+    font-size: 0.8em;
+    margin: 0;
+}
+
+.container .content .category{
+    background: #F9F9F9;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.container .content .language-label{
+	background: #000;
+	padding: 0.2em 0.5em;
+	color: #fff;
+}
+
+.container .content .pigeon-holes td{
+	font-weight: bold;
+	font-size:1.4em;
+	border-top: 1px solid #000;
+	padding: 10px;
+}
+
+
+.send-mail-container .add-container   {
+    font-size: 11px;
+    height: 15px;
+}
+.send-mail-container input,
+.send-mail-container textarea  {
+    width: 100%;
+}
+.send-mail-container textarea {
+    height: 300px;
+}
+.send-mail-container .add-container a {
+    margin-right: 10px;
+}
+.send-mail-container label {
+    font-weight: bold;
+}
+.send-mail-container .control-group {
+    margin: 0;
+    margin-bottom: 15px;
+}
+.send-mail-container .help-inline {
+    padding: 0;
+}
+
+/* fix ie7 stuff */
+.breadcrumb {
+    overflow: hidden;
+}
+.breadcrumb, .breadcrumb li {
+    list-style-type: none!important;
+}
+.breadcrumb li {
+    float:left;
+}
+.modal-backdrop {
+    filter:alpha(opacity=0)!important;
+}
+
+.attachement-container {
+    overflow: hidden;
+}
+.attachement-container .title {
+    float: left;
+    width: 70px;
+}
+.attachement-container .value {
+    margin-left: 80px;
+}
+.attachement-container .value a {
+    color: #fff;
+    text-decoration: underline;
+}
+.credentials-header h1,
+.credentials-header .subheader {
+    text-align: center;
+}
+
+.credentials-header .subheader {
+    margin-top: 15px;
+    font-style: italic;
+    background: #ccc;
+}
+
+.credentials-header table {
+    width: 600px;
+    list-style-type: none;
+    margin: 20px 250px;
+}
+.credentials-header table td {
+    vertical-align: top;
+}
+.credentials-header .title {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16px;
+    width: 180px;
+}
+.credentials-header .content {
+    line-height: 24px;
+    font-size: 16px;
+}
+.credentials-content p {
+    font-size: 16px;
+    line-height: 24px;
+}
+.bar-chart {
+    padding-left: 290px;
+    margin-top: 15px;
+}
+.progress {
+    margin-bottom: 10px;
+}
+.progress .title {
+    padding-left: 16px;
+    position: absolute;
+    margin-top: -19px;
+    font-weight: bold;
+    left: 0;
+}
+.progress .bar {
+    text-shadow: none;
+    color: #333;
+    text-align: right;
+}
+.progress .value  {
+    text-shadow: 1px 0 1px #fff;
+    position: relative;
+    font-size: 11px;
+    right: -10px;
+}
+.progress .value-double-digits {
+    right: -15px;
+}
+.progress .value-null {
+    right: -4px;
+}
+.pie-chart li {
+    list-style-type: none;
+}
+.pie-chart .color {
+    border: 1px solid #333;
+    background: red;
+    display: block;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 6px;
+}
+.pie-chart .legend span {
+    position: relative;
+    top: -3px;
+}
+.pie-chart .legend {
+    position: absolute;
+    left: 350px;
+}
+.pie-chart ul {
+    margin-top: 10px;
+}
+.pie-chart li {
+    padding: 3px 0;
+}
+
+.file-input-container {
+    display: none;
+}
+.file-input-container input[type="file"] {
+    font-size: 12px;
+}
+.file-input-container iframe {
+    display: none;
+}
+
+.sep {
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    text-align: center;
+    width: 379px;
+}
+.sep a {
+    position: relative;
+    padding: 3px 4px;
+    background: #fff;
+    top: -11px;
+}
+.sep .icon-container {
+    position: relative;
+    background: #fff;
+    padding: 3px 4px;
+    top: -12px;
+    left: -6px;
+
+}
+.sep .icon-chevron-down,
+.sep .icon-chevron-up {
+    background-color: #fff;
+    opacity: 0.5;
+    -moz-opacity: 0.5
+    filter:alpha(opacity=5);
+}
+
+.fees td:hover .icon-trash {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.actions {
+    list-style-type: none;
+    float: right;
+    height: 29px;
+}
+.actions > li {
+    margin-right: 15px;
+    float: left;
+}
+
+.highlight td {
+    background: #ffff99!important;
+}
+
+.field-i18nstring textarea,
+.field-i18nstring input,
+.i18nstring-city input {
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.i18string-city input {
+  width: 210px;
+}
+
+.err {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+}
+
+.offline-container {
+    position: absolute;
+    top: 2px;
+    left: 160px;
+    width: 420px;
+}
+
+.offline-container strong {
+    position: relative;
+    top: 2px;
+}
+
+.update_attendance {
+  cursor: pointer;
+}
+
+.edit_attendance {
+  cursor: pointer;
+  position: absolute;
+  right: -25px;
+  top: 7px;
+}
+
+.save_attendance {
+  cursor: pointer;
+  position: absolute;
+  right: -25px;
+  top: 7px;
+}
+
+table.people-listing tr .edit_attendance {
+  display: none!important;
+}
+
+table.people-listing tr .checkbox {
+  display: none;
+}
+
+table.people-listing tr .save_attendance {
+  display: none;
+}
+
+table.people-listing tr:hover .edit_attendance {
+  display: block!important;
+}
+
+table.people-listing tr {
+  height: 40px;
+}
+
+table.people-listing tr:nth-child(even):hover td,
+table.people-listing tr:nth-child(even):hover th {
+    background-color: white;
+}
+
+table.people-listing tr:nth-child(odd):hover td,
+table.people-listing tr:nth-child(odd):hover th {
+    background-color: #f9f9f9;
+}
+
+/* NBSAP stylesheets */
+.goal_listing {
+    position: relative;
+}
+.goal_listing p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.goal_listing a {
+    margin-left: 3px;
+}
+.goal_listing h3 {
+    margin-top: 15px;
+}
+.goal_indent {
+    position: relative;
+    left: 25px;
+}
