@@ -2,6 +2,7 @@ import flask
 from flaskext.babel import Babel
 
 import goals
+import targets
 
 default_config = {
 }
@@ -16,6 +17,8 @@ def create_app(instance_path=None):
     app.config.from_pyfile("settings.py", silent=True)
 
     goals.initialize_app(app)
+    targets.initialize_app(app)
+
     babel.init_app(app)
 
     @app.route('/ping')

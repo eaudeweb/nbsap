@@ -443,8 +443,9 @@ table.people-listing tr:nth-child(odd):hover th {
     margin-left: 3px;
 }
 .goal_listing h3 {
-    margin-top: 15px;
+    margin-top: 25px;
 }
+
 .goal_indent {
     position: relative;
     left: 25px;
