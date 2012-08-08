@@ -8,7 +8,10 @@
     {% for target in targets %}
         <div id="target_{{target.id}}">
         <!-- For good target anchors alignement-->
-        <p>&nbsp;</p>
+        {% if not loop.first %}
+            <p>&nbsp;</p>
+        {% endif %}
+        <!-- -->
         <h3>{{target.title.en }}</h3>
         <a href="{{url_for('goals.home')}}" class="goal_indent">Goal {{target.goal_id}}</a>
         <p class="goal_indent"> {{ target.description.en }} </p>
