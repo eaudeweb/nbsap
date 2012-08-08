@@ -4,5 +4,51 @@
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('indicators') }}
 
+<table class="table table-bordered table-striped indicator_listing">
+
+  <thead>
+    <th>Id</th>
+    <th>Operational Indicator</th>
+  </thead>
+
+  <tbody>
+    {% for indicator in indicators %}
+      <tr>
+
+        <td>{{ indicator.id }}</td>
+
+        <td>
+          <a href="">
+            {{ indicator.name }}
+          </a>
+        </td>
+
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
 
 {% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/jquery.dataTables.min.js') }}
+{{ script_src('js/DT_bootstrap.js') }}
+<script>
+
+  $(document).ready(function() {
+    $('.indicator_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Display _MENU_ indicators per page",
+            "sInfo": "Showing _START_ to _END_ of _TOTAL_ indicators",
+            "sZeroRecords": "No matching indicators found"
+        }
+    });
+  });
+</script>
+{% endblock scripts %}
