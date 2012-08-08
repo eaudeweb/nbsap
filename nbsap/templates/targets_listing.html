@@ -6,17 +6,25 @@
 
     <div class="goal_listing">
     {% for target in targets %}
-        <div id="target_{{target.id}}">
-        <!-- For good target anchors alignement-->
-        {% if not loop.first %}
-            <p>&nbsp;</p>
-        {% endif %}
-        <!-- -->
-        <h3>{{target.title.en }}</h3>
-        <a href="{{url_for('goals.home')}}" class="goal_indent">Goal {{target.goal_id}}</a>
-        <p class="goal_indent"> {{ target.description.en }} </p>
+        <div id="target_{{ target.id }}">
+            <h3>{{target.title.en }}</h3>
+            <a href="{{url_for('goals.home')}}" class="goal_indent">Goal {{ target.goal_id }}</a>
+            <p class="goal_indent"> {{ target.description.en }} </p>
         </div>
     {% endfor %}
     </div>
 
 {% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+<script>
+  $(document).ready(function () {
+    var target_hash = window.location.hash;
+    if(target_hash) {
+      $('html, body').animate({ scrollTop: $(target_hash).offset().top - 50});
+    }
+ });
+</script>
+{% endblock scripts %}
