@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<table class="table table-bordered table-striped">
+
+  <thead>
+    <th>Operational Indicator</th>
+    <th>{{indicator.name}}</th>
+  </thead>
+
+  {% set key_targets = ['other_targets'] %}
+  {% set key_links = ['links'] %}
+  <tbody>
+    {% for key, value in indicator.items() %}
+      <tr>
+        <td> {{transit_dict[key] }} </td>
+        <!-- Exceptional case: Other Relevant Aichi Targets-->
+        {% if key in key_targets %}
+            <td>
+            {% for value_element in value %}
+                {% if loop.last %}
+                    {{value_element}}
+                {% else %}
+                    {{value_element}},
+                {% endif %}
+            {% endfor %}
+            </td>
+        <!-- Exceptional case: Related Links -->
+        {% elif key in key_links %}
+            <td>
+                <ul>
+                {% for related_link in value %}
+                    {% set link_label = related_link[0] %}
+                    {% set link_ref = related_link[1] %}
+                    <li><a href="{{link_ref}}">{{link_label}}</a></li>
+                {% endfor %}
+                </ul>
+            </td>
+        {% else %}
+            <td> {{ value }} </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock content %}

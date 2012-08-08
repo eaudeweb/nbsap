@@ -18,7 +18,7 @@
         <td>{{ indicator.id }}</td>
 
         <td>
-          <a href="">
+          <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
             {{ indicator.name }}
           </a>
         </td>
