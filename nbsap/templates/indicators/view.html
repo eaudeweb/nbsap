@@ -1,24 +1,28 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<table class="table table-bordered table-striped">
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('indicators.list_indicators'), "Indicators"),
+      (url_for('indicators.view', indicator_id=indicator.id), indicator.name)
+      ]) }}
+</ul>
 
-  <thead>
-    <th>Operational Indicator</th>
-    <th>{{indicator.name}}</th>
-  </thead>
+<table class="table table-bordered table-striped">
 
   {% set key_targets = ['other_targets'] %}
   {% set key_links = ['links'] %}
 
   <tbody>
-    {% for key, value in indicator.items() %}
+    {% for key in order %}
+      {% if key in indicator.keys() %}
       <tr>
         <td> {{transit_dict[key] }} </td>
         <!-- Exceptional case: Other Relevant Aichi Targets-->
         {% if key in key_targets %}
             <td>
-            {% for value_element in value %}
+            {% for value_element in indicator[key] %}
                 {% if loop.last %}
                     <a
                     href="{{url_for('targets.list_targets')}}#target_{{value_element}}">{{value_element}}
@@ -34,7 +38,7 @@
         {% elif key in key_links %}
             <td>
                 <ul>
-                {% for related_link in value %}
+                {% for related_link in indicator[key] %}
                     {% set link_label = related_link[0] %}
                     {% set link_ref = related_link[1] %}
                     <li><a href="{{link_ref}}">{{link_label}}</a></li>
@@ -44,14 +48,19 @@
         <!-- Regular case-->
         {% else %}
             {% if key == 'relevant_target' %}
-                <td><a href="{{url_for('targets.list_targets')}}#target_{{value}}">{{value}}</a></td>
+                <td>
+                    <a
+                        href="{{url_for('targets.list_targets')}}#target_{{indicator[key]}}">{{indicator[key]}}
+                    </a>
+                </td>
             {% elif key == 'goal' %}
-                <td><a href="{{url_for('goals.home')}}">{{value}}</a></td>
+                <td><a href="{{url_for('goals.home')}}">{{indicator[key]}}</a></td>
             {% else %}
-                <td> {{ value }} </td>
+                <td> {{ indicator[key] }} </td>
             {% endif %}
         {% endif %}
       </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 

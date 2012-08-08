@@ -1,0 +1,22 @@
+{
+   "order":[
+      "name",
+      "question",
+      "goal",
+      "head_indicator",
+      "sub_indicator",
+      "relevant_target",
+      "other_targets",
+      "classification",
+      "status",
+      "sensitivity",
+      "scale",
+      "validity",
+      "ease_of_communication",
+      "sources",
+      "requirements",
+      "measurer",
+      "conventions",
+      "links"
+   ]
+}

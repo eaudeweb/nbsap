@@ -21,16 +21,16 @@ def list_indicators():
 def view(indicator_id):
     aichi_indicators = _load_json("../refdata/aichi_indicators.json")
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
+    aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
     # Online targets are 1-indexed but in json database it is 0-indexed
     correct_index = int(indicator_id)-1
     specified_indicator = aichi_indicators[correct_index]
-    # Remove 'id' key as it has no correspondence in transit_dict
-    del specified_indicator['id']
 
     return {
             "indicator": specified_indicator,
-            "transit_dict": aichi_indicator_keys
+            "transit_dict": aichi_indicator_keys,
+            "order": aichi_order['order']
            }
 
 
