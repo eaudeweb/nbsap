@@ -6,9 +6,13 @@
 
     <div class="goal_listing">
     {% for target in targets %}
-        <h3> {{target.title.en }}</h3>
+        <div id="target_{{target.id}}">
+        <!-- For good target anchors alignement-->
+        <p>&nbsp;</p>
+        <h3>{{target.title.en }}</h3>
         <a href="{{url_for('goals.home')}}" class="goal_indent">Goal {{target.goal_id}}</a>
         <p class="goal_indent"> {{ target.description.en }} </p>
+        </div>
     {% endfor %}
     </div>
 
