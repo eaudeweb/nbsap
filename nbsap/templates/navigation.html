@@ -6,11 +6,11 @@
   </li>
 
   <li class="{{ 'active' if active == 'targets' else '' }}">
-    <a href="{{url_for('targets.list_targets')}}">Targets</a>
+    <a href="{{ url_for('targets.list_targets') }}">Targets</a>
   </li>
 
   <li class="{{ 'active' if active == 'indicators' else '' }}">
-    <a href="">Indicators
+  <a href="{{ url_for('indicators.list_indicators') }}">Indicators
     </a>
   </li>
 

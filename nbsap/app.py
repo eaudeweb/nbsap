@@ -3,6 +3,7 @@ from flaskext.babel import Babel
 
 import goals
 import targets
+import indicators
 
 default_config = {
 }
@@ -18,6 +19,7 @@ def create_app(instance_path=None):
 
     goals.initialize_app(app)
     targets.initialize_app(app)
+    indicators.initialize_app(app)
 
     babel.init_app(app)
 
