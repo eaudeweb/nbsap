@@ -10,6 +10,7 @@
 
   {% set key_targets = ['other_targets'] %}
   {% set key_links = ['links'] %}
+
   <tbody>
     {% for key, value in indicator.items() %}
       <tr>
@@ -19,9 +20,13 @@
             <td>
             {% for value_element in value %}
                 {% if loop.last %}
-                    {{value_element}}
+                    <a
+                    href="{{url_for('targets.list_targets')}}#target_{{value_element}}">{{value_element}}
+                    </a>
                 {% else %}
-                    {{value_element}},
+                   <a
+                    href="{{url_for('targets.list_targets')}}#target_{{value_element}}">{{value_element}}
+                    </a>,
                 {% endif %}
             {% endfor %}
             </td>
@@ -36,8 +41,15 @@
                 {% endfor %}
                 </ul>
             </td>
+        <!-- Regular case-->
         {% else %}
-            <td> {{ value }} </td>
+            {% if key == 'relevant_target' %}
+                <td><a href="{{url_for('targets.list_targets')}}#target_{{value}}">{{value}}</a></td>
+            {% elif key == 'goal' %}
+                <td><a href="{{url_for('goals.home')}}">{{value}}</a></td>
+            {% else %}
+                <td> {{ value }} </td>
+            {% endif %}
         {% endif %}
       </tr>
     {% endfor %}
