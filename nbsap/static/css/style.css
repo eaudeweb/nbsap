@@ -432,23 +432,27 @@ table.people-listing tr:nth-child(odd):hover th {
 }
 
 /* NBSAP stylesheets */
-.goal_listing {
+.listing {
     position: relative;
 }
-.goal_listing p {
+.listing p {
     font-size: 14px;
     margin-bottom: 0;
 }
-.goal_listing a {
+.listing a {
     margin-left: 3px;
 }
-.goal_listing h3 {
+.listing h3 {
     margin-top: 25px;
 }
 
-.goal_indent {
+.indent {
     position: relative;
     left: 25px;
+}
+
+.subobj_list {
+    margin-top: 30px;
 }
 
 table.indicator_view td.indicator_field {

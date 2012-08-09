@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('objectives.list_objectives'), "Objectives"),
+      (url_for('objectives.view', objective_id=objective_id), "Objective " +
+            objective_id|string()),
+      (url_for('objectives.view_subobj', objective_id=objective_id,
+                subobj_id=subobj.id), "Subobjective " + subobj.id|string())
+      ]) }}
+</ul>
+
+<h3>{{subobj.title.en}}</h3>
+<p>{{subobj.body.en|safe}}</p>
+
+{% endblock content %}

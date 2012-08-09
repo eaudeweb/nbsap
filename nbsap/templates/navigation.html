@@ -14,5 +14,10 @@
     </a>
   </li>
 
+  <li class="{{ 'active' if active == 'objectives' else '' }}">
+  <a href="{{ url_for('objectives.list_objectives') }}">Objectives
+    </a>
+  </li>
+
 </ul>
 {%- endmacro %}

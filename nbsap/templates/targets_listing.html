@@ -4,12 +4,12 @@
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('targets') }}
 
-    <div class="goal_listing">
+    <div class="listing">
     {% for target in targets %}
         <div id="target_{{ target.id }}">
             <h3>{{target.title.en }}</h3>
-            <a href="{{url_for('goals.list_goals')}}" class="goal_indent">Goal {{ target.goal_id }}</a>
-            <p class="goal_indent"> {{ target.description.en }} </p>
+            <a href="{{url_for('goals.list_goals')}}" class="indent">Goal {{ target.goal_id }}</a>
+            <p class="indent"> {{ target.description.en }} </p>
         </div>
     {% endfor %}
     </div>
