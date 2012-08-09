@@ -450,3 +450,7 @@ table.people-listing tr:nth-child(odd):hover th {
     position: relative;
     left: 25px;
 }
+
+table.indicator_view td.indicator_field {
+  width: 350px;
+}

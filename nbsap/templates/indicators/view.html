@@ -9,7 +9,7 @@
       ]) }}
 </ul>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped indicator_view">
 
   {% set key_targets = ['other_targets'] %}
   {% set key_links = ['links'] %}
@@ -18,7 +18,7 @@
     {% for key in order %}
       {% if key in indicator.keys() %}
       <tr>
-        <td> {{transit_dict[key] }} </td>
+        <td class="indicator_field"> {{ transit_dict[key] }} </td>
         <!-- Exceptional case: Other Relevant Aichi Targets-->
         {% if key in key_targets %}
             <td>
