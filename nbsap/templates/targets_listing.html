@@ -1,6 +1,14 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('targets.list_targets'), "Targets")
+      ]) }}
+</ul>
+
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('targets') }}
 
