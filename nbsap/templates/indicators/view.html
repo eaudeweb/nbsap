@@ -54,7 +54,7 @@
                     </a>
                 </td>
             {% elif key == 'goal' %}
-                <td><a href="{{url_for('goals.home')}}">{{indicator[key]}}</a></td>
+                <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
             {% else %}
                 <td> {{ indicator[key] }} </td>
             {% endif %}

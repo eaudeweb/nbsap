@@ -9,9 +9,13 @@ def initialize_app(app):
     app.register_blueprint(goals)
 
 @goals.route('/')
+@sugar.templated('homepage.html')
+def home():
+    return
+
 @goals.route('/goals')
 @sugar.templated("goals_listing.html")
-def home():
+def list_goals():
     aichi_goals = _load_json("../refdata/aichi_goals.json")
     aichi_targets = _load_json("../refdata/aichi_targets.json")
 
@@ -24,3 +28,4 @@ def home():
             "goals": aichi_goals,
             "target_dict": target_dict
            }
+
