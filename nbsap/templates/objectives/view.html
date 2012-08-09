@@ -15,7 +15,7 @@
 <h3>{{objective.title.en}}</h3>
 <p>{{objective.body.en|safe}}</p>
 
-{% if 'subobjs' in objective.keys() %}
+{% if objective.subobjs %}
 <div class="subobj_list">
     <h4> Subobjectives </h4>
     <ul>

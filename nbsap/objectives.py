@@ -12,11 +12,9 @@ def initialize_app(app):
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):
     objectives = _load_json("../refdata/be_objectives.json")
-    objective = [o for o in objectives if o['id'] == objective_id]
-    objective = objective[0]
+    objective = [o for o in objectives if o['id'] == objective_id][0]
 
-    subobj = [s for s in objective['subobjs'] if s['id'] == subobj_id]
-    subobj = subobj[0]
+    subobj = [s for s in objective['subobjs'] if s['id'] == subobj_id][0]
 
     return {
                 "objective_id": objective_id,
@@ -27,8 +25,7 @@ def view_subobj(objective_id, subobj_id):
 @sugar.templated("objectives/view.html")
 def view(objective_id):
     objectives = _load_json("../refdata/be_objectives.json")
-    objective = [o for o in objectives if o['id'] == objective_id]
-    objective = objective[0]
+    objective = [o for o in objectives if o['id'] == objective_id][0]
 
     return {
                 "objective": objective
