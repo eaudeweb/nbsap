@@ -1,8 +1,6 @@
 import flask
 import sugar
 
-from schema.refdata import _load_json
-
 objectives = flask.Blueprint("objectives", __name__)
 
 def initialize_app(app):
@@ -11,14 +9,19 @@ def initialize_app(app):
 @objectives.route("/objective/<int:objective_id>/<int:subobj_id>")
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):
-    objectives = _load_json("../refdata/be_objectives.json")
-    objective = [o for o in objectives if o['id'] == objective_id][0]
+    from app import mongo
 
-    subobj = [s for s in objective['subobjs'] if s['id'] == subobj_id][0]
+    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
 
-    actions = _load_json("../refdata/be_actions.json")
-    objective_related_actions = [a for a in actions if a['id'] == objective_id][0]
-    related_action = [a for a in objective_related_actions['actions']
+    try:
+        subobj = [s for s in objective['subobjs'] if s['id'] == subobj_id][0]
+    except IndexError:
+        flask.abort(404)
+
+    objective_related_actions = mongo.db.actions.find_one({"id": objective_id})
+
+    if objective_related_actions:
+        related_action = [a for a in objective_related_actions['actions']
                                 if int(a['title']['en'].split('.')[1]) == subobj_id][0]
 
     return {
@@ -30,11 +33,13 @@ def view_subobj(objective_id, subobj_id):
 @objectives.route("/objective/<int:objective_id>")
 @sugar.templated("objectives/view.html")
 def view(objective_id):
-    objectives = _load_json("../refdata/be_objectives.json")
-    objective = [o for o in objectives if o['id'] == objective_id][0]
+    from app import mongo
 
-    actions = _load_json("../refdata/be_actions.json")
-    related_actions = [a['actions'] for a in actions if a['id'] == objective_id][0]
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+    actions = mongo.db.actions.find_one({'id': objective_id})
+
+    if actions:
+        related_actions = actions.get('actions', None)
 
     return {
                 "objective": objective,
@@ -44,7 +49,9 @@ def view(objective_id):
 @objectives.route("/objectives")
 @sugar.templated("objectives/objectives_listing.html")
 def list_objectives():
-    objectives = _load_json("../refdata/be_objectives.json")
+    from app import mongo
+
+    objectives = mongo.db.objectives.find()
 
     return {
             "objectives": objectives,

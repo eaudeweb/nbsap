@@ -1,8 +1,6 @@
 import flask
 import sugar
 
-from schema.refdata import _load_json
-
 goals = flask.Blueprint("goals", __name__)
 
 def initialize_app(app):
@@ -16,9 +14,10 @@ def home():
 @goals.route("/goals")
 @sugar.templated("goals_listing.html")
 def list_goals():
-    aichi_goals = _load_json("../refdata/aichi_goals.json")
-    aichi_targets = _load_json("../refdata/aichi_targets.json")
+    from app import mongo
 
+    aichi_goals = [i for i in mongo.db.goals.find()]
+    aichi_targets = [i for i in mongo.db.targets.find()]
     target_dict = {aichi_goals[i]['short_title']:[] for i in range(len(aichi_goals))}
 
     for target in aichi_targets:

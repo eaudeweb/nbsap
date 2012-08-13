@@ -11,7 +11,10 @@ def initialize_app(app):
 @indicators.route("/indicators")
 @sugar.templated("indicators/indicators_listing.html")
 def list_indicators():
-    aichi_indicators = _load_json("../refdata/aichi_indicators.json")
+    from app import mongo
+
+    aichi_indicators = mongo.db.indicators.find()
+
     return {
             "indicators": aichi_indicators
            }
@@ -19,7 +22,9 @@ def list_indicators():
 @indicators.route("/indicators/<int:indicator_id>")
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
-    aichi_indicators = _load_json("../refdata/aichi_indicators.json")
+    from app import mongo
+
+    aichi_indicators = mongo.db.indicators.find()
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
@@ -32,5 +37,4 @@ def view(indicator_id):
             "transit_dict": aichi_indicator_keys,
             "order": aichi_order['order']
            }
-
 

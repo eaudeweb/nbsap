@@ -1,8 +1,6 @@
 import flask
 import sugar
 
-from schema.refdata import _load_json
-
 targets = flask.Blueprint("targets", __name__)
 
 def initialize_app(app):
@@ -11,9 +9,11 @@ def initialize_app(app):
 @targets.route("/targets")
 @sugar.templated("targets_listing.html")
 def list_targets():
-    aichi_targets = _load_json("../refdata/aichi_targets.json")
+    from app import mongo
+
+    aichi_targets = mongo.db.targets.find()
+
     return {
             "targets": aichi_targets
            }
-
 
