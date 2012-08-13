@@ -9,21 +9,13 @@
       (url_for('objectives.view', objective_id=objective_id), "Objective " +
             objective_id|string()),
       (url_for('objectives.view_subobj', objective_id=objective_id,
-                subobj_id=subobj.id), "Subobjective " + subobj.id|string())
+            subobj_id=subobj_id), "Subobjective " + subobj_id|string()),
+      (url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id),
+            action.title.en)
       ]) }}
 </ul>
 
-<h3>{{subobj.title.en}}</h3>
-<p>{{subobj.body.en|safe}}</p>
-
-{% if action %}
-<div class="subobj_list">
-    <h3> Actions </h3>
-    <a href="{{ url_for('actions.view', objective_id=objective_id,
-                                        subobj_id=subobj.id) }}">
-      {{ action.title.en }}
-    </a>
-</div>
-{% endif %}
+<h3>{{ action.title.en }}</h3>
+<p>{{ action.body.en|safe }}</p>
 
 {% endblock content %}

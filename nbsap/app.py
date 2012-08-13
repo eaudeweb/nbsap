@@ -5,6 +5,7 @@ import goals
 import targets
 import indicators
 import objectives
+import actions
 
 default_config = {
 }
@@ -22,6 +23,7 @@ def create_app(instance_path=None):
     targets.initialize_app(app)
     indicators.initialize_app(app)
     objectives.initialize_app(app)
+    actions.initialize_app(app)
 
     babel.init_app(app)
 
