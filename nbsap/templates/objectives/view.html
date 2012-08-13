@@ -26,4 +26,15 @@
     </ul>
 </div>
 {% endif %}
+
+{% if actions %}
+<div class="subobj_list">
+    <h4> Actions </h4>
+    <ul>
+    {% for action in actions %}
+        <li><a href="">{{ action.title.en }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
 {% endblock content %}

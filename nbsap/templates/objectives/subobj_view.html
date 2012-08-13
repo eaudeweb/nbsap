@@ -16,4 +16,11 @@
 <h3>{{subobj.title.en}}</h3>
 <p>{{subobj.body.en|safe}}</p>
 
+{% if action %}
+<div class="subobj_list">
+    <h3> Actions </h3>
+    <a href="">{{ action.title.en }}</a>
+</div>
+{% endif %}
+
 {% endblock content %}
