@@ -31,7 +31,7 @@
 <div class="property_list">
     <h4> Actions </h4>
     <ul>
-    {% for action in actions %}
+    {% for action in actions|sort(attribute='id') %}
     <li>
       <a href="{{ url_for('actions.view', objective_id=objective.id,
                                         subobj_id=action.id) }}">
