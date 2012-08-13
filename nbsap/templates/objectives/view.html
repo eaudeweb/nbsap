@@ -16,7 +16,7 @@
 <p>{{objective.body.en|safe}}</p>
 
 {% if objective.subobjs %}
-<div class="subobj_list">
+<div class="property_list">
     <h4> Subobjectives </h4>
     <ul>
     {% for subobj in objective.subobjs %}
@@ -28,7 +28,7 @@
 {% endif %}
 
 {% if actions %}
-<div class="subobj_list">
+<div class="property_list">
     <h4> Actions </h4>
     <ul>
     {% for action in actions %}
