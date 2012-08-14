@@ -1,10 +1,6 @@
 import flatland
 
-I18nString = flatland.Dict.of(
-            flatland.String.named("en"),
-            flatland.String.named("fr"),
-            flatland.String.named("nl"),
-        )
+from common import I18nString
 
 _GoalSchemaDefinition = flatland.Dict.of(
             flatland.String.named('short_title'),
@@ -13,22 +9,61 @@ _GoalSchemaDefinition = flatland.Dict.of(
             flatland.String.named('id'),
         )
 
-class GoalSchema(_GoalSchemaDefinition):
+_IndicatorSchemaDefinition = flatland.Dict.of(
+            flatland.String.named('status'),
+            flatland.String.named('classification'),
+            flatland.String.named('scale'),
+            flatland.String.named('other_targets'),
+            flatland.String.named('goal'),
+            flatland.String.named('relevant_target'),
+            flatland.String.named('sources'),
+            flatland.String.named('sensitivity'),
+            flatland.String.named('question'),
+            flatland.String.named('links'),
+            flatland.String.named('validity'),
+            flatland.String.named('measurer'),
+            flatland.String.named('sub_indicator'),
+            flatland.String.named('head_indicator'),
+            flatland.String.named('ease_of_communication'),
+            flatland.String.named('requirements'),
+            flatland.String.named('id'),
+            flatland.String.named('name'),
 
-    @property
-    def value(self):
-        return super(GoalSchema, self).value
+        )
+
+_TargetSchemaDefinition = flatland.Dict.of(
+            flatland.String.named('goal_id'),
+            I18nString.named('title'),
+            I18nString.named('description'),
+            flatland.String.named('id'),
+        )
+
+class Goal(_GoalSchemaDefinition):
+
+    def __init__(self, init_goal):
+        goal = dict(init_goal)
+        goal.pop('_id', None)
+        self.set(goal)
 
     def flatten(self):
         return self.value
 
-class Goal(dict):
+class Indicator(_IndicatorSchemaDefinition):
 
-    @staticmethod
-    def from_flat(init_goal):
-        goal = GoalSchema.from_flat(init_goal)
-        goal['description'] = I18nString.from_flat(init_goal['description'])
-        goal['title'] = I18nString.from_flat(init_goal['title'])
+    def __init__(self, init_indicator):
+        indicator = dict(init_indicator)
+        indicator.pop('_id', None)
+        self.set(indicator)
 
-        return goal
+    def flatten(self):
+        return self.value
 
+class Target(_TargetSchemaDefinition):
+
+    def __init__(self, init_target):
+        target = dict(init_target)
+        target.pop('_id', None)
+        self.set(target)
+
+    def flatten(self):
+        return self.value
