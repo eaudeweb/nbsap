@@ -1,8 +1,11 @@
 import flatland
 
+CommonString = flatland.String.using(optional=True)
+CommonList = flatland.List.using(optional=True)
+
 I18nString = flatland.Dict.of(
-            flatland.String.named("en"),
-            flatland.String.named("fr"),
-            flatland.String.named("nl"),
+            CommonString.named("en"),
+            CommonString.named("fr"),
+            CommonString.named("nl"),
         )
 

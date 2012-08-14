@@ -1,18 +1,18 @@
 import flatland
 
-from common import I18nString
+from common import I18nString, CommonString, CommonList
 
 Subobjective = flatland.Dict.of(
             I18nString.named('title'),
             I18nString.named('body'),
-            flatland.String.named('id'),
+            CommonString.named('id'),
         )
 
 _ObjectiveSchemaDefinition = flatland.Dict.of(
             I18nString.named('title'),
             I18nString.named('body'),
-            flatland.String.named('id'),
-            flatland.List.named('subobjs').of(Subobjective),
+            CommonString.named('id'),
+            CommonList.named('subobjs').of(Subobjective),
         )
 
 class Objective(_ObjectiveSchemaDefinition):

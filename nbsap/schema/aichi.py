@@ -1,41 +1,41 @@
 import flatland
 
-from common import I18nString
+from common import I18nString, CommonString
 
 _GoalSchemaDefinition = flatland.Dict.of(
-            flatland.String.named('short_title'),
+            CommonString.named('short_title'),
             I18nString.named('title'),
             I18nString.named('description'),
-            flatland.String.named('id'),
+            CommonString.named('id'),
         )
 
 _IndicatorSchemaDefinition = flatland.Dict.of(
-            flatland.String.named('status'),
-            flatland.String.named('classification'),
-            flatland.String.named('scale'),
-            flatland.String.named('other_targets'),
-            flatland.String.named('goal'),
-            flatland.String.named('relevant_target'),
-            flatland.String.named('sources'),
-            flatland.String.named('sensitivity'),
-            flatland.String.named('question'),
-            flatland.String.named('links'),
-            flatland.String.named('validity'),
-            flatland.String.named('measurer'),
-            flatland.String.named('sub_indicator'),
-            flatland.String.named('head_indicator'),
-            flatland.String.named('ease_of_communication'),
-            flatland.String.named('requirements'),
-            flatland.String.named('id'),
-            flatland.String.named('name'),
+            CommonString.named('status'),
+            CommonString.named('classification'),
+            CommonString.named('scale'),
+            CommonString.named('other_targets'),
+            CommonString.named('goal'),
+            CommonString.named('relevant_target'),
+            CommonString.named('sources'),
+            CommonString.named('sensitivity'),
+            CommonString.named('question'),
+            CommonString.named('links'),
+            CommonString.named('validity'),
+            CommonString.named('measurer'),
+            CommonString.named('sub_indicator'),
+            CommonString.named('head_indicator'),
+            CommonString.named('ease_of_communication'),
+            CommonString.named('requirements'),
+            CommonString.named('id'),
+            CommonString.named('name'),
 
         )
 
 _TargetSchemaDefinition = flatland.Dict.of(
-            flatland.String.named('goal_id'),
+            CommonString.named('goal_id'),
             I18nString.named('title'),
             I18nString.named('description'),
-            flatland.String.named('id'),
+            CommonString.named('id'),
         )
 
 class Goal(_GoalSchemaDefinition):
