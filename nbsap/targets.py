@@ -1,5 +1,6 @@
 import flask
 import sugar
+from database import mongo
 
 targets = flask.Blueprint("targets", __name__)
 
@@ -9,7 +10,6 @@ def initialize_app(app):
 @targets.route("/targets")
 @sugar.templated("targets_listing.html")
 def list_targets():
-    from app import mongo
 
     aichi_targets = mongo.db.targets.find()
 

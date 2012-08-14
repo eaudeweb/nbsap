@@ -1,5 +1,6 @@
 import flask
 import sugar
+from database import mongo
 
 actions = flask.Blueprint("actions", __name__)
 
@@ -9,7 +10,6 @@ def initialize_app(app):
 @actions.route("/objective/<int:objective_id>/<int:subobj_id>/action")
 @sugar.templated("actions/view.html")
 def view(objective_id, subobj_id):
-    from app import mongo
 
     related_actions = mongo.db.actions.find_one_or_404({"id": objective_id})['actions']
 

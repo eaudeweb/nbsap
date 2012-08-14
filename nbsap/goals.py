@@ -1,5 +1,6 @@
 import flask
 import sugar
+from database import mongo
 
 goals = flask.Blueprint("goals", __name__)
 
@@ -14,10 +15,9 @@ def home():
 @goals.route("/goals")
 @sugar.templated("goals_listing.html")
 def list_goals():
-    from app import mongo
 
     aichi_goals = [i for i in mongo.db.goals.find()]
-    aichi_targets = [i for i in mongo.db.targets.find()]
+    aichi_targets = mongo.db.targets.find()
     target_dict = {aichi_goals[i]['short_title']:[] for i in range(len(aichi_goals))}
 
     for target in aichi_targets:

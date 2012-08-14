@@ -1,5 +1,6 @@
 import flask
 import sugar
+from database import mongo
 
 from schema.refdata import _load_json
 
@@ -11,7 +12,6 @@ def initialize_app(app):
 @indicators.route("/indicators")
 @sugar.templated("indicators/indicators_listing.html")
 def list_indicators():
-    from app import mongo
 
     aichi_indicators = mongo.db.indicators.find()
 
@@ -22,7 +22,6 @@ def list_indicators():
 @indicators.route("/indicators/<int:indicator_id>")
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
-    from app import mongo
 
     aichi_indicators = mongo.db.indicators.find()
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")

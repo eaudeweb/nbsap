@@ -1,6 +1,6 @@
 import flask
 from flaskext.babel import Babel
-from flask.ext.pymongo import PyMongo
+from database import mongo
 
 import goals
 import targets
@@ -12,7 +12,6 @@ default_config = {
         "MONGO_DBNAME": "nbsap",
 }
 
-mongo = PyMongo()
 babel = Babel()
 
 def create_app(instance_path=None):

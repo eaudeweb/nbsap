@@ -1,5 +1,6 @@
 import flask
 import sugar
+from database import mongo
 
 objectives = flask.Blueprint("objectives", __name__)
 
@@ -9,7 +10,6 @@ def initialize_app(app):
 @objectives.route("/objective/<int:objective_id>/<int:subobj_id>")
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):
-    from app import mongo
 
     objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
 
@@ -33,7 +33,6 @@ def view_subobj(objective_id, subobj_id):
 @objectives.route("/objective/<int:objective_id>")
 @sugar.templated("objectives/view.html")
 def view(objective_id):
-    from app import mongo
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     actions = mongo.db.actions.find_one({'id': objective_id})
@@ -49,7 +48,6 @@ def view(objective_id):
 @objectives.route("/objectives")
 @sugar.templated("objectives/objectives_listing.html")
 def list_objectives():
-    from app import mongo
 
     objectives = mongo.db.objectives.find()
 
