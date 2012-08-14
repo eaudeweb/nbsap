@@ -1,0 +1,1 @@
+from .aichi import Goal

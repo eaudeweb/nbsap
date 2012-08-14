@@ -5,6 +5,7 @@ Flask-PyMongo==0.1.2
 Flask-Script==0.3.3
 Jinja2==2.6
 Werkzeug==0.8.3
+flatland==dev
 argparse==1.2.1
 beautifulsoup4==4.1.1
 flup==1.0.2
