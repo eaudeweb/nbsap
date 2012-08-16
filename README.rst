@@ -2,6 +2,7 @@ NBSAP Quick Installation
 =====
 
 1. Clone the repository::
+
     git clone https://github.com/eaudeweb/nbsap.git -o github
 
 2. Create & activate a virtual environment::
@@ -48,8 +49,4 @@ NBSAP Quick Installation
 9. Run a test server::
 
     ./manage.py runserver
-
-10. Deployment::
-
-    fab deploy # deploy to staging.nbsap.eaudeweb.ro
 
