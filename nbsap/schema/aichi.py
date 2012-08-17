@@ -1,6 +1,6 @@
 import flatland
 
-from common import I18nString, CommonString
+from common import I18nString, CommonString, CommonEnum, CommonList
 
 _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('short_title'),
@@ -36,6 +36,17 @@ _TargetSchemaDefinition = flatland.Dict.of(
             I18nString.named('title'),
             I18nString.named('description'),
             CommonString.named('id'),
+        )
+
+MappingSchema = flatland.Dict.of(
+            CommonEnum.named('objective')
+                        .using(label="National Objective"),
+            CommonEnum.named('goal')
+                        .using(label="Strategic Goal"),
+            CommonEnum.named('main_target')
+                        .using(label="Relevant AICHI target"),
+            CommonList.named('other_targets')
+                        .using(label="Other AICHI targets"),
         )
 
 class Goal(_GoalSchemaDefinition):
