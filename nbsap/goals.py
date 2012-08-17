@@ -28,3 +28,9 @@ def list_goals():
             "target_dict": target_dict
            }
 
+@goals.route("/mapping")
+@sugar.templated('mapping.html')
+def mapping():
+    return
+
+
