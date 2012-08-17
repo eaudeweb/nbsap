@@ -38,15 +38,23 @@ _TargetSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
         )
 
-MappingSchema = flatland.Dict.of(
+MappingSchema = flatland.Dict.with_properties(widget="form").of(
             CommonEnum.named('objective')
-                        .using(label="National Objective"),
+                        .using(label="National Objective", optional=False)
+                        .valued()
+                        .with_properties(widget="select", value_labels=""),
             CommonEnum.named('goal')
-                        .using(label="Strategic Goal"),
+                        .using(label="Strategic Goal", optional=False)
+                        .valued()
+                        .with_properties(widget="select", value_labels=""),
             CommonEnum.named('main_target')
-                        .using(label="Relevant AICHI target"),
+                        .using(label="Relevant AICHI target", optional=False)
+                        .valued()
+                        .with_properties(widget="select", value_labels=""),
             CommonList.named('other_targets')
-                        .using(label="Other AICHI targets"),
+                        .of(CommonString.named('other_targets'))
+                        .using(label="Other AICHI targets", optional=False)
+                        .with_properties(widget="list", valid_values="", value_labels=""),
         )
 
 class Goal(_GoalSchemaDefinition):

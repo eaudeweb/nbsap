@@ -1,5 +1,6 @@
 import flask
 import sugar
+import schema
 from database import mongo
 
 goals = flask.Blueprint("goals", __name__)
@@ -28,9 +29,15 @@ def list_goals():
             "target_dict": target_dict
            }
 
-@goals.route("/mapping")
+@goals.route("/mapping", methods=["GET", "POST"])
 @sugar.templated('mapping.html')
 def mapping():
-    return
+    app = flask.current_app
+    mapping_schema = schema.MappingSchema({})
 
-
+    return {
+                 "mk": sugar.MarkupGenerator(
+                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
+                  ),
+                 "mapping_schema": mapping_schema,
+            }
