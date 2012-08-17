@@ -17,7 +17,7 @@ _ObjectiveSchemaDefinition = flatland.Dict.of(
             CommonList.named('subobjs').of(Subobjective),
         )
 
-GenericEditSchema = flatland.Dict.with_properties(widget="edit").of(
+GenericEditSchema = flatland.Dict.with_properties(widget="form").of(
             CommonString.named('title')
                 .using(label=u'Title', optional=False)
                 .with_properties(widget="input"),

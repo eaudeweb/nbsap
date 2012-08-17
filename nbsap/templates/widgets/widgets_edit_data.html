@@ -55,7 +55,7 @@
 
   {% for value in field.valid_values %}
     {% if field.name == "to" %}
-      {% set value_label = "All %s speakers" % (value_labels[value]
+      {% set value_label = "%s" % (value_labels[value]
                             if value_labels else value) %}
     {% else %}
       {% set value_label = (value_labels[value] if value_labels else value) %}
@@ -68,7 +68,7 @@
 {% endmacro %}
 
 
-{% macro edit(mk, schema) %}
+{% macro form(mk, schema) %}
   <fieldset>
   {%- for name in mk.children_order(schema) %}
     {% set field = schema[name] %}
