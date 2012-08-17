@@ -1,5 +1,7 @@
 import flatland
 
+from flatland.validation import Present
+
 from common import I18nString, CommonString, CommonList
 
 Subobjective = flatland.Dict.of(
@@ -14,6 +16,16 @@ _ObjectiveSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
             CommonList.named('subobjs').of(Subobjective),
         )
+
+GenericEditSchema = flatland.Dict.with_properties(widget="edit").of(
+            CommonString.named('title')
+                .using(label=u'Title', optional=False)
+                .with_properties(widget="input"),
+            CommonString.named('body')
+                .using(label=u'Description', optional=False)
+                .with_properties(widget="edit_textarea"),
+
+    )
 
 class Objective(_ObjectiveSchemaDefinition):
 

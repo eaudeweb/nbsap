@@ -15,7 +15,7 @@
 <form class="form-horizontal"
       method="POST"
       action="{{url_for('objectives.edit', objective_id=objective.id)}}">
-    <fieldset>
+    <!--fieldset>
     <div class="control-group span6">
         <label class="control-label">Title</label>
         <div class="controls">
@@ -23,7 +23,8 @@
             <textarea name="description">{{objective.body.en}}</textarea>
         </div>
     </div>
-    </fieldset>
+    </fieldset-->
+        {{mk.widget(schema)}}
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
     </div>

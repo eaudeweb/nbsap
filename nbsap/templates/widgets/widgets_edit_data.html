@@ -2,16 +2,14 @@
   {{ mk.input(field, **mk.properties(field, id="field-%s" % field.name)) }}
 {% endmacro %}
 
-{% macro email_input(mk, field) %}
-<input id={{ "field-%s" % field.name }}
-       name={{ "mail_%s" % field.name }}
-       type="text" value="{{ field|join(", ")}}"
+{% macro edit_textarea(mk, field) %}
+<textarea id={{ "field-%s" % field.name }}
+       name={{ field.name }}
        {% if not field.optional %}
           required
        {% endif %}
-/>
+>{{field}}</textarea>
 {% endmacro %}
-
 
 {% macro textarea(mk, field) %}
   {{ mk.textarea(field, id="field-%s" % field.name,
@@ -70,7 +68,7 @@
 {% endmacro %}
 
 
-{% macro mail(mk, schema) %}
+{% macro edit(mk, schema) %}
   <fieldset>
   {%- for name in mk.children_order(schema) %}
     {% set field = schema[name] %}
