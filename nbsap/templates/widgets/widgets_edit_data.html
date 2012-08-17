@@ -3,7 +3,8 @@
 {% endmacro %}
 
 {% macro edit_textarea(mk, field) %}
-<textarea id={{ "field-%s" % field.name }}
+<textarea class="input-xlarge edit-textarea"
+       id={{ "field-%s" % field.name }}
        name={{ field.name }}
        {% if not field.optional %}
           required
@@ -42,25 +43,10 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {% if field.properties.multiple %}
-    {{ mk.select.open(field, class=field.properties.css_class,
-                             multiple=field.properties.multiple) }}
-  {% else %}
-    {{ mk.select.open(field, class=field.properties.css_class) }}
-  {% endif %}
-
-  {% if field.optional %}
-    {{ mk.option(field, value="", contents="--") }}
-  {% endif %}
+  {{ mk.select.open(field, class=field.properties.css_class) }}
 
   {% for value in field.valid_values %}
-    {% if field.name == "to" %}
-      {% set value_label = "All %s speakers" % (value_labels[value]
-                            if value_labels else value) %}
-    {% else %}
-      {% set value_label = (value_labels[value] if value_labels else value) %}
-    {% endif %}
-
+    {% set value_label = value_labels[value] if value_labels else value %}
     {{ mk.option(field, value=value, contents=value_label) }}
   {% endfor %}
 

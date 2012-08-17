@@ -69,9 +69,10 @@ def edit(objective_id):
         schema = GenericEditSchema(data)
 
         if schema.validate():
-
-            objective['title']['en'] = schema['title'].value
-            objective['body']['en'] = schema['body'].value
+            selected_language = schema['language'].value
+            objective['title'][selected_language] = schema['title'].value
+            objective['body'][selected_language] = schema['body'].value
+            flask.flash("Information saved", "success")
             mongo.db.objectives.save(objective)
 
     else:
