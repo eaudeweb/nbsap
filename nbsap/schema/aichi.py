@@ -1,6 +1,7 @@
 import flatland
 
 from common import I18nString, CommonString, CommonEnum, CommonList
+from .refdata import goals, targets
 
 _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('short_title'),
@@ -38,23 +39,30 @@ _TargetSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
         )
 
-MappingSchema = flatland.Dict.with_properties(widget="form").of(
+_MappingSchema = flatland.Dict.with_properties(widget="form").of(
             CommonEnum.named('objective')
                         .using(label="National Objective", optional=False)
-                        .valued()
-                        .with_properties(widget="select", value_labels=""),
+                        .with_properties(widget="obj_select"),
             CommonEnum.named('goal')
                         .using(label="Strategic Goal", optional=False)
-                        .valued()
-                        .with_properties(widget="select", value_labels=""),
+                        .valued(*sorted(goals.keys()))
+                        .with_properties(widget="select",
+                            value_labels=goals,
+                            css_class="span2"),
             CommonEnum.named('main_target')
                         .using(label="Relevant AICHI target", optional=False)
-                        .valued()
-                        .with_properties(widget="select", value_labels=""),
+                        .valued(*sorted(targets.keys()))
+                        .with_properties(widget="select",
+                            value_labels=targets,
+                            css_class="span2"),
             CommonList.named('other_targets')
                         .of(CommonString.named('other_targets'))
                         .using(label="Other AICHI targets", optional=False)
-                        .with_properties(widget="list", valid_values="", value_labels=""),
+                        .with_properties(widget="list",
+                            valid_values=targets.keys(),
+                            value_labels=targets,
+                            css_class="chzn-select chzn-done",
+                            multiple="multiple"),
         )
 
 class Goal(_GoalSchemaDefinition):
@@ -86,3 +94,10 @@ class Target(_TargetSchemaDefinition):
 
     def flatten(self):
         return self.value
+
+class MappingSchema(_MappingSchema):
+
+    def set_objectives(self, objectives):
+        self['objective'].valid_values = [j for i in objectives.keys() for j in objectives[i].values()]
+        self['objective'].properties['groups'] = objectives
+        return self

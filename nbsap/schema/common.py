@@ -9,7 +9,7 @@ class EnumValue(Validator):
         self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
 
         if element.valid_values:
-            if element.value not in element.valid_values:
+            if element.value not in map(str, element.valid_values):
                 return self.note_error(element, state, 'fail')
 
         return True
@@ -23,7 +23,7 @@ class ListValue(Validator):
         self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
 
         for e in element.value:
-            if e not in element.properties['valid_values']:
+            if e not in map(str, element.properties['valid_values']):
                 return self.note_error(element, state, 'fail')
 
         return True

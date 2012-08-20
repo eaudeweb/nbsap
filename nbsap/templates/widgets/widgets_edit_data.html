@@ -29,8 +29,25 @@
   {% endif %}
 
   {% for value in field.properties.valid_values %}
-    {% set value_label = (value_labels[value|safe]) %}
-    {{ mk.option(field, value=value|safe, contents=value_label) }}
+    {% set value_label = (value_labels[value]) %}
+    {{ mk.option(field, value=value|string(), contents=value_label) }}
+  {% endfor %}
+
+  {{ mk.select.close() }}
+{% endmacro %}
+
+{% macro obj_select(mk, field) %}
+  {% set value_groups = field.properties.groups %}
+
+  {{ mk.select.open(field, class=field.properties.css_class) }}
+
+  {% for i in value_groups %}
+    <optgroup label="Objective {{i}}">
+      {% for j in value_groups[i] %}
+      {% set value = value_groups[i][j] %}
+      <option value={{value}}>Subobjective {{value}}</option>
+      {% endfor %}
+    </optgroup>
   {% endfor %}
 
   {{ mk.select.close() }}
@@ -42,26 +59,11 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {% if field.properties.multiple %}
-    {{ mk.select.open(field, class=field.properties.css_class,
-                             multiple=field.properties.multiple) }}
-  {% else %}
-    {{ mk.select.open(field, class=field.properties.css_class) }}
-  {% endif %}
-
-  {% if field.optional %}
-    {{ mk.option(field, value="", contents="--") }}
-  {% endif %}
+  {{ mk.select.open(field, class=field.properties.css_class) }}
 
   {% for value in field.valid_values %}
-    {% if field.name == "to" %}
-      {% set value_label = "%s" % (value_labels[value]
-                            if value_labels else value) %}
-    {% else %}
-      {% set value_label = (value_labels[value] if value_labels else value) %}
-    {% endif %}
-
-    {{ mk.option(field, value=value, contents=value_label) }}
+    {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
+    {{ mk.option(field, value=value|string(), contents=value_label) }}
   {% endfor %}
 
   {{ mk.select.close() }}

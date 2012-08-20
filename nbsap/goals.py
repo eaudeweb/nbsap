@@ -35,6 +35,21 @@ def mapping():
     app = flask.current_app
     mapping_schema = schema.MappingSchema({})
 
+    if flask.request.method == "POST":
+        initial_form = flask.request.form
+        form_data = initial_form.to_dict()
+        mapping_schema = schema.MappingSchema(form_data)
+        mapping_schema['other_targets'].set(initial_form.getlist('other_targets'))
+        mapping_schema['main_target'].value = mapping_schema['main_target'].u
+
+        if mapping_schema.validate():
+            print mapping_schema['objective']
+            print mapping_schema.value
+            #mongo.db.objectives.save(form_data)
+
+    objectives = sugar.generate_objectives()
+    mapping_schema.set_objectives(objectives)
+
     return {
                  "mk": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")

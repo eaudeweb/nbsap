@@ -3,6 +3,14 @@ from functools import wraps
 import flask
 import flatland.out.markup
 
+def generate_objectives():
+    from nbsap.database import mongo
+    objectives = {i['id']:"" for i in mongo.db.objectives.find()}
+    for id in objectives.keys():
+        objectives[id] = {i['id']:"%s.%s" % (id, i['id'])
+                            for i in mongo.db.objectives.find_one({"id": id})['subobjs']}
+    return objectives
+
 def templated(template=None):
     def decorator(f):
         @wraps(f)
