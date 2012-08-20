@@ -33,22 +33,35 @@ def list_goals():
 @sugar.templated('mapping.html')
 def mapping():
     app = flask.current_app
-    mapping_schema = schema.MappingSchema({})
 
     if flask.request.method == "POST":
         initial_form = flask.request.form
         form_data = initial_form.to_dict()
+        targets_list = initial_form.getlist('other_targets')
+
+        try:
+            targets_list.remove(form_data['main_target'])
+        except ValueError:
+            pass
+
         mapping_schema = schema.MappingSchema(form_data)
-        mapping_schema['other_targets'].set(initial_form.getlist('other_targets'))
-        mapping_schema['main_target'].value = mapping_schema['main_target'].u
+
+        objectives = sugar.generate_objectives()
+        mapping_schema.set_objectives(objectives)
+        mapping_schema['objective'].set(form_data['objective'])
+        mapping_schema['other_targets'].set(targets_list)
+
+        mapping_schema['main_target'].valid_values = map(str, mapping_schema['main_target'].valid_values)
+        mapping_schema['main_target'].set(form_data['main_target'])
 
         if mapping_schema.validate():
-            print mapping_schema['objective']
-            print mapping_schema.value
-            #mongo.db.objectives.save(form_data)
+            mongo.db.mapping.save(mapping_schema.flatten())
+            flask.flash("Mapping saved", "success")
 
-    objectives = sugar.generate_objectives()
-    mapping_schema.set_objectives(objectives)
+    else:
+        mapping_schema = schema.MappingSchema({})
+        objectives = sugar.generate_objectives()
+        mapping_schema.set_objectives(objectives)
 
     return {
                  "mk": sugar.MarkupGenerator(
