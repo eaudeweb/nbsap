@@ -44,7 +44,7 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                         .using(label="National Objective", optional=False)
                         .with_properties(widget="obj_select"),
             CommonEnum.named('goal')
-                        .using(label="Strategic Goal", optional=False)
+                        .using(label="AICHI strategic goal", optional=False)
                         .valued(*sorted(goals.keys()))
                         .with_properties(widget="select",
                             value_labels=goals,
