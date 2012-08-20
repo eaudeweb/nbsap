@@ -508,4 +508,7 @@ table.indicator_view td.indicator_field {
     width: 990px;
 }
 
-
+.edit {
+    float: right;
+    margin-bottom: 10px;
+}
