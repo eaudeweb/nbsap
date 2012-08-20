@@ -2,19 +2,19 @@
   {{ mk.input(field, **mk.properties(field, id="field-%s" % field.name)) }}
 {% endmacro %}
 
-{% macro edit_textarea(mk, field) %}
-<textarea class="input-xlarge edit-textarea"
-       id={{ "field-%s" % field.name }}
+{% macro edit_textarea(field) %}
+<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
        {% if not field.optional %}
           required
        {% endif %}
->{{field}}</textarea>
+>{{field|safe}}</textarea>
 {% endmacro %}
 
 {% macro textarea(mk, field) %}
-  {{ mk.textarea(field, id="field-%s" % field.name,
-                 class=field.properties.css_class) }}
+ {%- do mk.begin(auto_domid=true, auto_for=true) %}
+    {{ mk.textarea(field, class=field.properties.css_class) }}
+  {% do mk.end() -%}
 {% endmacro %}
 
 
@@ -60,19 +60,43 @@
     {% set field = schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
-    <div class="control-group {{ error_cls }}">
-      <label class="control-label">{{ field.label }}</label>
-      <div class="controls">
+    {% if field.properties.widget != 'hidden' %}
+    <div class="control-group {{error_cls}} group-{{field.name}}">
+      <label class="control-label label-{{field.name}}">{{ field.label }}</label>
+      <div class="controls control-{{field.name}}">
         {{ mk.widget(field) }}
         {% for message in field.errors %}
           <span class="help-inline">{{ message }}</span>
         {% endfor %}
       </div>
     </div>
+    {% endif %}
   {% endfor -%}
   </fieldset>
 {% endmacro %}
 
+{% macro i18nstring(mk, field) %}
+  <div class="well field-i18nstring {{ field.properties.get('css_class') }}">
+  {% set field_items = [] %}
+  {% for name in mk.children_order(field) %}
+      {% do field_items.append((name, field[name])) %}
+  {% endfor %}
+  {% for subfield_name, subfield in field_items %}
+    {#{{ '%r'|format(subfield) }}#}
+    {% set properties = mk.properties(subfield) %}
+    {#{ mk.label(subfield, contents=subfield.label) }#}
+    <label class="{{subfield.name}}">{{ subfield.label }}</label>
 
-{% macro hide(mk, schema) %}
+    {% set field_widget = field.properties.get("field_widget") %}
+    {% if field_widget == "edit_textarea" %}
+      {{ edit_textarea(subfield) }}
+    {% else %}
+      {{ input(mk, subfield) }}
+    {% endif %}
+    <br>
+  {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro hidden(mk, schema) %}
 {% endmacro %}

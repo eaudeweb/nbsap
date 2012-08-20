@@ -11,9 +11,9 @@
 
       ]) }}
 </ul>
-<div class="canvas">
-    <div class="canvas-left-son">
-        <form class="form-horizontal"
+<div class="row">
+    <div class="span6">
+        <form class="form-horizontal objective-edit"
               method="POST"
               action="{{url_for('objectives.edit', objective_id=objective.id)}}">
 
@@ -26,9 +26,13 @@
             </div>
         </form>
     </div>
-    <div class="canvas-right-son">
-        <!--span class="input-xlarge
-        uneditable-input">{{objective.title[en]}}</span-->
+    <div class="span6 container-right">
+        <span class="well input-xlarge disabled span4 original-title">
+            {{objective.title['en']}}
+        </span>
+        <textarea class="well input-xlarge edit-textarea original-body" disabled="disabled">
+            {{objective.body['en']}}
+        </textarea>
     </div>
 </div>
 {% endblock content %}
@@ -39,16 +43,31 @@
 {{ script_src('js/jquery.js') }}
 
 <script>
-    $(".language-select").change(function() {
-        console.log($(this).val());
-        var lang = $(this).val();
-        var input = $(this).parents().eq(2).find('input');
-        console.log(input.val());
-        /*var text2 = {{objective.title}};
-        console.log({{objective.title[en]}});
-        console.log({{objective.title[en]}});
-        console.log({{objective.title[en]}});
-        //input.val({{objective.title[lang]}});*/
+    $(document).ready(function (){
+        $('.fr').hide();
+        $('.nl').hide();
+        $('#field-fr').hide();
+        $('#field-nl').hide();
     });
+
+    $('.language-select').on('change', function () {
+        var lang = $(this).val();
+        var languages = ['en', 'fr', 'nl'];
+        for(i in languages) {
+            if(languages[i] != lang) {
+                $('.' + languages[i]).hide();
+                $('#field-' + languages[i]).hide();
+            }
+        }
+
+        $('.' + lang).show();
+        $('#field-' + lang).show();
+
+        if (lang == 'en')
+            $('.container-right').hide();
+        else
+            $('.container-right').show();
+    }).change();
+
 </script>
 {% endblock %}

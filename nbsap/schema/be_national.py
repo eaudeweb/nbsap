@@ -6,16 +6,26 @@ from .refdata import language
 from common import I18nString, CommonString, CommonList, CommonEnum
 
 Subobjective = flatland.Dict.of(
-            I18nString.named('title'),
-            I18nString.named('body'),
-            CommonString.named('id'),
+            I18nString.named('title')
+                .with_properties(css_class="span4"),
+            I18nString.named('body')
+                .with_properties(field_widget="edit_textarea",
+                                css_class="input-xlarge"),
+            CommonString.named('id')
         )
 
-_ObjectiveSchemaDefinition = flatland.Dict.of(
-            I18nString.named('title'),
-            I18nString.named('body'),
-            CommonString.named('id'),
-            CommonList.named('subobjs').of(Subobjective),
+_ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(widget="edit").of(
+            I18nString.named('title')
+                .using(label=u'Title', optional=False)
+                .with_properties(css_class="span4"),
+            I18nString.named('body')
+                .using(label=u'Description', optional=False)
+                .with_properties(field_widget="edit_textarea",
+                                 css_class="input-xlarge"),
+            CommonString.named('id')
+                .with_properties(widget="hidden"),
+            CommonList.named('subobjs').of(Subobjective)
+                .with_properties(widget="hidden")
         )
 
 GenericEditSchema = flatland.Dict.with_properties(widget="edit").of(
@@ -26,16 +36,7 @@ GenericEditSchema = flatland.Dict.with_properties(widget="edit").of(
                                  widget="select",
                                  css_class="language-select"),
 
-            CommonString.named('title')
-                .using(label=u'Title', optional=False)
-                .with_properties(widget="input",
-                                 css_class="span6"),
-
-            CommonString.named('body')
-                .using(label=u'Description', optional=False)
-                .with_properties(widget="edit_textarea",
-                                 css_class="input-xlarge"),
-
+            _ObjectiveSchemaDefinition.using(label=u'')
     )
 
 class Objective(_ObjectiveSchemaDefinition):

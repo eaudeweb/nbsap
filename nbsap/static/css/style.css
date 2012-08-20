@@ -460,7 +460,52 @@ table.indicator_view td.indicator_field {
 }
 
 .edit-textarea {
-    margin: 0px;
-    width: 560px;
-    height: 400px;
+    width: 380px;
+    height: 300px;
 }
+
+.original-title {
+    margin-left: 0;
+}
+
+.original-body {
+    margin-top: 40px;
+    height: 342px;
+    width: 430px;
+}
+
+.container-right {
+    margin-top: 43px;
+}
+
+.label-objective {
+    display: none;
+}
+
+.group-objective {
+    margin-left: -220px;
+    position: relative;
+}
+
+.control-body {
+    right: 20px;
+}
+
+.control-body br {
+    display: none;
+}
+
+.control-title br {
+    display: none;
+}
+
+.objective-edit div .well {
+    margin-left: 0;
+    width: 410px;
+}
+
+.objective-edit .form-actions {
+    width: 990px;
+}
+
+

@@ -36,9 +36,15 @@ CommonEnum = flatland.Enum.using(optional=True)\
                         .including_validators(EnumValue())\
                         .with_properties(value_labels=None)
 
-I18nString = flatland.Dict.of(
-            CommonString.named("en"),
-            CommonString.named("fr"),
-            CommonString.named("nl"),
+I18nString = flatland.Dict.with_properties(widget="i18nstring").of(
+            CommonString.named("en")
+                .using(label=u"English")
+                .with_properties(widget="input"),
+            CommonString.named("fr")
+                .using(label=u"French")
+                .with_properties(widget="input"),
+            CommonString.named("nl")
+                .using(label="Netherlands")
+                .with_properties(widget="input")
         )
 
