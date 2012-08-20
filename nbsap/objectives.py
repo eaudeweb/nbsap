@@ -55,3 +55,34 @@ def list_objectives():
             "objectives": objectives,
            }
 
+@objectives.route("/objective/<int:objective_id>/edit", methods=["GET", "POST"])
+@sugar.templated("objectives/edit.html")
+def edit(objective_id):
+
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    from schema import GenericEditSchema
+    app = flask.current_app
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+        schema = GenericEditSchema(data)
+
+        if schema.validate():
+
+            objective['title']['en'] = schema['title'].value
+            objective['body']['en'] = schema['body'].value
+            mongo.db.objectives.save(objective)
+
+    else:
+        schema = GenericEditSchema({})
+        schema['title'].set(objective['title']['en'])
+        schema['body'].set(objective['body']['en'])
+
+    return {
+                 "mk": sugar.MarkupGenerator(
+                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
+                  ),
+                "objective": objective,
+                "schema": schema
+           }

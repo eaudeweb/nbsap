@@ -1,0 +1,94 @@
+{% macro input(mk, field) %}
+  {{ mk.input(field, **mk.properties(field, id="field-%s" % field.name)) }}
+{% endmacro %}
+
+{% macro edit_textarea(mk, field) %}
+<textarea id={{ "field-%s" % field.name }}
+       name={{ field.name }}
+       {% if not field.optional %}
+          required
+       {% endif %}
+>{{field}}</textarea>
+{% endmacro %}
+
+{% macro textarea(mk, field) %}
+  {{ mk.textarea(field, id="field-%s" % field.name,
+                 class=field.properties.css_class) }}
+{% endmacro %}
+
+
+{% macro list(mk, field) %}
+  {% set valid_values = field.properties.valid_values %}
+  {% set value_labels = field.properties.value_labels %}
+
+  {% if field.properties.multiple %}
+    {{ mk.select.open(field, class=field.properties.css_class,
+                             multiple=field.properties.multiple) }}
+  {% else %}
+    {{ mk.select.open(field, class=field.properties.css_class) }}
+  {% endif %}
+
+  {% for value in field.properties.valid_values %}
+    {% set value_label = (value_labels[value]) %}
+    {{ mk.option(field, value=value|string(), contents=value_label) }}
+  {% endfor %}
+
+  {{ mk.select.close() }}
+{% endmacro %}
+
+{% macro obj_select(mk, field) %}
+  {% set value_groups = field.properties.groups %}
+
+  {{ mk.select.open(field, class=field.properties.css_class) }}
+
+  {% for i in value_groups %}
+    <optgroup label="Objective {{i}}">
+      {% for j in value_groups[i] %}
+      {% set value = value_groups[i][j] %}
+      <option value={{value}}>Subobjective {{value}}</option>
+      {% endfor %}
+    </optgroup>
+  {% endfor %}
+
+  {{ mk.select.close() }}
+{% endmacro %}
+
+
+{% macro select(mk, field) %}
+  {% set valid_values = field.valid_values %}
+  {% set value_labels = field.properties.value_labels or
+                        field.value_labels or None %}
+
+  {{ mk.select.open(field, class=field.properties.css_class) }}
+
+  {% for value in field.valid_values %}
+    {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
+    {{ mk.option(field, value=value|string(), contents=value_label) }}
+  {% endfor %}
+
+  {{ mk.select.close() }}
+{% endmacro %}
+
+
+{% macro form(mk, schema) %}
+  <fieldset>
+  {%- for name in mk.children_order(schema) %}
+    {% set field = schema[name] %}
+    {% set error_cls = 'error' if field.errors else '' %}
+
+    <div class="control-group {{ error_cls }}">
+      <label class="control-label">{{ field.label }}</label>
+      <div class="controls">
+        {{ mk.widget(field) }}
+        {% for message in field.errors %}
+          <span class="help-inline">{{ message }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor -%}
+  </fieldset>
+{% endmacro %}
+
+
+{% macro hide(mk, schema) %}
+{% endmacro %}

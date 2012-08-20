@@ -19,5 +19,10 @@
     </a>
   </li>
 
+  <li class="{{ 'active' if active == 'mapping' else '' }}">
+  <a href="{{ url_for('goals.mapping') }}">Mapping
+    </a>
+  </li>
+
 </ul>
 {%- endmacro %}
