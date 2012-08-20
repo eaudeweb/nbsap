@@ -22,6 +22,10 @@ class ListValue(Validator):
     def validate(self, element, state):
         self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
 
+        if not (element.optional or element.value):
+            self.fail = flatland.validation.base.N_('Select at least one value')
+            return self.note_error(element, state, 'fail')
+
         for e in element.value:
             if e not in map(str, element.properties['valid_values']):
                 return self.note_error(element, state, 'fail')
@@ -29,7 +33,6 @@ class ListValue(Validator):
         return True
 
 CommonString = flatland.String.using(optional=True)
-CommonList = flatland.List.using(optional=True)
 CommonList = flatland.List.using(optional=True)\
                         .including_validators(ListValue())
 CommonEnum = flatland.Enum.using(optional=True)\
