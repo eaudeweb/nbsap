@@ -57,7 +57,7 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                             css_class="span2"),
             CommonList.named('other_targets')
                         .of(CommonString.named('other_targets'))
-                        .using(label="Other AICHI targets", optional=False)
+                        .using(label="Other AICHI targets")
                         .with_properties(widget="list",
                             valid_values=targets.keys(),
                             value_labels=targets,
@@ -101,3 +101,7 @@ class MappingSchema(_MappingSchema):
         self['objective'].valid_values = [j for i in objectives.keys() for j in objectives[i].values()]
         self['objective'].properties['groups'] = objectives
         return self
+
+    def flatten(self):
+        return self.value
+
