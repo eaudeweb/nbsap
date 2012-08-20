@@ -61,7 +61,7 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                         .with_properties(widget="list",
                             valid_values=targets.keys(),
                             value_labels=targets,
-                            css_class="chzn-select chzn-done",
+                            css_class="chzn-select",
                             multiple="multiple"),
         )
 
