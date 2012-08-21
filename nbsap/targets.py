@@ -17,3 +17,15 @@ def list_targets():
             "targets": aichi_targets
            }
 
+@targets.route("/targets/data")
+def target_data():
+    target_ids = flask.request.args.getlist('other_targets', None)
+    aichi_targets = []
+
+    for target_id in target_ids:
+       aichi_target = mongo.db.targets.find_one_or_404({"id": target_id})
+       aichi_targets.append(aichi_target['description']['en'])
+
+    result = {'result': aichi_targets}
+    return flask.jsonify(result)
+
