@@ -11,30 +11,65 @@
 
       ]) }}
 </ul>
-<div class="row">
-    <div class="span6">
-        <form class="form-horizontal objective-edit"
-              method="POST"
-              action="{{url_for('objectives.edit', objective_id=objective.id)}}">
+<h1>Edit objective {{objective.id}}</h1>
+<form method="POST">
 
-                {{mk.widget(schema)}}
+    <div class="control-group">
+        <label class="control-label" for="language">Language</label>
+        <div class="controls">
+            <select name="language" id="language">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="nl">Dutch</option>
+            </select>
+        </div>
+    </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{url_for('objectives.view', objective_id=objective.id)}}"
-                        class="btn" type="button">Cancel</a>
+    <div class="row">
+        <div class="span6">
+            <div class="control-group">
+                <label class="control-label" for="title">Title</label>
+                <div class="controls">
+                    <textarea name="title" id="title" rows="3" style="width: 100%">
+                       {{-objective.title['en']|safe-}}
+                    </textarea>
+                </div>
             </div>
-        </form>
+        </div>
+        <div class="span6">
+            <p>Original title in English</p>
+            <div class="well">
+                {{-objective.title['en']|safe-}}
+            </div>
+        </div>
     </div>
-    <div class="span6 container-right">
-        <span class="well input-xlarge disabled span4 original-title">
-            {{objective.title['en']}}
-        </span>
-        <textarea class="well input-xlarge edit-textarea original-body" disabled="disabled">
-            {{objective.body['en']}}
-        </textarea>
+
+    <div class="row">
+        <div class="span6">
+            <div class="control-group">
+                <label class="control-label" for="body">Body</label>
+                <div class="controls">
+                    <textarea name="body" id="body" rows="40" style="width: 100%">
+                        {{-objective.body['en']|safe-}}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <p>Original body in English</p>
+            <div class="well">
+                {{-objective.body['en']|safe-}}
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('objectives.view', objective_id=objective.id)}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+</form>
+
 {% endblock content %}
 
 {% block scripts %}
@@ -42,32 +77,4 @@
 {% from 'bits.html' import script_src -%}
 {{ script_src('js/jquery.js') }}
 
-<script>
-    $(document).ready(function (){
-        $('.fr').hide();
-        $('.nl').hide();
-        $('#field-fr').hide();
-        $('#field-nl').hide();
-    });
-
-    $('.language-select').on('change', function () {
-        var lang = $(this).val();
-        var languages = ['en', 'fr', 'nl'];
-        for(i in languages) {
-            if(languages[i] != lang) {
-                $('.' + languages[i]).hide();
-                $('#field-' + languages[i]).hide();
-            }
-        }
-
-        $('.' + lang).show();
-        $('#field-' + lang).show();
-
-        if (lang == 'en')
-            $('.container-right').hide();
-        else
-            $('.container-right').show();
-    }).change();
-
-</script>
 {% endblock %}

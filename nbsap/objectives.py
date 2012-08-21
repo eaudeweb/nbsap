@@ -67,31 +67,16 @@ def edit(objective_id):
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
 
-        for lang in ['en', 'fr', 'nl']:
-            data['objective_body_' + lang] = data[lang]
-            del data[lang]
+        selected_language = data['language']
 
-        edit_schema = schema.GenericEditSchema.from_flat(data)
+        objective['title'][selected_language] = data['title']
+        objective['body'][selected_language] = data['body']
 
-        if edit_schema.validate():
-            selected_language = edit_schema['language'].value
+        flask.flash("Saved changes", "success")
+        import pdb; pdb.set_trace()
 
-            objective['title'][selected_language] = \
-                        edit_schema['objective']['title'][selected_language].value
-
-            objective['body'][selected_language] = \
-                        edit_schema['objective']['body'][selected_language].value
-
-            flask.flash("Information saved", "success")
-            mongo.db.objectives.save(objective)
-
-    edit_schema = schema.GenericEditSchema({})
-    edit_schema['objective'] = schema.Objective(objective)
+        mongo.db.objectives.save(objective)
 
     return {
-                 "mk": sugar.MarkupGenerator(
-                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
-                  ),
                 "objective": objective,
-                "schema": edit_schema
            }
