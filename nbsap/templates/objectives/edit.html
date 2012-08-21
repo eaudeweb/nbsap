@@ -37,10 +37,24 @@
             <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
                 <label class="control-label" for="title">Title</label>
                 <div class="controls">
-                    <textarea name="title" id="title" rows="3" style="width: 100%">
-                       {{-objective.title['en']|safe-}}
-                    </textarea>
-                    {{error(schema.title['en'])}}
+                    <div class="class-title-en">
+                        <textarea name="title" id="title-en" rows="3" style="width: 100%">
+                           {{-objective.title['en']|safe-}}
+                        </textarea>
+                        {{error(schema.title['en'])}}
+                    </div>
+
+                    <div class="class-title-fr">
+                        <textarea name="title" id="title-fr" rows="3" style="width: 100%">
+                           {{-objective.title['fr']|safe-}}
+                        </textarea>
+                    </div>
+
+                    <div class="class-title-nl">
+                        <textarea name="title" id="title-nl" rows="3" style="width: 100%">
+                           {{-objective.title['nl']|safe-}}
+                        </textarea>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,10 +71,25 @@
             <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
                 <label class="control-label" for="body">Body</label>
                 <div class="controls">
-                    <textarea name="body" id="body" rows="40" style="width: 100%">
-                        {{-objective.body['en']|safe-}}
-                    </textarea>
-                    {{error(schema.body['en'])}}
+                    <div class="class-body-en">
+                        <textarea name="body" id="body-en" rows="40" style="width: 100%">
+                            {{-objective.body['en']|safe-}}
+                        </textarea>
+                        {{error(schema.body['en'])}}
+                    </div>
+
+                    <div class="class-body-fr">
+                        <textarea name="body" id="body-fr" rows="40" style="width: 100%">
+                            {{-objective.body['fr']|safe-}}
+                        </textarea>
+                    </div>
+
+                    <div class="class-body-nl">
+                        <textarea name="body" id="body-nl" rows="40" style="width: 100%">
+                            {{-objective.body['nl']|safe-}}
+                        </textarea>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -85,5 +114,32 @@
 {{ super() }}
 {% from 'bits.html' import script_src -%}
 {{ script_src('js/jquery.js') }}
+
+<script>
+    $(document).ready(function() {
+        $('.class-title-fr').hide();
+        $('.class-title-nl').hide();
+        $('.class-body-fr').hide();
+        $('.class-body-nl').hide();
+
+     });
+
+    $('#language').on('change', function() {
+        var lang = $(this).val();
+        var languages = ['en', 'fr', 'nl']
+
+        for (i in languages) {
+            if (languages[i] != lang) {
+                $('.class-title-' + languages[i]).hide();
+                $('.class-body-' + languages[i]).hide();
+            }
+        }
+
+        $('.class-title-' + lang).show();
+        $('.class-body-' + lang).show();
+
+    });
+</script>
+
 
 {% endblock %}
