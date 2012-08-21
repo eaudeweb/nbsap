@@ -1,8 +1,6 @@
 import flatland
 
-from flatland.validation import Present
-
-from common import I18nString, CommonString, CommonList
+from common import I18nString, CommonString, CommonList, CommonInteger
 
 Subobjective = flatland.Dict.of(
             I18nString.named('title'),
@@ -25,7 +23,19 @@ GenericEditSchema = flatland.Dict.with_properties(widget="form").of(
                 .using(label=u'Description', optional=False)
                 .with_properties(widget="edit_textarea"),
 
-    )
+        )
+
+_action = flatland.Dict.of(
+            I18nString.named('title'),
+            I18nString.named('body'),
+            CommonInteger.named('id'),
+        )
+
+_ActionsSchemaDefinition = flatland.Dict.of(
+            I18nString.named('title'),
+            CommonInteger.named('id'),
+            CommonList.named('actions').of(_action),
+        )
 
 class Objective(_ObjectiveSchemaDefinition):
 
@@ -36,3 +46,14 @@ class Objective(_ObjectiveSchemaDefinition):
 
     def flatten(self):
         return self.value
+
+class Action(_ActionsSchemaDefinition):
+
+    def __init__(self, init_action):
+        action = dict(init_action)
+        action.pop('_id', None)
+        self.set(action)
+
+    def flatten(self):
+        return self.value
+

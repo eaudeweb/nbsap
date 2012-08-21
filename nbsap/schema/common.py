@@ -32,6 +32,7 @@ class ListValue(Validator):
 
         return True
 
+CommonInteger = flatland.Integer.using(optional=True)
 CommonString = flatland.String.using(optional=True)
 CommonList = flatland.List.using(optional=True)\
                         .including_validators(ListValue())
