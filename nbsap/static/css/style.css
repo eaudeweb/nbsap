@@ -458,3 +458,13 @@ table.people-listing tr:nth-child(odd):hover th {
 table.indicator_view td.indicator_field {
   width: 350px;
 }
+
+textarea.mapping_text {
+  width: 800px;
+  margin-left: 20px;
+}
+
+textarea.objective,
+textarea.other_targets {
+  width: 750px;
+}
