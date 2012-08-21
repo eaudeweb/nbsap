@@ -461,10 +461,12 @@ table.indicator_view td.indicator_field {
 
 textarea.mapping_text {
   width: 800px;
+  max-width: 800px;
   margin-left: 20px;
 }
 
 textarea.objective,
 textarea.other_targets {
   width: 750px;
+  max-width: 750px;
 }
