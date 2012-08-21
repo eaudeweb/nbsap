@@ -44,6 +44,9 @@
 
 {% endblock content %}
 {% block scripts %}
+  {% from 'bits.html' import script_src -%}
+  {{script_src('js/jquery.autogrow-textarea.js')}}
+  {{script_src('js/mustache.js')}}
   <script>
     $('.chzn-select').attr('data-placeholder', 'Select targets');
 
@@ -51,7 +54,7 @@
       var option = $(this).val();
       var text = $(this).parents().eq(0).find('textarea');
       $.get("{{url_for('objectives.objective_data')}}", {'id_code': option}, function (data) {
-        text.val(data['title']['en']);
+        text.val(data['result']);
       });
     }).change();
 
@@ -59,7 +62,7 @@
       var option = $(this).val();
       var text = $(this).parents().eq(0).find('textarea');
       $.get("{{url_for('goals.goal_data')}}", {'goal_short_title': option}, function (data) {
-        text.val(data['description']['en']);
+        text.val(data['result']);
       });
     }).change();
 
@@ -67,7 +70,7 @@
       var option = $(this).val();
       var text = $(this).parents().eq(0).find('textarea');
       $.get("{{url_for('targets.target_data')}}", {'other_targets': option}, function (data) {
-        text.val(data['result'][0]['description']['en']);
+        text.val(data['result'][0]);
       });
     }).change();
 
@@ -75,10 +78,9 @@
       var options = $(this).serialize();
       var text = $(this).parents().eq(0).find('textarea');
       $.get("{{url_for('targets.target_data')}}", options, function (data) {
-        console.log(data['result']);
-        for(target in data['result']){
-          text.val(data['result'][target]['description']['en']);
-        }
+        var output = Mustache.render("{% raw %}{{#result}}{{.}}\n\n{{/result}}{% endraw %}", data)
+        text.val(output);
+        text.autogrow();
       });
     });
 

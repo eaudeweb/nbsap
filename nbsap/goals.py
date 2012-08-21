@@ -74,7 +74,7 @@ def mapping():
 def goal_data():
     goal_short_title = flask.request.args.getlist('goal_short_title')[0]
     aichi_goal = mongo.db.goals.find_one_or_404({"short_title": goal_short_title})
-    aichi_goal.pop('_id', None)
 
-    return flask.jsonify(aichi_goal)
+    result = {'result': aichi_goal['description']['en']}
+    return flask.jsonify(result)
 

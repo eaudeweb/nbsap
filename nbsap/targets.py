@@ -24,8 +24,7 @@ def target_data():
 
     for target_id in target_ids:
        aichi_target = mongo.db.targets.find_one_or_404({"id": target_id})
-       aichi_target.pop('_id', None)
-       aichi_targets.append(aichi_target)
+       aichi_targets.append(aichi_target['description']['en'])
 
     result = {'result': aichi_targets}
     return flask.jsonify(result)
