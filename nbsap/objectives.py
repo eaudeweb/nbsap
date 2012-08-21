@@ -55,6 +55,17 @@ def list_objectives():
             "objectives": objectives,
            }
 
+@objectives.route("/objectives/data")
+def objective_data():
+    id_code = flask.request.args.getlist('id_code')[0]
+    objective_id = int(id_code.split('.')[0])
+    subobjective_id = int(id_code.split('.')[1])
+
+    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
+    subobjective = [s for s in objective['subobjs'] if s['id'] == subobjective_id][0]
+
+    return flask.jsonify(subobjective)
+
 @objectives.route("/objective/<int:objective_id>/edit", methods=["GET", "POST"])
 @sugar.templated("objectives/edit.html")
 def edit(objective_id):
