@@ -34,8 +34,7 @@ class ListValue(Validator):
 
 CommonInteger = flatland.Integer.using(optional=True)
 CommonString = flatland.String.using(optional=True)
-CommonList = flatland.List.using(optional=True)\
-                        .including_validators(ListValue())
+CommonList = flatland.List.using(optional=True)
 CommonEnum = flatland.Enum.using(optional=True)\
                         .including_validators(EnumValue())\
                         .with_properties(value_labels=None)

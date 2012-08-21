@@ -1,6 +1,6 @@
 import flatland
 
-from common import I18nString, CommonString, CommonEnum, CommonList
+from common import I18nString, CommonString, CommonEnum, CommonList, ListValue
 from .refdata import goals, targets
 
 _GoalSchemaDefinition = flatland.Dict.of(
@@ -57,6 +57,7 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                             css_class="span2"),
             CommonList.named('other_targets')
                         .of(CommonString.named('other_targets'))
+                        .including_validators(ListValue())
                         .using(label="Other AICHI targets")
                         .with_properties(widget="list",
                             valid_values=targets.keys(),
