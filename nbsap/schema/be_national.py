@@ -16,10 +16,10 @@ Subobjective = flatland.Dict.of(
 
 _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(widget="edit").of(
             I18nString.named('title')
-                .using(label=u'Title', optional=False)
+                .using(label=u'Title')
                 .with_properties(css_class="span4"),
             I18nString.named('body')
-                .using(label=u'Description', optional=False)
+                .using(label=u'Description')
                 .with_properties(field_widget="edit_textarea",
                                  css_class="input-xlarge"),
             CommonString.named('id')
@@ -27,17 +27,6 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
             CommonList.named('subobjs').of(Subobjective)
                 .with_properties(widget="hidden")
         )
-
-GenericEditSchema = flatland.Dict.with_properties(widget="edit").of(
-            CommonEnum.named('language')
-                .using(label=u'Language', optional=False)
-                .valued(*sorted(language.keys()))
-                .with_properties(value_labels=language,
-                                 widget="select",
-                                 css_class="language-select"),
-
-            _ObjectiveSchemaDefinition.using(label=u'')
-    )
 
 class Objective(_ObjectiveSchemaDefinition):
 
