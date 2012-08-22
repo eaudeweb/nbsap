@@ -53,6 +53,23 @@
             <div class="span9">{{subobj.body.en|safe }}</div>
           </div>
 
+          {% if subobj.mapping|length() %}
+          <div class="row">
+            <div class="span2">Mapping with AICHI:</div>
+            <ul class="span8">
+            {% for m in subobj.mapping %}
+                <li>
+                  <a href="#">goal {{m.goal}}</a>
+                  <a href="#">target {{m.main_target}}</a>
+                {% for target in m.other_targets %}
+                  <a href="#">target {{target}}</a>
+                {% endfor %}
+                </li>
+            {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
           <a href="#top">Back to top</a>
         </div>
       {% endfor %}
