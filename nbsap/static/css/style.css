@@ -470,3 +470,16 @@ textarea.other_targets {
   width: 750px;
   max-width: 750px;
 }
+
+.aichi_view {
+  position: relative;
+  display: block;
+}
+
+p.description {
+  font-size: 14px;
+}
+
+div.target_field {
+  margin-top: 20px;
+}
