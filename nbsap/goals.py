@@ -15,6 +15,22 @@ def initialize_app(app):
 def home():
     return
 
+@goals.route("/homepage_goals")
+@goals.route("/homepage_goals/<string:goal_short_title>")
+@sugar.templated("aichi_view.html")
+def homepage_goals(goal_short_title='A'):
+
+    goals_list = mongo.db.goals.find()
+    aichi_goal = mongo.db.goals.find_one_or_404({'short_title': goal_short_title})
+    aichi_targets = mongo.db.targets.find({'goal_id': goal_short_title})
+
+    return {
+            "goals_list": goals_list,
+            "goal": aichi_goal,
+            "targets": aichi_targets
+           }
+
+
 @goals.route("/goals")
 @sugar.templated("/goals/goals_listing.html")
 def list_goals():

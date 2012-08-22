@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "navigation.html" import homepage_tabs %}
+{{ homepage_tabs('aichi') }}
+
+  <h1>GOALS</h1>
+
+  <div class="tabbable tabs-left">
+
+    <ul class="nav nav-tabs">
+      {% for _goal in goals_list %}
+        {% set active = 'active' if _goal.id == goal.id %}
+        <li class={{ active }}>
+        <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">
+          {{ _goal.short_title }}
+        </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="tab-content" style="overflow:scroll;">
+      {{ goal.description.en }}
+
+      {% for target in targets %}
+        <div id="target_{{ target.id }}">
+          <h3>{{target.title.en }}</h3>
+          <p class="indent">{{ target.description.en }}</p>
+        </div>
+      {% endfor %}
+
+      <ul class="toc">
+      {% for target in targets %}
+      <li><a href="#target_{{target.id}}">{{target.title.en}}</a></li>
+      {% endfor %}
+      </ul>
+
+    </div>
+
+  </div>
+
+{% endblock content %}
