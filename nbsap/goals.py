@@ -22,7 +22,26 @@ def homepage_goals(goal_short_title='A'):
 
     goals_list = mongo.db.goals.find()
     aichi_goal = mongo.db.goals.find_one_or_404({'short_title': goal_short_title})
-    aichi_targets = mongo.db.targets.find({'goal_id': goal_short_title})
+    aichi_targets = [t for t in mongo.db.targets.find({'goal_id': goal_short_title})]
+
+    for target in aichi_targets:
+        target['indicator_ids'] = []
+        target['objective_ids'] = []
+
+        indicators = mongo.db.indicators.find({ "$or" : [{"relevant_target": target['id']},
+                                                         {'other_targets': {"$in": [target['id']]}}
+                                                        ]
+                                              })
+        mapping = mongo.db.mapping.find({ "$or" : [{"main_target": target['id']},
+                                                   {'other_targets': {"$in": [target['id']]}}
+                                                  ]
+                                         })
+
+        for indicator in indicators:
+            target['indicator_ids'].append(indicator['id'])
+
+        for _map in mapping:
+            target['objective_ids'].append(_map['objective'].split('.'))
 
     return {
             "goals_list": goals_list,
