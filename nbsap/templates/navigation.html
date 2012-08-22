@@ -31,11 +31,11 @@
 <ul class="nav nav-tabs">
 
   <li class="{{ 'active' if active == 'aichi' else '' }}">
-    <a href="{{ url_for('goals.homepage_goals') }}">Aichi</a>
+    <a href="{{ url_for('goals.list_goals') }}">Aichi</a>
   </li>
 
   <li class="{{ 'active' if active == 'national' else '' }}">
-  <a href="{{ url_for('objectives.homepage_objectives') }}">
+  <a href="{{ url_for('objectives.list_objectives') }}">
     National Strategy
   </a>
   </li>

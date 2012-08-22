@@ -4,7 +4,7 @@
 {% from "navigation.html" import homepage_tabs %}
 {{ homepage_tabs('aichi') }}
 
-  <h1>Goals</h1>
+  <h1>GOALS</h1>
 
   <div class="tabbable tabs-left">
 
@@ -19,78 +19,21 @@
       {% endfor %}
     </ul>
 
-    <div class="tab-content homepage_view span10" >
-      <h2>Goal {{goal.short_title}}</h2>
-      <p class='description'>{{ goal.description.en }}</p>
-
-      <div class="row">
-      <ul class="span1 offset1">
-        {% for target in targets %}
-          {% if loop.index0 % 2 == 0 and not loop.first %}
-            </ul><ul class="span1 offset1">
-          {% endif %}
-          <li>
-            <a href="#target_{{target.id}}">{{target.title.en}}</a>
-          </li>
-        {% endfor %}
-      </ul>
-      </div>
+    <div class="tab-content" style="overflow:scroll;">
+      {{ goal.description.en }}
 
       {% for target in targets %}
-        <div class="element_field" id="target_{{ target.id }}">
-          <h3 id="targpet_{{target.id}}">{{target.title.en }}</h3>
-
-          <p>{{ target.description.en }}</p>
-
-          {% if target.objective_ids %}
-          <div class="row">
-            <span class="span3">Mapping with National strategy:</span>
-            <span class="span6">
-              <ul>
-              {% for objective in target.objective_ids %}
-              <li><a href="{{url_for('objectives.view_subobj', objective_id=objective[0],
-                                                           subobj_id=objective[1])}}">
-                objective {{objective|join('.')}}
-              </a></li>
-              {% endfor %}
-            </ul>
-            </span>
-          </div>
-          {% endif %}
-
-          {% if target.relevant_indicators %}
-          <div class="row">
-            <span class="span3">Most relevant indicators:</span>
-            <span class="span6">
-              <ul>
-              {% for indicator in target.relevant_indicators %}
-                <li><a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
-                  {{indicator.name}}
-                </a></li>
-              {% endfor %}
-              </ul>
-            </span>
-          </div>
-          {% endif %}
-
-          {% if target.other_indicators %}
-          <div class="row">
-            <span class="span3">Other relevant indicators:</span>
-            <span class="span6">
-              <ul>
-              {% for indicator in target.other_indicators %}
-                <li><a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
-                  {{indicator.name}}
-                </a></li>
-              {% endfor %}
-              </ul>
-            </span>
-          </div>
-          {% endif %}
-
-          <a href="#top">Back to top</a>
+        <div id="target_{{ target.id }}">
+          <h3>{{target.title.en }}</h3>
+          <p class="indent">{{ target.description.en }}</p>
         </div>
       {% endfor %}
+
+      <ul class="toc">
+      {% for target in targets %}
+      <li><a href="#target_{{target.id}}">{{target.title.en}}</a></li>
+      {% endfor %}
+      </ul>
 
     </div>
 
