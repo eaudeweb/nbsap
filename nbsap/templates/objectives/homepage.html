@@ -59,10 +59,16 @@
             <ul class="span8">
             {% for m in subobj.mapping %}
                 <li>
-                  <a href="#">goal {{m.goal}}</a>
-                  <a href="#">target {{m.main_target}}</a>
+                  <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
+                    goal {{m.goal}}
+                  </a>
+                  <a href="#">
+                    target {{m.main_target}}
+                  </a>
                 {% for target in m.other_targets %}
-                  <a href="#">target {{target}}</a>
+                  <a href="#">
+                    target {{target}}
+                  </a>
                 {% endfor %}
                 </li>
             {% endfor %}
