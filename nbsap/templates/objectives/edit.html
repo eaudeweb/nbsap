@@ -25,9 +25,17 @@
         <label class="control-label" for="language">Language</label>
         <div class="controls">
             <select name="language" id="language">
-                <option value="en">English</option>
-                <option value="fr">French</option>
-                <option value="nl">Dutch</option>
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                </option>
+
+                <option value="fr"
+                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                </option>
+
+                <option value="nl"
+                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                </option>
             </select>
         </div>
     </div>
@@ -38,8 +46,8 @@
                 <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
-                        <textarea name="title" id="title-en" style="width: 100%">
-                           {{-objective.title['en']|safe-}}
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                           {{-schema.title['en']|safe-}}
                         </textarea>
                         {{error(schema.title['en'])}}
                     </div>
@@ -47,8 +55,8 @@
                 <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
                     <label class="control-label" for="body">Body</label>
                     <div class="controls">
-                        <textarea name="body" id="body-en" style="width:100%; max-height: 900px;">
-                            {{-objective.body['en']|safe-}}
+                        <textarea name="body-en" id="body-en" style="width:100%; max-height: 900px;">
+                            {{-schema.body['en']|safe-}}
                         </textarea>
                         {{error(schema.body['en'])}}
                     </div>
@@ -59,16 +67,16 @@
                 <div class="control-group">
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
-                        <textarea name="title" id="title-fr" style="width: 100%; ">
-                           {{-objective.title['fr']|safe-}}
+                        <textarea name="title-fr" id="title-fr" style="width: 100%; ">
+                           {{-schema.title['fr']|safe-}}
                         </textarea>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="body">Body</label>
                     <div class="controls">
-                        <textarea name="body" id="body-fr" style="width: 100%; max-height: 900px;">
-                            {{-objective.body['fr']|safe-}}
+                        <textarea name="body-fr" id="body-fr" style="width: 100%; max-height: 900px;">
+                            {{-schema.body['fr']|safe-}}
                         </textarea>
                     </div>
                 </div>
@@ -78,16 +86,16 @@
                 <div class="control-group">
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
-                        <textarea name="title" id="title-nl" style="width: 100%">
-                           {{-objective.title['nl']|safe-}}
+                        <textarea name="title-nl" id="title-nl" style="width: 100%">
+                           {{-schema.title['nl']|safe-}}
                         </textarea>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="body">Body</label>
                     <div class="controls">
-                        <textarea name="body" id="body-nl" style="width: 100%; max-height: 900px;">
-                            {{-objective.body['nl']|safe-}}
+                        <textarea name="body-nl" id="body-nl" style="width: 100%; max-height: 900px;">
+                            {{-schema.body['nl']|safe-}}
                         </textarea>
                     </div>
                 </div>
@@ -97,12 +105,12 @@
         <div class="span6" style="margin-top: -5px">
             <p>Original title in English</p>
             <div class="well">
-                {{-objective.title['en']|safe-}}
+                {{-schema.title['en']|safe-}}
             </div>
 
             <p>Original body in English</p>
             <div class="well">
-                {{-objective.body['en']|safe-}}
+                {{-schema.body['en']|safe-}}
             </div>
         </div>
     </div>

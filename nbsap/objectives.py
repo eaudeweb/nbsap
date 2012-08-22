@@ -62,6 +62,7 @@ def edit(objective_id):
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     objective_schema = schema.Objective(objective)
+    selected_language = u'en'
 
     app = flask.current_app
 
@@ -70,17 +71,18 @@ def edit(objective_id):
 
         selected_language = data['language']
 
-        objective_schema['title'][selected_language].set(data['title'])
-        objective_schema['body'][selected_language].set(data['body'])
+        objective_schema['title'][selected_language].set(data['title-' + selected_language])
+        objective_schema['body'][selected_language].set(data['body-' + selected_language])
 
         if objective_schema.validate():
-            objective['title'][selected_language] = data['title']
-            objective['body'][selected_language] = data['body']
+            objective['title'][selected_language] = data['title-' + selected_language]
+            objective['body'][selected_language] = data['body-' + selected_language]
 
-            flask.flash("Saved changes", "success")
+            flask.flash("Saved changes.", "success")
             mongo.db.objectives.save(objective)
 
     return {
+                "language": selected_language,
                 "objective": objective,
                 "schema": objective_schema
            }
