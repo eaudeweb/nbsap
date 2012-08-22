@@ -57,7 +57,11 @@ def list_objectives():
 
 @objectives.route("/objectives/data")
 def objective_data():
-    id_code = flask.request.args.getlist('id_code')[0]
+    try:
+        id_code = flask.request.args.getlist('id_code')[0]
+    except IndexError:
+        return flask.jsonify({'result': ''})
+
     objective_id = int(id_code.split('.')[0])
     subobjective_id = int(id_code.split('.')[1])
 

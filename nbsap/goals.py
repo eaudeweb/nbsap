@@ -72,7 +72,11 @@ def mapping():
 
 @goals.route("/goals/data")
 def goal_data():
-    goal_short_title = flask.request.args.getlist('goal_short_title')[0]
+    try:
+        goal_short_title = flask.request.args.getlist('goal_short_title')[0]
+    except IndexError:
+        return flask.jsonify({'result': ''})
+
     aichi_goal = mongo.db.goals.find_one_or_404({"short_title": goal_short_title})
 
     result = {'result': aichi_goal['description']['en']}
