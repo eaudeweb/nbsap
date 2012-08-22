@@ -486,5 +486,6 @@ div.target_field {
 
 .aichi_view div.row {
   margin-top: 5px;
+  margin-left: 25px;
+  position: relative;
 }
-
