@@ -481,11 +481,19 @@ p.description {
 }
 
 div.target_field {
-  margin-top: 20px;
+  padding-top: 50px;
+}
+
+.aichi_view h2,
+.aichi_view h3 {
+  border-bottom: 1px solid #CCC;
 }
 
 .aichi_view div.row {
   margin-top: 5px;
-  margin-left: 25px;
   position: relative;
+}
+
+.aichi_view div.toc {
+  margin-left: 25px;
 }
