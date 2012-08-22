@@ -30,7 +30,7 @@
 
       {% for target in targets %}
         <div class="target_field" id="target_{{ target.id }}">
-          <h4>{{target.title.en }}</h4>
+          <h5>{{target.title.en }}</h5>
 
           <p>{{ target.description.en }}</p>
 
@@ -42,7 +42,7 @@
               <a href="{{url_for('objectives.view_subobj', objective_id=objective[0],
                                                            subobj_id=objective[1])}}">
                 objective {{objective|join('.')}}
-              </a>,
+              </a>{% if not loop.last %},{% endif %}
               {% endfor %}
             </span>
           </div>
@@ -50,7 +50,7 @@
 
           <div class="row">
             <span class="span1">Indicators:</span>
-            <span class="span7">
+            <span class="span6">
               {% for id in target.indicator_ids %}
                 <a href="{{url_for('indicators.view', indicator_id=id)}}">{{id}}</a>,
               {% endfor %}

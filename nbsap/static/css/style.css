@@ -483,3 +483,8 @@ p.description {
 div.target_field {
   margin-top: 20px;
 }
+
+.aichi_view div.row {
+  margin-top: 5px;
+}
+
