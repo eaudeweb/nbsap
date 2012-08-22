@@ -39,7 +39,7 @@
         <a href="#top">Back to top</a>
       </div>
 
-      {% for subobj in objective.subobjs %}
+      {% for subobj in objective.subobjs|sort(attribute='id') %}
         <div class="target_field" id="subobj_{{ subobj.id }}">
           <h3>Subobjective {{objective.id}}.{{subobj.id}}</h3>
 
