@@ -496,6 +496,9 @@ div.element_field {
 
 .aichi_view div.row {
   margin-top: 5px;
-  margin-left: 25px;
   position: relative;
+}
+
+.aichi_view div.toc {
+  margin-left: 25px;
 }
