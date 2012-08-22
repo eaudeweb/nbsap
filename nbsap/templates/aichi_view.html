@@ -22,11 +22,16 @@
     <div class="tab-content aichi_view span10" >
       <p class='description'>{{ goal.description.en }}</p>
 
-      <ul class="toc">
-      {% for target in targets %}
+      <div class="row">
+      <ul class="toc span2">
+        {% for target in targets %}
+        {% if loop.index0 % 2 == 0 and loop.index0 != 0 %}
+        </ul><ul class="toc span2">
+        {% endif %}
       <li><a href="#target_{{target.id}}">{{target.title.en}}</a></li>
       {% endfor %}
       </ul>
+      </div>
 
       {% for target in targets %}
         <div class="target_field" id="target_{{ target.id }}">
@@ -50,9 +55,11 @@
 
           <div class="row">
             <span class="span1">Indicators:</span>
-            <span class="span6">
+            <span class="span8">
               {% for id in target.indicator_ids %}
-                <a href="{{url_for('indicators.view', indicator_id=id)}}">{{id}}</a>,
+                <a href="{{url_for('indicators.view', indicator_id=id)}}">
+                  {{id}}
+                </a>{% if not loop.last %},{% endif %}
               {% endfor %}
             </span>
           </div>
