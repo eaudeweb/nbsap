@@ -471,7 +471,7 @@ textarea.other_targets {
   max-width: 750px;
 }
 
-.aichi_view {
+.homepage_view {
   position: relative;
   display: block;
 }
@@ -480,16 +480,16 @@ p.description {
   font-size: 14px;
 }
 
-div.target_field {
+div.element_field {
   padding-top: 50px;
 }
 
-.aichi_view h2,
-.aichi_view h3 {
+.homepage_view h2,
+.homepage_view h3 {
   border-bottom: 1px solid #CCC;
 }
 
-.aichi_view div.row {
+.homepage_view div.row {
   margin-top: 5px;
   position: relative;
 }

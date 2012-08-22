@@ -19,7 +19,7 @@
       {% endfor %}
     </ul>
 
-    <div class="tab-content aichi_view span10" >
+    <div class="tab-content homepage_view span10" >
       <h2>{{objective.title.en}}</h2>
 
       <div class="row">
@@ -27,20 +27,20 @@
         <li><a href="#description">Description</a></li>
         {% for subobj in objective.subobjs|sort(attribute='id') %}
           <li>
-          <a href="#subobj_{{subobj.id}}">Subobjective {{objective.id}}.{{subobj.id}}</a>
+          <a href="#subobjective_{{subobj.id}}">Subobjective {{objective.id}}.{{subobj.id}}</a>
           </li>
         {% endfor %}
       </ul>
       </div>
 
-      <div class="target_field" id="description">
+      <div class="element_field" id="description">
         <h3>Description</h3>
         <span>{{objective.body.en|safe}}</span>
         <a href="#top">Back to top</a>
       </div>
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
-        <div class="target_field" id="subobj_{{ subobj.id }}">
+        <div class="element_field" id="subobjective_{{ subobj.id }}">
           <h3>Subobjective {{objective.id}}.{{subobj.id}}</h3>
 
           <div class="row">

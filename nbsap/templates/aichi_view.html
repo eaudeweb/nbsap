@@ -19,7 +19,7 @@
       {% endfor %}
     </ul>
 
-    <div class="tab-content aichi_view span10" >
+    <div class="tab-content homepage_view span10" >
       <h2>Goal {{goal.short_title}}</h2>
       <p class='description'>{{ goal.description.en }}</p>
 
@@ -37,7 +37,7 @@
       </div>
 
       {% for target in targets %}
-        <div class="target_field" id="target_{{ target.id }}">
+        <div class="element_field" id="target_{{ target.id }}">
           <h3 id="targpet_{{target.id}}">{{target.title.en }}</h3>
 
           <p>{{ target.description.en }}</p>
