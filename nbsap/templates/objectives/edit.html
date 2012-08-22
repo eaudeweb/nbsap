@@ -102,7 +102,7 @@
             </div>
 
         </div>
-        <div class="span6" style="margin-top: -5px">
+        <div class="span6 original-hideout" style="margin-top: -5px">
             <p>Original title in English</p>
             <div class="well">
                 {{-schema.title['en']|safe-}}
@@ -136,6 +136,10 @@ $('textarea').autogrow();
 
 $("#language").on("change", function() {
     var lang = $(this).val();
+    $('.original-hideout').show();
+    if (lang == 'en') {
+        $('.original-hideout').hide();
+    }
     $(".language-container").hide();
     $(".language-" + lang).show();
 }).change();
