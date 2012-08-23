@@ -1,3 +1,4 @@
+import schema
 import flask
 import sugar
 from database import mongo
@@ -76,29 +77,28 @@ def objective_data():
 def edit(objective_id):
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+    objective_schema = schema.Objective(objective)
+    selected_language = u'en'
 
-    from schema import GenericEditSchema
     app = flask.current_app
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
-        schema = GenericEditSchema(data)
 
-        if schema.validate():
+        selected_language = data['language']
 
-            objective['title']['en'] = schema['title'].value
-            objective['body']['en'] = schema['body'].value
+        objective_schema['title'][selected_language].set(data['title-' + selected_language])
+        objective_schema['body'][selected_language].set(data['body-' + selected_language])
+
+        if objective_schema.validate():
+            objective['title'][selected_language] = data['title-' + selected_language]
+            objective['body'][selected_language] = data['body-' + selected_language]
+
+            flask.flash("Saved changes.", "success")
             mongo.db.objectives.save(objective)
 
-    else:
-        schema = GenericEditSchema({})
-        schema['title'].set(objective['title']['en'])
-        schema['body'].set(objective['body']['en'])
-
     return {
-                 "mk": sugar.MarkupGenerator(
-                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
-                  ),
+                "language": selected_language,
                 "objective": objective,
-                "schema": schema
+                "schema": objective_schema
            }

@@ -469,4 +469,8 @@ textarea.objective,
 textarea.other_targets {
   width: 750px;
   max-width: 750px;
+
+.edit {
+    float: right;
+    margin-bottom: 10px;
 }

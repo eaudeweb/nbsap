@@ -12,7 +12,7 @@
       ]) }}
 </ul>
 
-<a class="btn btn-primary" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
+<a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
 
 <h3>{{objective.title.en}}</h3>
 <p>{{objective.body.en|safe}}</p>

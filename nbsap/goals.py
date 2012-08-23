@@ -6,6 +6,8 @@ from database import mongo
 goals = flask.Blueprint("goals", __name__)
 
 def initialize_app(app):
+    _my_extensions = app.jinja_options["extensions"] + ["jinja2.ext.do"]
+    app.jinja_options = dict(app.jinja_options, extensions=_my_extensions)
     app.register_blueprint(goals)
 
 @goals.route("/")

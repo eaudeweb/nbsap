@@ -12,22 +12,137 @@
       ]) }}
 </ul>
 
-<form class="form-horizontal"
-      method="POST"
-      action="{{url_for('objectives.edit', objective_id=objective.id)}}">
-    <!--fieldset>
-    <div class="control-group span6">
-        <label class="control-label">Title</label>
+{% macro error(field) %}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+{% endmacro %}
+
+<h1>Edit objective {{objective.id}}</h1>
+<form method="POST">
+
+    <div class="control-group">
+        <label class="control-label" for="language">Language</label>
         <div class="controls">
-            <input name="title" type="text" value="{{objective.title.en}}"/>
-            <textarea name="description">{{objective.body.en}}</textarea>
+            <select name="language" id="language">
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                </option>
+
+                <option value="fr"
+                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                </option>
+
+                <option value="nl"
+                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                </option>
+            </select>
         </div>
     </div>
-    </fieldset-->
-        {{mk.widget(schema)}}
+
+    <div class="row">
+        <div class="span6">
+            <div class="language-container language-en">
+                <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                           {{-schema.title['en']|safe-}}
+                        </textarea>
+                        {{error(schema.title['en'])}}
+                    </div>
+                </div>
+                <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-en" id="body-en" style="width:100%; max-height: 900px;">
+                            {{-schema.body['en']|safe-}}
+                        </textarea>
+                        {{error(schema.body['en'])}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-container language-fr">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-fr" id="title-fr" style="width: 100%; ">
+                           {{-schema.title['fr']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-fr" id="body-fr" style="width: 100%; max-height: 900px;">
+                            {{-schema.body['fr']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-container language-nl">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-nl" id="title-nl" style="width: 100%">
+                           {{-schema.title['nl']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-nl" id="body-nl" style="width: 100%; max-height: 900px;">
+                            {{-schema.body['nl']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="span6 original-hideout" style="margin-top: -5px">
+            <p>Original title in English</p>
+            <div class="well">
+                {{-schema.title['en']|safe-}}
+            </div>
+
+            <p>Original body in English</p>
+            <div class="well">
+                {{-schema.body['en']|safe-}}
+            </div>
+        </div>
+    </div>
+
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('objectives.view', objective_id=objective.id)}}"
+                class="btn" type="button">Cancel</a>
     </div>
 </form>
 
 {% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/jquery.autogrow-textarea.js') }}
+
+<script>
+
+$('textarea').autogrow();
+
+$("#language").on("change", function() {
+    var lang = $(this).val();
+    $('.original-hideout').show();
+    if (lang == 'en') {
+        $('.original-hideout').hide();
+    }
+    $(".language-container").hide();
+    $(".language-" + lang).show();
+}).change();
+
+</script>
+{% endblock %}
