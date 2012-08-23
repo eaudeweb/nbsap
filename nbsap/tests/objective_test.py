@@ -7,6 +7,7 @@ class ObjectiveEditTest(unittest.TestCase):
         from nbsap.app import create_app
         app = create_app()
         app.config["TESTING"] = True
+        app.config["MONGO_DBNAME"] = app.config["TESTING_DBNAME"]
 
         client = app.test_client()
         mydata = {
