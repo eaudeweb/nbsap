@@ -53,7 +53,7 @@
 
     $('select[name=objective]').on('change', function () {
       var option = $(this).val();
-      var text = $(this).parents('.control-group').find('.mapping_text');
+      var text = $(this).parents('.controls').find('textarea');
       $.get("{{url_for('objectives.objective_data')}}", {'id_code': option}, function (data) {
         text.html('<p>' + data['result'] + '</p>');
       });
@@ -61,7 +61,7 @@
 
     $('select[name=goal]').on('change', function () {
       var option = $(this).val();
-      var text = $(this).parents('.control-group').find('.mapping_text');
+      var text = $(this).parents('.controls').find('textarea');
       $.get("{{url_for('goals.goal_data')}}", {'goal_short_title': option}, function (data) {
         text.html('<p>' + data['result'] + '</p>');
       });
@@ -69,7 +69,7 @@
 
     $('select[name=main_target]').on('change', function () {
       var option = $(this).val();
-      var text = $(this).parents('.control-group').find('.mapping_text');
+      var text = $(this).parents('.controls').find('textarea');
       $.get("{{url_for('targets.target_data')}}", {'other_targets': option}, function (data) {
         text.html('<p>' + data['result'][0]['description'] + '</p>');
       });
@@ -77,7 +77,7 @@
 
     $('select[name=other_targets]').on('change', function () {
       var options = $(this).serialize();
-      var text = $(this).parents('.control-group').find('.mapping_text');
+      var text = $(this).parents('.controls').find('textarea');
       $.get("{{url_for('targets.target_data')}}", options, function (data) {
         var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
         var output = Mustache.render(html_content, data)
