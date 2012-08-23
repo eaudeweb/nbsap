@@ -59,9 +59,9 @@ class ObjectiveEditTest(unittest.TestCase):
 
         client = app.test_client()
         mydata = {
-                    "language": "fr",
-                    "title-fr": "certains corps de texte en français",
-                    "body-fr": ""
+                    "language": "nl",
+                    "title-nl": "sommige platte tekst in het Frans",
+                    "body-nl": ""
                 }
         response = client.post("/objective/1/edit", data=mydata)
         html = response.data
