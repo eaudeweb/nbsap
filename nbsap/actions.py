@@ -7,7 +7,7 @@ actions = flask.Blueprint("actions", __name__)
 def initialize_app(app):
     app.register_blueprint(actions)
 
-@actions.route("/objective/<int:objective_id>/<int:subobj_id>/action")
+@actions.route("/objectives/<int:objective_id>/<int:subobj_id>/action")
 @sugar.templated("actions/view.html")
 def view(objective_id, subobj_id):
 

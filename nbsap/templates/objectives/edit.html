@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('objectives.list_objectives'), "Objectives"),
+      (url_for('objectives.view', objective_id=objective.id), "Objective " +
+            objective.id|string())
+
+      ]) }}
+</ul>
+
+<form class="form-horizontal"
+      method="POST"
+      action="{{url_for('objectives.edit', objective_id=objective.id)}}">
+    <!--fieldset>
+    <div class="control-group span6">
+        <label class="control-label">Title</label>
+        <div class="controls">
+            <input name="title" type="text" value="{{objective.title.en}}"/>
+            <textarea name="description">{{objective.body.en}}</textarea>
+        </div>
+    </div>
+    </fieldset-->
+        {{mk.widget(schema)}}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+{% endblock content %}
