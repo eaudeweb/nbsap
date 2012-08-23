@@ -4,7 +4,7 @@
 {% from "navigation.html" import homepage_tabs %}
 {{ homepage_tabs('aichi') }}
 
-  <h1>Goals</h1>
+  {#<h1>Goals</h1>#}
 
   <div class="tabbable tabs-left">
 
@@ -13,15 +13,14 @@
         {% set active = 'active' if _goal.id == goal.id %}
         <li class={{ active }}>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">
-          {{ _goal.short_title }}
+          Goal {{ _goal.short_title }}
         </a>
         </li>
       {% endfor %}
     </ul>
 
     <div class="tab-content homepage_view span10" >
-      <h2>Goal {{goal.short_title}}</h2>
-      <p class='description'>{{ goal.description.en }}</p>
+      <h3>{{ goal.description.en }}</h3>
 
       <div class="row">
       <ul class="span1 offset1">
@@ -38,7 +37,7 @@
 
       {% for target in targets %}
         <div class="element_field" id="target_{{ target.id }}">
-          <h3 id="targpet_{{target.id}}">{{target.title.en }}</h3>
+          <h4 id="targpet_{{target.id}}">{{target.title.en }}</h4>
 
           <p>{{ target.description.en }}</p>
 
