@@ -36,8 +36,14 @@ class _BaseTest(unittest.TestCase):
 
        self._create_objective()
 
+    def tearDown(self):
+        with self.app.test_request_context():
+            mongo.db.objectives.remove()
+
+
     def _create_objective(self):
         mock_objective = dict(self.OBJECTIVE_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.objectives.save(mock_objective)
+
 
