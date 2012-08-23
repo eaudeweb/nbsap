@@ -20,37 +20,45 @@
     </ul>
 
     <div class="tab-content homepage_view span10" >
-      <h2>{{objective.title.en}}</h2>
+      <h3>{{objective.title.en}}</h3>
 
       <div class="row">
       <ul class="span2 offset1">
-        <li><a href="#description">Description</a></li>
         {% for subobj in objective.subobjs|sort(attribute='id') %}
+          {% if loop.index0 % 4 == 0 and not loop.first %}
+            </ul><ul class="span2 offset1">
+          {% endif %}
           <li>
-          <a href="#subobjective_{{subobj.id}}">Subobjective {{objective.id}}.{{subobj.id}}</a>
+          <a href="#subobjective_{{subobj.id}}">Objective {{objective.id}}.{{subobj.id}}</a>
           </li>
         {% endfor %}
       </ul>
       </div>
 
-      <div class="element_field" id="description">
-        <h3>Description</h3>
-        <span>{{objective.body.en|safe}}</span>
+      <div class="element_field">
+        <h4>Description</h4>
+        <div class="snippet">
+          {{ objective.body.en|truncate()|safe }}
+          <a class="more">show more</a>
+        </div>
+        <div class="full">
+          {{ objective.body.en|safe }}
+          <a class="less">show less</a>
+        </div>
         <a href="#top">Back to top</a>
       </div>
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
         <div class="element_field" id="subobjective_{{ subobj.id }}">
-          <h3>Subobjective {{objective.id}}.{{subobj.id}}</h3>
+          <h4>{{subobj.title.en}}</h4>
 
-          <div class="row">
-            <div class="span1">Name:</div>
-            <div class="span9">{{subobj.title.en }}</div>
+          <div class="snippet">
+            {{subobj.body.en|truncate()|safe }}
+            <a class="more">show more</a>
           </div>
-
-          <div class="row">
-            <div class="span1">Description:</div>
-            <div class="span9">{{subobj.body.en|safe }}</div>
+          <div class="full">
+            {{ subobj.body.en|safe }}
+          <a class="less">show less</a>
           </div>
 
           {% if subobj.mapping|length() %}
@@ -85,3 +93,27 @@
   </div>
 
 {% endblock content %}
+{% block scripts %}
+{{ super() }}
+<script>
+$(function () {
+  $('.more').on('click', function() {
+    var parents = $(this).parents('.element_field');
+    var snippet = parents.find('.snippet');
+    var full = parents.find('.full');
+
+    snippet.hide();
+    full.show();
+  });
+  $('.less').on('click', function() {
+    var parents = $(this).parents('.element_field');
+    var snippet = parents.find('.snippet');
+    var full = parents.find('.full');
+
+    full.hide();
+    snippet.show();
+  });
+});
+
+</script>
+{% endblock scripts %}

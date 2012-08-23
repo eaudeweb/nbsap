@@ -494,7 +494,29 @@ div.element_field {
   position: relative;
 }
 
+.homepage_view {
+  position: relative;
+  display: block;
+}
+
+p.description {
+  font-size: 14px;
+}
+
+div.element_field {
+  padding-top: 50px;
+}
+
+.homepage_view h3,
+.homepage_view h4 {
+  border-bottom: 1px solid #CCC;
+}
+
 .homepage_view div.row {
   margin-top: 5px;
   position: relative;
+}
+
+.homepage_view div.full {
+  display: none;
 }
