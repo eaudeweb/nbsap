@@ -78,7 +78,12 @@ def edit(objective_id):
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     objective_schema = schema.Objective(objective)
-    selected_language = u'en'
+
+    # default display language is English
+    try:
+        selected_language = flask.request.args.getlist('lang')[0]
+    except IndexError:
+        selected_language = u'en'
 
     app = flask.current_app
 

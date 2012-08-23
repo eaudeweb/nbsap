@@ -14,13 +14,17 @@ default_config = {
 
 babel = Babel()
 
-def create_app(instance_path=None):
+def create_app(instance_path=None, testing_config=None):
     app = flask.Flask(__name__,
                       instance_path=instance_path,
                       instance_relative_config=True)
 
     app.config.update(default_config)
-    app.config.from_pyfile("settings.py", silent=True)
+
+    if testing_config:
+        app.config.update(testing_config)
+    else:
+        app.config.from_pyfile("settings.py", silent=True)
 
     goals.initialize_app(app)
     targets.initialize_app(app)

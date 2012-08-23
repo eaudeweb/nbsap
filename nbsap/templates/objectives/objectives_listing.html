@@ -12,10 +12,62 @@
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('objectives') }}
 
-    <ul>
+<table class="table table-bordered table-striped objectives_listing">
+
+    <thead>
+        <th>#</th>
+        <th>NL</th>
+        <th>FR</th>
+    </thead>
+
+  <tbody>
     {% for objective in objectives %}
-        <li><a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title.en}}</a></li>
+      <tr>
+        <td>
+            <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title['en']}}</a>
+        </td>
+        <td style="text-align: center;">
+            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl">
+                <i
+                class="icon-{% if objective.title['nl'] and objective.body['nl'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+
+        <td style="text-align: center;">
+            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=fr">
+                <i
+                class="icon-{% if objective.title['fr'] and objective.body['fr'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+      </tr>
     {% endfor %}
-    <ul>
+  </tbody>
+
+</table>
 
 {% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/lib/datatables/jquery.dataTables.min.js') }}
+{{ script_src('js/lib/datatables/DT_bootstrap.js') }}
+<script>
+
+  $(document).ready(function() {
+    $('.objectives_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Display _MENU_ objectives per page",
+            "sInfo": "Showing _START_ to _END_ of _TOTAL_ objectives",
+            "sZeroRecords": "No matching objectives found"
+        }
+    });
+  });
+</script>
+
+{% endblock scripts %}
