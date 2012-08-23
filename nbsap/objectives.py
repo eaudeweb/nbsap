@@ -38,8 +38,8 @@ def view(objective_id):
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     actions = mongo.db.actions.find_one({'id': objective_id})
 
-    if actions:
-        related_actions = actions.get('actions', None)
+
+    related_actions = actions.get('actions', None) if actions else []
 
     return {
                 "objective": objective,
@@ -72,7 +72,7 @@ def objective_data():
     result = {'result': subobjective['title']['en']}
     return flask.jsonify(result)
 
-@objectives.route("/objective/<int:objective_id>/edit", methods=["GET", "POST"])
+@objectives.route("/objectives/<int:objective_id>/edit", methods=["GET", "POST"])
 @sugar.templated("objectives/edit.html")
 def edit(objective_id):
 
