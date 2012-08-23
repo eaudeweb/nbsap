@@ -38,8 +38,8 @@
       <div class="element_field">
         <h4>Description</h4>
         <div class="snippet">
-          {{ objective.body.en|truncate()|safe }}
-          <a class="more">show more</a>
+          {{ objective.body.en|truncate(end='')|safe }}
+          <a class="more">... show more</a>
         </div>
         <div class="full">
           {{ objective.body.en|safe }}
@@ -53,8 +53,8 @@
           <h4>{{subobj.title.en}}</h4>
 
           <div class="snippet">
-            {{subobj.body.en|truncate()|safe }}
-            <a class="more">show more</a>
+            {{subobj.body.en|truncate(end='')|safe }}
+            <a class="more">... show more</a>
           </div>
           <div class="full">
             {{ subobj.body.en|safe }}
