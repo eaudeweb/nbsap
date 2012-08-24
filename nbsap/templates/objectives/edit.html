@@ -20,6 +20,11 @@
 
 <h1>Edit objective {{objective.id}}</h1>
 <form method="POST">
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('objectives.view', objective_id=objective.id)}}"
+                class="btn" type="button">Cancel</a>
+    </div>
 
     <div class="control-group">
         <label class="control-label" for="language">Language</label>
@@ -47,7 +52,7 @@
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
                         <textarea name="title-en" id="title-en" style="width: 100%">
-                           {{-schema.title['en']|safe-}}
+                           {{-schema.title['en']-}}
                         </textarea>
                         {{error(schema.title['en'])}}
                     </div>
@@ -68,7 +73,7 @@
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
                         <textarea name="title-fr" id="title-fr" style="width: 100%; ">
-                           {{-schema.title['fr']|safe-}}
+                           {{-schema.title['fr']-}}
                         </textarea>
                     </div>
                 </div>
@@ -87,7 +92,7 @@
                     <label class="control-label" for="title">Title</label>
                     <div class="controls">
                         <textarea name="title-nl" id="title-nl" style="width: 100%">
-                           {{-schema.title['nl']|safe-}}
+                           {{-schema.title['nl']-}}
                         </textarea>
                     </div>
                 </div>
@@ -105,12 +110,12 @@
         <div class="span6 original-hideout" style="margin-top: -5px">
             <p>Original title in English</p>
             <div class="well">
-                {{-schema.title['en']|safe-}}
+                {{-objective.title['en']-}}
             </div>
 
             <p>Original body in English</p>
             <div class="well">
-                {{-schema.body['en']|safe-}}
+                {{-objective.body['en']|safe-}}
             </div>
         </div>
     </div>

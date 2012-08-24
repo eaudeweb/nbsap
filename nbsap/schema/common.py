@@ -9,6 +9,8 @@ def validated(sender, element, result, **kwargs):
     if sender is NotEmpty:
         if not result:
             label = getattr(element, 'label', element.name)
+            if element.name == 'en':
+                label = getattr(element.parent, 'label', element.parent.name)
             msg = element.properties.get("not_empty_error",
                                          u"%s is required" % label)
             element.add_error(msg)

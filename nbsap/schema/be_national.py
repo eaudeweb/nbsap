@@ -16,7 +16,7 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
                 .using(label=u'Title')
                 .with_properties(css_class="span4"),
             I18nString.named('body')
-                .using(label=u'Description')
+                .using(label=u'Body')
                 .with_properties(field_widget="edit_textarea",
                                  css_class="input-xlarge"),
             CommonString.named('id')
