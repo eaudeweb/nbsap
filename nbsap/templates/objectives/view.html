@@ -12,36 +12,60 @@
       ]) }}
 </ul>
 
-<a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
-
 <h3>{{objective.title.en}}</h3>
+
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
+    </div>
+</div>
 <p>{{objective.body.en|safe}}</p>
 
 {% if objective.subobjs %}
 <div class="property_list">
-    <h4> Subobjectives </h4>
-    <ul>
-    {% for subobj in objective.subobjs %}
-        <li><a href="{{url_for('objectives.view_subobj',
-        objective_id=objective.id, subobj_id=subobj.id)}}">{{subobj.title.en}}</a></li>
-    {% endfor %}
-    </ul>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th>Subobjectives</th>
+        </thead>
+
+      <tbody>
+        {% for subobj in objective.subobjs %}
+          <tr>
+            <td>
+                <a href="{{url_for('objectives.view_subobj',
+                   objective_id=objective.id, subobj_id=subobj.id)}}">{{subobj.title.en}}
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
 </div>
 {% endif %}
 
 {% if actions %}
 <div class="property_list">
-    <h4> Actions </h4>
-    <ul>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th>Actions</th>
+        </thead>
+
+      <tbody>
     {% for action in actions|sort(attribute='id') %}
-    <li>
-      <a href="{{ url_for('actions.view', objective_id=objective.id,
-                                        subobj_id=action.id) }}">
-        {{ action.title.en }}
-      </a>
-    </li>
-    {% endfor %}
-    </ul>
+          <tr>
+            <td>
+                <a href="{{ url_for('actions.view', objective_id=objective.id,
+                                    subobj_id=action.id) }}">
+                     {{ action.title.en }}
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
 </div>
 {% endif %}
 {% endblock content %}
