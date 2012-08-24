@@ -14,7 +14,7 @@
 
 <h1>Map National Objectives to Aichi targets</h1>
 
-<form class="form-horizontal" method="POST" action="{{url_for('goals.mapping')}}" style="margin-top: 25px">
+<form class="form" method="POST" action="{{url_for('goals.mapping')}}" style="margin-top: 25px">
   <fieldset>
 
   {%- for name in mk.children_order(mapping_schema) %}
@@ -23,14 +23,14 @@
     {% set error_cls = 'error' if field.errors else '' %}
 
     <div class="control-group {{ error_cls }} row">
-      <label class="control-label span3" for="{{field.name}}">{{ field.label }}</label>
+      <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
       <div id="{{field.name}}" class="controls span3">
         {{ mk.widget(field) }}
         {% for message in field.errors %}
           <span class="help-inline">{{ message }}</span>
         {% endfor %}
       </div>
-      <div class="mapping_text span6 {{field.name}}"></div>
+      <div class="mapping_text span7 {{field.name}}"></div>
     </div>
 
   {% endfor -%}
