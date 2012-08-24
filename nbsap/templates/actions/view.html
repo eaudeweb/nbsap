@@ -16,6 +16,15 @@
 </ul>
 
 <h3>{{ action.title.en }}</h3>
+
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn btn-primary edit"
+            href="{{url_for('actions.edit',objective_id=objective_id, subobj_id=subobj_id)}}">Edit
+        </a>
+    </div>
+</div>
+
 <p>{{ action.body.en|safe }}</p>
 
 {% endblock content %}

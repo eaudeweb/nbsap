@@ -48,16 +48,38 @@
 <div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
+            <th style="width:10px; text-align:center">Id</th>
             <th>Actions</th>
+            <th style="width:10px; text-align:center">NL</th>
+            <th style="width:10px; text-align:center">FR</th>
         </thead>
 
       <tbody>
     {% for action in actions|sort(attribute='id') %}
           <tr>
             <td>
+                {{-action['id']-}}
+            </td>
+            <td>
                 <a href="{{ url_for('actions.view', objective_id=objective.id,
                                     subobj_id=action.id) }}">
                      {{ action.title.en }}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{ url_for('actions.edit', objective_id=objective.id, subobj_id=action.id) }}?lang=nl">
+                    <i
+                        class="icon-{% if action['body']['nl'] %}ok{% else %}remove{% endif %}">
+                    </i>
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{ url_for('actions.edit', objective_id=objective.id, subobj_id=action.id) }}?lang=fr">
+                    <i
+                        class="icon-{% if action['body']['fr'] %}ok{% else %}remove{% endif %}">
+                    </i>
                 </a>
             </td>
           </tr>
