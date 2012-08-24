@@ -64,7 +64,11 @@
 
   {% for value in field.valid_values %}
     {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
+    {% if field.properties.mapping %}
+    {{ mk.option(field, class=field.properties.mapping[value|string()], value=value|string(), contents=value_label) }}
+    {% else %}
     {{ mk.option(field, value=value|string(), contents=value_label) }}
+    {% endif %}
   {% endfor %}
 
   {{ mk.select.close() }}

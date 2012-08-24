@@ -12,6 +12,10 @@ def _sorter(value):
     return _lang_order.index(value[0])
 
 language = OrderedDict(sorted(_load_json("../refdata/languages.json").items(), key=_sorter))
+
 goals = _load_json("../refdata/goal.json")
-targets = _load_json("../refdata/target.json")
+
+goal_target_mapping = _load_json("../refdata/target.json")
+mapping = {k:v['goal'] for k, v in goal_target_mapping.items()}
+targets = {k:v['name'] for k, v in goal_target_mapping.items()}
 targets = {int(k): targets[k] for k in targets.keys()}
