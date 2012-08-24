@@ -1,22 +1,82 @@
 {
-    "1": "Target 1",
-    "2": "Target 2",
-    "3": "Target 3",
-    "4": "Target 4",
-    "5": "Target 5",
-    "6": "Target 6",
-    "7": "Target 7",
-    "8": "Target 8",
-    "9": "Target 9",
-    "10": "Target 10",
-    "11": "Target 11",
-    "12": "Target 12",
-    "13": "Target 13",
-    "14": "Target 14",
-    "15": "Target 15",
-    "16": "Target 16",
-    "17": "Target 17",
-    "18": "Target 18",
-    "19": "Target 19",
-    "20": "Target 20"
+   "1":{
+      "name":"Target 1",
+      "goal":"A"
+   },
+   "2":{
+      "name":"Target 2",
+      "goal":"A"
+   },
+   "3":{
+      "name":"Target 3",
+      "goal":"A"
+   },
+   "4":{
+      "name":"Target 4",
+      "goal":"A"
+   },
+   "5":{
+      "name":"Target 5",
+      "goal":"B"
+   },
+   "6":{
+      "name":"Target 6",
+      "goal":"B"
+   },
+   "7":{
+      "name":"Target 7",
+      "goal":"B"
+   },
+   "8":{
+      "name":"Target 8",
+      "goal":"B"
+   },
+   "9":{
+      "name":"Target 9",
+      "goal":"B"
+   },
+   "10":{
+      "name":"Target 10",
+      "goal":"B"
+   },
+   "11":{
+      "name":"Target 11",
+      "goal":"C"
+   },
+   "12":{
+      "name":"Target 12",
+      "goal":"C"
+   },
+   "13":{
+      "name":"Target 13",
+      "goal":"C"
+   },
+   "14":{
+      "name":"Target 14",
+      "goal":"D"
+   },
+   "15":{
+      "name":"Target 15",
+      "goal":"D"
+   },
+   "16":{
+      "name":"Target 16",
+      "goal":"D"
+   },
+   "17":{
+      "name":"Target 17",
+      "goal":"E"
+   },
+   "18":{
+      "name":"Target 18",
+      "goal":"E"
+   },
+   "19":{
+      "name":"Target 19",
+      "goal":"E"
+   },
+   "20":{
+      "name":"Target 20",
+      "goal":"E"
+   }
 }
