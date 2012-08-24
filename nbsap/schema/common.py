@@ -16,6 +16,21 @@ def validated(sender, element, result, **kwargs):
             element.add_error(msg)
 
 
+class GoalEnumValue(Validator):
+
+    fail = None
+
+    def validate(self, element, state):
+        related_element =  element.find('../goal',single=True)
+        self.fail = flatland.validation.base.N_(u'Target %(u)s is not related to Goal '
+                                                    + str(related_element.value))
+
+        if element.value and related_element:
+            if element.properties['mapping'][element.value] != related_element.value:
+                return self.note_error(element, state, 'fail')
+
+        return True
+
 class EnumValue(Validator):
 
     fail = None
