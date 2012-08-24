@@ -23,10 +23,10 @@
   {% set value_labels = field.properties.value_labels %}
 
   {% if field.properties.multiple %}
-    {{ mk.select.open(field, class=field.properties.css_class,
+    {{ mk.select.open(field, id=field.name, class=field.properties.css_class,
                              multiple=field.properties.multiple) }}
   {% else %}
-    {{ mk.select.open(field, class=field.properties.css_class) }}
+    {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
   {% endif %}
 
   {% for value in field.properties.valid_values %}
@@ -40,7 +40,7 @@
 {% macro obj_select(mk, field) %}
   {% set value_groups = field.properties.groups %}
 
-  {{ mk.select.open(field, class=field.properties.css_class) }}
+  {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
 
   {% for i in value_groups %}
     <optgroup label="Objective {{i}}">
@@ -60,7 +60,7 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {{ mk.select.open(field, class=field.properties.css_class) }}
+  {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
 
   {% for value in field.valid_values %}
     {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}

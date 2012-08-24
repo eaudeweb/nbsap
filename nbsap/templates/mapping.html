@@ -24,7 +24,7 @@
 
     <div class="control-group {{ error_cls }} row">
       <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
-      <div id="{{field.name}}" class="controls span3">
+      <div class="controls span3">
         {{ mk.widget(field) }}
         {% for message in field.errors %}
           <span class="help-inline">{{ message }}</span>
