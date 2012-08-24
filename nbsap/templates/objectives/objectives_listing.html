@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+<style>
+#DataTables_Table_0_paginate, #DataTables_Table_0_info {
+        display: none;
+}
+</style>
+
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
@@ -15,6 +21,7 @@
 <table class="table table-bordered table-striped objectives_listing">
 
     <thead>
+        <th>Id</th>
         <th>Objectives</th>
         <th>NL</th>
         <th>FR</th>
@@ -23,6 +30,9 @@
   <tbody>
     {% for objective in objectives %}
       <tr>
+        <td>
+            {{-objective.id-}}
+        </td>
         <td>
             <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title['en']}}</a>
         </td>
@@ -62,7 +72,6 @@
         "bStateSave": true,
         "oLanguage": {
             "sLengthMenu": "Display _MENU_ objectives per page",
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ objectives",
             "sZeroRecords": "No matching objectives found"
         }
     });
