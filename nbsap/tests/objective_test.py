@@ -12,7 +12,7 @@ class ObjectiveEditTest(_BaseTest):
                  }
         response = self.client.post("/objectives/1/edit", data=mydata)
         html = response.data
-        self.assertIn("English is required", html)
+        self.assertIn("Title is required", html)
         self.assertNotIn("Saved changes.", html)
 
     def test_error_message_displayed_when_body_blank(self):
@@ -24,7 +24,7 @@ class ObjectiveEditTest(_BaseTest):
                 }
         response = self.client.post("/objectives/1/edit", data=mydata)
         html = response.data
-        self.assertIn("English is required", html)
+        self.assertIn("Body is required", html)
         self.assertNotIn("Saved changes.", html)
 
     def test_error_message_missing_when_title_blank(self):
