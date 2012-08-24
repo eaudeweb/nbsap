@@ -26,8 +26,10 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
         )
 
 _action = flatland.Dict.of(
-            I18nString.named('title'),
-            I18nString.named('body'),
+            I18nString.named('title')
+                .using(label=u'Title'),
+            I18nString.named('body')
+                .using(label=u'Body'),
             CommonInteger.named('id'),
         )
 

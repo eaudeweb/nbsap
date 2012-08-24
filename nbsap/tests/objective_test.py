@@ -3,6 +3,10 @@ from common import _BaseTest
 
 class ObjectiveEditTest(_BaseTest):
 
+    def test_render_page(self):
+        response = self.client.get('/objectives/1/edit')
+        self.assertEqual(response.status_code, 200)
+
     def test_error_message_displayed_when_title_blank(self):
 
         mydata = {
