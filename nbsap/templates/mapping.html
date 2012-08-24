@@ -45,7 +45,7 @@
 {% endblock content %}
 {% block scripts %}
   {% from 'bits.html' import script_src -%}
-  {{script_src('js/jquery.autogrow-textarea.js')}}
+  {{script_src('js/jquery.chained.mini.js')}}
   {{script_src('js/mustache.js')}}
   <script>
   $('.chzn-select').attr('data-placeholder', 'Select targets');
@@ -84,6 +84,8 @@
         text.html(output);
       });
     });
+
+    $("#main_target").chained("#goal");
   });
   </script>
 {% endblock scripts %}
