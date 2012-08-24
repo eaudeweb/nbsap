@@ -39,6 +39,7 @@ class _BaseTest(unittest.TestCase):
     def tearDown(self):
         with self.app.test_request_context():
             mongo.db.objectives.remove()
+            mongo.db.mapping.remove()
 
 
     def _create_objective(self):
