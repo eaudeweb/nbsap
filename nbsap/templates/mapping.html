@@ -54,7 +54,6 @@
     $('select[name=objective]').on('change', function () {
       var option = $(this).val();
       var text = $(this).parents('.control-group').find('.mapping_text');
-      console.log(text);
       $.get("{{url_for('objectives.objective_data')}}", {'id_code': option}, function (data) {
         text.html('<p>' + data['result'] + '</p>');
       });
@@ -72,7 +71,7 @@
       var option = $(this).val();
       var text = $(this).parents('.control-group').find('.mapping_text');
       $.get("{{url_for('targets.target_data')}}", {'other_targets': option}, function (data) {
-        text.html('<p>' + data['result'][0] + '</p>');
+        text.html('<p>' + data['result'][0]['description'] + '</p>');
       });
     }).change();
 
@@ -80,7 +79,8 @@
       var options = $(this).serialize();
       var text = $(this).parents('.control-group').find('.mapping_text');
       $.get("{{url_for('targets.target_data')}}", options, function (data) {
-        var output = Mustache.render("{% raw %}{{#result}}<p>{{.}}</p>{{/result}}{% endraw %}", data)
+        var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+        var output = Mustache.render(html_content, data)
         text.html(output);
       });
     });
