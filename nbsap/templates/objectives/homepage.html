@@ -4,8 +4,6 @@
 {% from "navigation.html" import homepage_tabs %}
 {{ homepage_tabs('national') }}
 
-  {#<h1>Objectives</h1>#}
-
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs">
@@ -45,7 +43,7 @@
           {{ objective.body.en|safe }}
           <a class="less">show less</a>
         </div>
-        <a href="#top">Back to top</a>
+        <a class="pull-right" href="#top">Back to top</a>
       </div>
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
@@ -63,28 +61,41 @@
 
           {% if subobj.mapping|length() %}
           <div class="row">
+
             <div class="span2">Mapping with AICHI:</div>
-            <ul class="span8">
+
+            <div class="span8">
             {% for m in subobj.mapping %}
-                <li>
-                  <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
+            <ul>
+
+                <li>Goal: <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
                     goal {{m.goal}}
-                  </a>
-                  <a href="#">
+                </a></li>
+
+                <li>Most relevant target: <a href="{{url_for('goals.homepage_goals',
+                  goal_short_title=mapping[m.main_target], _anchor="target_%s" % m.main_target)}}">
                     target {{m.main_target}}
+                </a></li>
+
+                {% if m.other_targets %}
+                  <li>Other relevant targets:
+                  {% for target in m.other_targets %}
+                    <a href="{{url_for('goals.homepage_goals',
+                    goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
+                      target {{target}}{% if not loop.last %},{% endif %}
                   </a>
-                {% for target in m.other_targets %}
-                  <a href="#">
-                    target {{target}}
-                  </a>
-                {% endfor %}
-                </li>
-            {% endfor %}
+                  {% endfor %}
+                  </li>
+                {% endif %}
+
             </ul>
+            {% endfor %}
+            </div>
+
           </div>
           {% endif %}
 
-          <a href="#top">Back to top</a>
+          <a class="pull-right" href="#top">Back to top</a>
         </div>
       {% endfor %}
 
