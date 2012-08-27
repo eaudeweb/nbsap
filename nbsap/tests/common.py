@@ -10,14 +10,14 @@ class _BaseTest(unittest.TestCase):
     OBJECTIVE_MOCK = {
         "1": ImmutableDict({
             "title": ImmutableDict({
-                "en": "Visitor",
-                "fr": "Frenche Visitor",
-                "nl": "Dutch Visitor"
+                "en": "Mock objective title",
+                "fr": "Frenche mock objective title",
+                "nl": "Dutch mock objective title"
             }),
             "body": ImmutableDict({
-                "en": "Visitor",
-                "fr": "French visitor",
-                "nl": "Dutch visitor"
+                "en": "Mock objective body",
+                "fr": "French mock objective",
+                "nl": "Dutch mock objective"
             }),
             "id": 1,
             "subobjs": []
@@ -52,9 +52,9 @@ class _BaseTest(unittest.TestCase):
     GOAL_MOCK = {
         "1": ImmutableDict({
             "title": ImmutableDict({
-                "en": "Mock goal",
-                "fr": "French mock goal",
-                "nl": "Dutch mock goal"
+                "en": "Mock goal title",
+                "fr": "French mock goal title",
+                "nl": "Dutch mock goal title"
             }),
             "id": "1",
             "short_title": "A",
