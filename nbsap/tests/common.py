@@ -10,14 +10,14 @@ class _BaseTest(unittest.TestCase):
     OBJECTIVE_MOCK = {
         "1": ImmutableDict({
             "title": ImmutableDict({
-                "en": "Visitor",
-                "fr": "Frenche Visitor",
-                "nl": "Dutch Visitor"
+                "en": "Mock objective title",
+                "fr": "Frenche mock objective title",
+                "nl": "Dutch mock objective title"
             }),
             "body": ImmutableDict({
-                "en": "Visitor",
-                "fr": "French visitor",
-                "nl": "Dutch visitor"
+                "en": "Mock objective body",
+                "fr": "French mock objective",
+                "nl": "Dutch mock objective"
             }),
             "id": 1,
             "subobjs": []
@@ -49,6 +49,23 @@ class _BaseTest(unittest.TestCase):
         })
     }
 
+    GOAL_MOCK = {
+        "1": ImmutableDict({
+            "title": ImmutableDict({
+                "en": "Mock goal title",
+                "fr": "French mock goal title",
+                "nl": "Dutch mock goal title"
+            }),
+            "id": "1",
+            "short_title": "A",
+            "description": ImmutableDict({
+                "en": "Mock goal description",
+                "fr": "French mock goal description",
+                "nl": "Dutch mock goal description"
+            })
+        })
+    }
+
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
         "SECRET_KEY": "somwthing random"
@@ -62,12 +79,14 @@ class _BaseTest(unittest.TestCase):
 
        self._create_objective()
        self._create_action()
+       self._create_goal()
 
     def tearDown(self):
         with self.app.test_request_context():
             mongo.db.objectives.remove()
             mongo.db.actions.remove()
             mongo.db.mapping.remove()
+            mongo.db.goals.remove()
 
     def _create_objective(self):
         mock_objective = dict(self.OBJECTIVE_MOCK['1'])
@@ -78,3 +97,8 @@ class _BaseTest(unittest.TestCase):
         mock_action = dict(self.ACTION_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.actions.save(mock_action)
+
+    def _create_goal(self):
+        mock_goal = dict(self.GOAL_MOCK['1'])
+        with self.app.test_request_context():
+            mongo.db.goals.save(mock_goal)

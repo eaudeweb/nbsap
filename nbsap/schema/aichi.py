@@ -6,8 +6,10 @@ from .refdata import goals, targets, mapping
 
 _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('short_title'),
-            I18nString.named('title'),
-            I18nString.named('description'),
+            I18nString.named('title')
+                .using(label=u'Title'),
+            I18nString.named('description')
+                .using(label=u"Description"),
             CommonString.named('id'),
         )
 

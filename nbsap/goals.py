@@ -16,19 +16,13 @@ def home():
     return
 
 @goals.route("/goals")
-@sugar.templated("goals_listing.html")
+@sugar.templated("/goals/goals_listing.html")
 def list_goals():
 
     aichi_goals = [i for i in mongo.db.goals.find()]
-    aichi_targets = mongo.db.targets.find()
-    target_dict = {aichi_goals[i]['short_title']:[] for i in range(len(aichi_goals))}
-
-    for target in aichi_targets:
-        target_dict[target['goal_id']].append(target)
 
     return {
             "goals": aichi_goals,
-            "target_dict": target_dict
            }
 
 @goals.route("/mapping", methods=["GET", "POST"])
@@ -84,3 +78,38 @@ def goal_data():
     result = {'result': aichi_goal['description']['en']}
     return flask.jsonify(result)
 
+@goals.route("/goals/<string:goal_id>/edit", methods=["GET", "POST"])
+@sugar.templated("goals/edit.html")
+def edit(goal_id):
+
+    goal = mongo.db.goals.find_one_or_404({'id': goal_id})
+    goal_schema = schema.Goal(goal)
+
+    # default display language is English
+    try:
+        selected_language = flask.request.args.getlist('lang')[0]
+    except IndexError:
+        selected_language = u'en'
+
+    app = flask.current_app
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        selected_language = data['language']
+
+        goal_schema['title'][selected_language].set(data['title-' + selected_language])
+        goal_schema['description'][selected_language].set(data['body-' + selected_language])
+
+        if goal_schema.validate():
+            goal['title'][selected_language] = data['title-' + selected_language]
+            goal['description'][selected_language] = data['body-' + selected_language]
+
+            flask.flash("Saved changes.", "success")
+            mongo.db.goals.save(goal)
+
+    return {
+                "language": selected_language,
+                "goal": goal,
+                "schema": goal_schema
+           }

@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<style>
+#DataTables_Table_0_paginate, #DataTables_Table_0_info,
+#DataTables_Table_0_filter, #DataTables_Table_0_length {
+    display: none;
+}
+</style>
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('goals.list_goals'), "Goals")
+      ]) }}
+</ul>
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('goals') }}
+
+<table class="table table-bordered table-striped goals_listing">
+
+    <thead>
+        <th style="width:10px; text-align:center">Id</th>
+        <th>Goals</th>
+        <th style="width:10px; text-align:center">NL</th>
+        <th style="width:10px; text-align:center">FR</th>
+    </thead>
+
+  <tbody>
+    {% for goal in goals %}
+      <tr>
+        <td>
+            {{-goal.id-}}
+        </td>
+        <td>
+            <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=en">{{goal.title['en']}}</a>
+        </td>
+        <td style="text-align: center;">
+            <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=nl">
+                <i
+                class="icon-{% if goal.title['nl'] and goal.description['nl'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+
+        <td style="text-align: center;">
+            <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=fr">
+                <i
+                class="icon-{% if goal.title['fr'] and goal.description['fr'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/lib/datatables/jquery.dataTables.min.js') }}
+{{ script_src('js/lib/datatables/DT_bootstrap.js') }}
+<script>
+
+  $(document).ready(function() {
+    $('.goals_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "oLanguage": {
+            "sLengthMenu": "Display _MENU_ objectives per page",
+            "sZeroRecords": "No matching objectives found"
+        }
+    });
+  });
+</script>
+
+{% endblock scripts %}
