@@ -19,9 +19,15 @@ class GoalEditTest(_BaseTest):
                     "body-en": "Some body text in english"
                  }
         response = self.client.post("/goals/1/edit", data=mydata)
-        html = response.data
-        self.assertIn("Title is required", html)
-        self.assertNotIn("Saved changes.", html)
+        self.assertIn("Title is required", response.data)
+        self.assertNotIn("Saved changes.", response.data)
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            goals = [g for g in mongo.db.goals.find()]
+
+        self.assertEqual(len(goals), 1)
+        self.assertEqual(goals[0]['short_title'], 'A')
 
     def test_error_message_displayed_when_body_blank(self):
 
@@ -31,9 +37,15 @@ class GoalEditTest(_BaseTest):
                     "body-en": ""
                 }
         response = self.client.post("/goals/1/edit", data=mydata)
-        html = response.data
-        self.assertIn("Description is required", html)
-        self.assertNotIn("Saved changes.", html)
+        self.assertIn("Description is required", response.data)
+        self.assertNotIn("Saved changes.", response.data)
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            goals = [g for g in mongo.db.goals.find()]
+
+        self.assertEqual(len(goals), 1)
+        self.assertEqual(goals[0]['short_title'], 'A')
 
 
     def test_error_message_missing_when_title_blank(self):
@@ -41,13 +53,18 @@ class GoalEditTest(_BaseTest):
         mydata = {
                     "language": "fr",
                     "title-fr": "",
-                    "body-fr": "certains corps de texte en français"
+                    "body-fr": "some text in french"
                 }
         response = self.client.post("/goals/1/edit", data=mydata)
-        html = response.data
+        self.assertNotIn("Title is required", response.data)
+        self.assertIn("Saved changes.", response.data)
 
-        self.assertNotIn("Title is required", html)
-        self.assertIn("Saved changes.", html)
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            goals = [g for g in mongo.db.goals.find()]
+
+        self.assertEqual(len(goals), 1)
+        self.assertEqual(goals[0]['description']['fr'], 'some text in french')
 
     def test_error_message_missing_when_body_blank(self):
 
@@ -56,7 +73,16 @@ class GoalEditTest(_BaseTest):
                     "title-nl": "sommige platte tekst in het Frans",
                     "body-nl": ""
                 }
-        response = self.client.post("/objectives/1/edit", data=mydata)
-        html = response.data
-        self.assertNotIn("Description is required", html)
-        self.assertIn("Saved changes.", html)
+
+        response = self.client.post("/goals/1/edit", data=mydata)
+        self.assertNotIn("Description is required", response.data)
+        self.assertIn("Saved changes.", response.data)
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            goals = [g for g in mongo.db.goals.find()]
+
+        self.assertEqual(len(goals), 1)
+        self.assertEqual(goals[0]['title']['nl'], 'sommige platte tekst in het Frans')
+
+
