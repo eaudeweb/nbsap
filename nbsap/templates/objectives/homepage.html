@@ -18,7 +18,7 @@
     </ul>
 
     <div class="tab-content homepage_view span10" >
-      <h3>{{objective.title.en}}</h3>
+      <h1>{{objective.title.en}}</h1>
 
       <div class="row">
       <ul class="span2 offset1">
@@ -34,7 +34,7 @@
       </div>
 
       <div class="element_field">
-        <h4>Description</h4>
+        <h2>Description</h2>
         <div class="snippet">
           {{ objective.body.en|truncate(end='')|safe }}
           <a class="more">... show more</a>
@@ -48,7 +48,7 @@
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
         <div class="element_field" id="subobjective_{{ subobj.id }}">
-          <h4>{{subobj.title.en}}</h4>
+          <h2>{{subobj.title.en}}</h2>
 
           <div class="snippet">
             {{subobj.body.en|truncate(end='')|safe }}
@@ -60,11 +60,10 @@
           </div>
 
           {% if subobj.mapping|length() %}
-          <div class="row">
 
-            <div class="span2">Mapping with AICHI:</div>
+            <label>Mapping with AICHI:</label>
 
-            <div class="span8">
+            <div class="well">
             {% for m in subobj.mapping %}
             <ul>
 
@@ -92,7 +91,6 @@
             {% endfor %}
             </div>
 
-          </div>
           {% endif %}
 
           <a class="pull-right" href="#top">Back to top</a>

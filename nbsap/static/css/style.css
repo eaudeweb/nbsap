@@ -507,8 +507,15 @@ div.element_field {
   padding-top: 50px;
 }
 
-.homepage_view h3,
-.homepage_view h4 {
+.homepage_view h2 {
+  border-bottom: 1px solid #CCC;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.homepage_view h1 {
+  font-size: 18px;
+  line-height: 27px;
   border-bottom: 1px solid #CCC;
 }
 
