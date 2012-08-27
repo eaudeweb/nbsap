@@ -1,4 +1,5 @@
 import flatland
+from flatland.validation import URLValidator
 
 from common import I18nString, CommonString, CommonEnum, CommonList, ListValue,\
                    GoalEnumValue
@@ -50,7 +51,15 @@ _IndicatorSchemaDefinition = flatland.Dict.of(
             I18nString.named('question')
                 .with_properties(widget="edit_textarea")
                 .using(label="Communication Question"),
-            CommonList.named('links').of(CommonString.named('links'))
+            CommonList.named('links').of(flatland.Dict.named('links').of(
+                    I18nString.named('name')
+                        .with_properties(widget="edit_textarea")
+                        .using(label="Link name"),
+                    CommonString.named('url')
+                        .including_validators(URLValidator())
+                        .with_properties(widget="edit_textarea")
+                        .using(label="Link URL"),
+                ))
                 .using(label="Related Links"),
             CommonEnum.named('validity')
                 .valued(*sorted(indicator_data['validity']))

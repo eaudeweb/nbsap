@@ -22,6 +22,31 @@ def add_language_fields_to_indicators():
                           }
         mongo.db.indicators.save(indicator)
 
+def indicator_link_list_to_dict():
+
+    indicators = mongo.db.indicators.find()
+
+    for indicator in indicators:
+
+        if indicator.get('links'):
+
+            old_list = indicator['links']
+            indicator['links'] = []
+
+            for link in old_list:
+                link = { "name": link[0],
+                         "url": link[1]
+                       }
+                indicator['links'].append(link)
+
+        mongo.db.indicators.save(indicator)
+
+def update_indicators():
+    add_language_fields_to_indicators()
+    indicator_link_list_to_dict()
+
 extra_shell_context = {
-    "add_language_fields_to_indicators": add_language_fields_to_indicators
+    "add_language_fields_to_indicators": add_language_fields_to_indicators,
+    "indicator_link_list_to_dict": indicator_link_list_to_dict,
+    "update_indicators": update_indicators
 }
