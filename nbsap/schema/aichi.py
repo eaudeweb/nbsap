@@ -12,12 +12,10 @@ _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
         )
 
-_IndicatorSchemaDefinition = flatland.Dict.of(
+_IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
             I18nString.named('status')
-                .with_properties(widget="edit_textarea")
                 .using(label="Status of development"),
             I18nString.named('classification')
-                .with_properties(widget="edit_textarea")
                 .using(label="Operational Classification"),
             CommonEnum.named('scale')
                 .valued(*sorted(indicator_data['scale']))
@@ -42,22 +40,19 @@ _IndicatorSchemaDefinition = flatland.Dict.of(
                 .with_properties(widget="select", value_label=targets)
                 .using(label="Most Relevant Aichi Target"),
             I18nString.named('sources')
-                .with_properties(widget="edit_textarea")
                 .using(label="Data Sources"),
             CommonEnum.named('sensitivity')
                 .valued(*sorted(indicator_data['sensitivity']))
                 .with_properties(widget="select")
                 .using(label="Sensitivity (can it be used to make assessment by 2015?)"),
             I18nString.named('question')
-                .with_properties(widget="edit_textarea")
                 .using(label="Communication Question"),
-            CommonList.named('links').of(flatland.Dict.named('links').of(
+            CommonList.named('links').of(flatland.Dict.named('links').with_properties(widget='hidden').of(
                     I18nString.named('name')
-                        .with_properties(widget="edit_textarea")
                         .using(label="Link name"),
                     CommonString.named('url')
                         .including_validators(URLValidator())
-                        .with_properties(widget="edit_textarea")
+                        .with_properties(widget="hidden") ##
                         .using(label="Link URL"),
                 ))
                 .using(label="Related Links"),
@@ -66,24 +61,20 @@ _IndicatorSchemaDefinition = flatland.Dict.of(
                 .with_properties(widget="select")
                 .using(label="Scientific Validity"),
             I18nString.named('measurer')
-                .with_properties(widget="edit_textarea")
                 .using(label="Who's responsible for measuring?"),
             I18nString.named('sub_indicator')
-                .with_properties(widget="edit_textarea")
                 .using(label="Indicator Sub-topics"),
             I18nString.named('head_indicator')
-                .with_properties(widget="edit_textarea")
                 .using(label="Headline Indicator"),
             CommonEnum.named('ease_of_communication')
                 .valued(*sorted(indicator_data['ease_of_communication']))
                 .with_properties(widget="select")
                 .using(label="How easy can it be communicated?"),
             I18nString.named('requirements')
-                .with_properties(widget="edit_textarea")
                 .using(label="Data Requirements"),
-            CommonString.named('id'),
+            CommonString.named('id')
+                .with_properties(widget="hidden"),
             I18nString.named('name')
-                .with_properties(widget="edit_textarea")
                 .using(label="Operational Indicator")
 
         )

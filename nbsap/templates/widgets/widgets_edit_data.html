@@ -75,6 +75,38 @@
 {% endmacro %}
 
 
+{% macro tabel(mk, schema) %}
+  <fieldset>
+  <tabel class="tabel tabel-bordered tabel-striped">
+    <tbody>
+    {%- for name in mk.children_order(schema) %}
+      {% set field = schema[name] %}
+      {% set error_cls = 'error' if field.errors else '' %}
+
+      {% if field.properties.widget != 'hidden' %}
+      <tr>
+      <div class="control-group {{error_cls}} group-{{field.name}}">
+        <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
+        <td><div class="controls control-{{field.name}}">
+          {% if field.properties.widget == 'textarea' %}
+            {{ textarea(field) }}
+          {% else %}
+            {{ mk.widget(field) }}
+          {% endif %}
+          {% for message in field.errors %}
+            <span class="help-inline">{{ message }}</span>
+          {% endfor %}
+        </div></td>
+      </div>
+      </tr>
+      {% endif %}
+    {% endfor -%}
+    </tbody>
+  </tabel>
+  </fieldset>
+{% endmacro %}
+
+
 {% macro form(mk, schema) %}
   <fieldset>
   {%- for name in mk.children_order(schema) %}

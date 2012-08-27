@@ -72,13 +72,10 @@ CommonEnum = flatland.Enum.using(optional=True)\
 I18nString = flatland.Dict.with_properties(widget="i18nstring").of(
             CommonString.named("en")
                 .using(optional=False,
-                       label=u"English")
-                .with_properties(widget="input"),
+                       label=u"English"),
             CommonString.named("fr")
-                .using(label=u"French")
-                .with_properties(widget="input"),
+                .using(label=u"French"),
             CommonString.named("nl")
                 .using(label="Netherlands")
-                .with_properties(widget="input")
         )
 
