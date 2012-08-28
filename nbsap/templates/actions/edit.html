@@ -54,7 +54,7 @@
         <div class="span6">
             <div class="language-container language-en">
                 <div class="control-group {%- if schema['actions'][subobj_id]['body']['en'].errors %} error {%- endif %}">
-                    <label class="control-label" for="body">Body</label>
+                    <label class="control-label" for="body">Description</label>
                     <div class="controls">
                         <textarea name="body-en" id="body-en" style="width:100%; max-height: 900px;">
                             {{-schema['actions'][subobj_id]['body']['en']|safe-}}
@@ -66,7 +66,7 @@
 
             <div class="language-container language-fr">
                 <div class="control-group">
-                    <label class="control-label" for="body">Body</label>
+                    <label class="control-label" for="body">Description</label>
                     <div class="controls">
                         <textarea name="body-fr" id="body-fr" style="width:100%; max-height: 900px;">
                             {{-schema['actions'][subobj_id]['body']['fr']|safe-}}
@@ -77,7 +77,7 @@
 
             <div class="language-container language-nl">
                 <div class="control-group">
-                    <label class="control-label" for="body">Body</label>
+                    <label class="control-label" for="body">Description</label>
                     <div class="controls">
                         <textarea name="body-nl" id="body-nl" style="width:100%; max-height: 900px;">
                             {{-schema['actions'][subobj_id]['body']['nl']|safe-}}

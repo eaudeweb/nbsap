@@ -44,7 +44,7 @@ class ObjectiveEditTest(_BaseTest):
                 }
 
         response = self.client.post("/objectives/1/edit", data=mydata)
-        self.assertIn("Body is required", response.data)
+        self.assertIn("Description is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
         from nbsap.database import mongo
