@@ -31,18 +31,20 @@
             <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{target.title['en']}}</a>
         </td>
         <td style="text-align: center;">
-            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl">
-                <i
-                class="icon-{% if target.title['nl'] and target.description['nl'] %}ok{% else %}remove{% endif %}">
-                </i>
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl"
+               class="btn btn-{% if target.title['nl'] and target.description['nl'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if target.title['nl'] and target.description['nl']
+                          %}translated {% else %} translate {% endif %}
             </a>
         </td>
 
         <td style="text-align: center;">
-            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=fr">
-                <i
-                class="icon-{% if target.title['fr'] and target.description['fr'] %}ok{% else %}remove{% endif %}">
-                </i>
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=fr"
+               class="btn btn-{% if target.title['fr'] and target.description['fr'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if target.title['fr'] and target.description['fr']
+                          %}translated {% else %} translate {% endif %}
             </a>
         </td>
       </tr>

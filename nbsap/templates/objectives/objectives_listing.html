@@ -37,18 +37,20 @@
             <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title['en']}}</a>
         </td>
         <td style="text-align: center;">
-            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl">
-                <i
-                class="icon-{% if objective.title['nl'] and objective.body['nl'] %}ok{% else %}remove{% endif %}">
-                </i>
+            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"
+               class="btn btn-{% if objective.title['nl'] and objective.body['nl'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if objective.title['nl'] and objective.body['nl']
+                          %}translated {% else %} translate {% endif %}
             </a>
         </td>
 
         <td style="text-align: center;">
-            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=fr">
-                <i
-                class="icon-{% if objective.title['fr'] and objective.body['fr'] %}ok{% else %}remove{% endif %}">
-                </i>
+            <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=fr"
+               class="btn btn-{% if objective.title['fr'] and objective.body['fr'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if objective.title['fr'] and objective.body['fr']
+                          %}translated {% else %} translate {% endif %}
             </a>
         </td>
       </tr>

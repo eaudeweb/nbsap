@@ -68,18 +68,18 @@
             </td>
 
             <td style="text-align: center;">
-                <a href="{{ url_for('actions.edit', objective_id=objective.id, subobj_id=action.id) }}?lang=nl">
-                    <i
-                        class="icon-{% if action['body']['nl'] %}ok{% else %}remove{% endif %}">
-                    </i>
+                <a href="{{url_for('actions.edit', objective_id=objective.id, subobj_id=action.id)}}?lang=nl"
+                   class="btn btn-{% if action['body']['nl'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if action['body']['nl'] %}translated {% else %} translate {% endif %}
                 </a>
             </td>
 
             <td style="text-align: center;">
-                <a href="{{ url_for('actions.edit', objective_id=objective.id, subobj_id=action.id) }}?lang=fr">
-                    <i
-                        class="icon-{% if action['body']['fr'] %}ok{% else %}remove{% endif %}">
-                    </i>
+                <a href="{{url_for('actions.edit', objective_id=objective.id, subobj_id=action.id)}}?lang=fr"
+                   class="btn btn-{% if action['body']['fr'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if action['body']['fr'] %}translated {% else %} translate {% endif %}
                 </a>
             </td>
           </tr>
