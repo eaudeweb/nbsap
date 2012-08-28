@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('targets.list_targets'), "Targets"),
+      (url_for('targets.edit', target_id=target.id), "Target " +
+            target.id|string())
+
+      ]) }}
+</ul>
+
+{% macro error(field) %}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+{% endmacro %}
+
+
+<h1>Edit target {{target.id}}</h1>
+<form method="POST">
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('targets.list_targets')}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="language">Language</label>
+        <div class="controls">
+            <select name="language" id="language">
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                </option>
+
+                <option value="fr"
+                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                </option>
+
+                <option value="nl"
+                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <div class="language-container language-en">
+                <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                           {{-schema.title['en']-}}
+                        </textarea>
+                        {{error(schema.title['en'])}}
+                    </div>
+                </div>
+                <div class="control-group {%- if schema.description['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-en" id="body-en" style="width:100%; max-height: 900px;">
+                            {{-schema.description['en']|safe-}}
+                        </textarea>
+                        {{error(schema.description['en'])}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-container language-fr">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-fr" id="title-fr" style="width: 100%; ">
+                           {{-schema.title['fr']-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-fr" id="body-fr" style="width: 100%; max-height: 900px;">
+                            {{-schema.description['fr']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-container language-nl">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-nl" id="title-nl" style="width: 100%">
+                           {{-schema.title['nl']-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="body">Body</label>
+                    <div class="controls">
+                        <textarea name="body-nl" id="body-nl" style="width: 100%; max-height: 900px;">
+                            {{-schema.description['nl']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="span6 original-hideout" style="margin-top: -5px">
+            <p>Original title in English</p>
+            <div class="well">
+                {{-target.title['en']-}}
+            </div>
+
+            <p>Original description in English</p>
+            <div class="well">
+                {{-target.description['en']|safe-}}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('targets.list_targets')}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/jquery.autogrow-textarea.js') }}
+
+<script>
+
+$('textarea').autogrow();
+
+$("#language").on("change", function() {
+    var lang = $(this).val();
+    $('.original-hideout').show();
+    if (lang == 'en') {
+        $('.original-hideout').hide();
+    }
+    $(".language-container").hide();
+    $(".language-" + lang).show();
+}).change();
+
+</script>
+{% endblock %}

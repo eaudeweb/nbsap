@@ -37,8 +37,10 @@ _IndicatorSchemaDefinition = flatland.Dict.of(
 
 _TargetSchemaDefinition = flatland.Dict.of(
             CommonString.named('goal_id'),
-            I18nString.named('title'),
-            I18nString.named('description'),
+            I18nString.named('title')
+                .using(label=u'Title'),
+            I18nString.named('description')
+                .using(label=u'Description'),
             CommonString.named('id'),
         )
 

@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('targets.list_targets'), "Targets")
+      ]) }}
+</ul>
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('targets') }}
+
+<table class="table table-bordered table-striped targets_listing">
+
+    <thead>
+        <th style="width:10px; text-align:center">Id</th>
+        <th>Targets</th>
+        <th style="width:10px; text-align:center">NL</th>
+        <th style="width:10px; text-align:center">FR</th>
+    </thead>
+
+  <tbody>
+    {% for target in targets %}
+      <tr>
+        <td>
+            {{-target.id-}}
+        </td>
+        <td>
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{target.title['en']}}</a>
+        </td>
+        <td style="text-align: center;">
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl">
+                <i
+                class="icon-{% if target.title['nl'] and target.description['nl'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+
+        <td style="text-align: center;">
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=fr">
+                <i
+                class="icon-{% if target.title['fr'] and target.description['fr'] %}ok{% else %}remove{% endif %}">
+                </i>
+            </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.js') }}
+{{ script_src('js/lib/datatables/jquery.dataTables.min.js') }}
+{{ script_src('js/lib/datatables/DT_bootstrap.js') }}
+<script>
+
+  $(document).ready(function() {
+    $('.targets_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "oLanguage": {
+            "sLengthMenu": "Display _MENU_ objectives per page",
+            "sZeroRecords": "No matching objectives found"
+        }
+    });
+  });
+</script>
+
+{% endblock scripts %}
