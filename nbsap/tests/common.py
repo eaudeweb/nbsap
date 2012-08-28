@@ -66,9 +66,26 @@ class _BaseTest(unittest.TestCase):
         })
     }
 
+    TARGET_MOCK = {
+        "1": ImmutableDict({
+            "title": ImmutableDict({
+                "en": "Mock target title",
+                "fr": "French mock target title",
+                "nl": "Dutch mock target title"
+            }),
+            "id": "1",
+            "goal_id": "A",
+            "description": ImmutableDict({
+                "en": "Mock target description",
+                "fr": "French mock target description",
+                "nl": "Dutch mock target description"
+            })
+        })
+    }
+
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
-        "SECRET_KEY": "somwthing random"
+        "SECRET_KEY": "something random"
     }
 
     def setUp(self):
@@ -80,6 +97,7 @@ class _BaseTest(unittest.TestCase):
        self._create_objective()
        self._create_action()
        self._create_goal()
+       self._create_target()
 
     def tearDown(self):
         with self.app.test_request_context():
@@ -87,6 +105,7 @@ class _BaseTest(unittest.TestCase):
             mongo.db.actions.remove()
             mongo.db.mapping.remove()
             mongo.db.goals.remove()
+            mongo.db.targets.remove()
 
     def _create_objective(self):
         mock_objective = dict(self.OBJECTIVE_MOCK['1'])
@@ -102,3 +121,8 @@ class _BaseTest(unittest.TestCase):
         mock_goal = dict(self.GOAL_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.goals.save(mock_goal)
+
+    def _create_target(self):
+        mock_target = dict(self.TARGET_MOCK['1'])
+        with self.app.test_request_context():
+            mongo.db.targets.save(mock_target)
