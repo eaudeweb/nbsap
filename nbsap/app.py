@@ -8,11 +8,14 @@ import indicators
 import objectives
 import actions
 
+from raven.contrib.flask import Sentry
+
 default_config = {
         "MONGO_DBNAME": "nbsap",
 }
 
 babel = Babel()
+sentry = Sentry()
 
 def create_app(instance_path=None, testing_config=None):
     app = flask.Flask(__name__,
@@ -25,6 +28,8 @@ def create_app(instance_path=None, testing_config=None):
         app.config.update(testing_config)
     else:
         app.config.from_pyfile("settings.py", silent=True)
+
+    sentry.init_app(app)
 
     goals.initialize_app(app)
     targets.initialize_app(app)
