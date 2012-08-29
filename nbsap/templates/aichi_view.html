@@ -6,7 +6,8 @@
 
   <div class="tabbable tabs-left">
 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nav-stacked">
+      <label>Goals</label>
       {% for _goal in goals_list %}
         {% set active = 'active' if _goal.id == goal.id %}
         <li class={{ active }}>
@@ -15,10 +16,18 @@
         </a>
         </li>
       {% endfor %}
+
+      <label>Indicators</label>
+      <li><a href="">1 to 20</a></li>
+      <li><a href="">21 to 40</a></li>
+      <li><a href="">41 to 60</a></li>
+      <li><a href="">61 to 80</a></li>
+      <li><a href="">81 to 97</a></li>
+
     </ul>
 
     <div class="tab-content homepage_view span10" >
-      <h1>{{ goal.description.en }}</h1>
+      <h1>Goal {{goal.short_title}}: {{ goal.description.en }}</h1>
 
       <div class="row">
       <ul class="span1 offset1">
@@ -39,9 +48,9 @@
 
           <p>{{ target.description.en }}</p>
 
-          {% if target.objective_ids %}
             <label>Mapping with National strategy:</label>
             <div class="well">
+            {% if target.objective_ids %}
               <ul>
               {% for objective in target.objective_ids %}
               <li><a href="{{url_for('objectives.view_subobj', objective_id=objective[0],
@@ -50,8 +59,10 @@
               </a></li>
               {% endfor %}
             </ul>
+            {% else %}
+            None
+            {% endif %}
             </div>
-          {% endif %}
 
           {% if target.relevant_indicators %}
             <label>Most relevant indicators:</label>
@@ -59,7 +70,7 @@
               <ul>
               {% for indicator in target.relevant_indicators %}
                 <li><a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
-                  {{indicator.name}}
+                  Indicator {{indicator.id}}: {{indicator.name.en}}
                 </a></li>
               {% endfor %}
               </ul>
@@ -72,7 +83,7 @@
               <ul>
               {% for indicator in target.other_indicators %}
                 <li><a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
-                  {{indicator.name}}
+                  Indicator {{indicator.id}}: {{indicator.name.en}}
                 </a></li>
               {% endfor %}
               </ul>
