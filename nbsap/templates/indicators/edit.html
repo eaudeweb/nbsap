@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.home'), "Home"),
+      (url_for('indicators.list_indicators'), "Indicators"),
+      (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en),
+      (url_for('indicators.edit', indicator_id=indicator.id), "Edit")
+      ]) }}
+</ul>
+
+{% macro error(field) %}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+{% endmacro %}
+
+<h1>Edit indicator {{ indicator.id }}</h1>
+<form method="POST">
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="language">Language</label>
+        <div class="controls">
+            <select name="language" id="language">
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                </option>
+
+                <option value="fr"
+                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                </option>
+
+                <option value="nl"
+                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                </option>
+            </select>
+        </div>
+    </div>
+
+    {{mk.widget(schema)}}
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.chained.mini.js') }}
+
+<script>
+$('#other_targets').attr('data-placeholder', 'Select targets');
+$('#scale').attr('data-placeholder', 'Select scales');
+$(function () {
+  $("#language").on("change", function() {
+    var lang = $(this).val();
+    $('.field-i18nstring').children().hide();
+    $('.field-i18nstring').children('#' + lang).show();
+  }).change();
+
+  $('#relevant_target').chained('#goal');
+});
+</script>
+{% endblock %}
