@@ -46,7 +46,7 @@ NBSAP Quick Installation
 
     ./bash-scripts/mongoimport.sh
 
-9. Run a test server::
+9. Run a test server(see http://127.0.0.1:5000 afterwards)::
 
     ./manage.py runserver
 
