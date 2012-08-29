@@ -1,5 +1,9 @@
 {% macro input(mk, field) %}
-  {{ mk.input(field, **mk.properties(field, id="field-%s" % field.name)) }}
+  {{ mk.input(**mk.properties(field, id="field-%s" % field.name)) }}
+{% endmacro %}
+
+{% macro edit_input(field) %}
+<input type='text' value='{{field.value if field.value }}' class='{{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro edit_textarea(field) %}
@@ -23,15 +27,19 @@
   {% set value_labels = field.properties.value_labels %}
 
   {% if field.properties.multiple %}
-    {{ mk.select.open(field, id=field.name, class=field.properties.css_class,
+    {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class,
                              multiple=field.properties.multiple) }}
   {% else %}
-    {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
+    {{ mk.select.open(id=field.name, class=field.properties.css_class) }}
   {% endif %}
 
   {% for value in field.properties.valid_values %}
-    {% set value_label = (value_labels[value]) %}
-    {{ mk.option(field, value=value|string(), contents=value_label) }}
+    {% set value_label = (value_labels[value] or value) %}
+    {% if value|string() in field.value %}
+      {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
+    {% else %}
+      {{ mk.option(value=value|string(), contents=value_label) }}
+    {% endif %}
   {% endfor %}
 
   {{ mk.select.close() }}
@@ -40,7 +48,7 @@
 {% macro obj_select(mk, field) %}
   {% set value_groups = field.properties.groups %}
 
-  {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
+  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
 
   {% for i in value_groups %}
     <optgroup label="Objective {{i}}">
@@ -60,14 +68,25 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {{ mk.select.open(field, id=field.name, class=field.properties.css_class) }}
+  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
 
   {% for value in field.valid_values %}
     {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
+    {% set selected = 'selected' if value == field.value else 'unselected' %}
     {% if field.properties.mapping %}
-    {{ mk.option(field, class=field.properties.mapping[value|string()], value=value|string(), contents=value_label) }}
+      {% if value == field.value %}
+        {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
+                     contents=value_label, selected='selected') }}
+      {% else %}
+        {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
+                     contents=value_label) }}
+      {% endif %}
     {% else %}
-    {{ mk.option(field, value=value|string(), contents=value_label) }}
+      {% if value == field.value %}
+        {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
+      {% else %}
+        {{ mk.option(value=value|string(), contents=value_label) }}
+      {% endif %}
     {% endif %}
   {% endfor %}
 
@@ -77,7 +96,7 @@
 
 {% macro tabel(mk, schema) %}
   <fieldset>
-  <tabel class="tabel tabel-bordered tabel-striped">
+  <table class="table table-bordered table-striped">
     <tbody>
     {%- for name in mk.children_order(schema) %}
       {% set field = schema[name] %}
@@ -85,24 +104,26 @@
 
       {% if field.properties.widget != 'hidden' %}
       <tr>
-      <div class="control-group {{error_cls}} group-{{field.name}}">
-        <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
-        <td><div class="controls control-{{field.name}}">
+        <div class="control-group {{error_cls}} group-{{field.name}}">
+          <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
+          <td><div class="controls control-{{field.name}}">
           {% if field.properties.widget == 'textarea' %}
             {{ textarea(field) }}
+          {% elif field.properties.widget == 'edit_input' %}
+            {{ edit_input(field) }}
           {% else %}
             {{ mk.widget(field) }}
           {% endif %}
           {% for message in field.errors %}
             <span class="help-inline">{{ message }}</span>
-          {% endfor %}
-        </div></td>
-      </div>
+            {% endfor %}
+          </div></td>
+        </div>
       </tr>
       {% endif %}
     {% endfor -%}
     </tbody>
-  </tabel>
+  </table>
   </fieldset>
 {% endmacro %}
 
@@ -129,26 +150,36 @@
 {% endmacro %}
 
 {% macro i18nstring(mk, field) %}
-  <div class="well field-i18nstring {{ field.properties.get('css_class') }}">
+  <div class="field-i18nstring {{ field.properties.get('css_class') }}">
   {% set field_items = [] %}
   {% for name in mk.children_order(field) %}
       {% do field_items.append((name, field[name])) %}
   {% endfor %}
   {% for subfield_name, subfield in field_items %}
-    {#{{ '%r'|format(subfield) }}#}
     {% set properties = mk.properties(subfield) %}
-    {#{ mk.label(subfield, contents=subfield.label) }#}
     <label class="{{subfield.name}}">{{ subfield.label }}</label>
 
     {% set field_widget = field.properties.get("field_widget") %}
     {% if field_widget == "edit_textarea" %}
       {{ edit_textarea(subfield) }}
     {% else %}
-      {{ input(mk, subfield) }}
+      {{ edit_input(subfield) }}
     {% endif %}
-    <br>
   {% endfor %}
   </div>
+{% endmacro %}
+
+{% macro general(mk, field) %}
+  {% for element in field %}
+    {% for key in element.field_schema %}
+      {% set subfield = element[key.name] %}
+      {% if subfield.properties.widget == 'edit_input' %}
+        {{ edit_input(subfield) }}
+      {% else %}
+        {{ mk.widget(subfield) }}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 {% endmacro %}
 
 {% macro hidden(mk, schema) %}
