@@ -2,7 +2,7 @@ import flatland
 from flatland.validation import URLValidator
 
 from common import I18nString, CommonString, CommonEnum, CommonList, ListValue,\
-                   GoalEnumValue
+                   GoalEnumValue, CommonI18nString
 from .refdata import goals, targets, mapping, indicator_data
 
 _GoalSchemaDefinition = flatland.Dict.of(
@@ -13,14 +13,25 @@ _GoalSchemaDefinition = flatland.Dict.of(
         )
 
 _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
-            I18nString.named('status')
-                .using(label="Status of development"),
-            I18nString.named('classification')
-                .using(label="Operational Classification"),
-            CommonEnum.named('scale')
-                .valued(*sorted(indicator_data['scale']))
-                .with_properties(widget="select")
-                .using(label="Scale (global, regional, national, sub-national)"),
+            CommonString.named('id')
+                .with_properties(widget="hidden"),
+            CommonI18nString.named('name')
+                .using(label="Operational Indicator"),
+            CommonI18nString.named('question')
+                .using(label="Communication Question"),
+            CommonEnum.named('goal')
+                .valued(*sorted(goals.keys()))
+                .using(label="Strategic Goal")
+                .with_properties(widget="select", value_labels=goals),
+            CommonI18nString.named('head_indicator')
+                .using(label="Headline Indicator"),
+            CommonI18nString.named('sub_indicator')
+                .using(label="Indicator Sub-topics"),
+            CommonEnum.named('relevant_target')
+                .including_validators(GoalEnumValue())
+                .valued(*sorted(targets.keys()))
+                .with_properties(widget="select", value_labels=targets, mapping=mapping)
+                .using(label="Most Relevant Aichi Target"),
             CommonList.named('other_targets')
                 .of(CommonString.named('other_targets'))
                 .including_validators(ListValue())
@@ -30,53 +41,50 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
                                  value_labels=targets,
                                  css_class="chzn-select",
                                  multiple="multiple"),
-            CommonEnum.named('goal')
-                .valued(*sorted(goals.keys()))
-                .using(label="Strategic Goal")
-                .with_properties(widget="select", value_label=goals),
-            CommonEnum.named('relevant_target')
-                .including_validators(GoalEnumValue())
-                .valued(*sorted(targets.keys()))
-                .with_properties(widget="select", value_label=targets)
-                .using(label="Most Relevant Aichi Target"),
-            I18nString.named('sources')
-                .using(label="Data Sources"),
+            CommonI18nString.named('classification')
+                .using(label="Operational Classification"),
+            CommonI18nString.named('status')
+                .using(label="Status of development"),
             CommonEnum.named('sensitivity')
                 .valued(*sorted(indicator_data['sensitivity']))
                 .with_properties(widget="select")
                 .using(label="Sensitivity (can it be used to make assessment by 2015?)"),
-            I18nString.named('question')
-                .using(label="Communication Question"),
-            CommonList.named('links').of(flatland.Dict.named('links').with_properties(widget='hidden').of(
-                    I18nString.named('name')
-                        .using(label="Link name"),
-                    CommonString.named('url')
-                        .including_validators(URLValidator())
-                        .with_properties(widget="hidden") ##
-                        .using(label="Link URL"),
-                ))
-                .using(label="Related Links"),
+            CommonList.named('scale')
+                .of(CommonString.named('scale'))
+                .including_validators(ListValue())
+                .using(label="Scale (global, regional, national, sub-national)")
+                .with_properties(widget="list",
+                                 valid_values=indicator_data['scale'],
+                                 value_labels=indicator_data['scale'],
+                                 css_class="chzn-select",
+                                 multiple="multiple"),
             CommonEnum.named('validity')
                 .valued(*sorted(indicator_data['validity']))
                 .with_properties(widget="select")
                 .using(label="Scientific Validity"),
-            I18nString.named('measurer')
-                .using(label="Who's responsible for measuring?"),
-            I18nString.named('sub_indicator')
-                .using(label="Indicator Sub-topics"),
-            I18nString.named('head_indicator')
-                .using(label="Headline Indicator"),
             CommonEnum.named('ease_of_communication')
                 .valued(*sorted(indicator_data['ease_of_communication']))
                 .with_properties(widget="select")
                 .using(label="How easy can it be communicated?"),
-            I18nString.named('requirements')
+            CommonI18nString.named('sources')
+                .using(label="Data Sources"),
+            CommonI18nString.named('requirements')
                 .using(label="Data Requirements"),
-            CommonString.named('id')
-                .with_properties(widget="hidden"),
-            I18nString.named('name')
-                .using(label="Operational Indicator")
-
+            CommonI18nString.named('measurer')
+                .using(label="Who's responsible for measuring?"),
+            CommonString.named('conventions')
+                .using(label="Other conventions/processes using indicator")
+                .with_properties(widget="edit_input"),
+            CommonList.named('links').with_properties(widget='general').of(
+                    flatland.Dict.named('links').with_properties(widget='general').of(
+                        CommonI18nString.named('name')
+                            .using(label="Link name"),
+                        CommonString.named('url')
+                            .including_validators(URLValidator())
+                            .with_properties(widget="edit_input")
+                            .using(label="Link URL"),
+                    )
+                ).using(label="Related Links")
         )
 
 _TargetSchemaDefinition = flatland.Dict.of(
