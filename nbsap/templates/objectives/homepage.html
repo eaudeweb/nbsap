@@ -59,11 +59,11 @@
           <a class="less">show less</a>
           </div>
 
-          {% if subobj.mapping|length() %}
 
             <label>Mapping with AICHI:</label>
 
             <div class="well">
+          {% if subobj.mapping|length() %}
             {% for m in subobj.mapping %}
             <ul>
 
@@ -89,9 +89,11 @@
 
             </ul>
             {% endfor %}
+          {% else %}
+            None
+          {% endif %}
             </div>
 
-          {% endif %}
 
           <a class="pull-right" href="#top">Back to top</a>
         </div>
