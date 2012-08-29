@@ -56,8 +56,10 @@
                 </td>
             {% elif key == 'goal' %}
                 <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
-            {% elif key in ['sensitivity', 'scale', 'ease_of_communication', 'validity'] %}
+            {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
               <td> {{ indicator[key] }} </td>
+            {% elif key == 'scale' %}
+              <td> {{ indicator[key]|join(', ') }} </td>
             {% else %}
               <td> {{ indicator[key].en }} </td>
             {% endif %}
