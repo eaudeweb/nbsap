@@ -79,3 +79,12 @@ I18nString = flatland.Dict.with_properties(widget="i18nstring").of(
                 .using(label="Netherlands")
         )
 
+CommonI18nString = flatland.Dict.with_properties(widget="i18nstring").of(
+                   CommonString.named("en")
+                       .using(label=u"English"),
+                   CommonString.named("fr")
+                       .using(label=u"French"),
+                   CommonString.named("nl")
+                       .using(label="Netherlands")
+                )
+
