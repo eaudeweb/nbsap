@@ -24,7 +24,7 @@ class GoalEditTest(_BaseTest):
                  }
 
         response = self.client.post("/goals/1/edit", data=mydata)
-        self.assertIn("XTitle is required", response.data)
+        self.assertIn("Title is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
         from nbsap.database import mongo
