@@ -10,6 +10,32 @@ indicators = flask.Blueprint("indicators", __name__)
 def initialize_app(app):
     app.register_blueprint(indicators)
 
+@indicators.route("/homepage/indicators")
+@sugar.templated("indicators/homepage_indicators.html")
+def homepage_indicators():
+    page = int(flask.request.args.get('page', 1))
+
+    # Use some math to generate the index intervals from the page number.
+    get_start_index = lambda (x) : x * 10 + (x - 2) * 10 + 1
+
+    # Render 20 indicators per page.
+    start_index = get_start_index(page)
+    end_index = start_index + 19
+
+    indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': str(start_index)}},
+                                                                 {'id': {'$lte': str(end_index)}}]
+                                                     }).sort('id')]
+
+    if len(indicators) == 0:
+        return flask.abort(404)
+
+    goals = mongo.db.goals.find()
+
+    return {
+             'indicators': indicators,
+             'goals': goals
+           }
+
 @indicators.route("/indicators")
 @sugar.templated("indicators/indicators_listing.html")
 def list_indicators():
