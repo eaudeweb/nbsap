@@ -8,6 +8,8 @@ class GoalListingTest(_BaseTest):
         response = self.client.get('/goals')
         self.assertEqual(response.status_code, 200)
         self.assertIn("Mock goal title", response.data)
+        self.assertIn("btn-success", response.data)
+        self.assertNotIn("btn-warning", response.data)
 
 class GoalEditTest(_BaseTest):
 
