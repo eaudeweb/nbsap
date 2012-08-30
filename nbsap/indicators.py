@@ -22,8 +22,8 @@ def homepage_indicators():
     start_index = get_start_index(page)
     end_index = start_index + 19
 
-    indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': str(start_index)}},
-                                                                 {'id': {'$lte': str(end_index)}}]
+    indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': start_index}},
+                                                                 {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
 
     if len(indicators) == 0:
