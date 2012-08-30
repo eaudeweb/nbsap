@@ -40,7 +40,7 @@
       <h1>Indicators {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
 
       <div class="row">
-        <ul class="span9 offset1">
+        <ul class="span10">
           {% for indicator in indicators %}
           <li>
             <a href="#indicator_{{indicator.id}}">Indicator {{indicator.id}}: {{indicator.name.en}}</a>
@@ -53,10 +53,10 @@
       {% set key_links = ['links'] %}
 
       {% for indicator in indicators %}
-        <div class="element_field" id="indicator_{{indicator.id}}">
+        <div class="indicator_homepage element_field" id="indicator_{{indicator.id}}">
           <h2>Indicator {{indicator.id}}: {{indicator.name.en}}</h2>
 
-          <table class="table table-bordered table-striped indicator_homepage">
+          <table class="indicator_table table table-bordered table-striped">
             <tbody>
               {% for key in order %}
                 {% if key in indicator.keys() %}

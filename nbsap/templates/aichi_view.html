@@ -30,10 +30,10 @@
       <h1>Goal {{goal.short_title}}: {{ goal.description.en }}</h1>
 
       <div class="row">
-      <ul class="span1 offset1">
+      <ul class="span1">
         {% for target in targets %}
           {% if loop.index0 % 2 == 0 and not loop.first %}
-            </ul><ul class="span1 offset1">
+            </ul><ul class="span1">
           {% endif %}
           <li>
             <a href="#target_{{target.id}}">{{target.title.en}}</a>
