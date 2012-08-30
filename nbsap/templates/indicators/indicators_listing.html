@@ -12,17 +12,34 @@
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('indicators') }}
 
+{% macro translation_button(indicator, language) %}
+    {% set to_translate = [] %}
+    {% for key in editable_keys %}
+        {% if key in indicator %}
+            {% if indicator[key]['en'] and not indicator[key][language] %}
+                {% do to_translate.append(1) %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <a href="{{url_for('indicators.edit', indicator_id=indicator.id)}}?lang={{language}}"
+       class="btn btn-{% if to_translate %}warning{% else %}success{% endif %}"
+       type="button">{% if to_translate %}translate{% else %}translated{% endif %}
+    </a>
+{% endmacro %}
+
 <table class="table table-bordered table-striped indicator_listing">
 
   <thead>
     <th>Id</th>
     <th>Operational Indicator</th>
+    <th>NL</th>
+    <th>FR</th>
   </thead>
 
   <tbody>
     {% for indicator in indicators %}
       <tr>
-
         <td>{{ indicator.id }}</td>
 
         <td>
@@ -31,6 +48,11 @@
           </a>
         </td>
 
+        <td>{{ translation_button(indicator, 'nl') }}
+        </td>
+
+        <td>{{ translation_button(indicator, 'fr') }}
+        </td>
       </tr>
     {% endfor %}
   </tbody>

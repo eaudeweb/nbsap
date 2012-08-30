@@ -3,6 +3,12 @@ from functools import wraps
 import flask
 import flatland.out.markup
 
+def get_indicator_editable_fields():
+    keys = ["status", "classification", "sources", "question", "measurer",
+            "sub_indicator", "head_indicator", "requirements", "name"]
+
+    return keys
+
 def generate_objectives():
     from nbsap.database import mongo
     objectives = {i['id']:"" for i in mongo.db.objectives.find()}
