@@ -1,5 +1,6 @@
 import flask
 import sugar
+import schema
 from database import mongo
 
 from schema.refdata import _load_json
@@ -19,21 +20,55 @@ def list_indicators():
             "indicators": aichi_indicators
            }
 
-@indicators.route("/indicators/<int:indicator_id>")
+@indicators.route("/indicators/<string:indicator_id>")
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
 
-    aichi_indicators = mongo.db.indicators.find()
+    indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
-    # Online targets are 1-indexed but in json database it is 0-indexed
-    correct_index = int(indicator_id)-1
-    specified_indicator = aichi_indicators[correct_index]
-
     return {
-            "indicator": specified_indicator,
+            "indicator": indicator,
             "transit_dict": aichi_indicator_keys,
             "order": aichi_order['order']
            }
+
+@indicators.route("/indicators/<string:indicator_id>/edit", methods=["GET", "POST"])
+@sugar.templated("indicators/edit.html")
+def edit(indicator_id):
+    app = flask.current_app
+
+    indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
+    aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
+    aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
+
+    indicator_schema = schema.Indicator(indicator)
+    indicator_schema['relevant_target'].valid_values = map(str, indicator_schema['relevant_target'].valid_values)
+    indicator_schema['relevant_target'].set(str(indicator['relevant_target']))
+
+    # default display language is English
+    try:
+        selected_language = flask.request.args.getlist('lang')[0]
+    except IndexError:
+        selected_language = u'en'
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        selected_language = data['language']
+
+        if indicator_schema.validate():
+            flask.flash("Saved changes.", "success")
+
+    return {
+                "language": selected_language,
+                "indicator": indicator,
+                "transit_dict": aichi_indicator_keys,
+                "order": aichi_order['order'],
+                "schema": indicator_schema,
+                "mk": sugar.MarkupGenerator(
+                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
+                  )
+    }
 

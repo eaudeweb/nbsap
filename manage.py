@@ -13,9 +13,13 @@ manager = flaskext.script.Manager(create_app)
 
 @manager.shell
 def make_shell_context():
+    import nbsap.shell
+    from nbsap.database import mongo
     ctx = {
             'app': flask.current_app,
-    }
+            'mongo': mongo
+        }
+    ctx.update(nbsap.shell.extra_shell_context)
     return ctx
 
 class FcgiCommand(flaskext.script.Command):
