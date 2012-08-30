@@ -15,8 +15,12 @@ def initialize_app(app):
 def home():
     return
 
-@goals.route("/homepage_goals")
-@goals.route("/homepage_goals/<string:goal_short_title>")
+@goals.route("/homepage")
+def homepage():
+    return flask.redirect(flask.url_for('.homepage_goals'))
+
+@goals.route("/homepage/goals")
+@goals.route("/homepage/goals/<string:goal_short_title>")
 @sugar.templated("aichi_view.html")
 def homepage_goals(goal_short_title='A'):
 
