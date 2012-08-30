@@ -46,20 +46,24 @@
                 {% endfor %}
                 </ul>
             </td>
-        <!-- Regular case-->
         {% else %}
+        <!-- Exeptional case: Most Relevant Aichi Target -->
             {% if key == 'relevant_target' %}
                 <td>
                     <a
                         href="{{url_for('targets.list_targets')}}#target_{{indicator[key]}}">{{indicator[key]}}
                     </a>
                 </td>
+        <!-- Exeptional case: Goal -->
             {% elif key == 'goal' %}
                 <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
+        <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
             {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
               <td> {{ indicator[key] }} </td>
+        <!-- Exeptional case: Scale -->
             {% elif key == 'scale' %}
               <td> {{ indicator[key]|join(', ') }} </td>
+        <!-- Regular case -->
             {% else %}
               <td> {{ indicator[key].en }} </td>
             {% endif %}
