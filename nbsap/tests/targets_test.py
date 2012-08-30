@@ -7,6 +7,7 @@ class TargetListingTest(_BaseTest):
 
         response = self.client.get('/targets')
         self.assertEqual(response.status_code, 200)
+        self.assertIn("Mock target title", response.data)
 
 class TargetEditTest(_BaseTest):
 

@@ -7,6 +7,7 @@ class ObjectiveListingTest(_BaseTest):
 
         response = self.client.get('/objectives')
         self.assertEqual(response.status_code, 200)
+        self.assertIn("Mock objective title", response.data)
 
 class ObjectiveEditTest(_BaseTest):
 
