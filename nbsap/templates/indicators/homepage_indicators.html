@@ -11,7 +11,7 @@
       {% for goal in goals %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
-          Goal {{ goal.short_title }}
+          {{ goal.short_title }}
         </a>
         </li>
       {% endfor %}

@@ -12,7 +12,7 @@
         {% set active = 'active' if _goal.id == goal.id %}
         <li class={{ active }}>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">
-          Goal {{ _goal.short_title }}
+          {{ _goal.short_title }}
         </a>
         </li>
       {% endfor %}
