@@ -15,6 +15,51 @@ def initialize_app(app):
 def home():
     return
 
+@goals.route("/homepage")
+def homepage():
+    return flask.redirect(flask.url_for('.homepage_goals'))
+
+@goals.route("/homepage/goals")
+@goals.route("/homepage/goals/<string:goal_short_title>")
+@sugar.templated("aichi_view.html")
+def homepage_goals(goal_short_title='A'):
+
+    goals_list = mongo.db.goals.find()
+    aichi_goal = mongo.db.goals.find_one_or_404({'short_title': goal_short_title})
+    aichi_targets = [t for t in mongo.db.targets.find({'goal_id': goal_short_title})]
+
+    for target in aichi_targets:
+        target['relevant_indicators'] = []
+        target['other_indicators'] = []
+        target['objective_ids'] = []
+
+        relevant_indicators = mongo.db.indicators.find({"relevant_target": target['id']})
+        other_indicators = mongo.db.indicators.find({'other_targets': {"$in": [target['id']]}})
+        mapping = mongo.db.mapping.find({ "$or" : [{"main_target": target['id']},
+                                                   {'other_targets': {"$in": [target['id']]}}
+                                                  ]
+                                         })
+
+        for indicator in relevant_indicators:
+            target['relevant_indicators'].append({'id': indicator['id'],
+                                                  'name': indicator['name']
+                                                 })
+
+        for indicator in other_indicators:
+            target['other_indicators'].append({'id': indicator['id'],
+                                               'name': indicator['name']
+                                              })
+
+        for _map in mapping:
+            target['objective_ids'].append(_map['objective'].split('.'))
+
+    return {
+            "goals_list": goals_list,
+            "goal": aichi_goal,
+            "targets": aichi_targets
+           }
+
+
 @goals.route("/goals")
 @sugar.templated("/goals/goals_listing.html")
 def list_goals():

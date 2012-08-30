@@ -6,7 +6,7 @@
   {{ breadcrumb_items([
       (url_for('goals.home'), "Home"),
       (url_for('indicators.list_indicators'), "Indicators"),
-      (url_for('indicators.view', indicator_id=indicator.id), indicator.name)
+      (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en)
       ]) }}
 </ul>
 
@@ -42,22 +42,30 @@
                 {% for related_link in indicator[key] %}
                     {% set link_label = related_link[0] %}
                     {% set link_ref = related_link[1] %}
-                    <li><a href="{{link_ref}}">{{link_label}}</a></li>
+                    <li><a href="{{related_link.url}}">{{related_link.name.en}}</a></li>
                 {% endfor %}
                 </ul>
             </td>
-        <!-- Regular case-->
         {% else %}
+        <!-- Exeptional case: Most Relevant Aichi Target -->
             {% if key == 'relevant_target' %}
                 <td>
                     <a
                         href="{{url_for('targets.list_targets')}}#target_{{indicator[key]}}">{{indicator[key]}}
                     </a>
                 </td>
+        <!-- Exeptional case: Goal -->
             {% elif key == 'goal' %}
                 <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
+        <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
+            {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
+              <td> {{ indicator[key] }} </td>
+        <!-- Exeptional case: Scale -->
+            {% elif key == 'scale' %}
+              <td> {{ indicator[key]|join(', ') }} </td>
+        <!-- Regular case -->
             {% else %}
-                <td> {{ indicator[key] }} </td>
+              <td> {{ indicator[key].en }} </td>
             {% endif %}
         {% endif %}
       </tr>

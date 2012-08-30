@@ -6,8 +6,8 @@
   {{ breadcrumb_items([
       (url_for('goals.home'), "Home"),
       (url_for('goals.list_goals'), "Goals"),
-      (url_for('goals.edit', goal_id=goal.id), "Goal " +
-            goal.id|string())
+      (url_for('goals.edit', goal_id=goal.id), "Edit Goal " +
+            goal.short_title)
 
       ]) }}
 </ul>

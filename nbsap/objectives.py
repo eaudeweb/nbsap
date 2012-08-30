@@ -8,6 +8,27 @@ objectives = flask.Blueprint("objectives", __name__)
 def initialize_app(app):
     app.register_blueprint(objectives)
 
+
+@objectives.route("/homepage_objectives")
+@objectives.route("/homepage_objectives/<int:objective_id>")
+@sugar.templated("/objectives/homepage.html")
+def homepage_objectives(objective_id=1):
+
+    objective_ids = mongo.db.objectives.find({}, {'id': 1})
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    mapping = schema.refdata.mapping
+
+    for subobj in objective['subobjs']:
+        code_id = str(objective['id']) + '.' + str(subobj['id'])
+        subobj['mapping'] = [m for m in mongo.db.mapping.find({'objective': code_id})]
+
+    return {
+                'objective_ids': objective_ids,
+                'objective': objective,
+                'mapping': mapping
+            }
+
 @objectives.route("/objectives/<int:objective_id>/<int:subobj_id>")
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):

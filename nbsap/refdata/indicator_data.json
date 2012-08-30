@@ -1,0 +1,6 @@
+{
+    "scale": ["G", "R", "N", "S"],
+    "sensitivity": ["Low", "Medium", "High"],
+    "validity": ["Low", "Medium", "High"],
+    "ease_of_communication": ["Low", "Medium", "High"]
+}

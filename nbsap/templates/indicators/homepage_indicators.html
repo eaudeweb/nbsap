@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "navigation.html" import homepage_tabs %}
+{{ homepage_tabs('aichi') }}
+
+  <div class="tabbable tabs-left">
+
+    <ul class="nav nav-tabs nav-stacked">
+      <label>Goals</label>
+      {% for goal in goals %}
+        <li>
+        <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
+          Goal {{ goal.short_title }}
+        </a>
+        </li>
+      {% endfor %}
+
+      <label>Indicators</label>
+
+      <li class={{'active' if indicators[0].id == '1'}}>
+        <a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a>
+      </li>
+      <li class={{'active' if indicators[0].id == '21'}}>
+        <a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a>
+      </li>
+      <li class={{'active' if indicators[0].id == '41'}}>
+        <a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a>
+      </li>
+      <li class={{'active' if indicators[0].id == '61'}}>
+        <a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a>
+      </li>
+      <li class={{'active' if indicators[0].id == '81'}}>
+        <a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a>
+      </li>
+
+    </ul>
+
+    <div class="tab-content homepage_view span10" >
+      <h1>Indicators {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
+
+      <div class="row">
+        <ul class="span10">
+          {% for indicator in indicators %}
+          <li>
+            <a href="#indicator_{{indicator.id}}">Indicator {{indicator.id}}: {{indicator.name.en}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% set key_targets = ['other_targets'] %}
+      {% set key_links = ['links'] %}
+
+      {% for indicator in indicators %}
+        <div class="indicator_homepage element_field" id="indicator_{{indicator.id}}">
+          <h2>Indicator {{indicator.id}}: {{indicator.name.en}}</h2>
+
+          <table class="indicator_table table table-bordered table-striped">
+            <tbody>
+              {% for key in order %}
+                {% if key in indicator.keys() %}
+                <tr>
+                  <td class="indicator_field"> {{ transit_dict[key] }} </td>
+
+                  <!-- Exceptional case: Other Relevant Aichi Targets-->
+                  {% if key in key_targets %}
+                    <td>{% for value_element in indicator[key] %}
+                      <a href="{{url_for('goals.homepage_goals',
+                                          goal_short_title=mapping[value_element],
+                                          _anchor="target_%s" % value_element)
+                                }}">
+                        {{value_element}}
+                      </a>{% if not loop.last %},{% endif %}
+                    {% endfor %}</td>
+
+                  <!-- Exceptional case: Related Links -->
+                  {% elif key in key_links %}
+                    <td><ul>
+                       {% for related_link in indicator[key] %}
+                         {% set link_label = related_link[0] %}
+                         {% set link_ref = related_link[1] %}
+                         <li><a href="{{related_link.url}}">{{related_link.name.en}}</a></li>
+                       {% endfor %}
+                    </ul></td>
+                  {% else %}
+
+                  <!-- Exeptional case: Most Relevant Aichi Target -->
+                    {% if key == 'relevant_target' %}
+                    <td><a href="{{url_for('goals.homepage_goals',
+                                          goal_short_title=mapping[indicator[key]],
+                                          _anchor="target_%s" % indicator[key])
+                                  }}">
+                      {{indicator[key]}}
+                    </a></td>
+
+                  <!-- Exeptional case: Goal -->
+                    {% elif key == 'goal' %}
+                      <td><a href="{{url_for('goals.homepage_goals', goal_short_title=indicator[key])}}">
+                          {{indicator[key]}}
+                      </a></td>
+
+                  <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
+                    {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
+                    <td>{{ indicator[key] }}</td>
+
+                  <!-- Exeptional case: Scale -->
+                    {% elif key == 'scale' %}
+                    <td>{{ indicator[key]|join(', ') }}</td>
+                    {% else %}
+
+                  <!-- Regular case -->
+                    <td> {{ indicator[key].en }} </td>
+                    {% endif %}
+                  {% endif %}
+                </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <a class="pull-right" href="#top">Back to top</a>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+{% endblock content %}

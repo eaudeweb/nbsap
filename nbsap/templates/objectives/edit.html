@@ -7,6 +7,8 @@
       (url_for('goals.home'), "Home"),
       (url_for('objectives.list_objectives'), "Objectives"),
       (url_for('objectives.view', objective_id=objective.id), "Objective " +
+            objective.id|string()),
+      (url_for('objectives.edit', objective_id=objective.id), "Edit Objective " +
             objective.id|string())
 
       ]) }}

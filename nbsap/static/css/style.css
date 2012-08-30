@@ -470,3 +470,70 @@ textarea.other_targets {
   width: 750px;
   max-width: 750px;
 }
+
+.homepage_view {
+  position: relative;
+  display: block;
+}
+
+p.description {
+  font-size: 14px;
+}
+
+div.element_field {
+  padding-top: 50px;
+}
+
+.homepage_view div.row {
+  margin-top: 5px;
+  position: relative;
+}
+
+.homepage_view {
+  position: relative;
+  display: block;
+}
+
+p.description {
+  font-size: 14px;
+}
+
+div.element_field {
+  padding-top: 50px;
+}
+
+.homepage_view h2 {
+  border-bottom: 1px solid #CCC;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.homepage_view h1 {
+  font-size: 18px;
+  line-height: 27px;
+  border-bottom: 1px solid #CCC;
+}
+
+.homepage_view div.row {
+  margin-top: 5px;
+  margin-left: 0px;
+  position: relative;
+}
+
+.homepage_view div.full {
+  display: none;
+}
+
+.indicator_homepage table {
+  margin-top: 10px;
+}
+
+.indicator_homepage h2 {
+  border-bottom: 0;
+}
+
+table.indicator_table td.indicator_field {
+  width: 280px;
+}
+
+
