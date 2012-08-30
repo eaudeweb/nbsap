@@ -527,3 +527,7 @@ div.element_field {
 .homepage_view div.full {
   display: none;
 }
+
+.indicator_homepage {
+  margin-top: 10px;
+}
