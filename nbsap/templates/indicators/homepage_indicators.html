@@ -18,25 +18,25 @@
 
       <label>Indicators</label>
 
-      <li class={{'active' if indicators[0].id == '1'}}>
+      <li class={{'active' if indicators[0].id == 1}}>
         <a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a>
       </li>
-      <li class={{'active' if indicators[0].id == '21'}}>
+      <li class={{'active' if indicators[0].id == 21}}>
         <a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a>
       </li>
-      <li class={{'active' if indicators[0].id == '41'}}>
+      <li class={{'active' if indicators[0].id == 41}}>
         <a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a>
       </li>
-      <li class={{'active' if indicators[0].id == '61'}}>
+      <li class={{'active' if indicators[0].id == 61}}>
         <a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a>
       </li>
-      <li class={{'active' if indicators[0].id == '81'}}>
+      <li class={{'active' if indicators[0].id == 81}}>
         <a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a>
       </li>
 
     </ul>
 
-    <div class="tab-content homepage_view span10" >
+    <div class="tab-content homepage_view" >
       <h1>Indicators {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
 
       <div class="row">
@@ -61,7 +61,7 @@
               {% for key in order %}
                 {% if key in indicator.keys() %}
                 <tr>
-                  <td class="indicator_field"> {{ transit_dict[key] }} </td>
+                  <td class="span4"> {{ transit_dict[key] }} </td>
 
                   <!-- Exceptional case: Other Relevant Aichi Targets-->
                   {% if key in key_targets %}
