@@ -23,6 +23,65 @@ class _BaseTest(unittest.TestCase):
             "subobjs": []
     })}
 
+    INDICATOR_MOCK = {
+        "1": ImmutableDict({
+            "name": ImmutableDict({
+                "en": "Mock indicator name",
+                "fr": "French mock indicator name",
+                "nl": "Dutch mock indicator name"
+            }),
+            "question": ImmutableDict({
+                "en": "Mock indicator question",
+                "fr": "French mock indicator question",
+                "nl": "Dutch mock indicator question"
+            }),
+           "head_indicator": ImmutableDict({
+                "en": "Mock indicator head indicator",
+                "fr": "French mock indicator head indicator",
+                "nl": "Dutch mock indicator head indicator"
+            }),
+           "sub_indicator": ImmutableDict({
+                "en": "Mock indicator sub indicator",
+                "fr": "French mock indicator sub indicator",
+                "nl": "Dutch mock indicator sub indicator"
+            }),
+           "other_targets": [],
+           "scale": [],
+           "classification": ImmutableDict({
+                "en": "Mock indicator classification",
+                "fr": "French mock indicator classification",
+                "nl": "Dutch mock indicator classification"
+            }),
+           "relevant_target": 1,
+           "goal": "A",
+           "status": ImmutableDict({
+                "en": "Mock indicator status",
+                "fr": "French mock indicator status",
+                "nl": "Dutch mock indicator status"
+            }),
+           "sources": ImmutableDict({
+                "en": "Mock indicator sources",
+                "fr": "French mock indicator sources",
+                "nl": "Dutch mock indicator sources"
+            }),
+           "requirements": ImmutableDict({
+                "en": "Mock indicator requirements",
+                "fr": "French mock indicator requirements",
+                "nl": "Dutch mock indicator requirements"
+            }),
+           "measurer": ImmutableDict({
+                "en": "Mock indicator measurer",
+                "fr": "French mock indicator measurer",
+                "nl": "Dutch mock indicator measurer"
+            }),
+            "conventions": "Mock indicator conventions",
+            "links": [],
+            "ease_of_communication": "Low",
+            "validity": "Low",
+            "sensitivity": "Low",
+            "id": 1,
+    })}
+
     ACTION_MOCK = {
         "1": ImmutableDict({
             "title": ImmutableDict({
@@ -98,6 +157,7 @@ class _BaseTest(unittest.TestCase):
        self._create_action()
        self._create_goal()
        self._create_target()
+       self._create_indicator()
 
     def tearDown(self):
         with self.app.test_request_context():
@@ -105,6 +165,7 @@ class _BaseTest(unittest.TestCase):
             mongo.db.actions.remove()
             mongo.db.mapping.remove()
             mongo.db.goals.remove()
+            mongo.db.indicators.remove()
             mongo.db.targets.remove()
 
     def _create_objective(self):
@@ -121,6 +182,11 @@ class _BaseTest(unittest.TestCase):
         mock_goal = dict(self.GOAL_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.goals.save(mock_goal)
+
+    def _create_indicator(self):
+        mock_indicator = dict(self.INDICATOR_MOCK['1'])
+        with self.app.test_request_context():
+            mongo.db.indicators.save(mock_indicator)
 
     def _create_target(self):
         mock_target = dict(self.TARGET_MOCK['1'])

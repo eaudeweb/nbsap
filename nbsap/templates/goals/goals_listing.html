@@ -34,9 +34,11 @@
         <td>
             {{-goal.id-}}
         </td>
+
         <td>
             <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=en">{{goal.title['en']}}</a>
         </td>
+
         <td style="text-align: center;">
             <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=nl"
                class="btn btn-{% if goal.title['nl'] and goal.description['nl'] %}success

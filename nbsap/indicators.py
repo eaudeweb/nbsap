@@ -49,6 +49,8 @@ def list_indicators():
     aichi_indicators = mongo.db.indicators.find()
 
     return {
+
+            "editable_keys": sugar.get_indicator_editable_fields(),
             "indicators": aichi_indicators
            }
 
