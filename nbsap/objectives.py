@@ -9,8 +9,8 @@ def initialize_app(app):
     app.register_blueprint(objectives)
 
 
-@objectives.route("/homepage_objectives")
-@objectives.route("/homepage_objectives/<int:objective_id>")
+@objectives.route("/homepage/objectives")
+@objectives.route("/homepage/objectives/<int:objective_id>")
 @sugar.templated("/objectives/homepage.html")
 def homepage_objectives(objective_id=1):
 

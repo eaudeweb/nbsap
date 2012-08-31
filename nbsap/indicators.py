@@ -26,7 +26,7 @@ def homepage_indicators():
                                                                  {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
 
-    if len(indicators) == 0:
+    if page not in range(1, 6):
         return flask.abort(404)
 
     goals = mongo.db.goals.find()
