@@ -37,11 +37,11 @@
       <div class="element_field">
         <h2>Description</h2>
         <div class="snippet">
-          {{ objective.body.en|truncate(end='')|safe }}
+          {{ objective.body.en|truncate(end='')|markdown }}
           <a class="more">... show more</a>
         </div>
         <div class="full">
-          {{ objective.body.en|safe }}
+          {{ objective.body.en|markdown }}
           <a class="less">show less</a>
         </div>
         <a class="pull-right" href="#top">Back to top</a>
@@ -52,11 +52,11 @@
           <h2>{{subobj.title.en}}</h2>
 
           <div class="snippet">
-            {{subobj.body.en|truncate(end='')|safe }}
+            {{subobj.body.en|truncate(end='')|markdown }}
             <a class="more">... show more</a>
           </div>
           <div class="full">
-            {{ subobj.body.en|safe }}
+            {{ subobj.body.en|markdown }}
           <a class="less">show less</a>
           </div>
 
