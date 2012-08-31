@@ -79,7 +79,7 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
                 .with_properties(widget="edit_input"),
             CommonList.named('links').with_properties(widget='general').of(
                     flatland.Dict.named('links').with_properties(widget='general').of(
-                        CommonI18nString.named('name')
+                        CommonI18nString.named('url_name')
                             .using(label="Link name"),
                         CommonString.named('url')
                             .including_validators(URLValidator())

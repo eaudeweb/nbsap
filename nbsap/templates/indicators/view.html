@@ -40,9 +40,7 @@
             <td>
                 <ul>
                 {% for related_link in indicator[key] %}
-                    {% set link_label = related_link[0] %}
-                    {% set link_ref = related_link[1] %}
-                    <li><a href="{{related_link.url}}">{{related_link.name.en}}</a></li>
+                    <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
                 {% endfor %}
                 </ul>
             </td>
