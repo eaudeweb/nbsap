@@ -30,8 +30,6 @@ def create_app(instance_path=None, testing_config=None):
     else:
         app.config.from_pyfile("settings.py", silent=True)
 
-    sentry.init_app(app)
-
     goals.initialize_app(app)
     targets.initialize_app(app)
     indicators.initialize_app(app)
@@ -40,6 +38,7 @@ def create_app(instance_path=None, testing_config=None):
 
     mongo.init_app(app)
     babel.init_app(app)
+    sentry.init_app(app)
 
     Markdown(app)
 

@@ -19,7 +19,7 @@
         <a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
     </div>
 </div>
-<p>{{objective.body.en|safe}}</p>
+<p>{{objective.body.en|markdown}}</p>
 
 {% if objective.subobjs %}
 <div class="property_list">
