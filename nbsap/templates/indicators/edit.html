@@ -45,14 +45,73 @@
         </div>
     </div>
 
-    {{mk.widget(schema)}}
+    <div class="row">
+      <div class="span7">
+        {{mk.widget(schema)}}
+      </div>
+      <div class="span5">
 
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
-                class="btn" type="button">Cancel</a>
-    </div>
-</form>
+        <table class="table table-bordered table-striped indicator_view">
+
+          {% set key_targets = ['other_targets'] %}
+          {% set key_links = ['links'] %}
+
+          <tbody>
+            {% for key in order %}
+              {% if key in indicator.keys() %}
+              <tr>
+                <!-- Exceptional case: Other Relevant Aichi Targets-->
+                {% if key in key_targets %}
+                  <td>
+                    {% for value_element in indicator[key] %}
+                      <a href="{{url_for('targets.list_targets')}}#target_{{value_element}}">
+                        {{value_element}}{% if not loop.last %},{% endif %}
+                      </a>
+                    {% endfor %}
+                  </td>
+                <!-- Exceptional case: Related Links -->
+                {% elif key in key_links %}
+                  <td>
+                    <ul>
+                      {% for related_link in indicator[key] %}
+                        <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                <!-- Regular case-->
+                {% else %}
+                  {% if key == 'relevant_target' %}
+                    <td>
+                      <a href="{{url_for('targets.list_targets')}}#target_{{indicator[key]}}">
+                        {{indicator[key]}}
+                      </a>
+                    </td>
+                  {% elif key == 'goal' %}
+                    <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
+                  {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
+                    <td> {{ indicator[key] }} </td>
+                  {% elif key == 'scale' %}
+                    <td> {{ indicator[key]|join(', ') }} </td>
+                  {% else %}
+                    <td> {{ indicator[key].en }} </td>
+                  {% endif %}
+                {% endif %}
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+  </div>
+      </div>
+
+      <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
+                  class="btn" type="button">Cancel</a>
+      </div>
+  </form>
 
 {% endblock content %}
 
@@ -64,9 +123,14 @@
 <script>
 $('#other_targets').attr('data-placeholder', 'Select targets');
 $('#scale').attr('data-placeholder', 'Select scales');
+
 $(function () {
   $("#language").on("change", function() {
     var lang = $(this).val();
+    $('.indicator_view').hide();
+    if(lang != 'en') {
+      $('.indicator_view').show();
+    }
     $('.field-i18nstring').children().hide();
     $('.field-i18nstring').children('#' + lang).show();
   }).change();

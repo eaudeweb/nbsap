@@ -15,6 +15,9 @@ def initialize_app(app):
 def homepage_indicators():
     page = int(flask.request.args.get('page', 1))
 
+    if page not in range(1, 6):
+        return flask.abort(404)
+
     # Use some math to generate the index intervals from the page number.
     get_start_index = lambda (x) : 20 * x - 19
 
@@ -25,9 +28,6 @@ def homepage_indicators():
     indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': start_index}},
                                                                  {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
-
-    if page not in range(1, 6):
-        return flask.abort(404)
 
     goals = mongo.db.goals.find()
     mapping = schema.refdata.mapping
@@ -89,8 +89,22 @@ def edit(indicator_id):
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
-
         selected_language = data['language']
+        other_targets = flask.request.form.getlist('other_targets')
+        scale = flask.request.form.getlist('scale')
+
+        keys = ["status", "classification", "sources", "question", "measurer",
+                "sub_indicator", "head_indicator", "requirements", "name"]
+
+        for key in keys:
+            indicator_schema[key][selected_language].set(data[key+ '_' + selected_language])
+
+        indicator_schema['other_targets'].set(other_targets)
+        indicator_schema['scale'].set(scale)
+
+        for i in range(len(indicator_schema['links'])):
+            indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
+            indicator_schema['links'][i]['url_name'][selected_language].set(data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
             flask.flash("Saved changes.", "success")

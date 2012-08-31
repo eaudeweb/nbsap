@@ -2,8 +2,24 @@
   {{ mk.input(**mk.properties(field, id="field-%s" % field.name)) }}
 {% endmacro %}
 
+{% macro i18n_edit_input(field, number=None) %}
+{% if number is none %}
+<input name='{{field.parent.name + '_' + field.name}}' type='text' value='{{field.value if field.value }}'
+  class='{{field.properties.css_class}}' id='{{field.name}}'/>
+{% else %}
+<input name='{{field.parent.name + '_' + field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
+  class='{{field.properties.css_class}}' id='{{field.name}}'/>
+{% endif %}
+{% endmacro %}
+
+{% macro count_edit_input(field, number) %}
+<input name='{{field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
+       class='{{field.properties.css_class}}' id='{{field.name}}'/>
+{% endmacro %}
+
 {% macro edit_input(field) %}
-<input type='text' value='{{field.value if field.value }}' class='{{field.properties.css_class}}' id='{{field.name}}'/>
+<input name='{{field.name}}' type='text' value='{{field.value if field.value }}'
+       class='{{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro edit_textarea(field) %}
@@ -26,12 +42,8 @@
   {% set valid_values = field.properties.valid_values %}
   {% set value_labels = field.properties.value_labels %}
 
-  {% if field.properties.multiple %}
-    {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class,
+  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class,
                              multiple=field.properties.multiple) }}
-  {% else %}
-    {{ mk.select.open(id=field.name, class=field.properties.css_class) }}
-  {% endif %}
 
   {% for value in field.properties.valid_values %}
     {% set value_label = (value_labels[value] or value) %}
@@ -69,6 +81,10 @@
                         field.value_labels or None %}
 
   {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
+
+  {% if field.optional %}
+    {{ mk.option(value="", contents="--") }}
+  {% endif %}
 
   {% for value in field.valid_values %}
     {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
@@ -149,7 +165,7 @@
   </fieldset>
 {% endmacro %}
 
-{% macro i18nstring(mk, field) %}
+{% macro i18nstring(mk, field, number=None) %}
   <div class="field-i18nstring {{ field.properties.get('css_class') }}">
   {% set field_items = [] %}
   {% for name in mk.children_order(field) %}
@@ -163,7 +179,7 @@
     {% if field_widget == "edit_textarea" %}
       {{ edit_textarea(subfield) }}
     {% else %}
-      {{ edit_input(subfield) }}
+      {{ i18n_edit_input(subfield, number) }}
     {% endif %}
   {% endfor %}
   </div>
@@ -171,12 +187,13 @@
 
 {% macro general(mk, field) %}
   {% for element in field %}
+    {% set number = loop.index0 %}
     {% for key in element.field_schema %}
       {% set subfield = element[key.name] %}
       {% if subfield.properties.widget == 'edit_input' %}
-        {{ edit_input(subfield) }}
+        {{ count_edit_input(subfield, number) }}
       {% else %}
-        {{ mk.widget(subfield) }}
+        {{ i18nstring(mk, subfield, number) }}
       {% endif %}
     {% endfor %}
   {% endfor %}

@@ -2,7 +2,7 @@ import flatland
 from flatland.validation import URLValidator
 
 from common import I18nString, CommonString, CommonEnum, CommonList, ListValue,\
-                   GoalEnumValue, CommonI18nString
+                   GoalEnumValue, CommonI18nString, ListElements
 from .refdata import goals, targets, mapping, indicator_data
 
 _GoalSchemaDefinition = flatland.Dict.of(
@@ -77,7 +77,10 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
             CommonString.named('conventions')
                 .using(label="Other conventions/processes using indicator")
                 .with_properties(widget="edit_input"),
-            CommonList.named('links').with_properties(widget='general').of(
+            CommonList.named('links')
+                    .including_validators(ListElements())
+                    .with_properties(widget='general')
+                    .of(
                     flatland.Dict.named('links').with_properties(widget='general').of(
                         CommonI18nString.named('url_name')
                             .using(label="Link name"),
