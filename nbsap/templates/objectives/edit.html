@@ -21,15 +21,15 @@
 {% endmacro %}
 
 <div class="markdown_less">
-    <p>Markdown less.</p>
 </div>
 
 <div class="markdown_all">
     <div class="markdown_text">
         <h3>Markup Syntax Quick Reference</h3>
 
-        <p style="text-align: center">Font Styles</p>
+        <p>Font Styles</p>
         <table>
+            <thead>
                 <th style="width: 150px; text-align: left;"></th>
                 <th></th>
             </thead>
@@ -50,8 +50,9 @@
            </tbody>
         </table>
 
-        <p style="text-align: center">Lists</p>
+        <p>Lists</p>
         <table>
+            <thead>
                 <th style="width: 150px; text-align: left;"></th>
                 <th></th>
             </thead>
@@ -71,8 +72,9 @@
            </tbody>
         </table>
 
-        <p style="text-align: center">Headings</p>
+        <p>Headings</p>
         <table>
+            <thead>
                 <th style="width: 150px; text-align: left;"></th>
                 <th></th>
             </thead>
@@ -81,19 +83,25 @@
                 <tr>
                     <td>
                         #### Fourth level heading
-                        <br/>
-                        ##### Fifth level heading
                     </td>
                     <td>
                         {{'#### Fourth level heading'|markdown}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ##### Fifth level heading
+                    </td>
+                    <td>
                         {{'##### Fifth level heading'|markdown}}
                     </td>
                 </tr>
-           </tbody>
+            </tbody>
         </table>
 
-        <p style="text-align: center">Links</p>
+        <p>Links</p>
         <table>
+            <thead>
                 <th style="width: 150px; text-align: left;"></th>
                 <th></th>
             </thead>
@@ -110,8 +118,9 @@
            </tbody>
         </table>
 
-        <p style="text-align: left;">
-        More info <a href="http://en.wikipedia.org/wiki/Markdown">here</a>
+        <p>More info
+            <a href="http://en.wikipedia.org/wiki/Markdown">here</a>.
+        </p>
     </div>
 
     <div class="markdown_button">
@@ -254,9 +263,10 @@ $('.markdown_less').on("click", function() {
     $(this).hide();
 });
 
-$('.markdown_all').on("click", function() {
+$('.markdown_button').on("click", function() {
     $('.markdown_less').show();
-    $(this).hide();
+    var mythis = $('.markdown_all');
+    $(mythis).hide();
 }).click();
 
 

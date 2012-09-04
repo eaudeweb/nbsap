@@ -539,25 +539,18 @@ div.element_field {
     cursor: pointer;
     position: fixed;
     left: 0;
-    overflow: hidden;
-    top: 500px;
-    z-index: 1;
-}
-
-.markdown_less p {
-    display: None;
+    top: 280px;
 }
 
 .markdown_all {
     color: black;
-    height: 500px;
-    width: 300px;
-    background-color: red;
+    height: 550px;
+    width: 350px;
+    background-color: #5BC0DE;
+    border: 2px solid #CCC;
     position: fixed;
     left: 0;
-    overflow: hidden;
-    top: 300px;
-    z-index: 1;
+    top: 80px;
 }
 
 .markdown_button {
@@ -566,9 +559,31 @@ div.element_field {
     width: 44px;
     cursor: pointer;
     position: fixed;
-    left: 300px;
-    overflow: hidden;
-    top: 500px;
-    z-index: 1;
+    left: 350px;
+    top: 280px;
+}
 
+.markdown_all h3 {
+    padding-left: 10px;
+    margin: 10px 0px;
+    color: white;
+}
+
+.markdown_all p {
+    text-align: left;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.markdown_all table {
+    margin-left: 10px;
+    font-size: 11px;
+    width: 90%;
+}
+
+.markdown_all td {
+    padding: 4px 6px;
+    border: 1px solid #5BC0DE;
+    background: white;
 }
