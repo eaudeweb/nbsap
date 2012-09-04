@@ -22,6 +22,16 @@
        class='{{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
+{% macro i18n_edit_textarea(field) %}
+<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+       name='{{ field.parent.name + '_' + field.name }}' id='{{field.name}}'
+       {% if not field.optional %}
+          required
+       {% endif %}
+>{{field|safe}}</textarea>
+{% endmacro %}
+
+
 {% macro edit_textarea(field) %}
 <textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
@@ -46,7 +56,7 @@
                              multiple=field.properties.multiple) }}
 
   {% for value in field.properties.valid_values %}
-    {% set value_label = (value_labels[value] or value) %}
+    {% set value_label = (value_labels[value] if value_labels else value) %}
     {% if value|string() in field.value %}
       {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
     {% else %}
@@ -120,9 +130,8 @@
 
       {% if field.properties.widget != 'hidden' %}
       <tr>
-        <div class="control-group {{error_cls}} group-{{field.name}}">
-          <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
-          <td><div class="controls control-{{field.name}}">
+          <td><label class="{{ error_cls }} label-{{field.name}}">{{ field.label }}</label></td>
+          <td><div class="{{ error_cls }}controls control-{{field.name}}">
           {% if field.properties.widget == 'textarea' %}
             {{ textarea(field) }}
           {% elif field.properties.widget == 'edit_input' %}
@@ -132,9 +141,8 @@
           {% endif %}
           {% for message in field.errors %}
             <span class="help-inline">{{ message }}</span>
-            {% endfor %}
+          {% endfor %}
           </div></td>
-        </div>
       </tr>
       {% endif %}
     {% endfor -%}
@@ -177,7 +185,7 @@
 
     {% set field_widget = field.properties.get("field_widget") %}
     {% if field_widget == "edit_textarea" %}
-      {{ edit_textarea(subfield) }}
+      {{ i18n_edit_textarea(subfield) }}
     {% else %}
       {{ i18n_edit_input(subfield, number) }}
     {% endif %}

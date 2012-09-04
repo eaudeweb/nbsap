@@ -93,14 +93,23 @@ def edit(indicator_id):
         other_targets = flask.request.form.getlist('other_targets')
         scale = flask.request.form.getlist('scale')
 
-        keys = ["status", "classification", "sources", "question", "measurer",
+        text_keys = ["status", "classification", "sources", "question", "measurer",
                 "sub_indicator", "head_indicator", "requirements", "name"]
 
-        for key in keys:
-            indicator_schema[key][selected_language].set(data[key+ '_' + selected_language])
+        for key in text_keys:
+            value = data.get(key + '_' + selected_language, '')
+            indicator_schema[key][selected_language].set(value)
+
+        enum_keys = ["goal", "relevant_target", "sensitivity",
+                    "validity", "ease_of_communication"]
+
+        for key in enum_keys:
+            value = data.get(key, '')
+            indicator_schema[key].set(value)
 
         indicator_schema['other_targets'].set(other_targets)
         indicator_schema['scale'].set(scale)
+        indicator_schema['conventions'].set(data['conventions'])
 
         for i in range(len(indicator_schema['links'])):
             indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
@@ -108,6 +117,8 @@ def edit(indicator_id):
 
         if indicator_schema.validate():
             flask.flash("Saved changes.", "success")
+            indicator.update(indicator_schema.flatten())
+            mongo.db.indicators.save(indicator)
 
     return {
                 "language": selected_language,
@@ -115,8 +126,11 @@ def edit(indicator_id):
                 "transit_dict": aichi_indicator_keys,
                 "order": aichi_order['order'],
                 "schema": indicator_schema,
-                "mk": sugar.MarkupGenerator(
+                "mk_edit": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")
+                  ),
+                "mk_view": sugar.MarkupGenerator(
+                    app.jinja_env.get_template("widgets/widgets_view_data.html")
                   )
     }
 
