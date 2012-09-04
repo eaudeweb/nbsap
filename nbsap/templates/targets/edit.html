@@ -18,6 +18,8 @@
   {% endfor %}
 {% endmacro %}
 
+{% from 'bits.html' import markup_help_button -%}
+{{ markup_help_button() }}
 
 <h1>Edit target {{target.id}}</h1>
 <form method="POST">
@@ -127,8 +129,8 @@
 {% block scripts %}
 {{ super() }}
 {% from 'bits.html' import script_src -%}
-{{ script_src('js/jquery.js') }}
 {{ script_src('js/jquery.autogrow-textarea.js') }}
+{{ script_src('js/markdown.js') }}
 
 <script>
 

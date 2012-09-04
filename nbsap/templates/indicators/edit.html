@@ -18,6 +18,9 @@
   {% endfor %}
 {% endmacro %}
 
+{% from 'bits.html' import markup_help_button -%}
+{{ markup_help_button() }}
+
 <h1>Edit indicator {{ indicator.id }}</h1>
 <form method="POST">
     <div class="form-actions">
@@ -60,6 +63,7 @@
 {{ super() }}
 {% from 'bits.html' import script_src -%}
 {{ script_src('js/jquery.chained.mini.js') }}
+{{ script_src('js/markdown.js') }}
 
 <script>
 $('#other_targets').attr('data-placeholder', 'Select targets');
