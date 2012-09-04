@@ -1,0 +1,148 @@
+{% macro input(mk, field) %}
+<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro i18n_edit_input(field, number=None) %}
+<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro count_edit_input(field, number) %}
+<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro edit_input(field) %}
+<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro i18n_edit_textarea(field) %}
+<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+  id='{{field.name}}' disabled='disabled'
+>{{field|safe}}</textarea>
+{% endmacro %}
+
+{% macro edit_textarea(field) %}
+<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+       name={{ field.name }}
+       {% if not field.optional %}
+          required
+       {% endif %}
+>{{field|safe}}</textarea>
+{% endmacro %}
+
+{% macro textarea(mk, field) %}
+ {%- do mk.begin(auto_domid=true, auto_for=true) %}
+    {{ mk.textarea(field, class=field.properties.css_class) }}
+  {% do mk.end() -%}
+{% endmacro %}
+
+{%- macro list(mk, field) %}
+  {% set value_labels = field.properties.value_labels %}
+  {% for value in field.value %}
+    {{value_labels[value|int] if value_labels else value}}
+      {% if not loop.last%},{% endif %}
+  {% endfor %}
+{% endmacro -%}
+
+{% macro obj_select(mk, field) %}
+  {% set value_groups = field.properties.groups %}
+
+  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
+
+  {% for i in value_groups %}
+    <optgroup label="Objective {{i}}">
+      {% for j in value_groups[i] %}
+      {% set value = value_groups[i][j] %}
+      <option value={{value}}>Subobjective {{value}}</option>
+      {% endfor %}
+    </optgroup>
+  {% endfor %}
+
+  {{ mk.select.close() }}
+{% endmacro %}
+
+
+{% macro select(mk, field) %}
+  {% set valid_values = field.valid_values %}
+  {% set value_labels = field.properties.value_labels or
+                        field.value_labels or None %}
+
+  {% set value_label = (value_labels[field.value] or field.value) %}
+  {{ value_label }}
+{% endmacro %}
+
+
+{% macro tabel(mk, schema) %}
+  <table class="table table-bordered table-striped">
+    <tbody>
+    {%- for name in mk.children_order(schema) %}
+      {% set field = schema[name] %}
+      {% set error_cls = 'error' if field.errors else '' %}
+
+      {% if field.properties.widget != 'hidden' %}
+      <tr>
+          <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
+          <td>
+          {% if field.properties.widget == 'textarea' %}
+            {{ textarea(field) }}
+          {% elif field.properties.widget == 'edit_input' %}
+            {{ edit_input(field) }}
+          {% else %}
+            {{ mk.widget(field) }}
+          {% endif %}
+          </td>
+      </tr>
+      {% endif %}
+    {% endfor -%}
+    </tbody>
+  </table>
+{% endmacro %}
+
+
+{% macro form(mk, schema) %}
+  {%- for name in mk.children_order(schema) %}
+    {% set field = schema[name] %}
+    {% set error_cls = 'error' if field.errors else '' %}
+
+    {% if field.properties.widget != 'hidden' %}
+      <label class="control-label label-{{field.name}}">{{ field.label }}</label>
+        {{ mk.widget(field) }}
+    {% endif %}
+  {% endfor -%}
+{% endmacro %}
+
+{% macro i18nstring(mk, field, number=None) %}
+  <div class="field-i18nstring {{ field.properties.get('css_class') }}">
+  {% set field_items = [] %}
+  {% for name in mk.children_order(field) %}
+      {% do field_items.append((name, field[name])) %}
+  {% endfor %}
+  {% for subfield_name, subfield in field_items %}
+    {% set properties = mk.properties(subfield) %}
+    <label class="{{subfield.name}}">{{ subfield.label }}</label>
+
+    {% set field_widget = field.properties.get("field_widget") %}
+    {% if field_widget == "edit_textarea" %}
+      {{ i18n_edit_textarea(subfield) }}
+    {% else %}
+      {{ i18n_edit_input(subfield, number) }}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro general(mk, field) %}
+  {% for element in field %}
+    {% set number = loop.index0 %}
+    {% for key in element.field_schema %}
+      {% set subfield = element[key.name] %}
+      {% if subfield.properties.widget == 'edit_input' %}
+        {{ count_edit_input(subfield, number) }}
+      {% else %}
+        {{ i18nstring(mk, subfield, number) }}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro hidden(mk, schema) %}
+{% endmacro %}
