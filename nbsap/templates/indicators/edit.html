@@ -46,10 +46,10 @@
     </div>
 
     <div class="row">
-      <div class="indicator_edit span6">
+      <div class="span5 indicator_edit">
         {{mk_edit.widget(schema)}}
       </div>
-      <div class="indicator_view span6">
+      <div class="offset1 span5 indicator_view">
         {{mk_view.widget(schema)}}
       </div>
       </div>
@@ -78,12 +78,16 @@ $(function () {
 
   $("#language").on("change", function() {
     var lang = $(this).val();
+
     $('.indicator_view').hide();
+
     if(lang != 'en') {
       $('.indicator_view').show();
     }
+
     $('.indicator_view').find('.field-i18nstring').children().hide();
     $('.indicator_view').find('.field-i18nstring').children('#en').show();
+
     $('.indicator_edit').find('.field-i18nstring').children().hide();
     $('.indicator_edit').find('.field-i18nstring').children('#' + lang).show();
   }).change();

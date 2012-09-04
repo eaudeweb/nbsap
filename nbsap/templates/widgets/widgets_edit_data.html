@@ -5,25 +5,25 @@
 {% macro i18n_edit_input(field, number=None) %}
 {% if number is none %}
 <input name='{{field.parent.name + '_' + field.name}}' type='text' value='{{field.value if field.value }}'
-  class='{{field.properties.css_class}}' id='{{field.name}}'/>
+  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
 {% else %}
 <input name='{{field.parent.name + '_' + field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-  class='{{field.properties.css_class}}' id='{{field.name}}'/>
+  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endif %}
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
 <input name='{{field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-       class='{{field.properties.css_class}}' id='{{field.name}}'/>
+       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro edit_input(field) %}
 <input name='{{field.name}}' type='text' value='{{field.value if field.value }}'
-       class='{{field.properties.css_class}}' id='{{field.name}}'/>
+       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name='{{ field.parent.name + '_' + field.name }}' id='{{field.name}}'
        {% if not field.optional %}
           required
@@ -33,7 +33,7 @@
 
 
 {% macro edit_textarea(field) %}
-<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
        {% if not field.optional %}
           required
@@ -121,7 +121,6 @@
 
 
 {% macro tabel(mk, schema) %}
-  <fieldset>
   <table class="table table-bordered table-striped">
     <tbody>
     {%- for name in mk.children_order(schema) %}
@@ -148,7 +147,6 @@
     {% endfor -%}
     </tbody>
   </table>
-  </fieldset>
 {% endmacro %}
 
 
@@ -193,15 +191,20 @@
   </div>
 {% endmacro %}
 
-{% macro general(mk, field) %}
+{% macro general_pairs(mk, field) %}
   {% for element in field %}
     {% set number = loop.index0 %}
     {% for key in element.field_schema %}
       {% set subfield = element[key.name] %}
+      <label>{{subfield.label}}</label>
       {% if subfield.properties.widget == 'edit_input' %}
         {{ count_edit_input(subfield, number) }}
       {% else %}
         {{ i18nstring(mk, subfield, number) }}
+      {% endif %}
+      {% if loop.index % 2 == 0 %}
+        <br/>
+        <br/>
       {% endif %}
     {% endfor %}
   {% endfor %}

@@ -352,14 +352,14 @@ dl.phrases dd {
 .highlight td {
     background: #ffff99!important;
 }
-
+/*
 .field-i18nstring textarea,
 .field-i18nstring input,
 .i18nstring-city input {
   margin-bottom: 10px;
   width: 400px;
 }
-
+*/
 .i18string-city input {
   width: 210px;
 }

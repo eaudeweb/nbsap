@@ -82,7 +82,7 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
                 .using(label="Other conventions/processes using indicator")
                 .with_properties(widget="edit_input"),
             CommonList.named('links')
-                    .with_properties(widget='general')
+                    .with_properties(widget='general_pairs')
                     .of(
                     flatland.Dict.named('links').with_properties(widget='general').of(
                         CommonI18nString.named('url_name')

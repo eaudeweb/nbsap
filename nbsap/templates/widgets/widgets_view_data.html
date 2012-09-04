@@ -1,27 +1,27 @@
 {% macro input(mk, field) %}
-<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_input(field, number=None) %}
-<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
-<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro edit_input(field) %}
-<span class="uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
   id='{{field.name}}' disabled='disabled'
 >{{field|safe}}</textarea>
 {% endmacro %}
 
 {% macro edit_textarea(field) %}
-<textarea class="input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
        {% if not field.optional %}
           required
@@ -66,7 +66,7 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {% set value_label = (value_labels[field.value] or field.value) %}
+  {% set value_label = (value_labels[field.value|int] or field.value) %}
   {{ value_label }}
 {% endmacro %}
 
@@ -130,15 +130,20 @@
   </div>
 {% endmacro %}
 
-{% macro general(mk, field) %}
+{% macro general_pairs(mk, field) %}
   {% for element in field %}
     {% set number = loop.index0 %}
     {% for key in element.field_schema %}
       {% set subfield = element[key.name] %}
+      <label>{{subfield.label}}</label>
       {% if subfield.properties.widget == 'edit_input' %}
         {{ count_edit_input(subfield, number) }}
       {% else %}
         {{ i18nstring(mk, subfield, number) }}
+      {% endif %}
+      {% if loop.index % 2 == 0 %}
+        <br/>
+        <br/>
       {% endif %}
     {% endfor %}
   {% endfor %}
