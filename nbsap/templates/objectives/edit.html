@@ -20,112 +20,8 @@
   {% endfor %}
 {% endmacro %}
 
-<div class="markdown_less">
-</div>
-
-<div class="markdown_all">
-    <div class="markdown_text">
-        <h3>Markup Syntax Quick Reference</h3>
-
-        <p>Font Styles</p>
-        <table>
-            <thead>
-                <th style="width: 150px; text-align: left;"></th>
-                <th></th>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>**Strong**</td>
-                    <td>{{'**Strong**'|markdown}}</td>
-                </tr>
-                <tr>
-                    <td>_Italic_</td>
-                    <td>{{'_Italic_'|markdown}}</td>
-                </tr>
-                <tr>
-                    <td>`Inline Code`</td>
-                    <td>{{'`Inline Code`'|markdown}}</td>
-                </tr>
-           </tbody>
-        </table>
-
-        <p>Lists</p>
-        <table>
-            <thead>
-                <th style="width: 150px; text-align: left;"></th>
-                <th></th>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>
-                        * Item1
-                        <br/>
-                        * Item2
-                    </td>
-                    <td>
-                        {{'* Item1'|markdown}}
-                        {{'* Item2'|markdown}}
-                    </td>
-                </tr>
-           </tbody>
-        </table>
-
-        <p>Headings</p>
-        <table>
-            <thead>
-                <th style="width: 150px; text-align: left;"></th>
-                <th></th>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>
-                        #### Fourth level heading
-                    </td>
-                    <td>
-                        {{'#### Fourth level heading'|markdown}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        ##### Fifth level heading
-                    </td>
-                    <td>
-                        {{'##### Fifth level heading'|markdown}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>Links</p>
-        <table>
-            <thead>
-                <th style="width: 150px; text-align: left;"></th>
-                <th></th>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>
-                        [Foo](http://foo.bar)
-                    </td>
-                    <td>
-                        {{'[Foo](http://foo.bar)'|markdown}}
-                    </td>
-                </tr>
-           </tbody>
-        </table>
-
-        <p>More info
-            <a href="http://en.wikipedia.org/wiki/Markdown">here</a>.
-        </p>
-    </div>
-
-    <div class="markdown_button">
-    </div>
-</div>
+{% from 'bits.html' import markup_help_button -%}
+{{ markup_help_button() }}
 
 <h1>Edit objective {{objective.id}}</h1>
 <form method="POST">
@@ -241,8 +137,8 @@
 {% block scripts %}
 {{ super() }}
 {% from 'bits.html' import script_src -%}
-{{ script_src('js/jquery.js') }}
 {{ script_src('js/jquery.autogrow-textarea.js') }}
+{{ script_src('js/markdown.js') }}
 
 <script>
 
@@ -258,6 +154,7 @@ $("#language").on("change", function() {
     $(".language-" + lang).show();
 }).change();
 
+/*
 $('.markdown_less').on("click", function() {
     $('.markdown_all').show();
     $(this).hide();
@@ -268,7 +165,7 @@ $('.markdown_button').on("click", function() {
     var mythis = $('.markdown_all');
     $(mythis).hide();
 }).click();
-
+*/
 
 </script>
 {% endblock %}

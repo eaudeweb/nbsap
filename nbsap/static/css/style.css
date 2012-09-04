@@ -551,6 +551,7 @@ div.element_field {
     position: fixed;
     left: 0;
     top: 80px;
+    display: none;
 }
 
 .markdown_button {
