@@ -27,8 +27,91 @@
 <div class="markdown_all">
     <div class="markdown_text">
         <h3>Markup Syntax Quick Reference</h3>
-        <p>This is text
-        </p>
+
+        <p style="text-align: center">Font Styles</p>
+        <table>
+                <th style="width: 150px; text-align: left;"></th>
+                <th></th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>**Strong**</td>
+                    <td>{{'**Strong**'|markdown}}</td>
+                </tr>
+                <tr>
+                    <td>_Italic_</td>
+                    <td>{{'_Italic_'|markdown}}</td>
+                </tr>
+                <tr>
+                    <td>`Inline Code`</td>
+                    <td>{{'`Inline Code`'|markdown}}</td>
+                </tr>
+           </tbody>
+        </table>
+
+        <p style="text-align: center">Lists</p>
+        <table>
+                <th style="width: 150px; text-align: left;"></th>
+                <th></th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        * Item1
+                        <br/>
+                        * Item2
+                    </td>
+                    <td>
+                        {{'* Item1'|markdown}}
+                        {{'* Item2'|markdown}}
+                    </td>
+                </tr>
+           </tbody>
+        </table>
+
+        <p style="text-align: center">Headings</p>
+        <table>
+                <th style="width: 150px; text-align: left;"></th>
+                <th></th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        #### Fourth level heading
+                        <br/>
+                        ##### Fifth level heading
+                    </td>
+                    <td>
+                        {{'#### Fourth level heading'|markdown}}
+                        {{'##### Fifth level heading'|markdown}}
+                    </td>
+                </tr>
+           </tbody>
+        </table>
+
+        <p style="text-align: center">Links</p>
+        <table>
+                <th style="width: 150px; text-align: left;"></th>
+                <th></th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        [Foo](http://foo.bar)
+                    </td>
+                    <td>
+                        {{'[Foo](http://foo.bar)'|markdown}}
+                    </td>
+                </tr>
+           </tbody>
+        </table>
+
+        <p style="text-align: left;">
+        More info <a href="http://en.wikipedia.org/wiki/Markdown">here</a>
     </div>
 
     <div class="markdown_button">
