@@ -20,6 +20,21 @@
   {% endfor %}
 {% endmacro %}
 
+<div class="markdown_less">
+    <p>Markdown less.</p>
+</div>
+
+<div class="markdown_all">
+    <div class="markdown_text">
+        <h3>Markup Syntax Quick Reference</h3>
+        <p>This is text
+        </p>
+    </div>
+
+    <div class="markdown_button">
+    </div>
+</div>
+
 <h1>Edit objective {{objective.id}}</h1>
 <form method="POST">
     <div class="form-actions">
@@ -150,6 +165,17 @@ $("#language").on("change", function() {
     $(".language-container").hide();
     $(".language-" + lang).show();
 }).change();
+
+$('.markdown_less').on("click", function() {
+    $('.markdown_all').show();
+    $(this).hide();
+});
+
+$('.markdown_all').on("click", function() {
+    $('.markdown_less').show();
+    $(this).hide();
+}).click();
+
 
 </script>
 {% endblock %}

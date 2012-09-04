@@ -532,3 +532,43 @@ div.element_field {
   border-bottom: 0;
 }
 
+.markdown_less {
+    background: url('../MarkupHelp_button.png') no-repeat;
+    height: 102px;
+    width: 44px;
+    cursor: pointer;
+    position: fixed;
+    left: 0;
+    overflow: hidden;
+    top: 500px;
+    z-index: 1;
+}
+
+.markdown_less p {
+    display: None;
+}
+
+.markdown_all {
+    color: black;
+    height: 500px;
+    width: 300px;
+    background-color: red;
+    position: fixed;
+    left: 0;
+    overflow: hidden;
+    top: 300px;
+    z-index: 1;
+}
+
+.markdown_button {
+    background: url('../MarkupHelp_button.png') no-repeat;
+    height: 102px;
+    width: 44px;
+    cursor: pointer;
+    position: fixed;
+    left: 300px;
+    overflow: hidden;
+    top: 500px;
+    z-index: 1;
+
+}
