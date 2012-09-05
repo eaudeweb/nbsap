@@ -131,20 +131,11 @@
 {% from 'bits.html' import script_src -%}
 {{ script_src('js/jquery.autogrow-textarea.js') }}
 {{ script_src('js/markdown.js') }}
+{{ script_src('js/language.js') }}
 
 <script>
 
 $('textarea').autogrow();
-
-$("#language").on("change", function() {
-    var lang = $(this).val();
-    $('.original-hideout').show();
-    if (lang == 'en') {
-        $('.original-hideout').hide();
-    }
-    $(".language-container").hide();
-    $(".language-" + lang).show();
-}).change();
 
 </script>
 {% endblock %}
