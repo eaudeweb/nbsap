@@ -533,7 +533,7 @@ div.element_field {
 }
 
 .markdown_less {
-    background: url('../MarkupHelp_button.png') no-repeat;
+    background: url('../MarkdownHelp_button.png') no-repeat;
     height: 102px;
     width: 44px;
     cursor: pointer;
@@ -555,7 +555,7 @@ div.element_field {
 }
 
 .markdown_button {
-    background: url('../MarkupHelp_button.png') no-repeat;
+    background: url('../MarkdownHelp_button.png') no-repeat;
     height: 102px;
     width: 44px;
     cursor: pointer;
