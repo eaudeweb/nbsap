@@ -34,7 +34,7 @@ def indicator_link_list_to_dict():
             indicator['links'] = []
 
             for link in old_list:
-                link = { "name": link[0],
+                link = { "url_name": link[0],
                          "url": link[1]
                        }
                 indicator['links'].append(link)

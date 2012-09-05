@@ -10,6 +10,12 @@
       ]) }}
 </ul>
 
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a class="btn btn-primary edit" href="{{url_for('indicators.edit',indicator_id=indicator.id)}}">Edit</a>
+  </div>
+</div>
+
 <table class="table table-bordered table-striped indicator_view">
 
   {% set key_targets = ['other_targets'] %}
@@ -40,9 +46,7 @@
             <td>
                 <ul>
                 {% for related_link in indicator[key] %}
-                    {% set link_label = related_link[0] %}
-                    {% set link_ref = related_link[1] %}
-                    <li><a href="{{related_link.url}}">{{related_link.name.en}}</a></li>
+                    <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
                 {% endfor %}
                 </ul>
             </td>

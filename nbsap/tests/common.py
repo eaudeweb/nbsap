@@ -75,7 +75,11 @@ class _BaseTest(unittest.TestCase):
                 "nl": "Dutch mock indicator measurer"
             }),
             "conventions": "Mock indicator conventions",
-            "links": [],
+            "links": [{ 'url': 'Mock link',
+                        'url_name': {   'en': 'Mock link name',
+                                        'fr': 'French mock link name',
+                                        'nl': 'Dutch mock link name'},
+                   }],
             "ease_of_communication": "Low",
             "validity": "Low",
             "sensitivity": "Low",

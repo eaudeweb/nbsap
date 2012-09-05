@@ -1,36 +1,32 @@
 {% macro input(mk, field) %}
-  {{ mk.input(**mk.properties(field, id="field-%s" % field.name)) }}
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_input(field, number=None) %}
-{% if number is none %}
-<input name='{{field.parent.name + '_' + field.name}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
-{% else %}
-<input name='{{field.parent.name + '_' + field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
-{% endif %}
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro uneditable_i18n_edit_input(field, number=None) %}
+<textarea class="span4" id='{{field.name}}' disabled='disabled'>
+  {{field.value if field.value}}
+</textarea>
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
-<input name='{{field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+<span class="span4" id='{{field.name}}'>
+  <a href="{{field.value if field.value}}">
+    {{field.value if field.value}}
+  </a>
+</span>
 {% endmacro %}
 
 {% macro edit_input(field) %}
-<input name='{{field.name}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
-       name='{{ field.parent.name + '_' + field.name }}' id='{{field.name}}'
-       {% if not field.optional %}
-          required
-       {% endif %}
->{{field|safe}}</textarea>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
-
 
 {% macro edit_textarea(field) %}
 <textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
@@ -47,25 +43,13 @@
   {% do mk.end() -%}
 {% endmacro %}
 
-
-{% macro list(mk, field) %}
-  {% set valid_values = field.properties.valid_values %}
+{%- macro list(mk, field) %}
   {% set value_labels = field.properties.value_labels %}
-
-  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class,
-                             multiple=field.properties.multiple) }}
-
-  {% for value in field.properties.valid_values %}
-    {% set value_label = (value_labels[value] if value_labels else value) %}
-    {% if value|string() in field.value %}
-      {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
-    {% else %}
-      {{ mk.option(value=value|string(), contents=value_label) }}
-    {% endif %}
+  {% for value in field.value %}
+    {{value_labels[value|int] if value_labels else value}}
+      {% if not loop.last%},{% endif %}
   {% endfor %}
-
-  {{ mk.select.close() }}
-{% endmacro %}
+{% endmacro -%}
 
 {% macro obj_select(mk, field) %}
   {% set value_groups = field.properties.groups %}
@@ -90,33 +74,8 @@
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
 
-  {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
-
-  {% if field.optional %}
-    {{ mk.option(value="", contents="--") }}
-  {% endif %}
-
-  {% for value in field.valid_values %}
-    {% set value_label = (value_labels[value|int(default=value)] if value_labels else value) %}
-    {% set selected = 'selected' if value == field.value else 'unselected' %}
-    {% if field.properties.mapping %}
-      {% if value == field.value %}
-        {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
-                     contents=value_label, selected='selected') }}
-      {% else %}
-        {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
-                     contents=value_label) }}
-      {% endif %}
-    {% else %}
-      {% if value == field.value %}
-        {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
-      {% else %}
-        {{ mk.option(value=value|string(), contents=value_label) }}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-
-  {{ mk.select.close() }}
+  {% set value_label = (value_labels[field.value|int] or field.value) %}
+  {{ value_label }}
 {% endmacro %}
 
 
@@ -129,8 +88,8 @@
 
       {% if field.properties.widget != 'hidden' %}
       <tr>
-          <td><label class="{{ error_cls }} label-{{field.name}}">{{ field.label }}</label></td>
-          <td><div class="{{ error_cls }}controls control-{{field.name}}">
+          <td><label class="control-label label-{{field.name}}">{{ field.label }}</label></td>
+          <td>
           {% if field.properties.widget == 'textarea' %}
             {{ textarea(field) }}
           {% elif field.properties.widget == 'edit_input' %}
@@ -138,10 +97,7 @@
           {% else %}
             {{ mk.widget(field) }}
           {% endif %}
-          {% for message in field.errors %}
-            <span class="help-inline">{{ message }}</span>
-          {% endfor %}
-          </div></td>
+          </td>
       </tr>
       {% endif %}
     {% endfor -%}
@@ -151,25 +107,37 @@
 
 
 {% macro form(mk, schema) %}
-  <fieldset>
   {%- for name in mk.children_order(schema) %}
     {% set field = schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
     {% if field.properties.widget != 'hidden' %}
-    <div class="control-group {{error_cls}} group-{{field.name}}">
       <label class="control-label label-{{field.name}}">{{ field.label }}</label>
-      <div class="controls control-{{field.name}}">
         {{ mk.widget(field) }}
-        {% for message in field.errors %}
-          <span class="help-inline">{{ message }}</span>
-        {% endfor %}
-      </div>
-    </div>
     {% endif %}
   {% endfor -%}
-  </fieldset>
 {% endmacro %}
+
+{% macro uneditable_i18nstring(mk, field, number=None) %}
+  <div class="field-i18nstring {{ field.properties.get('css_class') }}">
+  {% set field_items = [] %}
+  {% for name in mk.children_order(field) %}
+      {% do field_items.append((name, field[name])) %}
+  {% endfor %}
+  {% for subfield_name, subfield in field_items %}
+    {% set properties = mk.properties(subfield) %}
+    <label class="{{subfield.name}}">{{ subfield.label }}</label>
+
+    {% set field_widget = field.properties.get("field_widget") %}
+    {% if field_widget == "edit_textarea" %}
+      {{ i18n_edit_textarea(subfield) }}
+    {% else %}
+      {{ uneditable_i18n_edit_input(subfield, number) }}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endmacro %}
+
 
 {% macro i18nstring(mk, field, number=None) %}
   <div class="field-i18nstring {{ field.properties.get('css_class') }}">
@@ -200,7 +168,7 @@
       {% if subfield.properties.widget == 'edit_input' %}
         {{ count_edit_input(subfield, number) }}
       {% else %}
-        {{ i18nstring(mk, subfield, number) }}
+        {{ uneditable_i18nstring(mk, subfield, number) }}
       {% endif %}
       {% if loop.index % 2 == 0 %}
         <br/>

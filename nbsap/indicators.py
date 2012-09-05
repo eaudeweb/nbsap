@@ -15,6 +15,9 @@ def initialize_app(app):
 def homepage_indicators():
     page = int(flask.request.args.get('page', 1))
 
+    if page not in range(1, 6):
+        return flask.abort(404)
+
     # Use some math to generate the index intervals from the page number.
     get_start_index = lambda (x) : 20 * x - 19
 
@@ -25,9 +28,6 @@ def homepage_indicators():
     indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': start_index}},
                                                                  {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
-
-    if page not in range(1, 6):
-        return flask.abort(404)
 
     goals = mongo.db.goals.find()
     mapping = schema.refdata.mapping
@@ -74,8 +74,6 @@ def edit(indicator_id):
     app = flask.current_app
 
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
-    aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
-    aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
     indicator_schema = schema.Indicator(indicator)
     indicator_schema['relevant_target'].valid_values = map(str, indicator_schema['relevant_target'].valid_values)
@@ -89,20 +87,46 @@ def edit(indicator_id):
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
-
         selected_language = data['language']
+        other_targets = flask.request.form.getlist('other_targets')
+        scale = flask.request.form.getlist('scale')
+
+        text_keys = ["status", "classification", "sources", "question", "measurer",
+                "sub_indicator", "head_indicator", "requirements", "name"]
+
+        for key in text_keys:
+            value = data.get(key + '_' + selected_language, '')
+            indicator_schema[key][selected_language].set(value)
+
+        enum_keys = ["goal", "relevant_target", "sensitivity",
+                    "validity", "ease_of_communication"]
+
+        for key in enum_keys:
+            value = data.get(key, '')
+            indicator_schema[key].set(value)
+
+        indicator_schema['other_targets'].set(other_targets)
+        indicator_schema['scale'].set(scale)
+        indicator_schema['conventions'].set(data['conventions'])
+
+        for i in range(len(indicator_schema['links'])):
+            indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
+            indicator_schema['links'][i]['url_name'][selected_language].set(data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
             flask.flash("Saved changes.", "success")
+            indicator.update(indicator_schema.flatten())
+            mongo.db.indicators.save(indicator)
 
     return {
                 "language": selected_language,
                 "indicator": indicator,
-                "transit_dict": aichi_indicator_keys,
-                "order": aichi_order['order'],
                 "schema": indicator_schema,
-                "mk": sugar.MarkupGenerator(
+                "mk_edit": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")
+                  ),
+                "mk_view": sugar.MarkupGenerator(
+                    app.jinja_env.get_template("widgets/widgets_view_data.html")
                   )
     }
 

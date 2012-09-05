@@ -45,6 +45,18 @@ class EnumValue(Validator):
         return True
 
 
+class ListElements(Validator):
+
+    def validate(self, element, state):
+        if not (element.optional or element.value):
+            self.fail = flatland.validation.base.N_('Select at least one value')
+            return self.note_error(element, state, 'fail')
+
+        for e in element.children:
+            e.validate()
+
+        return True
+
 class ListValue(Validator):
 
     fail = None
