@@ -679,14 +679,13 @@ footer p {
 }
 
 .nav.nav-tabs.nav-stacked {
-	padding: 19px 0px;
+	padding: 19px 0px 0px;
 	margin-bottom: 20px;
-	background-color: whiteSmoke;
-	border: 1px solid #EEE;
-	border: 1px solid rgba(0, 0, 0, 0.05);
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	background: -webkit-linear-gradient(left, white, #EEE);
+	border-right: 1px solid #DDD;
 }
 
 .nav-tabs.nav-stacked > li > a {
@@ -694,11 +693,13 @@ footer p {
 	-moz-border-radius: 0;
 	border-radius: 0;
 	border: 0px;
-	/*border-top: 1px solid #ddd;*/
 	border-bottom: 1px solid #ddd;
 }
 
-/*.local-navigation .nav-tabs.nav-stacked > li > a*/
+.nav-tabs.nav-stacked > li > a:hover {
+	border-top: 1px solid #ddd;
+}
+
 .local-navigation .nav-tabs > li > a {
 	border-top: 1px solid #ddd;
 }
@@ -709,8 +710,8 @@ footer p {
 	border-top: 1px solid #ddd;
 }
 
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-	border: 0px; /* overrides  */
+.tabs-left > .nav-tabs > li > a, .tabs-right > .nav-tabs > li > a {
+	margin-bottom: 0px; /* overrides bootstrap.css 3519 */
 }
 
 
@@ -720,4 +721,10 @@ footer p {
 }
 
 
+/* Objectives page */
+.full {
+	border: 1px solid #DDD;
+	padding: 5px;
+	margin-top: 5px;
+}
 

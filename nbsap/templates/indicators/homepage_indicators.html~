@@ -7,7 +7,7 @@
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
-      <label class="nav-header">Goals</label>
+      <label>Goals</label>
       {% for goal in goals %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
@@ -16,7 +16,7 @@
         </li>
       {% endfor %}
 
-      <label class="nav-header">Indicators</label>
+      <label>Indicators</label>
       {% if indicators|length() != 0 %}
       <li class={{'active' if indicators[0].id == 1}}>
         <a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a>
