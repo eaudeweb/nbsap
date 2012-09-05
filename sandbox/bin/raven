@@ -1,0 +1,9 @@
+#!/home/sonia/work/nbsap/sandbox/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'raven==2.0.5','console_scripts','raven'
+__requires__ = 'raven==2.0.5'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('raven==2.0.5', 'console_scripts', 'raven')()
+)

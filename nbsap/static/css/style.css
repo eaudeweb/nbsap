@@ -588,3 +588,100 @@ div.element_field {
     border: 1px solid #5BC0DE;
     background: white;
 }
+
+
+/* SONIA's styles */
+
+/* home */
+body {
+	padding-bottom: 0px;
+}
+
+.navbar-inner {
+	background: #eee; /* fallback color if gradients are not supported */
+	background: linear-gradient(top, white, #EEE);
+	background: -webkit-linear-gradient(top, white, #EEE);
+	background-image: -moz-linear-gradient(top, white, #EEE);
+	background-image: -o-linear-gradient(top, white, #EEE);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#EEE'); /* For Internet Explorer 5.5 - 7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#EEE)"; /* For Internet Explorer 8 */
+}
+
+.navbar .brand {
+	color: #014E46;
+	background: url('../CHM_logo_45x70px.png') no-repeat;
+	height: 45px;
+    padding: 25px 3px 3px 50px;
+	margin-top: 5px;
+}
+
+footer {
+	background: #014E46;
+}
+
+footer p {
+	color: #fff;
+	margin-right: 10px;
+}
+
+.container.content {
+	margin-top: 25px;
+}
+
+
+/* AICHI page */
+.nav-tabs.nav-stacked > li > a {
+	background: #08C;
+	color: #fff;
+}
+
+.nav-tabs.nav-stacked > li.active > a,
+.nav-tabs.nav-stacked > li > a:hover {
+	background: #fff;
+	color: #08C;
+	border-right: 1px solid #DDD;
+}
+
+.nav-tabs.nav-stacked label {
+	margin-top: 25px;
+	color: #444;
+	font-size: 14px;
+}
+
+.tabs-left > .nav-tabs {
+	border-right: 0px;
+}
+
+.nav-tabs.nav-stacked > li > a {
+	border: 1px solid #08C;
+}
+
+
+.homepage_view label {
+	color: #777;
+}
+
+.homepage_view ul {
+	list-style-type: circle;
+}
+
+.well ul {
+	list-style-type: square;
+}
+
+.tabs-left > .nav-tabs {
+	margin-right: 25px;
+}
+
+div.element_field {
+	padding-top: 75px; /* otherwise the header hides the h2 tag */
+}
+
+
+/* Indicators page */
+.indicator_field {
+	color: #777;
+}
+
+
+

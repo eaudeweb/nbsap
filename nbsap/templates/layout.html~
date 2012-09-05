@@ -1,0 +1,108 @@
+{% from 'bits.html' import css_link, script_src, flash_messages -%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NBSAP</title>
+    {% block head %}
+    {{ css_link('bootstrap/css/bootstrap.css') }}
+    {{ css_link('bootstrap/css/bootstrap-responsive.css') }}
+
+    {{ css_link('css/bootstrap-ui/jquery-ui-1.8.16.custom.css') }}
+    {{ css_link('css/bootstrap-ui/jquery.ui.1.8.16.ie.css') }}
+    {{ css_link("css/uniform.default.css") }}
+
+    {{ css_link('css/chosen.css') }}
+    {{ css_link('css/style.css') }}
+
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {#{{ css_link("css/print.css", "print") }}#}
+
+
+    <style type="text/css">
+        .inplace_field{
+            width: 400px;
+        }
+        .subheader textarea{
+            resize: vertical;
+        }
+    </style>
+    {% endblock %}
+
+    {% block extra_head %}
+    {# To be overwritten by htmls that inherit it#}
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block layout_header %}
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="{{ url_for('goals.home') }}">
+            NBSAP
+          </a>
+            {% if user %}
+            <ul class="nav pull-right">
+              <li>
+                <a href="#"><i class="icon-question-sign icon-white"></i> Help</a>
+              </li>
+              <li>
+                  <a href="">Logout</a>
+              </li>
+              <li>
+                  <a href="">Change password</a>
+              </li>
+            </ul>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+    <div class="container content">
+
+      {{ flash_messages() }}
+
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+
+      {% block layout_footer %}
+      <footer>
+        <p class="pull-right">NBSAP tool - demo</p>
+      </footer>
+      {% endblock %}
+
+    </div>
+
+    {% block head_scripts %}
+    {{ script_src("js/jquery-1.7.1.min.js") }}
+    {{ script_src("js/jquery-ui-1.8.18.custom.min.js") }}
+    {{ script_src("js/chosen.jquery.js") }}
+    {{ script_src("js/jquery.utils.js") }}
+    {{ script_src("js/jquery.uniform.js") }}
+    {{ script_src("js/main.js") }}
+    {{ script_src("js/jquery.editinplace.js") }}
+    {{ script_src("bootstrap/js/bootstrap-collapse.js") }}
+    <!--[if lt IE 9]>
+      {{ script_src("js/ie.js") }}
+    <![endif]-->
+
+    <script>var app = {};</script>
+    <script>
+      $(function () {
+         $(".chzn-select").chosen();
+         $("input[type=file]").uniform();
+      });
+    </script>
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+
+  </body>
+</html>

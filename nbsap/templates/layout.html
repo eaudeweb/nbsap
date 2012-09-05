@@ -63,7 +63,7 @@
     </div>
     {% endblock %}
 
-    <div class="container">
+    <div class="container content">
 
       {{ flash_messages() }}
 
@@ -71,13 +71,15 @@
         {{ content }}
       {% endblock %}
 
-      {% block layout_footer %}
+      
+
+    </div>
+
+	{% block layout_footer %}
       <footer>
         <p class="pull-right">NBSAP tool - demo</p>
       </footer>
-      {% endblock %}
-
-    </div>
+    {% endblock %}
 
     {% block head_scripts %}
     {{ script_src("js/jquery-1.7.1.min.js") }}
