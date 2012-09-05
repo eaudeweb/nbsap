@@ -19,7 +19,9 @@
 
 		  <label class="nav-header">Indicators</label>
 		  <li><a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a></li>
+		  <li class=​"divider">​</li>
 		  <li><a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a></li>
+		  <li class=​"divider">​</li>
 		  <li><a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a></li>
 		  <li><a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a></li>
 		  <li><a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a></li>

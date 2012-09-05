@@ -39,8 +39,8 @@
 
   <body>
     {% block layout_header %}
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+    <div class="navbar">
+      <div class="navbar-inner container">
         <div class="container">
           <a class="brand" href="{{ url_for('goals.home') }}">
             NBSAP
@@ -71,13 +71,15 @@
         {{ content }}
       {% endblock %}
 
-      {% block layout_footer %}
+      
+
+    </div>
+
+	{% block layout_footer %}
       <footer>
         <p class="pull-right">NBSAP tool - demo</p>
       </footer>
-      {% endblock %}
-
-    </div>
+    {% endblock %}
 
     {% block head_scripts %}
     {{ script_src("js/jquery-1.7.1.min.js") }}

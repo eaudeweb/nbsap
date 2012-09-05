@@ -594,7 +594,7 @@ div.element_field {
 
 /* home */
 body {
-	padding-bottom: 0px;
+	padding: 0px;
 }
 
 .navbar-inner {
@@ -605,6 +605,18 @@ body {
 	background-image: -o-linear-gradient(top, white, #EEE);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#EEE'); /* For Internet Explorer 5.5 - 7 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#EEE)"; /* For Internet Explorer 8 */
+}
+
+@media (min-width: 1200px) {
+	.navbar-inner .container {
+		width: 1170px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.navbar-inner .container {
+		width: 940px;
+	}
 }
 
 .navbar .brand {
@@ -630,32 +642,25 @@ footer p {
 
 
 /* AICHI page */
-.nav-tabs.nav-stacked > li > a {
+.nav-tabs.nav-stacked > li.active > a,
+.nav-tabs.nav-stacked > li > a:hover {
 	background: #08C;
 	color: #fff;
 }
 
-.nav-tabs.nav-stacked > li.active > a,
-.nav-tabs.nav-stacked > li > a:hover {
-	background: #fff;
-	color: #08C;
-	border-right: 1px solid #DDD;
+.nav .nav-header {
+	padding: 3px 15px 3px 5px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 0px;
 }
 
-.nav-tabs.nav-stacked label {
-	margin-top: 25px;
-	color: #444;
-	font-size: 14px;
+.nav li + .nav-header:last-of-type {
+	margin-top: 40px;
 }
 
 .tabs-left > .nav-tabs {
 	border-right: 0px;
 }
-
-.nav-tabs.nav-stacked > li > a {
-	border: 1px solid #08C;
-}
-
 
 .homepage_view label {
 	color: #777;
@@ -673,8 +678,39 @@ footer p {
 	margin-right: 25px;
 }
 
-div.element_field {
-	padding-top: 75px; /* otherwise the header hides the h2 tag */
+.nav.nav-tabs.nav-stacked {
+	padding: 19px 0px;
+	margin-bottom: 20px;
+	background-color: whiteSmoke;
+	border: 1px solid #EEE;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.nav-tabs.nav-stacked > li > a {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 0px;
+	/*border-top: 1px solid #ddd;*/
+	border-bottom: 1px solid #ddd;
+}
+
+/*.local-navigation .nav-tabs.nav-stacked > li > a*/
+.local-navigation .nav-tabs > li > a {
+	border-top: 1px solid #ddd;
+}
+
+.local-navigation .nav-tabs > .active > a, 
+.local-navigation .nav-tabs > .active > a:hover {
+	border: 0px;
+	border-top: 1px solid #ddd;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+	border: 0px; /* overrides  */
 }
 
 
