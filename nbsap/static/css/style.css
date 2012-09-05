@@ -540,6 +540,7 @@ div.element_field {
     position: fixed;
     left: 0px;
     top: 280px;
+    z-index: 0;
 }
 
 .markdown_all {
@@ -552,14 +553,17 @@ div.element_field {
     left: 0px;
     top: 80px;
     display: none;
+    z-index: 0;
 }
 
 .markdown_on .markdown_all {
     display: block;
+    z-index: 1;
 }
 
 .markdown_on .markdown_less {
     left: 350px;
+    z-index: 1;
 }
 .markdown_all h3 {
     padding-left: 10px;
