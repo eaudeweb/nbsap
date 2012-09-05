@@ -1,23 +1,31 @@
 {% macro input(mk, field) %}
-<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_input(field, number=None) %}
-<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
+{% endmacro %}
+
+{% macro uneditable_i18n_edit_input(field, number=None) %}
+<textarea class="span4" id='{{field.name}}' disabled='disabled'>
+  {{field.value if field.value}}
+</textarea>
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
-<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4" id='{{field.name}}'>
+  <a href="{{field.value if field.value}}">
+    {{field.value if field.value}}
+  </a>
+</span>
 {% endmacro %}
 
 {% macro edit_input(field) %}
-<span class="span4 uneditable-input" id='{{field.name}}'>{{field.value if field.value}}</span>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
-  id='{{field.name}}' disabled='disabled'
->{{field|safe}}</textarea>
+<span class="span4" id='{{field.name}}'>{{field.value if field.value}}</span>
 {% endmacro %}
 
 {% macro edit_textarea(field) %}
@@ -110,6 +118,27 @@
   {% endfor -%}
 {% endmacro %}
 
+{% macro uneditable_i18nstring(mk, field, number=None) %}
+  <div class="field-i18nstring {{ field.properties.get('css_class') }}">
+  {% set field_items = [] %}
+  {% for name in mk.children_order(field) %}
+      {% do field_items.append((name, field[name])) %}
+  {% endfor %}
+  {% for subfield_name, subfield in field_items %}
+    {% set properties = mk.properties(subfield) %}
+    <label class="{{subfield.name}}">{{ subfield.label }}</label>
+
+    {% set field_widget = field.properties.get("field_widget") %}
+    {% if field_widget == "edit_textarea" %}
+      {{ i18n_edit_textarea(subfield) }}
+    {% else %}
+      {{ uneditable_i18n_edit_input(subfield, number) }}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endmacro %}
+
+
 {% macro i18nstring(mk, field, number=None) %}
   <div class="field-i18nstring {{ field.properties.get('css_class') }}">
   {% set field_items = [] %}
@@ -139,7 +168,7 @@
       {% if subfield.properties.widget == 'edit_input' %}
         {{ count_edit_input(subfield, number) }}
       {% else %}
-        {{ i18nstring(mk, subfield, number) }}
+        {{ uneditable_i18nstring(mk, subfield, number) }}
       {% endif %}
       {% if loop.index % 2 == 0 %}
         <br/>

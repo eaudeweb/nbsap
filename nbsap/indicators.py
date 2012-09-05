@@ -74,8 +74,6 @@ def edit(indicator_id):
     app = flask.current_app
 
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
-    aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
-    aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
     indicator_schema = schema.Indicator(indicator)
     indicator_schema['relevant_target'].valid_values = map(str, indicator_schema['relevant_target'].valid_values)
@@ -123,8 +121,6 @@ def edit(indicator_id):
     return {
                 "language": selected_language,
                 "indicator": indicator,
-                "transit_dict": aichi_indicator_keys,
-                "order": aichi_order['order'],
                 "schema": indicator_schema,
                 "mk_edit": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")
