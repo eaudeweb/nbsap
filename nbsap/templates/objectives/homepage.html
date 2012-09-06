@@ -37,7 +37,7 @@
       <div class="element_field">
         <h2>Description</h2>
         <div class="snippet">
-          {{ objective.body.en|truncate(end='')|markdown }}
+          {{ objective.body.en|truncate(length=510, end='')|markdown }}
           <a class="more">... show more</a>
         </div>
         <div class="full">
@@ -52,7 +52,7 @@
           <h2>{{subobj.title.en}}</h2>
 
           <div class="snippet">
-            {{subobj.body.en|truncate(end='')|markdown }}
+            {{subobj.body.en|truncate(length=510, end='')|markdown }}
             <a class="more">... show more</a>
           </div>
           <div class="full">

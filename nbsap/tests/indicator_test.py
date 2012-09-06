@@ -5,7 +5,7 @@ class IndicatorListingTest(_BaseTest):
 
      def test_indicators_render_page(self):
 
-        response = self.client.get('/indicators')
+        response = self.client.get('/admin/indicators')
         self.assertEqual(response.status_code, 200)
         self.assertIn("Mock indicator name", response.data)
         self.assertIn("btn-success", response.data)
@@ -15,7 +15,7 @@ class IndicatorEditTest(_BaseTest):
 
     def test_indicator_render_page(self):
 
-        response = self.client.get('/indicators/1/edit')
+        response = self.client.get('/admin/indicators/1/edit')
         self.assertEqual(response.status_code, 200)
 
     def test_successfully_edited(self):
@@ -43,7 +43,7 @@ class IndicatorEditTest(_BaseTest):
                     'url_0': 'New link'
                 }
 
-        response = self.client.post("/indicators/1/edit", data=data)
+        response = self.client.post("/admin/indicators/1/edit", data=data)
         self.assertIn("Saved changes", response.data)
 
         from nbsap.database import mongo

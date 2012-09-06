@@ -9,8 +9,8 @@ def initialize_app(app):
     app.register_blueprint(objectives)
 
 
-@objectives.route("/homepage/objectives")
-@objectives.route("/homepage/objectives/<int:objective_id>")
+@objectives.route("/objectives")
+@objectives.route("/objectives/<int:objective_id>")
 @sugar.templated("/objectives/homepage.html")
 def homepage_objectives(objective_id=1):
 
@@ -42,7 +42,7 @@ def homepage_objectives(objective_id=1):
                 'mapping': mapping
             }
 
-@objectives.route("/objectives/<int:objective_id>/<int:subobj_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/<int:subobj_id>")
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):
 
@@ -65,7 +65,7 @@ def view_subobj(objective_id, subobj_id):
                 "action": related_action
            }
 
-@objectives.route("/objectives/<int:objective_id>")
+@objectives.route("/admin/objectives/<int:objective_id>")
 @sugar.templated("objectives/view.html")
 def view(objective_id):
 
@@ -80,7 +80,7 @@ def view(objective_id):
                 "actions": related_actions
            }
 
-@objectives.route("/objectives")
+@objectives.route("/admin/objectives")
 @sugar.templated("objectives/objectives_listing.html")
 def list_objectives():
 
@@ -106,7 +106,7 @@ def objective_data():
     result = {'result': subobjective['title']['en']}
     return flask.jsonify(result)
 
-@objectives.route("/objectives/<int:objective_id>/edit", methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/edit", methods=["GET", "POST"])
 @sugar.templated("objectives/edit.html")
 def edit(objective_id):
 
@@ -118,8 +118,6 @@ def edit(objective_id):
         selected_language = flask.request.args.getlist('lang')[0]
     except IndexError:
         selected_language = u'en'
-
-    app = flask.current_app
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()

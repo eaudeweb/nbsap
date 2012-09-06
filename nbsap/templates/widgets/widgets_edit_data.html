@@ -5,25 +5,25 @@
 {% macro i18n_edit_input(field, number=None) %}
 {% if number is none %}
 <input name='{{field.parent.name + '_' + field.name}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+  class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% else %}
 <input name='{{field.parent.name + '_' + field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+  class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endif %}
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
 <input name='{{field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+       class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro edit_input(field) %}
 <input name='{{field.name}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+       class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="input-xxlarge input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name='{{ field.parent.name + '_' + field.name }}' id='{{field.name}}'
        {% if not field.optional %}
           required
@@ -33,7 +33,7 @@
 
 
 {% macro edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="input-xxlarge input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
        {% if not field.optional %}
           required
@@ -150,7 +150,7 @@
 {% endmacro %}
 
 
-{% macro form(mk, schema) %}
+{% macro tabel_form(mk, schema) %}
   <fieldset>
   {%- for name in mk.children_order(schema) %}
     {% set field = schema[name] %}
@@ -160,7 +160,13 @@
     <div class="control-group {{error_cls}} group-{{field.name}}">
       <label class="control-label label-{{field.name}}">{{ field.label }}</label>
       <div class="controls control-{{field.name}}">
-        {{ mk.widget(field) }}
+          {% if field.properties.widget == 'textarea' %}
+            {{ textarea(field) }}
+          {% elif field.properties.widget == 'edit_input' %}
+            {{ edit_input(field) }}
+          {% else %}
+            {{ mk.widget(field) }}
+          {% endif %}
         {% for message in field.errors %}
           <span class="help-inline">{{ message }}</span>
         {% endfor %}

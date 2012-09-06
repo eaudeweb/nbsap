@@ -5,7 +5,7 @@ class MappingTest(_BaseTest):
 
     def test_render_page(self):
 
-        response = self.client.get('/mapping')
+        response = self.client.get('/admin/mapping')
         self.assertEqual(response.status_code, 200)
 
     def test_save_data_to_database(self):
@@ -17,7 +17,7 @@ class MappingTest(_BaseTest):
                 "objective": "1.1",
                }
 
-        response = self.client.post("/mapping", data=data)
+        response = self.client.post("/admin/mapping", data=data)
         self.assertIn("Mapping saved", response.data)
 
         from nbsap.database import mongo
@@ -36,7 +36,7 @@ class MappingTest(_BaseTest):
                 "objective": "1.1",
                }
 
-        response = self.client.post("/mapping", data=data)
+        response = self.client.post("/admin/mapping", data=data)
         self.assertIn("Mapping saved", response.data)
 
     def test_validation(self):
@@ -48,7 +48,7 @@ class MappingTest(_BaseTest):
                 "objective": "1.1",
                }
 
-        response = self.client.post("/mapping", data=data)
+        response = self.client.post("/admin/mapping", data=data)
         self.assertIn("Z is not a valid value for AICHI strategic goal", response.data)
 
         from nbsap.database import mongo
@@ -66,7 +66,7 @@ class MappingTest(_BaseTest):
                 "objective": "1.1",
                }
 
-        response = self.client.post("/mapping", data=data)
+        response = self.client.post("/admin/mapping", data=data)
         self.assertIn("Target 20 is not related to Goal A", response.data)
 
         from nbsap.database import mongo

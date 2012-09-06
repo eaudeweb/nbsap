@@ -4,7 +4,7 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.home'), "Home"),
+      (url_for('goals.admin'), "Admin"),
       (url_for('indicators.list_indicators'), "Indicators"),
       (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en),
       (url_for('indicators.edit', indicator_id=indicator.id),
@@ -19,7 +19,7 @@
 {% endmacro %}
 
 <h1>Edit indicator {{ indicator.id }}</h1>
-<form method="POST">
+<form method="POST" class="form-horizontal indicator_form">
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
@@ -45,21 +45,16 @@
         </div>
     </div>
 
-    <div class="row">
-      <div class="span6 indicator_edit">
-        {{mk_edit.widget(schema)}}
-      </div>
-      <div class="span6 indicator_view">
-        {{mk_view.widget(schema)}}
-      </div>
-      </div>
+    <div class="indicator_edit">
+        {{mk.widget(schema)}}
+    </div>
 
-      <div class="form-actions">
+    <div class="form-actions">
           <button type="submit" class="btn btn-primary">Save</button>
           <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
                   class="btn" type="button">Cancel</a>
-      </div>
-  </form>
+    </div>
+</form>
 
 {% endblock content %}
 
@@ -78,16 +73,6 @@ $(function () {
 
   $("#language").on("change", function() {
     var lang = $(this).val();
-
-    $('.indicator_view').hide();
-
-    if(lang != 'en') {
-      $('.indicator_view').show();
-    }
-
-    $('.indicator_view').find('.field-i18nstring').children().hide();
-    $('.indicator_view').find('.field-i18nstring').children('#en').show();
-
     $('.indicator_edit').find('.field-i18nstring').children().hide();
     $('.indicator_edit').find('.field-i18nstring').children('#' + lang).show();
   }).change();
