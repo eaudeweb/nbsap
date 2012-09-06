@@ -7,7 +7,7 @@
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
-      <label>Goals</label>
+      <label class="nav-header">Goals</label>
       {% for goal in goals %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
@@ -16,7 +16,7 @@
         </li>
       {% endfor %}
 
-      <label>Indicators</label>
+      <label class="nav-header">Indicators</label>
       {% if indicators|length() != 0 %}
       <li class={{'active' if indicators[0].id == 1}}>
         <a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a>
@@ -62,7 +62,7 @@
               {% for key in order %}
                 {% if key in indicator.keys() %}
                 <tr>
-                  <td class="span4"> {{ transit_dict[key] }} </td>
+                  <td class="span4 label"> {{ transit_dict[key] }} </td>
 
                   <!-- Exceptional case: Other Relevant Aichi Targets-->
                   {% if key in key_targets %}

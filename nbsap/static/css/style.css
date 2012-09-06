@@ -503,9 +503,9 @@ div.element_field {
 }
 
 .homepage_view h2 {
-  border-bottom: 1px solid #CCC;
   font-size: 14px;
   line-height: 18px;
+  border-bottom: 1px solid #CCC;
 }
 
 .homepage_view h1 {
@@ -650,7 +650,6 @@ footer p {
 
 .nav .nav-header {
 	padding: 3px 15px 3px 5px;
-	/*border-bottom: 1px solid #ddd;*/
 	margin-bottom: 0px;
 }
 
@@ -710,12 +709,30 @@ footer p {
 	margin-bottom: 0px; /* overrides bootstrap.css 3519 */
 }
 
+.homepage_view h1,
+.homepage_view h2 {
+	border-bottom: 0px;
+}
+
+.target-description {
+	font-weight: bold;
+}
+
+h1 p {
+	display: inline;
+}
+
 
 /* Indicators page */
 .indicator_field {
 	color: #777;
 }
 
+.table-bordered,
+.table-bordered th, 
+.table-bordered td {
+	border: 0px; /* overrides bootstrap.css 1561, 1572 */
+}
 
 /* Objectives page */
 .full {
@@ -727,7 +744,15 @@ footer p {
 	padding: 10px 19px;
 }
 
-
+.more,
+.less {
+	padding: 2px 4px;
+	background-color: #F7F7F9;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
 
 
 

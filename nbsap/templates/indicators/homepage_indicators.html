@@ -62,7 +62,7 @@
               {% for key in order %}
                 {% if key in indicator.keys() %}
                 <tr>
-                  <td class="span4"> {{ transit_dict[key] }} </td>
+                  <td class="span4 indicator_field"> {{ transit_dict[key] }} </td>
 
                   <!-- Exceptional case: Other Relevant Aichi Targets-->
                   {% if key in key_targets %}
