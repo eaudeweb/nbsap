@@ -68,12 +68,12 @@
             {% for m in subobj.mapping %}
             <ul class="span3">
 
-                <li>Goal: <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
+                <li>Goal: <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
                     goal {{m.goal.short_title}} ({{m.goal.description.en|markdown}})
                 </a></li>
 
                 <li>Most relevant target: <a href="{{url_for('goals.homepage_goals',
-                  goal_short_title=mapping[m.main_target], _anchor="target_%s" % m.main_target)}}">
+                  goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
                     target {{m.main_target.number}} ({{m.main_target.description.en|markdown}})
                 </a></li>
 
@@ -81,7 +81,7 @@
                   <li>Other relevant targets:
                   {% for target in m.other_targets %}
                     <a href="{{url_for('goals.homepage_goals',
-                    goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
+                    goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
                       target {{target.number}} ({{target.description.en|markdown}})
                       {% if not loop.last %},{% endif %}
                   </a>
