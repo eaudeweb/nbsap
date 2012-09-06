@@ -459,6 +459,10 @@ table.indicator_view td.indicator_field {
   width: 350px;
 }
 
+form.indicator_form div.form-actions {
+    padding-left: 20px;
+}
+
 textarea.mapping_text {
   width: 800px;
   max-width: 800px;

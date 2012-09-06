@@ -79,12 +79,11 @@
 {% endmacro %}
 
 
-{% macro tabel(mk, schema) %}
+{% macro tabel_form(mk, schema) %}
   <table class="table table-bordered table-striped">
     <tbody>
     {%- for name in mk.children_order(schema) %}
       {% set field = schema[name] %}
-      {% set error_cls = 'error' if field.errors else '' %}
 
       {% if field.properties.widget != 'hidden' %}
       <tr>

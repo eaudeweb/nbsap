@@ -122,11 +122,8 @@ def edit(indicator_id):
                 "language": selected_language,
                 "indicator": indicator,
                 "schema": indicator_schema,
-                "mk_edit": sugar.MarkupGenerator(
+                "mk": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")
                   ),
-                "mk_view": sugar.MarkupGenerator(
-                    app.jinja_env.get_template("widgets/widgets_view_data.html")
-                  )
     }
 

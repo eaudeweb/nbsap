@@ -13,7 +13,7 @@ _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
         )
 
-_IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
+_IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel_form").of(
             CommonInteger.named('id')
                 .with_properties(widget="hidden"),
             CommonI18nString.named('name')
