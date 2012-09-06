@@ -593,7 +593,7 @@ div.element_field {
 
 /* SONIA's styles */
 
-/* home */
+/* header */
 body {
 	padding: 0px;
 }
@@ -621,20 +621,62 @@ body {
 }
 
 .navbar .brand {
-	color: #014E46;
-	background: url('../CHM_logo_45x70px.png') no-repeat;
-	height: 45px;
-    padding: 25px 3px 3px 50px;
+	color: #555;
 	margin-top: 5px;
 }
 
+.navbar .nav.top-menu {
+	margin-top: 10px;
+}
+
+.navbar .nav > li > a {
+	text-shadow: none;
+}
+
+.navbar .nav > li > a:hover {
+	color: #444;
+}
+
+.navbar .nav li.dropdown .dropdown-toggle .caret, 
+.navbar .nav li.dropdown.open .caret {
+	border-top-color: #000;
+}
+
+
+/* footer */
 footer {
-	background: #014E46;
+	padding: 0;
+}
+
+footer ul {
+	width: 250px;
+}
+
+footer ul li {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+footer .pull-left {
+	margin-top: 20px;
 }
 
 footer p {
-	color: #fff;
 	margin-right: 10px;
+}
+
+.museum-logo {
+	background: url('../museum-logo.gif') no-repeat;
+	height: 68px;
+	width: 160px;
+	text-indent: -9999px;
+}
+
+.CHM-logo {
+	background: url('../CHM_logo_45x70px.png') no-repeat;
+	height: 70px;
+	width: 45px;
+	text-indent: -9999px;
 }
 
 .container.content {
@@ -763,6 +805,7 @@ h1 p {
 
 .well .mapping-list li {
 	color: #777;
+	margin-bottom: 10px;
 }
 
 .mapping-list li span {
@@ -783,5 +826,8 @@ h1 p {
 	display: inline;
 	font-size: 11px;
 }
+
+
+
 
 
