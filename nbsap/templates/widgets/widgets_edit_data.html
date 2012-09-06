@@ -5,25 +5,25 @@
 {% macro i18n_edit_input(field, number=None) %}
 {% if number is none %}
 <input name='{{field.parent.name + '_' + field.name}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+  class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% else %}
 <input name='{{field.parent.name + '_' + field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-  class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+  class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endif %}
 {% endmacro %}
 
 {% macro count_edit_input(field, number) %}
 <input name='{{field.name + '_' + number|string()}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+       class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro edit_input(field) %}
 <input name='{{field.name}}' type='text' value='{{field.value if field.value }}'
-       class='span4 {{field.properties.css_class}}' id='{{field.name}}'/>
+       class='input-xxlarge {{field.properties.css_class}}' id='{{field.name}}'/>
 {% endmacro %}
 
 {% macro i18n_edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="input-xxlarge input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name='{{ field.parent.name + '_' + field.name }}' id='{{field.name}}'
        {% if not field.optional %}
           required
@@ -33,7 +33,7 @@
 
 
 {% macro edit_textarea(field) %}
-<textarea class="span4 input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
+<textarea class="input-xxlarge input-xlarge edit-textarea {{field.properties.css_class}} {{field.name}}"
        name={{ field.name }}
        {% if not field.optional %}
           required
