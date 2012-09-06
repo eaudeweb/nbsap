@@ -758,12 +758,31 @@ h1 p {
 .well .mapping-list {
 	list-style-type: none;
 	border-bottom: 1px solid #ddd; /* TEMPORARY, since subobjective:goal is 1:1 */
+	margin-left: 0px;
 }
 
 .well .mapping-list li {
 	color: #777;
+	margin-bottom: 10px;
 }
 
+.mapping-list li span {
+	display: block;
+	margin-bottom: 15px;
+}
 
+.mapping-header {
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	color: #444;
+	text-transform: uppercase;
+	margin-bottom: 0px !important;
+}
+
+.mapping-list li p {
+	display: inline;
+	font-size: 11px;
+}
 
 

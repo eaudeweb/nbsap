@@ -538,8 +538,9 @@ div.element_field {
     width: 44px;
     cursor: pointer;
     position: fixed;
-    left: 0;
+    right: 0px;
     top: 280px;
+    z-index: 0;
 }
 
 .markdown_all {
@@ -549,21 +550,21 @@ div.element_field {
     background-color: #5BC0DE;
     border: 2px solid #CCC;
     position: fixed;
-    left: 0;
+    right: 0px;
     top: 80px;
     display: none;
+    z-index: 0;
 }
 
-.markdown_button {
-    background: url('../MarkdownHelp_button.png') no-repeat;
-    height: 102px;
-    width: 44px;
-    cursor: pointer;
-    position: fixed;
-    left: 350px;
-    top: 280px;
+.markdown_on .markdown_all {
+    display: block;
+    z-index: 1;
 }
 
+.markdown_on .markdown_less {
+    right: 350px;
+    z-index: 1;
+}
 .markdown_all h3 {
     padding-left: 10px;
     margin: 10px 0px;
@@ -756,13 +757,31 @@ h1 p {
 
 .well .mapping-list {
 	list-style-type: none;
-border-bottom: 1px solid #ddd; /* TEMPORARY, since subobjective:goal is 1:1 */
+	border-bottom: 1px solid #ddd; /* TEMPORARY, since subobjective:goal is 1:1 */
+	margin-left: 0px;
 }
 
 .well .mapping-list li {
 	color: #777;
 }
 
+.mapping-list li span {
+	display: block;
+	margin-bottom: 15px;
+}
 
+.mapping-header {
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	color: #444;
+	text-transform: uppercase;
+	margin-bottom: 0px !important;
+}
+
+.mapping-list li p {
+	display: inline;
+	font-size: 11px;
+}
 
 
