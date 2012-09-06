@@ -589,3 +589,11 @@ div.element_field {
     border: 1px solid #5BC0DE;
     background: white;
 }
+
+.login-container label {
+    margin-bottom: 6px;
+}
+
+.login-container button {
+    margin-bottom: 8px
+}
