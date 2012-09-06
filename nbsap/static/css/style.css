@@ -538,8 +538,9 @@ div.element_field {
     width: 44px;
     cursor: pointer;
     position: fixed;
-    left: 0;
+    left: 0px;
     top: 280px;
+    z-index: 0;
 }
 
 .markdown_all {
@@ -549,21 +550,21 @@ div.element_field {
     background-color: #5BC0DE;
     border: 2px solid #CCC;
     position: fixed;
-    left: 0;
+    left: 0px;
     top: 80px;
     display: none;
+    z-index: 0;
 }
 
-.markdown_button {
-    background: url('../MarkdownHelp_button.png') no-repeat;
-    height: 102px;
-    width: 44px;
-    cursor: pointer;
-    position: fixed;
+.markdown_on .markdown_all {
+    display: block;
+    z-index: 1;
+}
+
+.markdown_on .markdown_less {
     left: 350px;
-    top: 280px;
+    z-index: 1;
 }
-
 .markdown_all h3 {
     padding-left: 10px;
     margin: 10px 0px;
