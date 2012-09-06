@@ -8,7 +8,7 @@ actions = flask.Blueprint("actions", __name__)
 def initialize_app(app):
     app.register_blueprint(actions)
 
-@actions.route("/objectives/<int:objective_id>/<int:subobj_id>/action")
+@actions.route("/admin/objectives/<int:objective_id>/<int:subobj_id>/action")
 @sugar.templated("actions/view.html")
 def view(objective_id, subobj_id):
 
@@ -25,7 +25,7 @@ def view(objective_id, subobj_id):
                 "action": action
            }
 
-@actions.route("/objectives/<int:objective_id>/<int:subobj_id>/action/edit", methods=["GET", "POST"])
+@actions.route("/admin/objectives/<int:objective_id>/<int:subobj_id>/action/edit", methods=["GET", "POST"])
 @sugar.templated("actions/edit.html")
 def edit(objective_id, subobj_id):
 
@@ -40,8 +40,6 @@ def edit(objective_id, subobj_id):
         selected_language = flask.request.args.getlist('lang')[0]
     except IndexError:
         selected_language = u'en'
-
-    app = flask.current_app
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()

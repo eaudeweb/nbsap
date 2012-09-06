@@ -4,7 +4,7 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.home'), "Home"),
+      (url_for('goals.admin'), "Admin"),
       (url_for('goals.mapping'), "Mapping")
       ]) }}
 </ul>
@@ -38,7 +38,7 @@
   </fieldset>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Save</button>
-    <a class="btn" href="{{ url_for('goals.home') }}">Cancel</a>
+    <a class="btn" href="{{ url_for('goals.admin') }}">Cancel</a>
   </div>
 </form>
 

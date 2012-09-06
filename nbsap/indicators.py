@@ -10,8 +10,8 @@ indicators = flask.Blueprint("indicators", __name__)
 def initialize_app(app):
     app.register_blueprint(indicators)
 
-@indicators.route("/homepage/indicators")
-@sugar.templated("indicators/homepage_indicators.html")
+@indicators.route("/indicators")
+@sugar.templated("indicators/homepage.html")
 def homepage_indicators():
     page = int(flask.request.args.get('page', 1))
 
@@ -42,7 +42,7 @@ def homepage_indicators():
              'mapping': mapping
            }
 
-@indicators.route("/indicators")
+@indicators.route("/admin/indicators")
 @sugar.templated("indicators/indicators_listing.html")
 def list_indicators():
 
@@ -54,7 +54,7 @@ def list_indicators():
             "indicators": aichi_indicators
            }
 
-@indicators.route("/indicators/<int:indicator_id>")
+@indicators.route("/admin/indicators/<int:indicator_id>")
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
@@ -67,7 +67,7 @@ def view(indicator_id):
             "order": aichi_order['order']
            }
 
-@indicators.route("/indicators/<int:indicator_id>/edit", methods=["GET", "POST"])
+@indicators.route("/admin/indicators/<int:indicator_id>/edit", methods=["GET", "POST"])
 @sugar.templated("indicators/edit.html")
 def edit(indicator_id):
     app = flask.current_app

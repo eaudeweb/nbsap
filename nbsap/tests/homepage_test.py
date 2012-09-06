@@ -5,11 +5,11 @@ class HomepageTest(_BaseTest):
 
     def test_render_pages(self):
 
-        self.assertEqual(self.client.get('/homepage').status_code, 302)
-        self.assertEqual(self.client.get('/homepage/goals').status_code, 200)
-        self.assertEqual(self.client.get('/homepage/indicators').status_code, 200)
-        self.assertEqual(self.client.get('/homepage/objectives').status_code, 200)
+        self.assertEqual(self.client.get('/').status_code, 200)
+        self.assertEqual(self.client.get('/goals').status_code, 200)
+        self.assertEqual(self.client.get('/indicators').status_code, 200)
+        self.assertEqual(self.client.get('/objectives').status_code, 200)
 
-        self.assertEqual(self.client.get('/homepage/goals/B').status_code, 404)
-        self.assertEqual(self.client.get('/homepage/indicators?page=6').status_code, 404)
-        self.assertEqual(self.client.get('/homepage/objectives/2').status_code, 404)
+        self.assertEqual(self.client.get('/goals/B').status_code, 404)
+        self.assertEqual(self.client.get('/indicators?page=6').status_code, 404)
+        self.assertEqual(self.client.get('/objectives/2').status_code, 404)
