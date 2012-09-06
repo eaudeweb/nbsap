@@ -22,6 +22,19 @@ def homepage_objectives(objective_id=1):
     for subobj in objective['subobjs']:
         code_id = str(objective['id']) + '.' + str(subobj['id'])
         subobj['mapping'] = [m for m in mongo.db.mapping.find({'objective': code_id})]
+        for m in subobj['mapping']:
+            m['goal'] = { 'short_title': m['goal'],
+                          'description': mongo.db.goals.find_one({'short_title': m['goal']})['description']
+                        }
+            m['main_target'] = { 'number': m['main_target'],
+                                 'description': mongo.db.targets.find_one({'id': m['main_target']})['description']
+                                }
+
+            for target in range(len(m['other_targets'])):
+                m['other_targets'][target] =\
+                    { 'number': m['other_targets'][target],
+                      'description': mongo.db.targets.find_one({'id': m['other_targets'][target]})['description']
+                    }
 
     return {
                 'objective_ids': objective_ids,

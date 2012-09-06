@@ -70,12 +70,15 @@
             <ul class="mapping-list">
 
                 <li>Goal: <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
-                    <p>goal {{m.goal}}</p>
+
+                    goal {{m.goal.short_title}} ({{m.goal.description.en|markdown}})
+
                 </a></li>
 
                 <li>Most relevant AICHI target: <a href="{{url_for('goals.homepage_goals',
                   goal_short_title=mapping[m.main_target], _anchor="target_%s" % m.main_target)}}">
-                    <p>target {{m.main_target}}</p>
+
+                    target {{m.main_target.number}} ({{m.main_target.description.en|markdown}})
                 </a></li>
 
                 {% if m.other_targets %}
@@ -86,12 +89,14 @@
 					  <li>
 						  <a href="{{url_for('goals.homepage_goals',
                     		goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
-                      		target {{target}}{% if not loop.last %},{% endif %}
+                       target {{target.number}} ({{target.description.en|markdown}})
+                      {% if not loop.last %},{% endif %}
                   		  </a>
 					  </li>
 					
                   	  {% endfor %}
 					  </ul>
+
                   </li>
                 {% endif %}
 
