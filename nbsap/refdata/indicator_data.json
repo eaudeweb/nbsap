@@ -1,5 +1,10 @@
 {
-    "scale": ["G", "R", "N", "S"],
+    "scale": {
+                "G": "Global",
+                "R": "Regional",
+                "N": "National",
+                "S": "Sub-national"
+             },
     "sensitivity": ["Low", "Medium", "High"],
     "validity": ["Low", "Medium", "High"],
     "ease_of_communication": ["Low", "Medium", "High"]

@@ -57,7 +57,6 @@ def list_indicators():
 @indicators.route("/indicators/<int:indicator_id>")
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
-
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")

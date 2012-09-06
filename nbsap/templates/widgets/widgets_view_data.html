@@ -46,7 +46,7 @@
 {%- macro list(mk, field) %}
   {% set value_labels = field.properties.value_labels %}
   {% for value in field.value %}
-    {{value_labels[value|int] if value_labels else value}}
+    {{(value_labels[value|int] or value_labels[value]) if value_labels else value}}
       {% if not loop.last%},{% endif %}
   {% endfor %}
 {% endmacro -%}
