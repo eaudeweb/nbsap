@@ -1383,15 +1383,15 @@
             //buttons.hr = makeButton("wmd-hr-button", "Horizontal Rule - Ctrl+R", "icon-hr-line", bindCommand("doHorizontalRule"), group3);
 
             group4 = makeGroup(4);
-            //buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "icon-undo", null, group4);
-            //buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
+            buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "icon-undo", null, group4);
+            buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 "Redo - Ctrl+Y" :
                 "Redo - Ctrl+Shift+Z"; // mac and other non-Windows platforms
 
-            //buttons.redo = makeButton("wmd-redo-button", redoTitle, "icon-share-alt", null, group4);
-            //buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
+            buttons.redo = makeButton("wmd-redo-button", redoTitle, "icon-share-alt", null, group4);
+            buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             if (helpOptions) {
                 group5 = makeGroup(5);
@@ -1412,14 +1412,14 @@
                 buttons.help = helpButton;
             }
 
-            //setUndoRedoButtonStates();
+            setUndoRedoButtonStates();
         }
 
         function setUndoRedoButtonStates() {
-            //if (undoManager) {
-            //    setupButton(buttons.undo, undoManager.canUndo());
-            //    setupButton(buttons.redo, undoManager.canRedo());
-            //}
+            if (undoManager) {
+                setupButton(buttons.undo, undoManager.canUndo());
+                setupButton(buttons.redo, undoManager.canRedo());
+            }
         };
 
         this.setUndoRedoButtonStates = setUndoRedoButtonStates;
