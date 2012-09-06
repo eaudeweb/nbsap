@@ -71,7 +71,8 @@
 
                 <li><span class="mapping-header">Goal:</span> 
 					<span>
-						<a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
+						<a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
+
 
                     	<strong>goal {{m.goal.short_title}}</strong>: {{m.goal.description.en|markdown}}
 						</a>
@@ -81,7 +82,7 @@
                 <li><span class="mapping-header">Most relevant AICHI target:</span>
 					<span>
 						<a href="{{url_for('goals.homepage_goals',
-                  		goal_short_title=mapping[m.main_target], _anchor="target_%s" % m.main_target)}}">
+                  		goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
 
                     	<strong>target {{m.main_target.number}}</strong>: {{m.main_target.description.en|markdown}}
 						</a>
@@ -95,7 +96,7 @@
                     
 					  <li>
 						  <a href="{{url_for('goals.homepage_goals',
-                    		goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
+                    		goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
                        		<strong>target {{target.number}}</strong>: {{target.description.en|markdown}}
 						  </a>
 					  </li>
