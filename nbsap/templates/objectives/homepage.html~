@@ -12,7 +12,7 @@
         {% set active = 'active' if objective_id.id == objective.id %}
         <li class={{ active }}>
         <a href="{{ url_for('objectives.homepage_objectives', objective_id=objective_id.id) }}">
-          {{ objective_id.id }}
+          Objective {{ objective_id.id }}
         </a>
         </li>
       {% endfor %}
@@ -67,25 +67,31 @@
             <div class="row well">
           {% if subobj.mapping|length() %}
             {% for m in subobj.mapping %}
-            <ul class="span3">
+            <ul class="mapping-list">
 
                 <li>Goal: <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal)}}">
-                    goal {{m.goal}}
+                    <p>goal {{m.goal}}: {{goals.m.goal}}</p>
                 </a></li>
 
-                <li>Most relevant target: <a href="{{url_for('goals.homepage_goals',
+                <li>Most relevant AICHI target: <a href="{{url_for('goals.homepage_goals',
                   goal_short_title=mapping[m.main_target], _anchor="target_%s" % m.main_target)}}">
-                    target {{m.main_target}}
+                    <p>target {{m.main_target}}</p>
                 </a></li>
 
                 {% if m.other_targets %}
-                  <li>Other relevant targets:
-                  {% for target in m.other_targets %}
-                    <a href="{{url_for('goals.homepage_goals',
-                    goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
-                      target {{target}}{% if not loop.last %},{% endif %}
-                  </a>
-                  {% endfor %}
+                  <li>Other relevant AICHI targets:
+					  <ul class="other-targets">
+                  	  {% for target in m.other_targets %}
+                    
+					  <li>
+						  <a href="{{url_for('goals.homepage_goals',
+                    		goal_short_title=mapping[target], _anchor="target_%s" % target)}}">
+                      		target {{target}}{% if not loop.last %},{% endif %}
+                  		  </a>
+					  </li>
+					
+                  	  {% endfor %}
+					  </ul>
                   </li>
                 {% endif %}
 

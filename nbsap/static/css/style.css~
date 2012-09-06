@@ -718,6 +718,10 @@ footer p {
 	font-weight: bold;
 }
 
+h1 p {
+	display: inline;
+}
+
 
 /* Indicators page */
 .indicator_field {
@@ -749,6 +753,16 @@ footer p {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
+
+.well .mapping-list {
+	list-style-type: none;
+border-bottom: 1px solid #ddd; /* TEMPORARY, since subobjective:goal is 1:1 */
+}
+
+.well .mapping-list li {
+	color: #777;
+}
+
 
 
 
