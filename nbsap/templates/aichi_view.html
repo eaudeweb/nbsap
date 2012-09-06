@@ -7,11 +7,11 @@
   <div class="tabbable tabs-left">
 
 	<ul class="nav nav-tabs nav-stacked local-navigation">
-		  <label class="nav-header">Goals</label>
+		  <label class="nav-header">AICHI Goals</label>
 		  {% for _goal in goals_list %}
 		    {% set active = 'active' if _goal.id == goal.id %}
 		    <li class={{ active }}>
-		    <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">
+		    <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">Goal
 		      {{ _goal.short_title }}
 		    </a>
 		    </li>

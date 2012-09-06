@@ -21,6 +21,18 @@
     <div class="tab-content homepage_view" >
       <h1>{{objective.title.en}}</h1>
 
+	  <div class="element_field well objective-description">
+        <div class="snippet">
+          {{ objective.body.en|truncate(end='')|markdown }}
+          <a class="more">... show more</a>
+        </div>
+        <div class="full">
+          {{ objective.body.en|markdown }}
+          <a class="less">show less</a>
+        </div>
+        <a class="pull-right" href="#top">Back to top</a>
+      </div>
+
       <div class="row">
       <ul class="span2">
         {% for subobj in objective.subobjs|sort(attribute='id') %}
@@ -34,18 +46,7 @@
       </ul>
       </div>
 
-      <div class="element_field">
-        <h2>Description</h2>
-        <div class="snippet">
-          {{ objective.body.en|truncate(end='')|markdown }}
-          <a class="more">... show more</a>
-        </div>
-        <div class="full">
-          {{ objective.body.en|markdown }}
-          <a class="less">show less</a>
-        </div>
-        <a class="pull-right" href="#top">Back to top</a>
-      </div>
+      
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
         <div class="element_field" id="subobjective_{{ subobj.id }}">
