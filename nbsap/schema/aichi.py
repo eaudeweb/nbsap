@@ -105,6 +105,8 @@ _TargetSchemaDefinition = flatland.Dict.of(
         )
 
 _MappingSchema = flatland.Dict.with_properties(widget="form").of(
+            CommonString.named('_id')
+                .with_properties(widget="hidden"),
             CommonEnum.named('objective')
                         .using(label="National Objective", optional=False)
                         .with_properties(widget="obj_select"),
@@ -164,11 +166,6 @@ class Target(_TargetSchemaDefinition):
         return self.value
 
 class MappingSchema(_MappingSchema):
-
-    def __init__(self, init_mapping):
-        mapping = dict(init_mapping)
-        mapping.pop('_id', None)
-        self.set(mapping)
 
     def set_objectives(self, objectives):
         self['objective'].valid_values = [j for i in objectives.keys() for j in objectives[i].values()]

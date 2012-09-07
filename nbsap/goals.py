@@ -98,14 +98,14 @@ def mapping_delete(mapping_id):
 @sugar.templated('mapping/edit.html')
 def mapping_edit(mapping_id=None):
     app = flask.current_app
+    objectives = sugar.generate_objectives()
 
     if mapping_id:
         import bson
         objectid = bson.objectid.ObjectId(oid=mapping_id)
         mapping = mongo.db.mapping.find_one_or_404({'_id': objectid})
-        mapping_schema = schema.MappingSchema(mapping)
 
-        objectives = sugar.generate_objectives()
+        mapping_schema = schema.MappingSchema(mapping)
         mapping_schema.set_objectives(objectives)
 
         mapping_schema['objective'].set(mapping['objective'])
@@ -114,7 +114,6 @@ def mapping_edit(mapping_id=None):
 
     else:
         mapping_schema = schema.MappingSchema({})
-        objectives = sugar.generate_objectives()
         mapping_schema.set_objectives(objectives)
 
     if flask.request.method == "POST":
@@ -127,23 +126,21 @@ def mapping_edit(mapping_id=None):
         except ValueError:
             pass
 
-        if mapping_id is None:
-            mapping_schema = schema.MappingSchema(form_data)
-        else:
+        if mapping_id:
             mapping_schema['goal'].set(form_data['goal'])
+        else:
+            mapping_schema = schema.MappingSchema(form_data)
+            mapping_schema.set_objectives(objectives)
 
-        mapping_schema.set_objectives(objectives)
         mapping_schema['objective'].set(form_data['objective'])
         mapping_schema['other_targets'].set(targets_list)
-
         mapping_schema['main_target'].valid_values = map(str, mapping_schema['main_target'].valid_values)
         mapping_schema['main_target'].set(form_data['main_target'])
 
         if mapping_schema.validate():
+
             if mapping_id:
-                print mapping
                 mapping.update(mapping_schema.flatten())
-                print mapping
                 mongo.db.mapping.save(mapping)
             else:
                 mongo.db.mapping.save(mapping_schema.flatten())

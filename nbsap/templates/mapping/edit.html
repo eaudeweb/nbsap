@@ -39,6 +39,11 @@
   </fieldset>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Save</button>
+    {% if mapping_id %}
+     <a class="btn btn-danger" href="{{ url_for('goals.mapping_delete', mapping_id=mapping_id) }}">
+       Delete
+     </a>
+    {% endif %}
     <a class="btn" href="{{ url_for('goals.mapping') }}">Cancel</a>
   </div>
 </form>
@@ -90,6 +95,20 @@
     });
 
     $("#main_target").chained("#goal");
+
+    $(".btn-danger").on("click", function (e) {
+      e.preventDefault();
+      if(confirm("Are you sure you want to delete this mapping?")) {
+        $.ajax({
+          "url": $(this).attr("href"),
+          "type": "DELETE",
+          "success": function (data) {
+            if(data.status == "success") window.location = "/admin/mapping";
+          }
+        });
+      }
+    });
+
   });
   </script>
 {% endblock scripts %}

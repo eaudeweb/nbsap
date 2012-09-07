@@ -1,4 +1,5 @@
 import unittest
+import bson
 
 from werkzeug.datastructures import ImmutableDict
 
@@ -146,6 +147,17 @@ class _BaseTest(unittest.TestCase):
         })
     }
 
+
+    MAPPING_MOCK = {
+        "1": ImmutableDict({
+            "objective": "1.1",
+            "_id": bson.objectid.ObjectId(),
+            "goal": "A",
+            "main_target": "1",
+            "other_targets": ["2", "3"]
+        })
+    }
+
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
         "SECRET_KEY": "something random"
@@ -196,3 +208,8 @@ class _BaseTest(unittest.TestCase):
         mock_target = dict(self.TARGET_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.targets.save(mock_target)
+
+    def _create_mapping(self):
+        mock_mapping = dict(self.MAPPING_MOCK['1'])
+        with self.app.test_request_context():
+            mongo.db.mapping.save(mock_mapping)
