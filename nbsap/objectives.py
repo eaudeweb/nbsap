@@ -2,6 +2,7 @@ import schema
 import flask
 import sugar
 from database import mongo
+from auth import auth_required
 
 objectives = flask.Blueprint("objectives", __name__)
 
