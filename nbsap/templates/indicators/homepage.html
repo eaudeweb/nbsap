@@ -11,7 +11,7 @@
       {% for goal in goals %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
-          {{ goal.short_title }}
+          Goal {{ goal.short_title }}
         </a>
         </li>
       {% endfor %}
@@ -66,14 +66,18 @@
 
                   <!-- Exceptional case: Other Relevant Aichi Targets-->
                   {% if key in key_targets %}
-                    <td>{% for value_element in indicator[key] %}
-                      <a href="{{url_for('goals.homepage_goals',
+                    <td><ul>{% for value_element in indicator[key] %}
+                      <li>
+                        <a href="{{url_for('goals.homepage_goals',
                                           goal_short_title=mapping[value_element],
                                           _anchor="target_%s" % value_element)
                                 }}">
-                        {{value_element}}
-                      </a>{% if not loop.last %},{% endif %}
-                    {% endfor %}</td>
+                       Target {{value_element}}</a>
+                        : {% for target in targets %}
+                          {{ target.description.en|markdown if target.id == value_element }}
+                        {% endfor %}
+                       </li>
+                    {% endfor %}</ul></td>
 
                   <!-- Exceptional case: Related Links -->
                   {% elif key in key_links %}
@@ -90,14 +94,20 @@
                                           goal_short_title=mapping[indicator[key]],
                                           _anchor="target_%s" % indicator[key])
                                   }}">
-                      {{indicator[key]}}
-                    </a></td>
+                        Target {{indicator[key]}}</a>
+                        : {% for target in targets %}
+                          {{ target.description.en|markdown if target.id == indicator[key] }}
+                        {% endfor %}
+                    </td>
 
                   <!-- Exeptional case: Goal -->
                     {% elif key == 'goal' %}
                       <td><a href="{{url_for('goals.homepage_goals', goal_short_title=indicator[key])}}">
-                          {{indicator[key]}}
-                      </a></td>
+                          Goal {{indicator[key]}}</a>
+                          : {% for goal in goals %}
+                            {{ goal.description.en|markdown if goal.short_title == indicator[key] }}
+                          {% endfor %}
+                      </td>
 
                   <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
                     {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
@@ -105,7 +115,11 @@
 
                   <!-- Exeptional case: Scale -->
                     {% elif key == 'scale' %}
-                    <td>{{ indicator[key]|join(', ') }}</td>
+                    <td><ul>
+                      {% for scale in indicator[key] %}
+                        <li>{{scale_labels[scale]}}</li>
+                      {% endfor %}
+                    </ul></td>
                     {% else %}
 
                   <!-- Regular case -->

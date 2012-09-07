@@ -28,19 +28,12 @@
         <td class="indicator_field"> {{ transit_dict[key] }} </td>
         <!-- Exceptional case: Other Relevant Aichi Targets-->
         {% if key in key_targets %}
-            <td>
+          <td><ul>
             {% for value_element in indicator[key] %}
-                {% if loop.last %}
-                    <a
-                    href="{{url_for('targets.list_targets')}}#target_{{value_element}}">{{value_element}}
-                    </a>
-                {% else %}
-                   <a
-                    href="{{url_for('targets.list_targets')}}#target_{{value_element}}">{{value_element}}
-                    </a>,
-                {% endif %}
+              <li><a href="{{url_for('targets.list_targets')}}">Target {{value_element}}</a>
+              : {{other_targets_descriptions[loop.index0]|markdown}}</li>
             {% endfor %}
-            </td>
+          </ul></td>
         <!-- Exceptional case: Related Links -->
         {% elif key in key_links %}
             <td>
@@ -54,19 +47,24 @@
         <!-- Exeptional case: Most Relevant Aichi Target -->
             {% if key == 'relevant_target' %}
                 <td>
-                    <a
-                        href="{{url_for('targets.list_targets')}}#target_{{indicator[key]}}">{{indicator[key]}}
-                    </a>
+                  <a href="{{url_for('targets.list_targets')}}">
+                    Target {{indicator[key]}}
+                  </a>: {{main_target_description|markdown}}
                 </td>
         <!-- Exeptional case: Goal -->
             {% elif key == 'goal' %}
-                <td><a href="{{url_for('goals.list_goals')}}">{{indicator[key]}}</a></td>
+            <td><a href="{{url_for('goals.list_goals')}}">Goal {{indicator[key]}}</a>
+              : {{goal_description|markdown}}</td>
         <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
             {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
               <td> {{ indicator[key] }} </td>
         <!-- Exeptional case: Scale -->
             {% elif key == 'scale' %}
-              <td> {{ indicator[key]|join(', ') }} </td>
+            <td><ul>
+              {% for scale in indicator[key] %}
+                <li>{{ scale_labels[scale] }}</li>
+              {% endfor %}
+            </ul></td>
         <!-- Regular case -->
             {% else %}
               <td> {{ indicator[key].en }} </td>

@@ -29,7 +29,8 @@ def homepage_indicators():
                                                                  {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
 
-    goals = mongo.db.goals.find()
+    goals = [g for g in mongo.db.goals.find()]
+    targets = [t for t in mongo.db.targets.find()]
     mapping = schema.refdata.mapping
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
@@ -37,8 +38,10 @@ def homepage_indicators():
     return {
              'indicators': indicators,
              'goals': goals,
+             'targets': targets,
              'transit_dict': aichi_indicator_keys,
              'order': aichi_order['order'],
+             'scale_labels': schema.refdata.indicator_data['scale'],
              'mapping': mapping
            }
 
@@ -61,10 +64,27 @@ def view(indicator_id):
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
 
+    goal_description = None
+    if indicator.get('goal'):
+        goal_description = mongo.db.goals.find_one({'short_title': indicator['goal']})
+
+    main_target_description = None
+    if indicator.get('relevant_target'):
+        main_target_description = mongo.db.targets.find_one({'id': indicator['relevant_target']})
+
+    other_targets_descriptions = []
+    if indicator.get('other_targets'):
+        other_targets_descriptions = [target['description']['en'] for target in
+                mongo.db.targets.find({'id': {'$in': indicator.get('other_targets')}})]
+
     return {
             "indicator": indicator,
             "transit_dict": aichi_indicator_keys,
-            "order": aichi_order['order']
+            "order": aichi_order['order'],
+            "scale_labels": schema.refdata.indicator_data['scale'],
+            "goal_description": goal_description['description']['en'],
+            "main_target_description": main_target_description['description']['en'],
+            "other_targets_descriptions": other_targets_descriptions
            }
 
 @indicators.route("/admin/indicators/<int:indicator_id>/edit", methods=["GET", "POST"])
