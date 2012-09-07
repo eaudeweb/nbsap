@@ -789,6 +789,11 @@ h1 p {
     border: 0px; /* overrides bootstrap.css 1561, 1572 */
 }
 
+.indicator_table ul {
+	list-style-type: square;
+}
+
+
 /* Objectives page */
 .full {
     padding: 5px;
@@ -811,7 +816,6 @@ h1 p {
 
 .well .mapping-list {
     list-style-type: none;
-    border-bottom: 1px solid #ddd; /* TEMPORARY, since subobjective:goal is 1:1 */
     margin-left: 0px;
 }
 
