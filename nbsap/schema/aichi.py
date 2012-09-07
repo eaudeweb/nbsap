@@ -165,6 +165,11 @@ class Target(_TargetSchemaDefinition):
 
 class MappingSchema(_MappingSchema):
 
+    def __init__(self, init_mapping):
+        mapping = dict(init_mapping)
+        mapping.pop('_id', None)
+        self.set(mapping)
+
     def set_objectives(self, objectives):
         self['objective'].valid_values = [j for i in objectives.keys() for j in objectives[i].values()]
         self['objective'].properties['groups'] = objectives

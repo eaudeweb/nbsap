@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.admin'), "Admin"),
+      (url_for('goals.mapping'), "Mapping")
+      ]) }}
+</ul>
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('mapping') }}
+
+<h1>Mappings of National Objectives to Aichi targets</h1>
+
+<ul>
+  {% for mapping in mappings %}
+  <li><ul>
+    <li>Objective: {{mapping.objective}}</li>
+    <li>Goal: {{mapping.goal}}</li>
+    <li>Target: {{mapping.main_target}}</li>
+    <li>Other targets: {% for t in mapping.other_targets %} {{ t }} {% endfor %}</li>
+  </ul></li>
+  <a class="btn-mini btn-primary" href="{{ url_for('goals.mapping_edit', mapping_id=mapping._id) }}">Edit</a>
+  <a class="btn-mini btn-danger" href="{{ url_for('goals.mapping_delete', mapping_id=mapping._id) }}">Delete</a>
+  {% endfor %}
+</ul>
+
+{% endblock content %}
+{% block scripts %}
+{{ super() }}
+<script>
+  $(function () {
+    $(".btn-danger").on("click", function (e) {
+      e.preventDefault();
+      if(confirm("Are you sure you want to delete this mapping?")) {
+        $.ajax({
+          "url": $(this).attr("href"),
+          "type": "DELETE",
+          "success": function (data) {
+            if(data.status == "success") window.location = "/admin/mapping";
+          }
+        });
+      }
+    });
+});
+</script>
+
+{% endblock scripts %}

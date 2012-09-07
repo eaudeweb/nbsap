@@ -67,10 +67,55 @@ def list_goals():
             "goals": aichi_goals,
            }
 
-@goals.route("/admin/mapping", methods=["GET", "POST"])
-@sugar.templated('mapping.html')
+@goals.route("/admin/mapping")
+@sugar.templated('mapping/listing.html')
 def mapping():
+    mappings = mongo.db.mapping.find()
+
+    return {
+            "mappings": mappings
+           }
+
+
+@goals.route("/admin/mapping/<string:mapping_id>/delete", methods=["DELETE"])
+def mapping_delete(mapping_id):
+    import bson
+    from pymongo.errors import OperationFailure
+
+    objectid = bson.objectid.ObjectId(oid=mapping_id)
+
+    try:
+        mongo.db.mapping.remove(spec_or_id=objectid)
+        flask.flash("Mapping deleted", "success")
+    except OperationFailure:
+        flask.flash("Errors encountered while deleting mapping", "errors")
+
+    return flask.jsonify({'status': 'success'})
+
+
+@goals.route("/admin/mapping/new", methods=["GET", "POST"])
+@goals.route("/admin/mapping/<string:mapping_id>/edit", methods=["GET", "POST"])
+@sugar.templated('mapping/edit.html')
+def mapping_edit(mapping_id=None):
     app = flask.current_app
+
+    if mapping_id:
+        import bson
+        objectid = bson.objectid.ObjectId(oid=mapping_id)
+        mapping = mongo.db.mapping.find_one_or_404({'_id': objectid})
+        mapping_schema = schema.MappingSchema(mapping)
+
+        objectives = sugar.generate_objectives()
+        mapping_schema.set_objectives(objectives)
+
+        mapping_schema['objective'].set(mapping['objective'])
+        mapping_schema['main_target'].valid_values = map(str, mapping_schema['main_target'].valid_values)
+        mapping_schema['main_target'].set(mapping['main_target'])
+
+    else:
+        mapping_schema = schema.MappingSchema({})
+        objectives = sugar.generate_objectives()
+        mapping_schema.set_objectives(objectives)
 
     if flask.request.method == "POST":
         initial_form = flask.request.form
@@ -82,9 +127,11 @@ def mapping():
         except ValueError:
             pass
 
-        mapping_schema = schema.MappingSchema(form_data)
+        if mapping_id is None:
+            mapping_schema = schema.MappingSchema(form_data)
+        else:
+            mapping_schema['goal'].set(form_data['goal'])
 
-        objectives = sugar.generate_objectives()
         mapping_schema.set_objectives(objectives)
         mapping_schema['objective'].set(form_data['objective'])
         mapping_schema['other_targets'].set(targets_list)
@@ -93,19 +140,26 @@ def mapping():
         mapping_schema['main_target'].set(form_data['main_target'])
 
         if mapping_schema.validate():
-            mongo.db.mapping.save(mapping_schema.flatten())
-            flask.flash("Mapping saved", "success")
+            if mapping_id:
+                print mapping
+                mapping.update(mapping_schema.flatten())
+                print mapping
+                mongo.db.mapping.save(mapping)
+            else:
+                mongo.db.mapping.save(mapping_schema.flatten())
 
-    else:
-        mapping_schema = schema.MappingSchema({})
-        objectives = sugar.generate_objectives()
-        mapping_schema.set_objectives(objectives)
+            flask.flash("Mapping saved", "success")
+            return flask.redirect(flask.url_for('goals.mapping'))
+
+        else:
+            flask.flash("Errors in mapping information", "error")
 
     return {
                  "mk": sugar.MarkupGenerator(
                     app.jinja_env.get_template("widgets/widgets_edit_data.html")
                   ),
                  "mapping_schema": mapping_schema,
+                 "mapping_id": mapping_id
             }
 
 @goals.route("/goals/data")
