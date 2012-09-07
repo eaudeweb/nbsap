@@ -2,6 +2,7 @@ import flask
 
 from database import oid, User, db_session
 from functools import wraps
+from flaskext.openid import COMMON_PROVIDERS
 
 auth = flask.Blueprint("auth", __name__)
 
@@ -19,12 +20,31 @@ def login():
     if flask.g.user is not None:
         return flask.redirect(oid.get_next_url())
     if flask.request.method == 'POST':
-        openid = flask.request.form.get('openid')
-        if openid:
-            return oid.try_login(openid)
+        username = flask.request.form.get('username')
+        passwd = flask.request.form.get('password')
+        if username and passwd:
+            # TODO (local authentication)
+            pass
 
     return flask.render_template('login.html', next=oid.get_next_url(),
                             error = oid.fetch_error())
+    #return oid.try_login(COMMON_PROVIDERS['google'])
+
+@auth.route("/google_login", methods=['GET'])
+@oid.loginhandler
+def google_login():
+    if flask.g.user is not None:
+        return flask.redirect(oid.get_next_url())
+
+    return oid.try_login(COMMON_PROVIDERS['google'])
+
+@auth.route("/yahoo_login", methods=['GET'])
+@oid.loginhandler
+def yahoo_login():
+    if flask.g.user is not None:
+        return flask.redirect(oid.get_next_url())
+
+    return oid.try_login(COMMON_PROVIDERS['yahoo'])
 
 @oid.after_login
 def create_or_login(resp):

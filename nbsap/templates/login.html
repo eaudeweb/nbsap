@@ -1,16 +1,40 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h2>Sign in</h2>
-  <form action="" method=post>
-    {% if error %}
-        <p class=error><strong>Error:</strong> {{ error }}</p>
-    {% endif %}
-    <p>
-      <div class="login-container">
-          <label class="control-label">Your OpenID:</label>
-          <input type=text name=openid size=30>
-          <button type=submit class="btn btn-primary">Sign in</button>
-          <input type=hidden name=next value="{{ next }}">
-      </div>
-  </form>
+  <div class="row">
+    <div class="span6">
+        <div class="well">
+            <form action="" method=post>
+            {% if error %}
+                <p class=error><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
+
+           <h3>Sign in</h3>
+              <div class="login-container">
+                  <label class="control-label">Username</label>
+                  <input type=text name=username size=30>
+                  <label class="control-label">Password</label>
+                  <input type=password name=password size=30>
+                  <div class="signin-button">
+                    <button type=submit class="btn btn-primary disabled">Sign in</button>
+                  </div>
+                  <input type=hidden name=next value="{{ next }}">
+              </div>
+          </form>
+          </div>
+    </div>
+
+    <div class="span6">
+        <div class="login-alternative">
+            <h3>Don't have a NBSAP ID?</h3>
+            <p>Sign in with:</p>
+            <div>
+                <a href="{{url_for('auth.google_login')}}" class="btn btn-primary google_btn" type="button"></a>
+            </div>
+            <p>OR</p>
+            <div>
+                <a href="{{url_for('auth.yahoo_login')}}" class="btn btn-primary yahoo_btn" type="button"></a>
+            </div>
+        </div>
+    </div>
+  </div>
 {% endblock %}
