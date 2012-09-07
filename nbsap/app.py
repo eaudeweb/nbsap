@@ -1,6 +1,6 @@
 import flask
 from flaskext.babel import Babel
-from database import mongo, oid
+from database import mongo, oid, User, db_session
 
 import goals
 import targets
@@ -52,6 +52,17 @@ def create_app(instance_path=None, testing_config=None):
     @app.route('/crashme')
     def crashme():
         raise ValueError("Crashing, as requested.")
+
+    @app.before_request
+    def before_request():
+        flask.g.user = None
+        if 'openid' in flask.session:
+            flask.g.user = User.query.filter_by(openid=flask.session['openid']).first()
+
+    @app.after_request
+    def after_request(response):
+        db_session.remove()
+        return response
 
     return app
 

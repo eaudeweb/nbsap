@@ -8,17 +8,6 @@ auth = flask.Blueprint("auth", __name__)
 def initialize_app(app):
     app.register_blueprint(auth)
 
-@auth.before_request
-def before_request():
-    flask.g.user = None
-    if 'openid' in flask.session:
-        flask.g.user = User.query.filter_by(openid=flask.session['openid']).first()
-
-@auth.after_request
-def after_request(response):
-    db_session.remove()
-    return response
-
 @auth.route('/index')
 def index():
     return flask.render_template('index.html')
@@ -65,6 +54,7 @@ def logout():
     flask.session.pop('openid', None)
     flask.flash(u'Successfully signed out.', "success")
     return flask.redirect(oid.get_next_url())
+
 
 def auth_required(view):
     @wraps(view)

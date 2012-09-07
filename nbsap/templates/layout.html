@@ -43,32 +43,29 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="{{ url_for('goals.homepage_goals') }}">
-            National Biodiversity Strategy and Action Plan (NSBAP)
+            National Biodiversity Strategy and Action Plan (NBSAP)
           </a>
-            {% if user %}
-            <ul class="nav pull-right">
+            <ul class="nav pull-right top-menu">
+              {% if g.user %}
               <li>
                 <a href="#"><i class="icon-question-sign icon-white"></i> Help</a>
               </li>
               <li>
-                  <a href="">Logout</a>
+                <a href="{{url_for('auth.logout')}}">Logout</a>
               </li>
-              <li>
-                  <a href="">Change password</a>
+              {% else %}
+              <li><a
+                href="{{url_for('auth.login')}}">Login/Register</a>
               </li>
-            </ul>
-            {% endif %}
-
-            <ul class="nav pull-right top-menu">
-                      <li><a href="#">Login/Register</a></li>
-                      <li class="dropdown">
-                        <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">English</a></li>
-                          <li><a href="#">French</a></li>
-                          <li><a href="#">Dutch</a></li>
-                        </ul>
-                      </li>
+              {% endif %}
+              <li class="dropdown">
+                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">English</a></li>
+                  <li><a href="#">French</a></li>
+                  <li><a href="#">Dutch</a></li>
+                </ul>
+              </li>
            </ul>
 
         </div>
