@@ -3,6 +3,7 @@ Flask==0.9
 Flask-Babel==0.8
 Flask-PyMongo==0.1.2
 Flask-Script==0.3.3
+Flask-OpenID==1.0.1
 Jinja2==2.6
 Werkzeug==0.8.3
 flatland==dev
@@ -16,3 +17,4 @@ path.py==2.2.2
 raven==2.0.5
 simplejson==2.6.1
 Flask-Markdown==0.3
+SQLAlchemy==0.7.8

@@ -46,6 +46,7 @@ NBSAP Quick Installation
 8. Prerequisites for filling database::
 
     ./bash-scripts/mongoimport.sh
+    ./manage.py syncdb
 
 9. Run a test server(see http://127.0.0.1:5000 afterwards)::
 
