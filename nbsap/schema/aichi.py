@@ -13,7 +13,7 @@ _GoalSchemaDefinition = flatland.Dict.of(
             CommonString.named('id'),
         )
 
-_IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
+_IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel_form").of(
             CommonInteger.named('id')
                 .with_properties(widget="hidden"),
             CommonI18nString.named('name')
@@ -57,7 +57,8 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel").of(
                 .including_validators(ListValue())
                 .using(label="Scale (global, regional, national, sub-national)")
                 .with_properties(widget="list",
-                                 valid_values=indicator_data['scale'],
+                                 valid_values=indicator_data['scale'].keys(),
+                                 value_labels=indicator_data['scale'],
                                  css_class="chzn-select",
                                  multiple="multiple"),
             CommonEnum.named('validity')

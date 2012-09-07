@@ -5,7 +5,7 @@ class ActionEditTest(_BaseTest):
 
     def test_render_page(self):
 
-        response = self.client.get('/objectives/1/1/action')
+        response = self.client.get('/admin/objectives/1/1/action')
         self.assertEqual(response.status_code, 200)
 
     def test_error_message_displayed_when_body_blank(self):
@@ -15,7 +15,7 @@ class ActionEditTest(_BaseTest):
                     "body-en": ""
                 }
 
-        response = self.client.post("/objectives/1/1/action/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/1/action/edit", data=mydata)
         self.assertIn("Description is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
@@ -34,7 +34,7 @@ class ActionEditTest(_BaseTest):
                     "body-nl": ""
                 }
 
-        response = self.client.post("/objectives/1/1/action/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/1/action/edit", data=mydata)
         self.assertNotIn("Description is required", response.data)
         self.assertIn("Saved changes.", response.data)
 

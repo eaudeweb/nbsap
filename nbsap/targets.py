@@ -8,7 +8,7 @@ targets = flask.Blueprint("targets", __name__)
 def initialize_app(app):
     app.register_blueprint(targets)
 
-@targets.route("/targets")
+@targets.route("/admin/targets")
 @sugar.templated("targets/targets_listing.html")
 def list_targets():
 
@@ -33,7 +33,7 @@ def target_data():
     result = {'result': aichi_targets}
     return flask.jsonify(result)
 
-@targets.route("/targets/<string:target_id>/edit", methods=["GET", "POST"])
+@targets.route("/admin/targets/<string:target_id>/edit", methods=["GET", "POST"])
 @sugar.templated("targets/edit.html")
 def edit(target_id):
 
@@ -45,8 +45,6 @@ def edit(target_id):
         selected_language = flask.request.args.getlist('lang')[0]
     except IndexError:
         selected_language = u'en'
-
-    app = flask.current_app
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()

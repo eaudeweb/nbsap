@@ -5,7 +5,7 @@ class ObjectiveListingTest(_BaseTest):
 
      def test_objectives_render_page(self):
 
-        response = self.client.get('/objectives')
+        response = self.client.get('/admin/objectives')
         self.assertEqual(response.status_code, 200)
         self.assertIn("Mock objective title", response.data)
         self.assertIn("btn-success", response.data)
@@ -15,7 +15,7 @@ class ObjectiveEditTest(_BaseTest):
 
     def test_objective_render_page(self):
 
-        response = self.client.get('/objectives/1/edit')
+        response = self.client.get('/admin/objectives/1/edit')
         self.assertEqual(response.status_code, 200)
 
     def test_error_message_displayed_when_title_blank(self):
@@ -26,7 +26,7 @@ class ObjectiveEditTest(_BaseTest):
                     "body-en": "Some body text in english"
                  }
 
-        response = self.client.post("/objectives/1/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/edit", data=mydata)
         self.assertIn("Title is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
@@ -46,7 +46,7 @@ class ObjectiveEditTest(_BaseTest):
                     "body-en": ""
                 }
 
-        response = self.client.post("/objectives/1/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/edit", data=mydata)
         self.assertIn("Description is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
@@ -66,7 +66,7 @@ class ObjectiveEditTest(_BaseTest):
                     "body-fr": "some text in french"
                 }
 
-        response = self.client.post("/objectives/1/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/edit", data=mydata)
         self.assertNotIn("Title is required", response.data)
         self.assertIn("Saved changes.", response.data)
 
@@ -87,7 +87,7 @@ class ObjectiveEditTest(_BaseTest):
                     "body-nl": ""
                 }
 
-        response = self.client.post("/objectives/1/edit", data=mydata)
+        response = self.client.post("/admin/objectives/1/edit", data=mydata)
         self.assertNotIn("Body is required", response.data)
         self.assertIn("Saved changes.", response.data)
 

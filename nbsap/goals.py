@@ -10,18 +10,15 @@ def initialize_app(app):
     app.jinja_options = dict(app.jinja_options, extensions=_my_extensions)
     app.register_blueprint(goals)
 
-@goals.route("/")
-@sugar.templated('homepage.html')
-def home():
+@goals.route("/admin")
+@sugar.templated('admin.html')
+def admin():
     return
 
-@goals.route("/homepage")
-def homepage():
-    return flask.redirect(flask.url_for('.homepage_goals'))
-
-@goals.route("/homepage/goals")
-@goals.route("/homepage/goals/<string:goal_short_title>")
-@sugar.templated("aichi_view.html")
+@goals.route("/")
+@goals.route("/goals")
+@goals.route("/goals/<string:goal_short_title>")
+@sugar.templated("homepage.html")
 def homepage_goals(goal_short_title='A'):
 
     goals_list = mongo.db.goals.find()
@@ -60,7 +57,7 @@ def homepage_goals(goal_short_title='A'):
            }
 
 
-@goals.route("/goals")
+@goals.route("/admin/goals")
 @sugar.templated("/goals/goals_listing.html")
 def list_goals():
 
@@ -70,7 +67,7 @@ def list_goals():
             "goals": aichi_goals,
            }
 
-@goals.route("/mapping", methods=["GET", "POST"])
+@goals.route("/admin/mapping", methods=["GET", "POST"])
 @sugar.templated('mapping.html')
 def mapping():
     app = flask.current_app
@@ -123,7 +120,7 @@ def goal_data():
     result = {'result': aichi_goal['description']['en']}
     return flask.jsonify(result)
 
-@goals.route("/goals/<string:goal_id>/edit", methods=["GET", "POST"])
+@goals.route("/admin/goals/<string:goal_id>/edit", methods=["GET", "POST"])
 @sugar.templated("goals/edit.html")
 def edit(goal_id):
 
@@ -135,8 +132,6 @@ def edit(goal_id):
         selected_language = flask.request.args.getlist('lang')[0]
     except IndexError:
         selected_language = u'en'
-
-    app = flask.current_app
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
