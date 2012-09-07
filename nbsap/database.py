@@ -1,8 +1,10 @@
+from flaskext.openid import OpenID
 from flask.ext.pymongo import PyMongo
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
+oid = OpenID()
 mongo = PyMongo()
 
 DATABASE_URI = 'sqlite:////tmp/flask-openid.db'
