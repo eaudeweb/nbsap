@@ -8,6 +8,7 @@ NBSAP Quick Installation
 2. Create & activate a virtual environment::
 
     virtualenv sandbox
+    echo '*' > sandbox/.gitignore
     echo 'instance' >> .gitignore
     . sandbox/bin/activate
 
