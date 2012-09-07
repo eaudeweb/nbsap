@@ -8,7 +8,7 @@
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
       <label class="nav-header">Goals</label>
-      {% for goal in goals %}
+      {% for goal in goals|sort() %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
           Goal {{ goal.short_title }}
