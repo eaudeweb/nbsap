@@ -39,11 +39,11 @@
 
   <body>
     {% block layout_header %}
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="{{ url_for('goals.homepage_goals') }}">
-            NBSAP
+            National Biodiversity Strategy and Action Plan (NSBAP)
           </a>
             {% if user %}
             <ul class="nav pull-right">
@@ -58,12 +58,27 @@
               </li>
             </ul>
             {% endif %}
+
+            <ul class="nav pull-right top-menu">
+                      <li><a href="#">Login/Register</a></li>
+                      <li class="dropdown">
+                        <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">English</a></li>
+                          <li><a href="#">French</a></li>
+                          <li><a href="#">Dutch</a></li>
+                        </ul>
+                      </li>
+           </ul>
+
         </div>
+
+
       </div>
     </div>
     {% endblock %}
 
-    <div class="container">
+    <div class="container content">
 
       {{ flash_messages() }}
 
@@ -71,13 +86,20 @@
         {{ content }}
       {% endblock %}
 
-      {% block layout_footer %}
-      <footer>
-        <p class="pull-right">NBSAP tool - demo</p>
-      </footer>
-      {% endblock %}
+
 
     </div>
+
+    {% block layout_footer %}
+    <footer>
+    <div class="container">
+      <ul class="nav pull-right">
+        <li><a href="#" class="museum-logo">museum.be logo</a></li>
+        <li><a href="#" class="CHM-logo">CHM logo</a></li>
+      </ul>
+    </div>
+      </footer>
+    {% endblock %}
 
     {% block head_scripts %}
     {{ script_src("js/jquery-1.7.1.min.js") }}
@@ -88,6 +110,8 @@
     {{ script_src("js/main.js") }}
     {{ script_src("js/jquery.editinplace.js") }}
     {{ script_src("bootstrap/js/bootstrap-collapse.js") }}
+ 	{{ script_src("bootstrap/js/bootstrap-dropdown.js") }}
+
     <!--[if lt IE 9]>
       {{ script_src("js/ie.js") }}
     <![endif]-->

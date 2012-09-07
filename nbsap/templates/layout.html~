@@ -1,0 +1,130 @@
+{% from 'bits.html' import css_link, script_src, flash_messages -%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NBSAP</title>
+    {% block head %}
+    {{ css_link('bootstrap/css/bootstrap.css') }}
+    {{ css_link('bootstrap/css/bootstrap-responsive.css') }}
+
+    {{ css_link('css/bootstrap-ui/jquery-ui-1.8.16.custom.css') }}
+    {{ css_link('css/bootstrap-ui/jquery.ui.1.8.16.ie.css') }}
+    {{ css_link("css/uniform.default.css") }}
+
+    {{ css_link('css/chosen.css') }}
+    {{ css_link('css/style.css') }}
+
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {#{{ css_link("css/print.css", "print") }}#}
+
+
+    <style type="text/css">
+        .inplace_field{
+            width: 400px;
+        }
+        .subheader textarea{
+            resize: vertical;
+        }
+    </style>
+    {% endblock %}
+
+    {% block extra_head %}
+    {# To be overwritten by htmls that inherit it#}
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block layout_header %}
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="{{ url_for('goals.home') }}">
+            National Biodiversity Strategy and Action Plan (NSBAP)
+          </a>
+            {% if user %}
+            <ul class="nav pull-right">
+              <li>
+                <a href="#"><i class="icon-question-sign icon-white"></i> Help</a>
+              </li>
+              <li>
+                  <a href="">Logout</a>
+              </li>
+              <li>
+                  <a href="">Change password</a>
+              </li>
+            </ul>
+            {% endif %}
+
+			<ul class="nav pull-right top-menu">
+                      <li><a href="#">Login/Register</a></li>
+                      <li class="dropdown">
+                        <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">English</a></li>
+                          <li><a href="#">French</a></li>
+                          <li><a href="#">Dutch</a></li>
+                        </ul>
+                      </li>
+           </ul>
+
+        </div>
+
+		
+      </div>
+    </div>
+    {% endblock %}
+
+    <div class="container content">
+
+      {{ flash_messages() }}
+
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+
+      
+
+    </div>
+
+	{% block layout_footer %}
+      <footer>
+		<div class="container">
+			<ul class="nav pull-right">
+				<li><a href="#" class="museum-logo">museum.be logo</a></li>
+				<li><a href="#" class="CHM-logo">CHM logo</a></li>
+			</ul>
+		</div>
+      </footer>
+    {% endblock %}
+
+    {% block head_scripts %}
+    {{ script_src("js/jquery-1.7.1.min.js") }}
+    {{ script_src("js/jquery-ui-1.8.18.custom.min.js") }}
+    {{ script_src("js/chosen.jquery.js") }}
+    {{ script_src("js/jquery.utils.js") }}
+    {{ script_src("js/jquery.uniform.js") }}
+    {{ script_src("js/main.js") }}
+    {{ script_src("js/jquery.editinplace.js") }}
+    {{ script_src("bootstrap/js/bootstrap-collapse.js") }}
+    <!--[if lt IE 9]>
+      {{ script_src("js/ie.js") }}
+    <![endif]-->
+
+    <script>var app = {};</script>
+    <script>
+      $(function () {
+         $(".chzn-select").chosen();
+         $("input[type=file]").uniform();
+      });
+    </script>
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+
+  </body>
+</html>

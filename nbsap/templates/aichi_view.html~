@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "navigation.html" import homepage_tabs %}
+{{ homepage_tabs('aichi') }}
+
+  <div class="tabbable tabs-left">
+
+	<ul class="nav nav-tabs nav-stacked local-navigation">
+		  <label class="nav-header">AICHI Goals</label>
+		  {% for _goal in goals_list %}
+		    {% set active = 'active' if _goal.id == goal.id %}
+		    <li class={{ active }}>
+		    <a href="{{ url_for('goals.homepage_goals', goal_short_title=_goal.short_title) }}">Goal
+		      {{ _goal.short_title }}
+		    </a>
+		    </li>
+		  {% endfor %}
+
+		  <label class="nav-header">Indicators</label>
+		  <li><a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a></li>
+		  <li><a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a></li>
+		  <li><a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a></li>
+		  <li><a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a></li>
+		  <li><a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a></li>
+
+		</ul>
+
+    <div class="tab-content homepage_view" >
+      <h1>Goal {{goal.short_title}}: {{ goal.description.en|markdown }}</h1>
+
+      <div class="row">
+      <ul class="span1">
+        {% for target in targets %}
+          {% if loop.index0 % 2 == 0 and not loop.first %}
+            </ul><ul class="span1">
+          {% endif %}
+          <li>
+            <a href="#target_{{target.id}}">{{target.title.en}}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      </div>
+
+      {% for target in targets %}
+        <div class="element_field" id="target_{{ target.id }}">
+          <h2>{{target.title.en }}</h2>
+
+          <span class="target-description">{{ target.description.en|markdown }}</span>
+
+            <label>Mapping with National strategy:</label>
+            <div class="well">
+            {% if target.objective_ids %}
+              <ul>
+              {% for objective in target.objective_ids %}
+              <li><a href="{{url_for('objectives.homepage_objectives', objective_id=objective[0],
+                                                           _anchor="subobjective_%s" % objective[1])}}">
+                objective {{objective|join('.')}}
+              </a></li>
+              {% endfor %}
+            </ul>
+            {% else %}
+            None
+            {% endif %}
+            </div>
+
+          {% if target.relevant_indicators %}
+            <label>Most relevant indicators:</label>
+            <div class="well">
+              <ul>
+              {% for indicator in target.relevant_indicators|sort(attribute='id') %}
+                {% set page_number = (indicator.id/20)|int + 1 if (indicator.id % 20 != 0) else (indicator.id/20)|int %}
+                <li><a href="{{url_for('indicators.homepage_indicators',
+                                       page=page_number,
+                                       _anchor="indicator_%s" % indicator.id)
+                             }}">
+                  Indicator {{indicator.id}}: {{indicator.name.en}}
+                </a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if target.other_indicators %}
+            <label>Other relevant indicators:</label>
+            <div class="well">
+              <ul>
+              {% for indicator in target.other_indicators|sort(attribute='id') %}
+                {% set page_number = (indicator.id/20)|int + 1 if (indicator.id % 20 != 0) else (indicator.id/20)|int %}
+                <li><a href="{{url_for('indicators.homepage_indicators',
+                                       page=page_number,
+                                       _anchor="indicator_%s" % indicator.id)
+                             }}">
+                  Indicator {{indicator.id}}: {{indicator.name.en}}
+                </a></li>
+              {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <a class="pull-right" href="#top">Back to top</a>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+{% endblock content %}

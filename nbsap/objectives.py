@@ -14,7 +14,7 @@ def initialize_app(app):
 @objectives.route("/objectives/<int:objective_id>")
 @sugar.templated("/objectives/homepage.html")
 def homepage_objectives(objective_id=1):
-
+	
     objective_ids = mongo.db.objectives.find({}, {'id': 1})
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
 
