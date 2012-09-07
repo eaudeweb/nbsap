@@ -44,6 +44,7 @@ def homepage_objectives(objective_id=1):
             }
 
 @objectives.route("/admin/objectives/<int:objective_id>/<int:subobj_id>")
+@auth_required
 @sugar.templated("objectives/subobj_view.html")
 def view_subobj(objective_id, subobj_id):
 
@@ -67,6 +68,7 @@ def view_subobj(objective_id, subobj_id):
            }
 
 @objectives.route("/admin/objectives/<int:objective_id>")
+@auth_required
 @sugar.templated("objectives/view.html")
 def view(objective_id):
 
@@ -82,6 +84,7 @@ def view(objective_id):
            }
 
 @objectives.route("/admin/objectives")
+@auth_required
 @sugar.templated("objectives/objectives_listing.html")
 def list_objectives():
 
@@ -108,6 +111,7 @@ def objective_data():
     return flask.jsonify(result)
 
 @objectives.route("/admin/objectives/<int:objective_id>/edit", methods=["GET", "POST"])
+@auth_required
 @sugar.templated("objectives/edit.html")
 def edit(objective_id):
 

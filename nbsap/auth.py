@@ -59,8 +59,10 @@ def logout():
 def auth_required(view):
     @wraps(view)
     def wrapper(*args, **kwargs):
-        if flask.g.user is None:
-            login_url = flask.url_for("goals.home", next=flask.request.url)
+        if flask.current_app.config.get("BYPASS_LOGIN", False):
+            pass
+        elif flask.g.user is None:
+            login_url = flask.url_for("auth.login", next=flask.request.url)
             return flask.redirect(login_url)
         return view(*args, **kwargs)
     return wrapper

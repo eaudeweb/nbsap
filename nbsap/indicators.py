@@ -2,6 +2,7 @@ import flask
 import sugar
 import schema
 from database import mongo
+from auth import auth_required
 
 from schema.refdata import _load_json
 
@@ -46,6 +47,7 @@ def homepage_indicators():
            }
 
 @indicators.route("/admin/indicators")
+@auth_required
 @sugar.templated("indicators/indicators_listing.html")
 def list_indicators():
 
@@ -58,6 +60,7 @@ def list_indicators():
            }
 
 @indicators.route("/admin/indicators/<int:indicator_id>")
+@auth_required
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
@@ -88,6 +91,7 @@ def view(indicator_id):
            }
 
 @indicators.route("/admin/indicators/<int:indicator_id>/edit", methods=["GET", "POST"])
+@auth_required
 @sugar.templated("indicators/edit.html")
 def edit(indicator_id):
     app = flask.current_app

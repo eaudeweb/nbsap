@@ -2,6 +2,7 @@ import schema
 import flask
 import sugar
 from database import mongo
+from auth import auth_required
 
 actions = flask.Blueprint("actions", __name__)
 
@@ -9,6 +10,7 @@ def initialize_app(app):
     app.register_blueprint(actions)
 
 @actions.route("/admin/objectives/<int:objective_id>/<int:subobj_id>/action")
+@auth_required
 @sugar.templated("actions/view.html")
 def view(objective_id, subobj_id):
 
@@ -26,6 +28,7 @@ def view(objective_id, subobj_id):
            }
 
 @actions.route("/admin/objectives/<int:objective_id>/<int:subobj_id>/action/edit", methods=["GET", "POST"])
+@auth_required
 @sugar.templated("actions/edit.html")
 def edit(objective_id, subobj_id):
 

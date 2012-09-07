@@ -148,7 +148,8 @@ class _BaseTest(unittest.TestCase):
 
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
-        "SECRET_KEY": "something random"
+        "SECRET_KEY": "something random",
+        "BYPASS_LOGIN": True
     }
 
     def setUp(self):
