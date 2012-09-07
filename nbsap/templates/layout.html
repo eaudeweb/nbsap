@@ -48,8 +48,11 @@
             <ul class="nav pull-right top-menu">
               {% if g.user %}
               <li>
-                <a href="#"><i class="icon-question-sign icon-white"></i> Help</a>
+                <a href="{{url_for('goals.list_goals')}}"><i class="icon-wrench icon-black"></i> Admin</a>
               </li>
+              <!--li>
+                <a href="#"><i class="icon-question-sign icon-black"></i> Help</a>
+              </li-->
               <li>
                 <a href="{{url_for('auth.logout')}}">Logout</a>
               </li>
