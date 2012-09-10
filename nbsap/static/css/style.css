@@ -602,24 +602,19 @@ div.element_field {
     margin-bottom: 6px;
 }
 
+.login-container input {
+    width: 350px;
+}
 .login-container button {
-    margin-bottom: 8px
+    margin-bottom: 8px;
 }
 
 .login-container div.signin-button {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
-.login-alternative a.google_btn {
-    background: url('../google_logo.png') no-repeat;
-    width: 120px;
-    height: 43px;
-}
-
-.login-alternative a.yahoo_btn {
-    background: url('../yahoo_logo.png') no-repeat;
-    width: 120px;
-    height: 24px;
+.login-alternative span {
+        font-style: italic;
 }
 
 /* SONIA's styles */

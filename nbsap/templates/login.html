@@ -1,7 +1,8 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
+
 {% block content %}
   <div class="row">
-    <div class="span6">
+    <div class="span5 offset3">
         <div class="well">
             <form action="" method=post>
             {% if error %}
@@ -11,30 +12,27 @@
            <h3>Sign in</h3>
               <div class="login-container">
                   <label class="control-label">Username</label>
-                  <input type=text name=username size=30>
+                  <input type=text name=username>
                   <label class="control-label">Password</label>
-                  <input type=password name=password size=30>
+                  <input type=password name=password>
                   <div class="signin-button">
-                    <button type=submit class="btn btn-primary disabled">Sign in</button>
+                    <button type=submit class="btn btn-primary btn-large disabled">Sign in</button>
                   </div>
                   <input type=hidden name=next value="{{ next }}">
+                  <hr>
+                  <div class="login-alternative">
+                      <span>Or, sign in with a Google Service</span>
+                        <a href="{{url_for('auth.google_login')}}">
+                            <img alt="Google account" src="{{url_for('static', filename='google_logo.png')}}" title="Google Account">
+                        </a>
+                      <span>or with a Yahoo Service</span>
+                        <a href="{{url_for('auth.yahoo_login')}}">
+                            <img alt="Google account" src="{{url_for('static', filename='yahoo_logo.png')}}" title="Google Account">
+                        </a>
+
+                  </div>
               </div>
           </form>
-          </div>
-    </div>
-
-    <div class="span6">
-        <div class="login-alternative">
-            <h3>Don't have a NBSAP ID?</h3>
-            <p>Sign in with:</p>
-            <div>
-                <a href="{{url_for('auth.google_login')}}" class="btn btn-primary google_btn" type="button"></a>
-            </div>
-            <p>OR</p>
-            <div>
-                <a href="{{url_for('auth.yahoo_login')}}" class="btn btn-primary yahoo_btn" type="button"></a>
-            </div>
         </div>
-    </div>
   </div>
 {% endblock %}
