@@ -11,7 +11,7 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.admin'), "Admin"),
+      (url_for('goals.list_goals'), "Admin"),
       (url_for('goals.list_goals'), "Goals")
       ]) }}
 </ul>
