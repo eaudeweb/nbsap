@@ -1,3 +1,4 @@
+import re
 import codecs
 import os
 import pymongo
@@ -49,6 +50,9 @@ def sanitizer(field='description', one_level=True,
                 os.system("python html2text.py fw.txt > fr.txt")
                 fr = codecs.open("fr.txt", "r", "utf-8")
                 content = fr.read()
+                content = re.sub(r"\n\n", "FACTOR_42", content)
+                content = re.sub(r"\n", " ", content)
+                content = re.sub(r"FACTOR_42", "\n\n", content)
                 db_object[field][lang] = content
                 collection.save(db_object)
 
@@ -61,6 +65,9 @@ def sanitizer(field='description', one_level=True,
                     os.system("python html2text.py fw.txt > fr.txt")
                     fr = codecs.open("fr.txt", "r", "utf-8")
                     content = fr.read()
+                    content = re.sub(r"\n\n", "FACTOR_42", content)
+                    content = re.sub(r"\n", " ", content)
+                    content = re.sub(r"FACTOR_42", "\n\n", content)
                     subfield[field][lang] = content
                     collection.save(db_object)
 
@@ -74,3 +81,6 @@ if __name__ == "__main__":
 
     sanitizer(field='body', has_son='subobjs',
               mycollection='objectives')
+
+    os.system("rm fw.txt; rm fr.txt")
+
