@@ -798,12 +798,6 @@ h1 p {
     color: #777;
 }
 
-.table-bordered,
-.table-bordered th,
-.table-bordered td {
-    border: 0px; /* overrides bootstrap.css 1561, 1572 */
-}
-
 .indicator_table ul,
 .indicator_view ul {
 	list-style-type: square;
