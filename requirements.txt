@@ -18,3 +18,4 @@ raven==2.0.5
 simplejson==2.6.1
 Flask-Markdown==0.3
 SQLAlchemy==0.7.8
+mongokit==0.8.1
