@@ -2,14 +2,7 @@ import flatland
 
 from common import I18nString, CommonString, CommonList, CommonInteger
 
-Subobjective = flatland.Dict.of(
-            I18nString.named('title')
-                .with_properties(css_class="span4"),
-            I18nString.named('body')
-                .with_properties(field_widget="edit_textarea",
-                                css_class="input-xlarge"),
-            CommonString.named('id')
-        )
+_subobj_list = CommonList.named('subobjs').with_properties(widget="hidden")
 
 _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(widget="edit").of(
             I18nString.named('title')
@@ -21,9 +14,10 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
                                  css_class="input-xlarge"),
             CommonString.named('id')
                 .with_properties(widget="hidden"),
-            CommonList.named('subobjs').of(Subobjective)
-                .with_properties(widget="hidden")
+            _subobj_list,
         )
+
+_subobj_list.member_schema = _ObjectiveSchemaDefinition
 
 _action = flatland.Dict.of(
             I18nString.named('title')
