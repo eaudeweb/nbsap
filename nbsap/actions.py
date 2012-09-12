@@ -36,6 +36,12 @@ def edit(objective_id, subobj_id):
     subobj_id -= 1
 
     action = mongo.db.actions.find_one_or_404({'id': objective_id})
+
+    # actions list by default sorted like (1, 10).
+    tmp_list = action['actions']
+    tmp_list = sorted(tmp_list, key=lambda k: k['id'])
+    action['actions'] = tmp_list
+
     action_schema = schema.Action(action)
 
     # default display language is English
