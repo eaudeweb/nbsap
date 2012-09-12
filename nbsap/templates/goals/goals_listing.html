@@ -41,7 +41,7 @@
 
         <td style="text-align: center;">
             <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=nl"
-               class="btn btn-{% if goal.title['nl'] and goal.description['nl'] %}success
+               class="btn btn-mini btn-{% if goal.title['nl'] and goal.description['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if goal.title['nl'] and goal.description['nl']
                           %}translated {% else %} translate {% endif %}
@@ -50,7 +50,7 @@
 
         <td style="text-align: center;">
             <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=fr"
-               class="btn btn-{% if goal.title['fr'] and goal.description['fr'] %}success
+               class="btn btn-mini btn-{% if goal.title['fr'] and goal.description['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if goal.title['fr'] and goal.description['fr']
                           %}translated {% else %} translate {% endif %}

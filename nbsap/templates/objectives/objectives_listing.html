@@ -38,7 +38,7 @@
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"
-               class="btn btn-{% if objective.title['nl'] and objective.body['nl'] %}success
+               class="btn btn-mini btn-{% if objective.title['nl'] and objective.body['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if objective.title['nl'] and objective.body['nl']
                           %}translated {% else %} translate {% endif %}
@@ -47,7 +47,7 @@
 
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=fr"
-               class="btn btn-{% if objective.title['fr'] and objective.body['fr'] %}success
+               class="btn btn-mini btn-{% if objective.title['fr'] and objective.body['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if objective.title['fr'] and objective.body['fr']
                           %}translated {% else %} translate {% endif %}

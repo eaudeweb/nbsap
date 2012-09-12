@@ -38,7 +38,7 @@
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl"
-               class="btn btn-{% if target.title['nl'] and target.description['nl'] %}success
+               class="btn btn-mini btn-{% if target.title['nl'] and target.description['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if target.title['nl'] and target.description['nl']
                           %}translated {% else %} translate {% endif %}
@@ -47,7 +47,7 @@
 
         <td style="text-align: center;">
             <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=fr"
-               class="btn btn-{% if target.title['fr'] and target.description['fr'] %}success
+               class="btn btn-mini btn-{% if target.title['fr'] and target.description['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if target.title['fr'] and target.description['fr']
                           %}translated {% else %} translate {% endif %}

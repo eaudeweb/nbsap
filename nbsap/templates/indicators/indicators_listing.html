@@ -23,7 +23,7 @@
     {% endfor %}
 
     <a href="{{url_for('indicators.edit', indicator_id=indicator.id)}}?lang={{language}}"
-       class="btn btn-{% if to_translate %}warning{% else %}success{% endif %}"
+       class="btn btn-mini btn-{% if to_translate %}warning{% else %}success{% endif %}"
        type="button">{% if to_translate %}translate{% else %}translated{% endif %}
     </a>
 {% endmacro %}
