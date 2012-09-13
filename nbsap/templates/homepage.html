@@ -27,7 +27,7 @@
   </ul>
 
   <div class="tab-content homepage_view" >
-    <h1>Goal {{goal.short_title}}: {{ goal.description.en|markdown }}</h1>
+    <h1>Goal {{goal.short_title}}: {{ goal.description[lang]|markdown }}</h1>
 
     <div class="row">
       <ul class="span1">
@@ -36,7 +36,7 @@
         </ul><ul class="span1">
         {% endif %}
         <li>
-        <a href="#target_{{target.id}}">{{target.title.en}}</a>
+        <a href="#target_{{target.id}}">{{target.title[lang]}}</a>
         </li>
         {% endfor %}
       </ul>
@@ -44,9 +44,9 @@
 
     {% for target in targets %}
     <div class="element_field" id="target_{{ target.id }}">
-      <h2>{{target.title.en }}</h2>
+      <h2>{{target.title[lang] }}</h2>
 
-      <span class="target-description">{{ target.description.en|markdown }}</span>
+      <span class="target-description">{{ target.description[lang]|markdown }}</span>
 
       <label>Mapping with National strategy:</label>
       <div class="well">
@@ -74,7 +74,7 @@
             page=page_number,
             _anchor="indicator_%s" % indicator.id)
             }}">
-            Indicator {{indicator.id}}: {{indicator.name.en}}
+            Indicator {{indicator.id}}: {{indicator.name[lang]}}
           </a></li>
           {% endfor %}
         </ul>
@@ -91,7 +91,7 @@
             page=page_number,
             _anchor="indicator_%s" % indicator.id)
             }}">
-            Indicator {{indicator.id}}: {{indicator.name.en}}
+            Indicator {{indicator.id}}: {{indicator.name[lang]}}
           </a></li>
           {% endfor %}
         </ul>
