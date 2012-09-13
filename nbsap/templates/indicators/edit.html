@@ -6,7 +6,7 @@
   {{ breadcrumb_items([
       (url_for('goals.list_goals'), "Admin"),
       (url_for('indicators.list_indicators'), "Indicators"),
-      (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en),
+      (url_for('indicators.view', indicator_id=indicator.id), indicator.name[lang]),
       (url_for('indicators.edit', indicator_id=indicator.id),
         "Edit Indicator " + indicator.id|string())
       ]) }}

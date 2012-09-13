@@ -34,7 +34,7 @@
             {{-target.id-}}
         </td>
         <td>
-            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{target.title['en']}}</a>
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{target.title[lang]}}</a>
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl"

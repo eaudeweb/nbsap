@@ -11,9 +11,9 @@
       (url_for('objectives.view_subobj', objective_id=objective_id,
             subobj_id=subobj_id+1), "Subobjective " + (subobj_id+1)|string()),
       (url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id+1),
-            action['actions'][subobj_id].title.en),
+            action['actions'][subobj_id].title[lang]),
       (url_for('actions.edit', objective_id=objective_id, subobj_id=subobj_id+1),
-            "Edit " + action['actions'][subobj_id].title.en)
+            "Edit " + action['actions'][subobj_id].title[lang])
       ]) }}
 </ul>
 

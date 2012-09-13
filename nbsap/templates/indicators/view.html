@@ -6,7 +6,7 @@
   {{ breadcrumb_items([
       (url_for('goals.list_goals'), "Admin"),
       (url_for('indicators.list_indicators'), "Indicators"),
-      (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en)
+      (url_for('indicators.view', indicator_id=indicator.id), indicator.name[lang])
       ]) }}
 </ul>
 
@@ -39,7 +39,7 @@
             <td>
                 <ul>
                 {% for related_link in indicator[key] %}
-                    <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
+                    <li><a href="{{related_link.url}}">{{related_link.url_name[lang]}}</a></li>
                 {% endfor %}
                 </ul>
             </td>
@@ -67,7 +67,7 @@
             </ul></td>
         <!-- Regular case -->
             {% else %}
-              <td> {{ indicator[key].en }} </td>
+              <td> {{ indicator[key][lang] }} </td>
             {% endif %}
         {% endif %}
       </tr>
