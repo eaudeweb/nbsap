@@ -5,7 +5,8 @@
 <ul class="breadcrumb">
   {{ breadcrumb_items([
       (url_for('goals.list_goals'), "Admin"),
-      (url_for('goals.mapping'), "Mapping")
+      (url_for('goals.mapping'), "Mapping"),
+      (url_for('goals.mapping_edit'), "Edit")
       ]) }}
 </ul>
 
@@ -14,7 +15,7 @@
 
 <h1>Map National Objectives to Aichi targets</h1>
 
-<form class="form" method="POST" action="{{url_for('goals.mapping')}}" style="margin-top: 25px">
+<form class="form" method="POST" action="{{url_for('goals.mapping_edit', mapping_id=mapping_id)}}" style="margin-top: 25px">
   <fieldset>
 
   {%- for name in mk.children_order(mapping_schema) %}
@@ -22,6 +23,7 @@
     {% set field = mapping_schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
+    {% if field.properties.widget != 'hidden' %}
     <div class="control-group {{ error_cls }} row">
       <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
       <div class="controls span3">
@@ -32,13 +34,19 @@
       </div>
       <div class="mapping_text span7 {{field.name}}"></div>
     </div>
+    {% endif %}
 
   {% endfor -%}
 
   </fieldset>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Save</button>
-    <a class="btn" href="{{ url_for('goals.list_goals') }}">Cancel</a>
+    {% if mapping_id %}
+     <a class="btn btn-danger" href="{{ url_for('goals.mapping_delete', mapping_id=mapping_id) }}">
+       Delete
+     </a>
+    {% endif %}
+    <a class="btn" href="{{ url_for('goals.mapping') }}">Cancel</a>
   </div>
 </form>
 
@@ -89,6 +97,20 @@
     });
 
     $("#main_target").chained("#goal");
+
+    $(".btn-danger").on("click", function (e) {
+      e.preventDefault();
+      if(confirm("Are you sure you want to delete this mapping?")) {
+        $.ajax({
+          "url": $(this).attr("href"),
+          "type": "DELETE",
+          "success": function (data) {
+            if(data.status == "success") window.location = "/admin/mapping";
+          }
+        });
+      }
+    });
+
   });
   </script>
 {% endblock scripts %}

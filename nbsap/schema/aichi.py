@@ -105,6 +105,8 @@ _TargetSchemaDefinition = flatland.Dict.of(
         )
 
 _MappingSchema = flatland.Dict.with_properties(widget="form").of(
+            CommonString.named('_id')
+                .with_properties(widget="hidden"),
             CommonEnum.named('objective')
                         .using(label="National Objective", optional=False)
                         .with_properties(widget="obj_select"),
