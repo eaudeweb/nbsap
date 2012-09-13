@@ -109,12 +109,22 @@ class MappingTest(_BaseTest):
         self.assertEqual(len(new_mapping), 1)
         self.assertEqual(new_mapping[0]['goal'], 'B')
         self.assertEqual(new_mapping[0]['main_target'], '5')
-        self.assertEqual(new_mapping[0]['other_targets'], None)
-        self.assertEqual(new_mapping[0]['objective'], '1.1')
+        self.assertEqual(new_mapping[0]['other_targets'], [])
 
 
+    def test_delete_an_existing_target(self):
+        self._create_mapping()
 
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            mapping_id = mongo.db.mapping.find_one({}, {'_id': 1})['_id']
 
+        response = self.client.delete("/admin/mapping/%s/delete" % mapping_id)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("success", response.data)
 
+        with self.app.test_request_context():
+            mappings = [m for m in mongo.db.mapping.find()]
 
+        self.assertEqual(len(mappings), 0)
 
