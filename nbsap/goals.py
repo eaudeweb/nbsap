@@ -15,9 +15,8 @@ def initialize_app(app):
 
 @goals.route("/admin")
 @auth_required
-@sugar.templated('admin.html')
 def admin():
-    return
+    return flask.redirect(flask.url_for('goals.list_goals'))
 
 
 @goals.route("/")
