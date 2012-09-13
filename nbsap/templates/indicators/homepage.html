@@ -44,7 +44,7 @@
         <ul class="span10">
           {% for indicator in indicators %}
           <li>
-            <a href="#indicator_{{indicator.id}}">Indicator {{indicator.id}}: {{indicator.name.en}}</a>
+            <a href="#indicator_{{indicator.id}}">Indicator {{indicator.id}}: {{indicator.name[lang]}}</a>
           </li>
           {% endfor %}
         </ul>
@@ -55,7 +55,7 @@
 
       {% for indicator in indicators %}
         <div class="indicator_homepage element_field" id="indicator_{{indicator.id}}">
-          <h2>Indicator {{indicator.id}}: {{indicator.name.en}}</h2>
+          <h2>Indicator {{indicator.id}}: {{indicator.name[lang]}}</h2>
 
           <table class="indicator_table table table-bordered table-striped">
             <tbody>
@@ -74,7 +74,7 @@
                                 }}">
                        Target {{value_element}}</a>
                         : {% for target in targets %}
-                          {{ target.description.en|markdown if target.id == value_element }}
+                          {{ target.description[lang]|markdown if target.id == value_element }}
                         {% endfor %}
                        </li>
                     {% endfor %}</ul></td>
@@ -83,7 +83,7 @@
                   {% elif key in key_links %}
                     <td><ul>
                        {% for related_link in indicator[key] %}
-                         <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
+                         <li><a href="{{related_link.url}}">{{related_link.url_name[lang]}}</a></li>
                        {% endfor %}
                     </ul></td>
                   {% else %}
@@ -96,7 +96,7 @@
                                   }}">
                         Target {{indicator[key]}}</a>
                         : {% for target in targets %}
-                          {{ target.description.en|markdown if target.id == indicator[key] }}
+                          {{ target.description[lang]|markdown if target.id == indicator[key] }}
                         {% endfor %}
                     </td>
 
@@ -105,7 +105,7 @@
                       <td><a href="{{url_for('goals.homepage_goals', goal_short_title=indicator[key])}}">
                           Goal {{indicator[key]}}</a>
                           : {% for goal in goals %}
-                            {{ goal.description.en|markdown if goal.short_title == indicator[key] }}
+                            {{ goal.description[lang]|markdown if goal.short_title == indicator[key] }}
                           {% endfor %}
                       </td>
 
@@ -123,7 +123,7 @@
                     {% else %}
 
                   <!-- Regular case -->
-                    <td> {{ indicator[key].en }} </td>
+                    <td> {{ indicator[key][lang] }} </td>
                     {% endif %}
                   {% endif %}
                 </tr>
