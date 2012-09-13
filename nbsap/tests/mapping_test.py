@@ -119,6 +119,9 @@ class MappingTest(_BaseTest):
         with self.app.test_request_context():
             mapping_id = mongo.db.mapping.find_one({}, {'_id': 1})['_id']
 
+        response = self.client.get("/admin/mapping/%s/delete" % mapping_id)
+        self.assertEqual(response.status_code, 405)
+
         response = self.client.delete("/admin/mapping/%s/delete" % mapping_id)
         self.assertEqual(response.status_code, 200)
         self.assertIn("success", response.data)
