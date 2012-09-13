@@ -5,15 +5,18 @@ from database import mongo
 
 goals = flask.Blueprint("goals", __name__)
 
+
 def initialize_app(app):
     _my_extensions = app.jinja_options["extensions"] + ["jinja2.ext.do"]
     app.jinja_options = dict(app.jinja_options, extensions=_my_extensions)
     app.register_blueprint(goals)
 
+
 @goals.route("/admin")
 @sugar.templated('admin.html')
 def admin():
     return
+
 
 @goals.route("/")
 @goals.route("/goals")
@@ -32,10 +35,9 @@ def homepage_goals(goal_short_title='A'):
 
         relevant_indicators = mongo.db.indicators.find({"relevant_target": target['id']})
         other_indicators = mongo.db.indicators.find({'other_targets': {"$in": [target['id']]}})
-        mapping = mongo.db.mapping.find({ "$or" : [{"main_target": target['id']},
-                                                   {'other_targets': {"$in": [target['id']]}}
-                                                  ]
-                                         })
+        mapping = mongo.db.mapping.find({"$or": [{"main_target": target['id']},
+                                                   {'other_targets': {"$in": [target['id']]}}]
+                                       })
 
         for indicator in relevant_indicators:
             target['relevant_indicators'].append({'id': indicator['id'],
@@ -97,11 +99,11 @@ def mapping_delete(mapping_id):
 @goals.route("/admin/mapping/<string:mapping_id>/edit", methods=["GET", "POST"])
 @sugar.templated('mapping/edit.html')
 def mapping_edit(mapping_id=None):
+    import bson
     app = flask.current_app
     objectives = sugar.generate_objectives()
 
     if mapping_id:
-        import bson
         objectid = bson.objectid.ObjectId(oid=mapping_id)
         mapping = mongo.db.mapping.find_one_or_404({'_id': objectid})
 
@@ -141,10 +143,12 @@ def mapping_edit(mapping_id=None):
 
             if mapping_id:
                 mapping.update(mapping_schema.flatten())
-                mongo.db.mapping.save(mapping)
+                mapping['_id'] = bson.objectid.ObjectId(oid=mapping_id)
             else:
-                mongo.db.mapping.save(mapping_schema.flatten())
+                mapping = mapping_schema.flatten()
+                mapping['_id'] = bson.objectid.ObjectId()
 
+            mongo.db.mapping.save(mapping)
             flask.flash("Mapping saved", "success")
             return flask.redirect(flask.url_for('goals.mapping'))
 
