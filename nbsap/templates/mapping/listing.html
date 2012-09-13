@@ -34,13 +34,27 @@
   <tbody>
     {% for mapping in mappings %}
     <tr>
-      <td>{{mapping.objective}}</td>
+      {% set objective_id = mapping.objective[0] %}
+      {% set subobjective_id = mapping.objective[1] %}
+      <td><a href="{{url_for('objectives.view_subobj',
+                    objective_id=objective_id, subobj_id=subobjective_id)}}">
+          {{mapping.objective|join('.')}}
+      </a></td>
 
-      <td>{{mapping.goal}}</td>
 
-      <td>{{mapping.main_target}}</td>
+      <td><a href="{{url_for('goals.edit', goal_id=mapping.goal.id)}}">
+          {{mapping.goal.name}}
+      </a></td>
 
-      <td>{{mapping.other_targets|join(',')}}</td>
+      <td><a href="{{url_for('targets.edit', target_id=mapping.main_target)}}">
+          {{mapping.main_target}}
+      </a></td>
+
+      <td>{% for target in mapping.other_targets %}
+        <a href="{{url_for('targets.edit', target_id=target)}}">
+          {{target}}
+        </a>{% if not loop.last %},{% endif %}
+      {% endfor %}</td>
 
       <td style="text-align: center;">
         <a class="btn btn-primary"

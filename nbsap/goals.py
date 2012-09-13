@@ -72,7 +72,14 @@ def list_goals():
 @goals.route("/admin/mapping")
 @sugar.templated('mapping/listing.html')
 def mapping():
-    mappings = mongo.db.mapping.find()
+    mappings = [mapping for mapping in mongo.db.mapping.find()]
+    goals = [goal for goal in mongo.db.goals.find()]
+
+    for mapping in mappings:
+        mapping['objective'] = mapping['objective'].split('.')
+        goal_id = [goal['id'] for goal in goals
+                                if goal['short_title'] == mapping['goal']][0]
+        mapping['goal'] = {'id': goal_id, 'name': mapping['goal']}
 
     return {
             "mappings": mappings
