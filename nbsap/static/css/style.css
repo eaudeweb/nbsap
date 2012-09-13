@@ -621,6 +621,10 @@ div.element_field {
         font-style: italic;
         text-decoration: none;
 }
+
+.wmd-panel .btn-toolbar {
+        margin-bottom: 10px!important;
+}
 /* SONIA's styles */
 
 /* header */

@@ -57,14 +57,14 @@
       {% endfor %}</td>
 
       <td style="text-align: center;">
-        <a class="btn btn-primary"
+        <a class="btn btn-mini btn-primary"
           href="{{ url_for('goals.mapping_edit', mapping_id=mapping._id) }}">
             edit
         </a>
       </td>
 
       <td style="text-align: center;">
-        <a class="btn btn-danger"
+        <a class="btn btn-mini btn-danger"
            href="{{ url_for('goals.mapping_delete', mapping_id=mapping._id) }}">
             delete
         </a>
