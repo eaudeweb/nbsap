@@ -12,7 +12,7 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
                 .using(label=u'Description')
                 .with_properties(field_widget="edit_textarea",
                                  css_class="input-xlarge"),
-            CommonString.named('id')
+            CommonInteger.named('id')
                 .with_properties(widget="hidden"),
             _subobj_list,
         )

@@ -6,6 +6,7 @@ from auth import auth_required
 
 objectives = flask.Blueprint("objectives", __name__)
 
+
 def initialize_app(app):
     app.register_blueprint(objectives)
 
@@ -22,26 +23,32 @@ def homepage_objectives(objective_id=1):
 
     for subobj in objective['subobjs']:
         code_id = str(objective['id']) + '.' + str(subobj['id'])
-        subobj['mapping'] = [m for m in mongo.db.mapping.find({'objective': code_id})]
+        subobj['mapping'] = [m for m in
+                             mongo.db.mapping.find({'objective': code_id})]
         for m in subobj['mapping']:
-            m['goal'] = { 'short_title': m['goal'],
-                          'description': mongo.db.goals.find_one({'short_title': m['goal']})['description']
+            m['goal'] = {'short_title': m['goal'],
+                         'description': \
+                         mongo.db.goals.find_one(
+                                                 {'short_title': m['goal']})\
+                                                ['description']
                         }
             m['main_target'] = { 'number': m['main_target'],
                                  'description': mongo.db.targets.find_one({'id': m['main_target']})['description']
                                 }
 
             for target in range(len(m['other_targets'])):
-                m['other_targets'][target] =\
-                    { 'number': m['other_targets'][target],
-                      'description': mongo.db.targets.find_one({'id': m['other_targets'][target]})['description']
+                m['other_targets'][target] = \
+                    {
+                     'number': m['other_targets'][target],
+                     'description': mongo.db.targets.find_one({'id': m['other_targets'][target]})['description']
                     }
 
     return {
-                'objective_ids': objective_ids,
-                'objective': objective,
-                'mapping': mapping
-            }
+        'objective_ids': objective_ids,
+        'objective': objective,
+        'mapping': mapping
+    }
+
 
 @objectives.route("/admin/objectives/<int:objective_id>/<int:subobj_id>")
 @auth_required
@@ -59,13 +66,14 @@ def view_subobj(objective_id, subobj_id):
 
     if objective_related_actions:
         related_action = [a for a in objective_related_actions['actions']
-                                if int(a['title']['en'].split('.')[1]) == subobj_id][0]
+                          if int(a['title']['en'].split('.')[1]) == subobj_id][0]
 
     return {
-                "objective_id": objective_id,
-                "subobj": subobj,
-                "action": related_action
-           }
+        "objective_id": objective_id,
+        "subobj": subobj,
+        "action": related_action
+    }
+
 
 @objectives.route("/admin/objectives/<int:objective_id>")
 @auth_required
@@ -75,13 +83,13 @@ def view(objective_id):
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     actions = mongo.db.actions.find_one({'id': objective_id})
 
-
     related_actions = actions.get('actions', None) if actions else []
 
     return {
-                "objective": objective,
-                "actions": related_actions
-           }
+        "objective": objective,
+        "actions": related_actions
+    }
+
 
 @objectives.route("/admin/objectives")
 @auth_required
@@ -91,11 +99,13 @@ def list_objectives():
     objectives = mongo.db.objectives.find()
 
     return {
-            "objectives": objectives,
-           }
+        "objectives": objectives,
+    }
+
 
 @objectives.route("/objectives/data")
 def objective_data():
+
     try:
         id_code = flask.request.args.getlist('id_code')[0]
     except IndexError:
@@ -105,12 +115,15 @@ def objective_data():
     subobjective_id = int(id_code.split('.')[1])
 
     objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
-    subobjective = [s for s in objective['subobjs'] if s['id'] == subobjective_id][0]
+    subobjective = [s for s in objective['subobjs'] if
+                    s['id'] == subobjective_id][0]
 
     result = {'result': subobjective['title']['en']}
     return flask.jsonify(result)
 
-@objectives.route("/admin/objectives/<int:objective_id>/edit", methods=["GET", "POST"])
+
+@objectives.route("/admin/objectives/<int:objective_id>/edit",
+                  methods=["GET", "POST"])
 @auth_required
 @sugar.templated("objectives/edit.html")
 def edit(objective_id):
@@ -129,18 +142,53 @@ def edit(objective_id):
 
         selected_language = data['language']
 
-        objective_schema['title'][selected_language].set(data['title-' + selected_language])
-        objective_schema['body'][selected_language].set(data['body-' + selected_language])
+        objective_schema['title'][selected_language].set(data['title-' +
+                                                         selected_language])
+        objective_schema['body'][selected_language].set(data['body-' +
+                                                        selected_language])
 
         if objective_schema.validate():
-            objective['title'][selected_language] = data['title-' + selected_language]
-            objective['body'][selected_language] = data['body-' + selected_language]
+            objective['title'][selected_language] = data['title-' +
+                                                         selected_language]
+            objective['body'][selected_language] = data['body-' +
+                                                        selected_language]
 
             flask.flash("Saved changes.", "success")
             mongo.db.objectives.save(objective)
 
     return {
-                "language": selected_language,
-                "objective": objective,
-                "schema": objective_schema
-           }
+        "language": selected_language,
+        "objective": objective,
+        "schema": objective_schema
+    }
+
+
+@objectives.route("/admin/objectives/add", methods=["GET", "POST"])
+@auth_required
+@sugar.templated("objectives/add.html")
+def add():
+    objective_schema = schema.Objective({})
+
+    tmp_collection = mongo.db.objectives.find().sort('id', -1)
+    new_index = tmp_collection[0]['id'] + 1
+
+    objective_schema['id'] = new_index
+    objective_schema['title']['en'] = "Objective %s:" % (new_index)
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        objective_schema['title']['en'].set(data['title-en'])
+        objective_schema['body']['en'].set(data['body-en'])
+
+        if objective_schema.validate():
+            objective = objective_schema.flatten()
+            flask.flash("Objective successfully added.", "success")
+            mongo.db.objectives.save(objective)
+            return flask.redirect(flask.url_for('objectives.list_objectives'))
+        else:
+            flask.flash("Error in adding an objective.", "error")
+
+    return {
+        "schema": objective_schema
+    }
