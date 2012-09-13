@@ -23,6 +23,7 @@
     {% set field = mapping_schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
+    {% if field.properties.widget != 'hidden' %}
     <div class="control-group {{ error_cls }} row">
       <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
       <div class="controls span3">
@@ -33,6 +34,7 @@
       </div>
       <div class="mapping_text span7 {{field.name}}"></div>
     </div>
+    {% endif %}
 
   {% endfor -%}
 

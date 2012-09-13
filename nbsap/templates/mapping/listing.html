@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+<style>
+#DataTables_Table_0_wrapper {
+    margin-top: 20px;
+}
+</style>
+
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
@@ -14,36 +20,71 @@
 
 <h1>Mappings of National Objectives to Aichi targets</h1>
 
+<table class="table table-bordered table-striped mapping_listing">
+
+  <thead>
+    <th>Objective</th>
+    <th>Goal</th>
+    <th>Most relevant target</th>
+    <th>Other relevant targets</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </thead>
+
+  <tbody>
+    {% for mapping in mappings %}
+    <tr>
+      <td>{{mapping.objective}}</td>
+
+      <td>{{mapping.goal}}</td>
+
+      <td>{{mapping.main_target}}</td>
+
+      <td>{{mapping.other_targets|join(',')}}</td>
+
+      <td style="text-align: center;">
+        <a class="btn btn-primary"
+          href="{{ url_for('goals.mapping_edit', mapping_id=mapping._id) }}">
+            edit
+        </a>
+      </td>
+
+      <td style="text-align: center;">
+        <a class="btn btn-danger"
+           href="{{ url_for('goals.mapping_delete', mapping_id=mapping._id) }}">
+            delete
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
 <div class="btn-toolbar">
   <div class="btn-group">
-    <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">Add</a>
-  </div>
-</div>
-
-<ul>
-  {% for mapping in mappings %}
-  <li><ul>
-    <li>Objective: {{mapping.objective}}</li>
-    <li>Goal: {{mapping.goal}}</li>
-    <li>Target: {{mapping.main_target}}</li>
-    <li>Other targets: {% for t in mapping.other_targets %} {{ t }} {% endfor %}</li>
-  </ul></li>
-  <a class="btn-mini btn-primary" href="{{ url_for('goals.mapping_edit', mapping_id=mapping._id) }}">Edit</a>
-  <a class="btn-mini btn-danger" href="{{ url_for('goals.mapping_delete', mapping_id=mapping._id) }}">Delete</a>
-  {% endfor %}
-</ul>
-
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">Add</a>
+    <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">Add mapping</a>
   </div>
 </div>
 
 {% endblock content %}
 {% block scripts %}
-{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/lib/datatables/jquery.dataTables.min.js') }}
+{{ script_src('js/lib/datatables/DT_bootstrap.js') }}
 <script>
   $(function () {
+    $('.mapping_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Display _MENU_ mappings per page",
+            "sInfo": "Showing _START_ to _END_ of _TOTAL_ mappings",
+            "sZeroRecords": "No matching mappings found"
+        }
+    });
+
     $(".btn-danger").on("click", function (e) {
       e.preventDefault();
       if(confirm("Are you sure you want to delete this mapping?")) {

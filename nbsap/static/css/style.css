@@ -783,9 +783,9 @@ h1 p {
     color: #777;
 }
 
-.table-bordered,
-.table-bordered th,
-.table-bordered td {
+.indicator_table,
+.indicator_table th,
+.indicator_table td {
     border: 0px; /* overrides bootstrap.css 1561, 1572 */
 }
 
