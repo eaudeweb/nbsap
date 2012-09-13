@@ -18,6 +18,11 @@ def initialize_app(app):
 def admin():
     return flask.redirect(flask.url_for('goals.list_goals'))
 
+@goals.route("/set_language", methods=['POST', 'GET'])
+def set_language():
+    language = flask.request.args.getlist('language')
+    flask.session['language'] = language
+    return flask.redirect(flask.request.referrer)
 
 @goals.route("/")
 @goals.route("/goals")
