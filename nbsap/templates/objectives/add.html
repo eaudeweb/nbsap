@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), "Admin"),
+      (url_for('objectives.list_objectives'), "Objectives"),
+      (url_for('objectives.add'), "Add objective"),
+      ]) }}
+</ul>
+
+{% macro error(field) %}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+{% endmacro %}
+
+{% from 'bits.html' import markup_help_button -%}
+{{ markup_help_button() }}
+
+<h1>Add objective</h1>
+<form method="POST">
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('objectives.list_objectives')}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="language">Language</label>
+        <div class="controls">
+            <select name="language" id="language">
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <div class="language-container language-en">
+                <div class="control-group" >
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                            {{-schema.title['en']|safe-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="body">Description</label>
+                    <div class="controls wmd-panel">
+                      <div id="wmd-button-bar-en"></div>
+                      <textarea name="body-en" class="wmd-input" id="wmd-input-en"
+                            style="width:100%; max-height: 900px;">
+                            {{-schema.body['en']|safe-}}
+                      </textarea>
+                    </div>
+                        {{error(schema.body['en'])}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{url_for('objectives.list_objectives')}}"
+                class="btn" type="button">Cancel</a>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.autogrow-textarea.js') }}
+{{ script_src('js/markdown.js') }}
+
+{{ script_src('js/Markdown.Converter.js') }}
+{{ script_src('js/Markdown.Sanitizer.js') }}
+{{ script_src('js/Markdown.Editor.js') }}
+{{ script_src('js/less-1.2.2.min.js') }}
+{{ script_src("bootstrap/js/bootstrap-tooltip.js") }}
+{{ script_src("bootstrap/js/bootstrap-modal.js") }}
+{{ css_link ('css/markdown.css') }}
+
+{{ script_src('js/edit_markdown.js') }}
+<script>
+
+$('textarea').autogrow();
+
+</script>
+{% endblock %}

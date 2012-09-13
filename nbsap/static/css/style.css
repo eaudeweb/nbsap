@@ -621,6 +621,10 @@ div.element_field {
         font-style: italic;
         text-decoration: none;
 }
+
+.add-button {
+    margin-top: 20px;
+}
 /* SONIA's styles */
 
 /* header */
