@@ -7,12 +7,12 @@
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
-      <label class="nav-header">Objectives</label>
+      <label class="nav-header">{{_('Objectives')}}</label>
       {% for objective_id in objective_ids %}
         {% set active = 'active' if objective_id.id == objective.id %}
         <li class={{ active }}>
         <a href="{{ url_for('objectives.homepage_objectives', objective_id=objective_id.id) }}">
-          Objective {{ objective_id.id }}
+          {{_('Objective')}} {{ objective_id.id }}
         </a>
         </li>
       {% endfor %}
@@ -24,11 +24,11 @@
     <div class="element_field well objective-description">
         <div class="snippet">
           {{ objective.body[lang]|truncate(length=510, end='...')|markdown }}
-          <a class="more">show more</a>
+          <a class="more">{{_('show more')}}</a>
         </div>
         <div class="full">
           {{ objective.body[lang]|markdown }}
-          <a class="less">show less</a>
+          <a class="less">{{_('show less')}}</a>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
             </ul><ul class="span2">
           {% endif %}
           <li>
-          <a href="#subobjective_{{subobj.id}}">Objective {{objective.id}}.{{subobj.id}}</a>
+          <a href="#subobjective_{{subobj.id}}">{{_('Objective')}} {{objective.id}}.{{subobj.id}}</a>
           </li>
         {% endfor %}
       </ul>
@@ -51,50 +51,50 @@
 
           <div class="snippet">
             {{subobj.body[lang]|truncate(length=510, end='...')|markdown }}
-            <a class="more">show more</a>
+            <a class="more">{{_('show more')}}</a>
           </div>
           <div class="full">
             {{ subobj.body[lang]|markdown }}
-             <a class="less">show less</a>
+            <a class="less">{{_('show less')}}</a>
           </div>
 
 
-            <label>Mapping with AICHI:</label>
+          <label>{{_('Mapping with AICHI')}}:</label>
 
             <div class="row well">
           {% if subobj.mapping|length() %}
             {% for m in subobj.mapping %}
             <ul class="mapping-list">
 
-                <li><span class="mapping-header">Goal:</span>
+              <li><span class="mapping-header">{{_('Goal')}}:</span>
                 <span>
                   <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
 
 
-                    <strong>goal {{m.goal.short_title}}</strong>: {{m.goal.description[lang]|markdown}}
+                    <strong>{{_('goal')}} {{m.goal.short_title}}</strong>: {{m.goal.description[lang]|markdown}}
                   </a>
                 </span>
                 </li>
 
-                <li><span class="mapping-header">Most relevant AICHI target:</span>
+                <li><span class="mapping-header">{{_('Most relevant AICHI target')}}:</span>
                 <span>
                   <a href="{{url_for('goals.homepage_goals',
                     goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
 
-                    <strong>target {{m.main_target.number}}</strong>: {{m.main_target.description[lang]|markdown}}
+                    <strong>{{_('target')}} {{m.main_target.number}}</strong>: {{m.main_target.description[lang]|markdown}}
                   </a>
                 </span>
                 </li>
 
                 {% if m.other_targets %}
-                <li><span class="mapping-header">Other relevant AICHI targets:</span>
+                <li><span class="mapping-header">{{_('Other relevant AICHI targets')}}:</span>
                 <ul class="other-targets">
                   {% for target in m.other_targets %}
 
                   <li>
                   <a href="{{url_for('goals.homepage_goals',
                     goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
-                    <strong>target {{target.number}}</strong>: {{target.description[lang]|markdown}}
+                    <strong>{{_('target')}} {{target.number}}</strong>: {{target.description[lang]|markdown}}
                   </a>
                   </li>
 
@@ -107,12 +107,12 @@
             </ul>
             {% endfor %}
           {% else %}
-            None
+          {{_('None')}}
           {% endif %}
             </div>
 
 
-          <a class="pull-right" href="#top">Back to top</a>
+            <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
       {% endfor %}
 

@@ -7,44 +7,44 @@
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
-      <label class="nav-header">Aichi Goals</label>
+      <label class="nav-header">{{_('Aichi Goals')}}</label>
       {% for goal in goals|sort() %}
         <li>
         <a href="{{ url_for('goals.homepage_goals', goal_short_title=goal.short_title) }}">
-          Goal {{ goal.short_title }}
+          {{_('Goal')}} {{ goal.short_title }}
         </a>
         </li>
       {% endfor %}
 
-      <label class="nav-header">Indicators</label>
+      <label class="nav-header">{{_('Indicators')}}</label>
       {% if indicators|length() != 0 %}
       <li class={{'active' if indicators[0].id == 1}}>
-        <a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a>
+      <a href="{{url_for('indicators.homepage_indicators', page=1)}}">{{_('1 to 20')}}</a>
       </li>
       <li class={{'active' if indicators[0].id == 21}}>
-        <a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a>
+      <a href="{{url_for('indicators.homepage_indicators', page=2)}}">{{_('21 to 40')}}</a>
       </li>
       <li class={{'active' if indicators[0].id == 41}}>
-        <a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a>
+      <a href="{{url_for('indicators.homepage_indicators', page=3)}}">{{_('41 to 60')}}</a>
       </li>
       <li class={{'active' if indicators[0].id == 61}}>
-        <a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a>
+      <a href="{{url_for('indicators.homepage_indicators', page=4)}}">{{_('61 to 80')}}</a>
       </li>
       <li class={{'active' if indicators[0].id == 81}}>
-        <a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a>
+      <a href="{{url_for('indicators.homepage_indicators', page=5)}}">{{_('81 to 97')}}</a>
       </li>
       {% endif %}
     </ul>
 
     <div class="tab-content homepage_view" >
       {% if indicators|length() != 0 %}
-      <h1>Indicators {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
+      <h1>{{_('Indicators')}} {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
 
       <div class="row">
         <ul class="span10">
           {% for indicator in indicators %}
           <li>
-            <a href="#indicator_{{indicator.id}}">Indicator {{indicator.id}}: {{indicator.name[lang]}}</a>
+          <a href="#indicator_{{indicator.id}}">{{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}</a>
           </li>
           {% endfor %}
         </ul>
@@ -55,7 +55,7 @@
 
       {% for indicator in indicators %}
         <div class="indicator_homepage element_field" id="indicator_{{indicator.id}}">
-          <h2>Indicator {{indicator.id}}: {{indicator.name[lang]}}</h2>
+          <h2>{{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}</h2>
 
           <table class="indicator_table table table-bordered table-striped">
             <tbody>
@@ -72,7 +72,7 @@
                                           goal_short_title=mapping[value_element],
                                           _anchor="target_%s" % value_element)
                                 }}">
-                       Target {{value_element}}</a>
+                        {{_('Target')}} {{value_element}}</a>
                         : {% for target in targets %}
                           {{ target.description[lang]|markdown if target.id == value_element }}
                         {% endfor %}
@@ -94,7 +94,7 @@
                                           goal_short_title=mapping[indicator[key]],
                                           _anchor="target_%s" % indicator[key])
                                   }}">
-                        Target {{indicator[key]}}</a>
+                       {{_('Target')}} {{indicator[key]}}</a>
                         : {% for target in targets %}
                           {{ target.description[lang]|markdown if target.id == indicator[key] }}
                         {% endfor %}
@@ -103,7 +103,7 @@
                   <!-- Exeptional case: Goal -->
                     {% elif key == 'goal' %}
                       <td><a href="{{url_for('goals.homepage_goals', goal_short_title=indicator[key])}}">
-                          Goal {{indicator[key]}}</a>
+                          {{_('Goal')}} {{indicator[key]}}</a>
                           : {% for goal in goals %}
                             {{ goal.description[lang]|markdown if goal.short_title == indicator[key] }}
                           {% endfor %}
@@ -132,7 +132,7 @@
             </tbody>
           </table>
 
-          <a class="pull-right" href="#top">Back to top</a>
+          <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
       {% endfor %}
       {% endif %}
