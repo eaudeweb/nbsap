@@ -7,7 +7,7 @@
 <div class="tabbable tabs-left">
 
   <ul class="nav nav-tabs nav-stacked local-navigation">
-    <label class="nav-header">AICHI Goals</label>
+    <label class="nav-header">{{_('AICHI Goals')}}</label>
     {% for _goal in goals_list|sort() %}
     {% set active = 'active' if _goal.id == goal.id %}
     <li class={{ active }}>
@@ -17,17 +17,17 @@
     </li>
     {% endfor %}
 
-    <label class="nav-header">Indicators</label>
-    <li><a href="{{url_for('indicators.homepage_indicators', page=1)}}">1 to 20</a></li>
-    <li><a href="{{url_for('indicators.homepage_indicators', page=2)}}">21 to 40</a></li>
-    <li><a href="{{url_for('indicators.homepage_indicators', page=3)}}">41 to 60</a></li>
-    <li><a href="{{url_for('indicators.homepage_indicators', page=4)}}">61 to 80</a></li>
-    <li><a href="{{url_for('indicators.homepage_indicators', page=5)}}">81 to 97</a></li>
+    <label class="nav-header">{{_('Indicators')}}</label>
+    <li><a href="{{url_for('indicators.homepage_indicators', page=1)}}">{{_('1 to 20')}}</a></li>
+    <li><a href="{{url_for('indicators.homepage_indicators', page=2)}}">{{_('21 to 40')}}</a></li>
+    <li><a href="{{url_for('indicators.homepage_indicators', page=3)}}">{{_('41 to 60')}}</a></li>
+    <li><a href="{{url_for('indicators.homepage_indicators', page=4)}}">{{_('61 to 80')}}</a></li>
+    <li><a href="{{url_for('indicators.homepage_indicators', page=5)}}">{{_('81 to 97')}}</a></li>
 
   </ul>
 
   <div class="tab-content homepage_view" >
-    <h1>Goal {{goal.short_title}}: {{ goal.description[lang]|markdown }}</h1>
+    <h1>{{_('Goal')}} {{goal.short_title}}: {{ goal.description[lang]|markdown }}</h1>
 
     <div class="row">
       <ul class="span1">
@@ -48,24 +48,24 @@
 
       <span class="target-description">{{ target.description[lang]|markdown }}</span>
 
-      <label>Mapping with National strategy:</label>
+      <label>{{_('Mapping with National strategy')}}:</label>
       <div class="well">
         {% if target.objective_ids %}
         <ul>
           {% for objective in target.objective_ids %}
           <li><a href="{{url_for('objectives.homepage_objectives', objective_id=objective[0],
             _anchor="subobjective_%s" % objective[1])}}">
-            objective {{objective|join('.')}}
+            {{_('objective')}} {{objective|join('.')}}
           </a></li>
           {% endfor %}
         </ul>
         {% else %}
-        None
+        {{_('None')}}
         {% endif %}
       </div>
 
       {% if target.relevant_indicators %}
-      <label>Most relevant indicators:</label>
+      <label>{{_('Most relevant indicators')}}:</label>
       <div class="well">
         <ul>
           {% for indicator in target.relevant_indicators|sort(attribute='id') %}
@@ -74,7 +74,7 @@
             page=page_number,
             _anchor="indicator_%s" % indicator.id)
             }}">
-            Indicator {{indicator.id}}: {{indicator.name[lang]}}
+            {{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}
           </a></li>
           {% endfor %}
         </ul>
@@ -82,7 +82,7 @@
       {% endif %}
 
       {% if target.other_indicators %}
-      <label>Other relevant indicators:</label>
+      <label>{{_('Other relevant indicators')}}:</label>
       <div class="well">
         <ul>
           {% for indicator in target.other_indicators|sort(attribute='id') %}
@@ -91,14 +91,14 @@
             page=page_number,
             _anchor="indicator_%s" % indicator.id)
             }}">
-            Indicator {{indicator.id}}: {{indicator.name[lang]}}
+            {{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}
           </a></li>
           {% endfor %}
         </ul>
       </div>
       {% endif %}
 
-      <a class="pull-right" href="#top">Back to top</a>
+      <a class="pull-right" href="#top">{{_('Back to top')}}</a>
     </div>
     {% endfor %}
 

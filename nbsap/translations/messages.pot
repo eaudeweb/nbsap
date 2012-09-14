@@ -1,4 +1,177 @@
-#: nbsap/homepage.py:14
-msgid "Hello world my friends!"
+# Translations template for PROJECT.
+# Copyright (C) 2012 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-09-14 18:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: schema/common.py:26
+#, python-format
+msgid "Target %(u)s is not related to Goal "
+msgstr ""
+
+#: schema/common.py:39 schema/common.py:65
+#, python-format
+msgid "%(u)s is not a valid value for %(label)s"
+msgstr ""
+
+#: schema/common.py:52 schema/common.py:68
+msgid "Select at least one value"
+msgstr ""
+
+#: templates/homepage.html:10
+msgid "AICHI Goals"
+msgstr ""
+
+#: templates/homepage.html:20 templates/indicators/homepage.html:19
+#: templates/indicators/homepage.html:41
+msgid "Indicators"
+msgstr ""
+
+#: templates/homepage.html:21 templates/indicators/homepage.html:22
+msgid "1 to 20"
+msgstr ""
+
+#: templates/homepage.html:22 templates/indicators/homepage.html:25
+msgid "21 to 40"
+msgstr ""
+
+#: templates/homepage.html:23 templates/indicators/homepage.html:28
+msgid "41 to 60"
+msgstr ""
+
+#: templates/homepage.html:24 templates/indicators/homepage.html:31
+msgid "61 to 80"
+msgstr ""
+
+#: templates/homepage.html:25 templates/indicators/homepage.html:34
+msgid "81 to 97"
+msgstr ""
+
+#: templates/homepage.html:30 templates/indicators/homepage.html:14
+#: templates/indicators/homepage.html:106 templates/objectives/homepage.html:69
+msgid "Goal"
+msgstr ""
+
+#: templates/homepage.html:51
+msgid "Mapping with National strategy"
+msgstr ""
+
+#: templates/homepage.html:58
+msgid "objective"
+msgstr ""
+
+#: templates/homepage.html:63 templates/objectives/homepage.html:110
+msgid "None"
+msgstr ""
+
+#: templates/homepage.html:68
+msgid "Most relevant indicators"
+msgstr ""
+
+#: templates/homepage.html:77 templates/homepage.html:94
+#: templates/indicators/homepage.html:47 templates/indicators/homepage.html:58
+msgid "Indicator"
+msgstr ""
+
+#: templates/homepage.html:85
+msgid "Other relevant indicators"
+msgstr ""
+
+#: templates/homepage.html:101 templates/indicators/homepage.html:135
+#: templates/objectives/homepage.html:115
+msgid "Back to top"
+msgstr ""
+
+#: templates/layout.html:46
+msgid "National Biodiversity Strategy and Action Plan (NBSAP)"
+msgstr ""
+
+#: templates/layout.html:51
+msgid "Admin"
+msgstr ""
+
+#: templates/layout.html:57
+msgid "Logout"
+msgstr ""
+
+#: templates/layout.html:61
+msgid "Login"
+msgstr ""
+
+#: templates/layout.html:68
+msgid "English"
+msgstr ""
+
+#: templates/layout.html:71
+msgid "French"
+msgstr ""
+
+#: templates/layout.html:74
+msgid "Dutch"
+msgstr ""
+
+#: templates/navigation.html:34
+msgid "Aichi"
+msgstr ""
+
+#: templates/navigation.html:39
+msgid "National Strategy"
+msgstr ""
+
+#: templates/indicators/homepage.html:10
+msgid "Aichi Goals"
+msgstr ""
+
+#: templates/indicators/homepage.html:75 templates/indicators/homepage.html:97
+msgid "Target"
+msgstr ""
+
+#: templates/objectives/homepage.html:10
+msgid "Objectives"
+msgstr ""
+
+#: templates/objectives/homepage.html:15 templates/objectives/homepage.html:42
+msgid "Objective"
+msgstr ""
+
+#: templates/objectives/homepage.html:27 templates/objectives/homepage.html:54
+msgid "show more"
+msgstr ""
+
+#: templates/objectives/homepage.html:31 templates/objectives/homepage.html:58
+msgid "show less"
+msgstr ""
+
+#: templates/objectives/homepage.html:62
+msgid "Mapping with AICHI"
+msgstr ""
+
+#: templates/objectives/homepage.html:74
+msgid "goal"
+msgstr ""
+
+#: templates/objectives/homepage.html:79
+msgid "Most relevant AICHI target"
+msgstr ""
+
+#: templates/objectives/homepage.html:84 templates/objectives/homepage.html:97
+msgid "target"
+msgstr ""
+
+#: templates/objectives/homepage.html:90
+msgid "Other relevant AICHI targets"
 msgstr ""
 
