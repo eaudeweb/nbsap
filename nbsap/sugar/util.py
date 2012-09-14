@@ -9,6 +9,12 @@ def get_indicator_editable_fields():
 
     return keys
 
+def get_session_language():
+    if flask.session.get('language'):
+        return flask.session['language'][0]
+    else:
+        return 'en'
+
 def generate_objectives():
     from nbsap.database import mongo
     objectives = {i['id']:"" for i in mongo.db.objectives.find()}
