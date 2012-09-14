@@ -13,7 +13,7 @@ def get_session_language():
     if flask.session.get('language'):
         return flask.session['language'][0]
     else:
-        return 'en'
+        return flask.request.accept_languages.best_match(['en', 'fr', 'nl'])
 
 def generate_objectives():
     from nbsap.database import mongo
