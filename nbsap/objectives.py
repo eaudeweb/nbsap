@@ -71,14 +71,14 @@ def view(objective_id, so1_id=None):
 
         if related_actions:
             try:
-                related_action = [a for a in related_actions
-                          if int(a['title']['en'].split('.')[1]) == so1_id][0]
+                related_action = [[a for a in related_actions
+                          if int(a['title']['en'].split('.')[1]) == so1_id][0]]
             except IndexError:
                 related_action = []
 
         parent_id = objective['id']
         objective = subobj
-        related_actions = [related_action]
+        related_actions = related_action
 
     return {
         "parent": parent_id,
@@ -212,12 +212,27 @@ def add():
 
 @objectives.route("/admin/objectives/<int:objective_id>/add_subobj",
                   methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>/add_subobj",
+                  methods=["GET", "POST"])
 @auth_required
 @sugar.templated("objectives/subobj_add.html")
-def add_subobj(objective_id):
+def add_subobj(objective_id, so1_id=None):
+
+    parent_id = parent = None
     subobj_schema = schema.Objective({})
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    if so1_id:
+        try:
+            so1 = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
+        except IndexError:
+            flask.abort(404)
+
+        parent_id = objective_id
+        parent = objective
+        objective = so1
+
     subobj_list = objective['subobjs']
     sorted_list = sorted(subobj_list, key=lambda k: k['id'], reverse=True)
 
@@ -239,7 +254,13 @@ def add_subobj(objective_id):
             subobj = subobj_schema.flatten()
             flask.flash("Subobjective successfully added.", "success")
             objective['subobjs'].append(subobj)
-            mongo.db.objectives.save(objective)
+            if parent:
+                parent['subobjs'][:] = [d for d in parent['subobjs'] if
+                                        d.get('id') != so1_id]
+                parent['subobjs'].append(objective)
+                mongo.db.objectives.save(parent)
+            else:
+                mongo.db.objectives.save(objective)
             return flask.redirect(flask.url_for('objectives.list_objectives'))
         else:
             flask.flash("Error in adding an subobjective.", "error")

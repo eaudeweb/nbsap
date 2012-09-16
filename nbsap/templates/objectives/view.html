@@ -86,7 +86,12 @@
 {% endif %}
 
 <div class="add-button">
+    {% if parent %}
+     <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj',
+     objective_id=parent, so1_id=objective.id)}}">Add subobjective</a>
+    {% else %}
     <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj', objective_id=objective.id)}}">Add subobjective</a>
+    {% endif %}
 </div>
 
 
