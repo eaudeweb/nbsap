@@ -8,8 +8,8 @@
       (url_for('objectives.list_objectives'), "Objectives"),
       (url_for('objectives.view', objective_id=objective_id), "Objective " +
             objective_id|string()),
-      (url_for('objectives.view_subobj', objective_id=objective_id,
-            subobj_id=subobj_id), "Subobjective " + subobj_id|string()),
+      (url_for('objectives.view', objective_id=objective_id,
+            so1_id=subobj_id), "Subobjective " + subobj_id|string()),
       (url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id),
             action.title.en)
       ]) }}

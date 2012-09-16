@@ -50,45 +50,38 @@ def homepage_objectives(objective_id=1):
     }
 
 
-@objectives.route("/admin/objectives/<int:objective_id>/<int:subobj_id>")
-@auth_required
-@sugar.templated("objectives/subobj_view.html")
-def view_subobj(objective_id, subobj_id):
-
-    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
-
-    try:
-        subobj = [s for s in objective['subobjs'] if s['id'] == subobj_id][0]
-    except IndexError:
-        flask.abort(404)
-
-    objective_related_actions = mongo.db.actions.find_one({"id": objective_id})
-
-    if objective_related_actions:
-        try:
-            related_action = [a for a in objective_related_actions['actions']
-                          if int(a['title']['en'].split('.')[1]) == subobj_id][0]
-        except IndexError:
-            related_action = None
-
-    return {
-        "objective_id": objective_id,
-        "subobj": subobj,
-        "action": related_action
-    }
-
-
 @objectives.route("/admin/objectives/<int:objective_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>")
 @auth_required
 @sugar.templated("objectives/view.html")
-def view(objective_id):
+def view(objective_id, so1_id=None):
 
+    # if objective view
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     actions = mongo.db.actions.find_one({'id': objective_id})
-
     related_actions = actions.get('actions', None) if actions else []
+    parent_id = None
+
+    # elif subobjective view
+    if so1_id:
+        try:
+            subobj = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
+        except IndexError:
+            flask.abort(404)
+
+        if related_actions:
+            try:
+                related_action = [a for a in related_actions
+                          if int(a['title']['en'].split('.')[1]) == so1_id][0]
+            except IndexError:
+                related_action = []
+
+        parent_id = objective['id']
+        objective = subobj
+        related_actions = [related_action]
 
     return {
+        "parent": parent_id,
         "objective": objective,
         "actions": related_actions
     }
@@ -127,11 +120,25 @@ def objective_data():
 
 @objectives.route("/admin/objectives/<int:objective_id>/edit",
                   methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>/edit",
+                  methods=["GET", "POST"])
 @auth_required
 @sugar.templated("objectives/edit.html")
-def edit(objective_id):
+def edit(objective_id, so1_id=None):
 
+    parent = None
+    parent_id = None
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    if so1_id:
+        try:
+            subobj = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
+        except IndexError:
+            flask.abort(404)
+        parent_id = objective_id
+        parent = objective
+        objective = subobj
+
     objective_schema = schema.Objective(objective)
 
     # default display language is English
@@ -157,9 +164,16 @@ def edit(objective_id):
                                                         selected_language]
 
             flask.flash("Saved changes.", "success")
-            mongo.db.objectives.save(objective)
+            if parent:
+                parent['subobjs'][:] = [d for d in parent['subobjs'] if
+                                        d.get('id') != so1_id]
+                parent['subobjs'].append(objective)
+                mongo.db.objectives.save(parent)
+            else:
+                mongo.db.objectives.save(objective)
 
     return {
+        "parent": parent_id,
         "language": selected_language,
         "objective": objective,
         "schema": objective_schema
@@ -206,7 +220,11 @@ def add_subobj(objective_id):
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     subobj_list = objective['subobjs']
     sorted_list = sorted(subobj_list, key=lambda k: k['id'], reverse=True)
-    new_index = sorted_list[0]['id'] + 1
+
+    if sorted_list:
+        new_index = sorted_list[0]['id'] + 1
+    else:
+        new_index = 1
 
     subobj_schema['id'] = new_index
     subobj_schema['title']['en'] = "OO. %s.%s " % (objective_id, new_index)
