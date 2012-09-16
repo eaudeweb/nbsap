@@ -69,7 +69,8 @@
       <div class="well">
         <ul>
           {% for indicator in target.relevant_indicators|sort(attribute='id') %}
-          {% set page_number = (indicator.id/20)|int + 1 if (indicator.id % 20 != 0) else (indicator.id/20)|int %}
+          {% set page_number = ((indicator.id|int)/20)|int + 1 if
+          ((indicator.id|int) % 20 != 0) else ((indicator.id|int)/20)|int %}
           <li><a href="{{url_for('indicators.homepage_indicators',
             page=page_number,
             _anchor="indicator_%s" % indicator.id)
@@ -86,7 +87,8 @@
       <div class="well">
         <ul>
           {% for indicator in target.other_indicators|sort(attribute='id') %}
-          {% set page_number = (indicator.id/20)|int + 1 if (indicator.id % 20 != 0) else (indicator.id/20)|int %}
+          {% set page_number = ((indicator.id|int)/20)|int + 1 if
+          ((indicator.id|int) % 20 != 0) else ((indicator.id|int)/20)|int %}
           <li><a href="{{url_for('indicators.homepage_indicators',
             page=page_number,
             _anchor="indicator_%s" % indicator.id)

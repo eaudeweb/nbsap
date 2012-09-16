@@ -65,8 +65,11 @@ def view_subobj(objective_id, subobj_id):
     objective_related_actions = mongo.db.actions.find_one({"id": objective_id})
 
     if objective_related_actions:
-        related_action = [a for a in objective_related_actions['actions']
+        try:
+            related_action = [a for a in objective_related_actions['actions']
                           if int(a['title']['en'].split('.')[1]) == subobj_id][0]
+        except IndexError:
+            related_action = None
 
     return {
         "objective_id": objective_id,
@@ -191,4 +194,39 @@ def add():
 
     return {
         "schema": objective_schema
+    }
+
+@objectives.route("/admin/objectives/<int:objective_id>/add_subobj",
+                  methods=["GET", "POST"])
+@auth_required
+@sugar.templated("objectives/subobj_add.html")
+def add_subobj(objective_id):
+    subobj_schema = schema.Objective({})
+
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+    subobj_list = objective['subobjs']
+    sorted_list = sorted(subobj_list, key=lambda k: k['id'], reverse=True)
+    new_index = sorted_list[0]['id'] + 1
+
+    subobj_schema['id'] = new_index
+    subobj_schema['title']['en'] = "OO. %s.%s " % (objective_id, new_index)
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        subobj_schema['title']['en'].set(data['title-en'])
+        subobj_schema['body']['en'].set(data['body-en'])
+
+        if subobj_schema.validate():
+            subobj = subobj_schema.flatten()
+            flask.flash("Subobjective successfully added.", "success")
+            objective['subobjs'].append(subobj)
+            mongo.db.objectives.save(objective)
+            return flask.redirect(flask.url_for('objectives.list_objectives'))
+        else:
+            flask.flash("Error in adding an subobjective.", "error")
+
+    return {
+        "objective": objective,
+        "schema": subobj_schema
     }

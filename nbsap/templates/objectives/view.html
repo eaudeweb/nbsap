@@ -42,6 +42,11 @@
 
     </table>
 </div>
+
+<div class="add-button">
+    <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj', objective_id=objective.id)}}">Add subobjective</a>
+</div>
+
 {% endif %}
 
 {% if actions %}
