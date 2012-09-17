@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-09-14 18:10+0300\n"
+"POT-Creation-Date: 2012-09-17 11:02+0300\n"
 "PO-Revision-Date: 2012-09-14 15:04+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -111,15 +111,19 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: templates/layout.html:68
+#: templates/layout.html:66
+msgid "Language"
+msgstr "Langue"
+
+#: templates/layout.html:71
 msgid "English"
 msgstr "Anglais"
 
-#: templates/layout.html:71
+#: templates/layout.html:74
 msgid "French"
 msgstr "Français"
 
-#: templates/layout.html:74
+#: templates/layout.html:77
 msgid "Dutch"
 msgstr "Néerlandais"
 
