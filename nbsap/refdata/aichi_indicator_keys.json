@@ -1,20 +1,74 @@
 {
-   "status": "Status of development",
-   "scale": "Scale (global, regional, national, sub-national)",
-   "other_targets": "Other Relevant Aichi Targets",
-   "name": "Operational Indicator",
-   "classification": "Operational Classification",
-   "sources": "Data Sources",
-   "sensitivity": "Sensitivity (can it be used to make assessment by 2015?)",
-   "question": "Communication Question",
-   "links": "Related Links",
-   "validity": "Scientific Validity",
-   "conventions": "Other conventions/processes using indicator",
-   "sub_indicator": "Indicator Sub-topics",
-   "head_indicator": "Headline Indicator",
-   "ease_of_communication": "How easy can it be communicated?",
-   "requirements": "Data Requirements",
-   "relevant_target": "Most Relevant Aichi Target",
-   "measurer": "Who's responsible for measuring?",
-   "goal": "Strategic Goal"
+   "status": {  "en": "Status of development",
+                "fr": "",
+                "nl": ""
+             },
+   "scale": {  "en": "Scale (global, regional, national, sub-national)",
+                "fr": "",
+                "nl": ""
+             },
+   "other_targets": {  "en": "Other Relevant Aichi Targets",
+                "fr": "",
+                "nl": ""
+             },
+   "name": {  "en": "Operational Indicator",
+                "fr": "",
+                "nl": ""
+             },
+   "classification": {  "en": "Operational Classification",
+                "fr": "",
+                "nl": ""
+             },
+   "sources": {  "en": "Data Sources",
+                "fr": "",
+                "nl": ""
+             },
+   "sensitivity": {  "en": "Sensitivity (can it be used to make assessment by 2015?)",
+                "fr": "",
+                "nl": ""
+             },
+   "question": {  "en": "Communication Question",
+                "fr": "",
+                "nl": ""
+             },
+   "links": {  "en": "Related Links",
+                "fr": "",
+                "nl": ""
+             },
+   "validity": {  "en": "Scientific Validity",
+                "fr": "",
+                "nl": ""
+             },
+   "conventions": {  "en": "Other conventions/processes using indicator",
+                "fr": "",
+                "nl": ""
+             },
+   "sub_indicator": {  "en": "Indicator Sub-topics",
+                "fr": "",
+                "nl": ""
+             },
+   "head_indicator": {  "en": "Headline Indicator",
+                "fr": "",
+                "nl": ""
+             },
+   "ease_of_communication": {  "en": "How easy can it be communicated?",
+                "fr": "",
+                "nl": ""
+             },
+   "requirements": {  "en": "Data Requirements",
+                "fr": "",
+                "nl": ""
+             },
+   "relevant_target": {  "en": "Most Relevant Aichi Target",
+                "fr": "",
+                "nl": ""
+             },
+   "measurer": {  "en": "Who's responsible for measuring?",
+                "fr": "",
+                "nl": ""
+             },
+   "goal": {  "en": "Strategic Goal",
+                "fr": "",
+                "nl": ""
+             }
 }
