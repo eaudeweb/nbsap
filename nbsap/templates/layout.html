@@ -62,7 +62,10 @@
               </li>
               {% endif %}
               <li class="dropdown">
-                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+              <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{_('Language')}}
+                <b class="caret"></b>
+              </a>
                 <ul class="dropdown-menu">
                   <li><a href="{{url_for('goals.set_language', language="en")}}">
                     {{ _('English') }}
@@ -91,7 +94,7 @@
       {% if session.language %}
         {% set lang = session.language[0] %}
       {% else %}
-        {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+        {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
       {% endif %}
 
       {% block content %}
