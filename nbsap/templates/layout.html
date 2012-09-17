@@ -91,11 +91,7 @@
 
       {{ flash_messages() }}
 
-      {% if session.language %}
-        {% set lang = session.language[0] %}
-      {% else %}
-        {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
-      {% endif %}
+      {% from 'bits.html' import translate with context -%}
 
       {% block content %}
         {{ content }}
@@ -125,7 +121,7 @@
     {{ script_src("js/main.js") }}
     {{ script_src("js/jquery.editinplace.js") }}
     {{ script_src("bootstrap/js/bootstrap-collapse.js") }}
- 	{{ script_src("bootstrap/js/bootstrap-dropdown.js") }}
+    {{ script_src("bootstrap/js/bootstrap-dropdown.js") }}
 
     <!--[if lt IE 9]>
       {{ script_src("js/ie.js") }}
