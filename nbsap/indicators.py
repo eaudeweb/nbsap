@@ -42,7 +42,7 @@ def homepage_indicators():
              'targets': targets,
              'transit_dict': aichi_indicator_keys,
              'order': aichi_order['order'],
-             'scale_labels': schema.refdata.indicator_data['scale'],
+             'data': schema.refdata.indicator_data,
              'mapping': mapping
            }
 
@@ -86,7 +86,7 @@ def view(indicator_id):
             "indicator": indicator,
             "transit_dict": aichi_indicator_keys,
             "order": aichi_order['order'],
-            "scale_labels": schema.refdata.indicator_data['scale'],
+            "data": schema.refdata.indicator_data,
             "goal_description": goal_description['description'][lang],
             "main_target_description": main_target_description['description'][lang],
             "other_targets_descriptions": other_targets_descriptions
@@ -136,7 +136,8 @@ def edit(indicator_id):
 
         for i in range(len(indicator_schema['links'])):
             indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
-            indicator_schema['links'][i]['url_name'][selected_language].set(data['url_name_' + selected_language + '_' + str(i)])
+            indicator_schema['links'][i]['url_name'][selected_language].set(\
+                    data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
             flask.flash("Saved changes.", "success")

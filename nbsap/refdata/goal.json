@@ -1,7 +1,22 @@
 {
-    "A": "Goal A",
-    "B": "Goal B",
-    "C": "Goal C",
-    "D": "Goal D",
-    "E": "Goal E"
+    "A": {  "en": "Goal A",
+            "fr": "",
+            "nl": ""
+         },
+    "B": {  "en": "Goal B",
+            "fr": "",
+            "nl": ""
+         },
+    "C": {  "en": "Goal C",
+            "fr": "",
+            "nl": ""
+         },
+    "D": {  "en": "Goal D",
+            "fr": "",
+            "nl": ""
+         },
+    "E": {  "en": "Goal E",
+            "fr": "",
+            "nl": ""
+         }
 }

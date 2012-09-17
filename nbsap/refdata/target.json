@@ -1,82 +1,142 @@
 {
    "1":{
-      "name":"Target 1",
+      "name": { "en": "Target 1",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"A"
    },
    "2":{
-      "name":"Target 2",
+      "name": { "en": "Target 2",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"A"
    },
    "3":{
-      "name":"Target 3",
+      "name": { "en": "Target 3",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"A"
    },
    "4":{
-      "name":"Target 4",
+      "name": { "en": "Target 4",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"A"
    },
    "5":{
-      "name":"Target 5",
+      "name": { "en": "Target 5",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "6":{
-      "name":"Target 6",
+      "name": { "en": "Target 6",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "7":{
-      "name":"Target 7",
+      "name": { "en": "Target 7",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "8":{
-      "name":"Target 8",
+      "name": { "en": "Target 8",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "9":{
-      "name":"Target 9",
+      "name": { "en": "Target 9",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "10":{
-      "name":"Target 10",
+      "name": { "en": "Target 10",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"B"
    },
    "11":{
-      "name":"Target 11",
+      "name": { "en": "Target 11",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"C"
    },
    "12":{
-      "name":"Target 12",
+      "name": { "en": "Target 12",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"C"
    },
    "13":{
-      "name":"Target 13",
+      "name": { "en": "Target 13",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"C"
    },
    "14":{
-      "name":"Target 14",
+      "name": { "en": "Target 14",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"D"
    },
    "15":{
-      "name":"Target 15",
+      "name": { "en": "Target 15",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"D"
    },
    "16":{
-      "name":"Target 16",
+      "name": { "en": "Target 16",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"D"
    },
    "17":{
-      "name":"Target 17",
+      "name": { "en": "Target 17",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"E"
    },
    "18":{
-      "name":"Target 18",
+      "name": { "en": "Target 18",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"E"
    },
    "19":{
-      "name":"Target 19",
+      "name": { "en": "Target 19",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"E"
    },
    "20":{
-      "name":"Target 20",
+      "name": { "en": "Target 20",
+                "fr": "",
+                "nl": ""
+              },
       "goal":"E"
    }
 }
