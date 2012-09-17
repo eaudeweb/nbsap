@@ -49,8 +49,8 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel_form").
                 .using(label="Status of development"),
             CommonEnum.named('sensitivity')
                 .including_validators(EnumValue())
-                .valued(*sorted(indicator_data['sensitivity']))
-                .with_properties(widget="select")
+                .valued(*sorted(indicator_data['sensitivity'].keys()))
+                .with_properties(widget="select", value_labels=indicator_data['sensitivity'])
                 .using(label="Sensitivity (can it be used to make assessment by 2015?)"),
             CommonList.named('scale')
                 .of(CommonString.named('scale'))
@@ -63,13 +63,14 @@ _IndicatorSchemaDefinition = flatland.Dict.with_properties(widget="tabel_form").
                                  multiple="multiple"),
             CommonEnum.named('validity')
                 .including_validators(EnumValue())
-                .valued(*sorted(indicator_data['validity']))
-                .with_properties(widget="select")
+                .valued(*sorted(indicator_data['validity'].keys()))
+                .with_properties(widget="select", value_labels=indicator_data['validity'])
                 .using(label="Scientific Validity"),
             CommonEnum.named('ease_of_communication')
-                .valued(*sorted(indicator_data['ease_of_communication']))
+                .valued(*sorted(indicator_data['ease_of_communication'].keys()))
                 .including_validators(EnumValue())
-                .with_properties(widget="select")
+                .with_properties(widget="select",
+                        value_labels=indicator_data['ease_of_communication'])
                 .using(label="How easy can it be communicated?"),
             CommonI18nString.named('sources')
                 .using(label="Data Sources"),
