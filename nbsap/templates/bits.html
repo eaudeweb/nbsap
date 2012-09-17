@@ -28,6 +28,16 @@
   {% endfor %}
 {%- endmacro %}
 
+{% macro translate(data) -%}
+    {% set lang = session.language[0] if session.language else
+                  request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
+    {% if data[lang] == '' %}
+      {{ data.en }}
+    {% else %}
+      {{ data[lang] }}
+    {% endif %}
+{%- endmacro %}
+
 {% macro markup_help_button() %}
 <div class="markdown_container">
     <div class="markdown_less">
