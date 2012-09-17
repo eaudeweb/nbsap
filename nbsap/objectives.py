@@ -1,3 +1,4 @@
+import inspect
 import schema
 import flask
 import sugar
@@ -51,39 +52,39 @@ def homepage_objectives(objective_id=1):
 
 
 @objectives.route("/admin/objectives/<int:objective_id>")
-@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>")
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/<int:so4_id>")
 @auth_required
 @sugar.templated("objectives/view.html")
-def view(objective_id, so1_id=None):
+def view(objective_id,
+         so1_id=None, so2_id = None, so3_id = None, so4_id = None):
 
-    # if objective view
+    frame = inspect.currentframe()
+    args, _, _, values = inspect.getargvalues(frame)
+    parents = [(i, values[i]) for i in args if values[i] != None]
+
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
-    actions = mongo.db.actions.find_one({'id': objective_id})
-    related_actions = actions.get('actions', None) if actions else []
-    parent_id = None
 
-    # elif subobjective view
-    if so1_id:
+    # get objective id
+    father = objective
+    for i in range(1, len(parents)):
+        # get id of subsequent subobjective in parents list
+        son_id = parents[i][1]
         try:
-            subobj = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
+            son = [s for s in father['subobjs'] if s['id'] == son_id][0]
         except IndexError:
             flask.abort(404)
-
-        if related_actions:
-            try:
-                related_action = [[a for a in related_actions
-                          if int(a['title']['en'].split('.')[1]) == so1_id][0]]
-            except IndexError:
-                related_action = []
-
-        parent_id = objective['id']
-        objective = subobj
-        related_actions = related_action
+        father = son
 
     return {
-        "parent": parent_id,
-        "objective": objective,
-        "actions": related_actions
+        "parents": parents,
+        "objective": father,
     }
 
 
@@ -190,7 +191,6 @@ def add():
     new_index = tmp_collection[0]['id'] + 1
 
     objective_schema['id'] = new_index
-    objective_schema['title']['en'] = "Objective %s:" % (new_index)
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()

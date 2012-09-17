@@ -3,24 +3,14 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
-  {% if parent %}
-    {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.view', objective_id=parent), "Objective " +
-            parent|string()),
-      (url_for('objectives.view', objective_id=parent, so1_id=objective.id),
-      "Subobjective " + objective.id|string())
-      ]) }}
-
-  {% else %}
-  {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.view', objective_id=objective.id), "Objective " +
-            objective.id|string())
-      ]) }}
-  {% endif %}
+  {% set breadcrumbs = [] %}
+  {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
+  {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
+  {% for node_i in parents %}
+    {% for node_j in parents %}
+        {% if 
+  {% endfor %}
+  {{ breadcrumb_items(breadcrumbs) }}
 </ul>
 
 <h3>{{objective.title.en}}</h3>
@@ -96,8 +86,7 @@
 
 
 
-{% if actions %}
-<div class="property_list">
+<!--div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
             <th style="width:10px; text-align:center">Id</th>
@@ -140,6 +129,5 @@
 
     </table>
 
-</div>
-{% endif %}
+</div-->
 {% endblock content %}
