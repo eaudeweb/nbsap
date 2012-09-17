@@ -54,7 +54,8 @@ class MarkupGenerator(flatland.out.markup.Generator):
     def widget(self, element, widget_name=None):
         if widget_name is None:
             widget_name = element.properties.get("widget", "input")
-        widget_macro = getattr(self.template.module, widget_name)
+        language = get_session_language()
+        widget_macro = getattr(self.template.make_module({'lang': language}), widget_name)
         return widget_macro(self, element)
 
     def properties(self, field, id=None):
