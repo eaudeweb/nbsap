@@ -107,7 +107,8 @@ def objective_data():
     objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
     subobjective = [s for s in objective['subobjs'] if s['id'] == subobjective_id][0]
 
-    result = {'result': subobjective['title']['en']}
+    lang = sugar.get_session_language()
+    result = {'result': subobjective['title'][lang]}
     return flask.jsonify(result)
 
 @objectives.route("/admin/objectives/<int:objective_id>/edit", methods=["GET", "POST"])

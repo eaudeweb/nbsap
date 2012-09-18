@@ -74,7 +74,7 @@
   {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
 
   {% for i in value_groups %}
-    <optgroup label="Objective {{i}}">
+    <optgroup label="{{_('Objective')}} {{i}}">
       {% for j in value_groups[i] %}
         {% set value = value_groups[i][j] %}
         {% if field.value and field.value == value %}
