@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-09-17 11:02+0300\n"
+"POT-Creation-Date: 2012-09-18 16:56+0300\n"
 "PO-Revision-Date: 2012-09-14 15:04+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -16,6 +16,116 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+
+#: schema/aichi.py:11 schema/aichi.py:103 templates/goals/edit.html:49
+#: templates/goals/edit.html:72 templates/goals/edit.html:93
+#: templates/targets/edit.html:49 templates/targets/edit.html:72
+#: templates/targets/edit.html:93
+msgid "Title"
+msgstr ""
+
+#: schema/aichi.py:13 schema/aichi.py:105 templates/goals/edit.html:58
+#: templates/goals/edit.html:80 templates/goals/edit.html:101
+#: templates/targets/edit.html:58 templates/targets/edit.html:80
+#: templates/targets/edit.html:101
+msgid "Description"
+msgstr ""
+
+#: schema/aichi.py:21 templates/indicators/indicators_listing.html:35
+msgid "Operational Indicator"
+msgstr ""
+
+#: schema/aichi.py:23
+msgid "Communication Question"
+msgstr ""
+
+#: schema/aichi.py:26
+msgid "Strategic Goal"
+msgstr ""
+
+#: schema/aichi.py:29
+msgid "Headline Indicator"
+msgstr ""
+
+#: schema/aichi.py:31
+msgid "Indicator Sub-topics"
+msgstr ""
+
+#: schema/aichi.py:36
+msgid "Most Relevant Aichi Target"
+msgstr ""
+
+#: schema/aichi.py:40
+msgid "Other Relevant Aichi Targets"
+msgstr ""
+
+#: schema/aichi.py:47
+msgid "Operational Classification"
+msgstr ""
+
+#: schema/aichi.py:50
+msgid "Status of development"
+msgstr ""
+
+#: schema/aichi.py:55
+msgid "Sensitivity (can it be used to make assessment by 2015?)"
+msgstr ""
+
+#: schema/aichi.py:59
+msgid "Scale (global, regional, national, sub-national)"
+msgstr ""
+
+#: schema/aichi.py:69
+msgid "Scientific Validity"
+msgstr ""
+
+#: schema/aichi.py:75
+msgid "How easy can it be communicated?"
+msgstr ""
+
+#: schema/aichi.py:77
+msgid "Data Sources"
+msgstr ""
+
+#: schema/aichi.py:80
+msgid "Data Requirements"
+msgstr ""
+
+#: schema/aichi.py:83
+msgid "Who's responsible for measuring?"
+msgstr ""
+
+#: schema/aichi.py:85
+msgid "Other conventions/processes using indicator"
+msgstr ""
+
+#: schema/aichi.py:92
+msgid "Link name"
+msgstr ""
+
+#: schema/aichi.py:95
+msgid "Link URL"
+msgstr ""
+
+#: schema/aichi.py:97
+msgid "Related Links"
+msgstr ""
+
+#: schema/aichi.py:113
+msgid "National Objective"
+msgstr ""
+
+#: schema/aichi.py:116
+msgid "AICHI strategic goal"
+msgstr ""
+
+#: schema/aichi.py:123
+msgid "Relevant AICHI target"
+msgstr ""
+
+#: schema/aichi.py:132
+msgid "Other AICHI targets"
+msgstr ""
 
 #: schema/common.py:26
 #, python-format
@@ -35,8 +145,18 @@ msgstr ""
 msgid "AICHI Goals"
 msgstr ""
 
-#: templates/homepage.html:20 templates/indicators/homepage.html:19
+#: templates/homepage.html:15 templates/homepage.html:30
+#: templates/indicators/homepage.html:14 templates/indicators/homepage.html:106
+#: templates/indicators/view.html:56 templates/mapping/listing.html:27
+#: templates/objectives/homepage.html:70
+msgid "Goal"
+msgstr ""
+
+#: templates/homepage.html:20 templates/navigation.html:13
+#: templates/indicators/edit.html:8 templates/indicators/homepage.html:19
 #: templates/indicators/homepage.html:41
+#: templates/indicators/indicators_listing.html:8
+#: templates/indicators/view.html:8
 msgid "Indicators"
 msgstr ""
 
@@ -60,11 +180,6 @@ msgstr ""
 msgid "81 to 97"
 msgstr ""
 
-#: templates/homepage.html:30 templates/indicators/homepage.html:14
-#: templates/indicators/homepage.html:106 templates/objectives/homepage.html:69
-msgid "Goal"
-msgstr ""
-
 #: templates/homepage.html:51
 msgid "Mapping with National strategy"
 msgstr ""
@@ -73,7 +188,7 @@ msgstr ""
 msgid "objective"
 msgstr ""
 
-#: templates/homepage.html:63 templates/objectives/homepage.html:110
+#: templates/homepage.html:63 templates/objectives/homepage.html:111
 msgid "None"
 msgstr ""
 
@@ -91,7 +206,7 @@ msgid "Other relevant indicators"
 msgstr ""
 
 #: templates/homepage.html:101 templates/indicators/homepage.html:135
-#: templates/objectives/homepage.html:115
+#: templates/objectives/homepage.html:116
 msgid "Back to top"
 msgstr ""
 
@@ -99,7 +214,12 @@ msgstr ""
 msgid "National Biodiversity Strategy and Action Plan (NBSAP)"
 msgstr ""
 
-#: templates/layout.html:51
+#: templates/layout.html:51 templates/goals/edit.html:7
+#: templates/goals/goals_listing.html:14 templates/indicators/edit.html:7
+#: templates/indicators/indicators_listing.html:7
+#: templates/indicators/view.html:7 templates/mapping/edit.html:8
+#: templates/mapping/edit.html:14 templates/mapping/listing.html:13
+#: templates/targets/edit.html:7 templates/targets/targets_listing.html:13
 msgid "Admin"
 msgstr ""
 
@@ -111,21 +231,69 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: templates/layout.html:66
+#: templates/layout.html:66 templates/goals/edit.html:27
+#: templates/indicators/edit.html:30 templates/targets/edit.html:27
 msgid "Language"
-msgstr "Langue"
+msgstr ""
 
-#: templates/layout.html:71
+#: templates/layout.html:71 templates/goals/edit.html:31
+#: templates/indicators/edit.html:34 templates/targets/edit.html:31
 msgid "English"
-msgstr "Anglais"
+msgstr ""
 
-#: templates/layout.html:74
+#: templates/layout.html:74 templates/goals/edit.html:35
+#: templates/indicators/edit.html:38 templates/targets/edit.html:35
 msgid "French"
-msgstr "Français"
+msgstr ""
 
-#: templates/layout.html:77
+#: templates/layout.html:77 templates/goals/edit.html:39
+#: templates/indicators/edit.html:42 templates/targets/edit.html:39
 msgid "Dutch"
-msgstr "Néerlandais"
+msgstr ""
+
+#: templates/login.html:9
+msgid "Error"
+msgstr ""
+
+#: templates/login.html:12 templates/login.html:19
+msgid "Sign in"
+msgstr ""
+
+#: templates/login.html:14
+msgid "Username"
+msgstr ""
+
+#: templates/login.html:16
+msgid "Password"
+msgstr ""
+
+#: templates/login.html:24
+msgid "Or, sign in with a Google Service"
+msgstr ""
+
+#: templates/login.html:28
+msgid "or with a Yahoo Service"
+msgstr ""
+
+#: templates/navigation.html:5 templates/goals/edit.html:8
+#: templates/goals/goals_listing.html:15 templates/goals/goals_listing.html:26
+msgid "Goals"
+msgstr ""
+
+#: templates/navigation.html:9 templates/targets/edit.html:8
+#: templates/targets/targets_listing.html:14
+#: templates/targets/targets_listing.html:25
+msgid "Targets"
+msgstr ""
+
+#: templates/navigation.html:18 templates/objectives/homepage.html:11
+msgid "Objectives"
+msgstr ""
+
+#: templates/navigation.html:23 templates/mapping/edit.html:9
+#: templates/mapping/edit.html:15 templates/mapping/listing.html:14
+msgid "Mapping"
+msgstr ""
 
 #: templates/navigation.html:34
 msgid "Aichi"
@@ -135,47 +303,206 @@ msgstr ""
 msgid "National Strategy"
 msgstr ""
 
+#: templates/goals/edit.html:9
+msgid "Edit Goal"
+msgstr ""
+
+#: templates/goals/edit.html:24
+msgid "Edit goal"
+msgstr ""
+
+#: templates/goals/edit.html:114 templates/targets/edit.html:114
+msgid "Original title in English"
+msgstr ""
+
+#: templates/goals/edit.html:119 templates/targets/edit.html:119
+msgid "Original description in English"
+msgstr ""
+
+#: templates/goals/edit.html:127 templates/indicators/edit.html:24
+#: templates/indicators/edit.html:53 templates/mapping/edit.html:48
+#: templates/targets/edit.html:127
+msgid "Save"
+msgstr ""
+
+#: templates/goals/edit.html:129 templates/indicators/edit.html:26
+#: templates/indicators/edit.html:55 templates/mapping/edit.html:54
+#: templates/targets/edit.html:129
+msgid "Cancel"
+msgstr ""
+
+#: templates/goals/goals_listing.html:25
+#: templates/indicators/indicators_listing.html:34
+#: templates/targets/targets_listing.html:24
+msgid "Id"
+msgstr ""
+
+#: templates/goals/goals_listing.html:47 templates/goals/goals_listing.html:56
+#: templates/indicators/indicators_listing.html:27
+#: templates/targets/targets_listing.html:44
+#: templates/targets/targets_listing.html:53
+msgid "translated"
+msgstr ""
+
+#: templates/goals/goals_listing.html:47 templates/goals/goals_listing.html:56
+#: templates/indicators/indicators_listing.html:27
+#: templates/targets/targets_listing.html:44
+#: templates/targets/targets_listing.html:53
+msgid "translate"
+msgstr ""
+
+#: templates/goals/goals_listing.html:78
+#: templates/targets/targets_listing.html:76
+msgid "Display _MENU_ objectives per page"
+msgstr ""
+
+#: templates/goals/goals_listing.html:79
+#: templates/targets/targets_listing.html:77
+msgid "No matching objectives found"
+msgstr ""
+
+#: templates/indicators/edit.html:11
+msgid "Edit Indicator"
+msgstr ""
+
+#: templates/indicators/edit.html:21
+msgid "Edit indicator"
+msgstr ""
+
+#: templates/indicators/edit.html:68 templates/mapping/edit.html:67
+msgid "Select targets"
+msgstr ""
+
+#: templates/indicators/edit.html:69
+msgid "Select scales"
+msgstr ""
+
 #: templates/indicators/homepage.html:10
 msgid "Aichi Goals"
 msgstr ""
 
+#: templates/indicators/homepage.html:41
+msgid "to"
+msgstr ""
+
 #: templates/indicators/homepage.html:75 templates/indicators/homepage.html:97
+#: templates/indicators/view.html:33 templates/indicators/view.html:51
 msgid "Target"
 msgstr ""
 
-#: templates/objectives/homepage.html:10
-msgid "Objectives"
+#: templates/indicators/indicators_listing.html:76
+msgid "Display _MENU_ indicators per page"
 msgstr ""
 
-#: templates/objectives/homepage.html:15 templates/objectives/homepage.html:42
+#: templates/indicators/indicators_listing.html:77
+msgid "Showing _START_ to _END_ of _TOTAL_ indicators"
+msgstr ""
+
+#: templates/indicators/indicators_listing.html:78
+msgid "No matching indicators found"
+msgstr ""
+
+#: templates/indicators/view.html:15 templates/mapping/edit.html:10
+#: templates/mapping/listing.html:30
+msgid "Edit"
+msgstr ""
+
+#: templates/mapping/edit.html:16
+msgid "New"
+msgstr ""
+
+#: templates/mapping/edit.html:21
+msgid "Map National Objectives to Aichi targets"
+msgstr ""
+
+#: templates/mapping/edit.html:51 templates/mapping/listing.html:31
+msgid "Delete"
+msgstr ""
+
+#: templates/mapping/edit.html:109 templates/mapping/listing.html:104
+msgid "Are you sure you want to delete this mapping?"
+msgstr ""
+
+#: templates/mapping/listing.html:21
+msgid "Mappings of National Objectives to Aichi targets"
+msgstr ""
+
+#: templates/mapping/listing.html:26 templates/objectives/homepage.html:16
+#: templates/objectives/homepage.html:43
+#: templates/widgets/widgets_edit_data.html:77
 msgid "Objective"
 msgstr ""
 
-#: templates/objectives/homepage.html:27 templates/objectives/homepage.html:54
+#: templates/mapping/listing.html:28
+msgid "Most relevant target"
+msgstr ""
+
+#: templates/mapping/listing.html:29
+msgid "Other relevant targets"
+msgstr ""
+
+#: templates/mapping/listing.html:62
+msgid "edit"
+msgstr ""
+
+#: templates/mapping/listing.html:69
+msgid "delete"
+msgstr ""
+
+#: templates/mapping/listing.html:80
+msgid "Add mapping"
+msgstr ""
+
+#: templates/mapping/listing.html:96
+msgid "Display _MENU_ mappings per page"
+msgstr ""
+
+#: templates/mapping/listing.html:97
+msgid "Showing _START_ to _END_ of _TOTAL_ mappings"
+msgstr ""
+
+#: templates/mapping/listing.html:98
+msgid "No matching mappings found"
+msgstr ""
+
+#: templates/objectives/homepage.html:28 templates/objectives/homepage.html:55
 msgid "show more"
 msgstr ""
 
-#: templates/objectives/homepage.html:31 templates/objectives/homepage.html:58
+#: templates/objectives/homepage.html:32 templates/objectives/homepage.html:59
 msgid "show less"
 msgstr ""
 
-#: templates/objectives/homepage.html:62
+#: templates/objectives/homepage.html:63
 msgid "Mapping with AICHI"
 msgstr ""
 
-#: templates/objectives/homepage.html:74
+#: templates/objectives/homepage.html:75
 msgid "goal"
 msgstr ""
 
-#: templates/objectives/homepage.html:79
+#: templates/objectives/homepage.html:80
 msgid "Most relevant AICHI target"
 msgstr ""
 
-#: templates/objectives/homepage.html:84 templates/objectives/homepage.html:97
+#: templates/objectives/homepage.html:85 templates/objectives/homepage.html:98
 msgid "target"
 msgstr ""
 
-#: templates/objectives/homepage.html:90
+#: templates/objectives/homepage.html:91
 msgid "Other relevant AICHI targets"
+msgstr ""
+
+#: templates/targets/edit.html:9
+msgid "Edit Target"
+msgstr ""
+
+#: templates/targets/edit.html:24
+msgid "Edit target"
+msgstr ""
+
+#: templates/widgets/widgets_edit_data.html:81
+#: templates/widgets/widgets_edit_data.html:83
+msgid "Subobjective"
 msgstr ""
 
