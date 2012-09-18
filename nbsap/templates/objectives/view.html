@@ -6,10 +6,11 @@
   {% set breadcrumbs = [] %}
   {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
   {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
-  {% for node_i in parents %}
-    {% for node_j in parents %}
-        {% if 
+  {% for item_dict, item_label in chain_matrix %}
+        {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
+            item_label|string())) %}
   {% endfor %}
+
   {{ breadcrumb_items(breadcrumbs) }}
 </ul>
 
@@ -17,15 +18,13 @@
 
 <div class="btn-toolbar">
     <div class="btn-group">
-        {% if parent %}
-            <a class="btn btn-primary edit"
-            href="{{url_for('objectives.edit',objective_id=parent,
-            so1_id=objective.id)}}">Edit</a>
-        {% else %}
-        <a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
-        {% endif %}
+        <a class="btn btn-primary edit" href="{{url_for('objectives.edit', **(parents))}}">Edit</a>
+    </div>
+    <div class="btn-group">
+        <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj', **(parents))}}">Add subobjective</a>
     </div>
 </div>
+
 <p>{{objective.body.en|markdown}}</p>
 
 {% if objective.subobjs %}
@@ -39,19 +38,17 @@
         </thead>
 
       <tbody>
-        {% for subobj in objective.subobjs %}
+        {% for subobj in objective.subobjs|sort(attribute='id') %}
           <tr>
             <td>
                 {{-subobj['id']-}}
             </td>
             <td>
-                <a href="{{url_for('objectives.view',
-                   objective_id=objective.id, so1_id=subobj.id)}}">{{subobj.title.en}}
+                <a href="{{url_for('objectives.view', **(subobj_parents[subobj['id']]) )}}">{{subobj.title.en}}
                 </a>
             </td>
             <td style="text-align: center;">
-                <a href="{{url_for('objectives.edit', objective_id=objective.id,
-                so1_id=subobj['id'])}}?lang=nl"
+                <a href="{{url_for('objectives.edit', **(subobj_parents[subobj['id']]))}}?lang=nl"
                    class="btn btn-mini btn-{% if subobj['body']['nl'] %}success
                               {% else %}warning{% endif %}" type="button">
                               {% if subobj['body']['nl'] %}translated {% else %} translate {% endif %}
@@ -59,8 +56,7 @@
             </td>
 
             <td style="text-align: center;">
-                <a href="{{url_for('objectives.edit', objective_id=objective.id,
-                so1_id=subobj['id'])}}?lang=fr"
+                <a href="{{url_for('objectives.edit', **(subobj_parents[subobj['id']]))}}?lang=fr"
                    class="btn btn-mini btn-{% if subobj['body']['fr'] %}success
                               {% else %}warning{% endif %}" type="button">
                               {% if subobj['body']['fr'] %}translated {% else %} translate {% endif %}
@@ -74,17 +70,6 @@
     </table>
 </div>
 {% endif %}
-
-<div class="add-button">
-    {% if parent %}
-     <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj',
-     objective_id=parent, so1_id=objective.id)}}">Add subobjective</a>
-    {% else %}
-    <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj', objective_id=objective.id)}}">Add subobjective</a>
-    {% endif %}
-</div>
-
-
 
 <!--div class="property_list">
     <table class="table table-bordered table-striped">

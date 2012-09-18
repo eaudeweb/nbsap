@@ -50,6 +50,35 @@ def homepage_objectives(objective_id=1):
         'mapping': mapping
     }
 
+@objectives.route("/admin/objectives/add", methods=["GET", "POST"])
+@auth_required
+@sugar.templated("objectives/add.html")
+def add():
+    objective_schema = schema.Objective({})
+
+    tmp_collection = mongo.db.objectives.find().sort('id', -1)
+    new_index = tmp_collection[0]['id'] + 1
+
+    objective_schema['id'] = new_index
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        objective_schema['title']['en'].set(data['title-en'])
+        objective_schema['body']['en'].set(data['body-en'])
+
+        if objective_schema.validate():
+            objective = objective_schema.flatten()
+            flask.flash("Objective successfully added.", "success")
+            mongo.db.objectives.save(objective)
+            return flask.redirect(flask.url_for('objectives.list_objectives'))
+        else:
+            flask.flash("Error in adding an objective.", "error")
+
+    return {
+        "schema": objective_schema
+    }
+
 
 @objectives.route("/admin/objectives/<int:objective_id>")
 @objectives.route("/admin/objectives/<int:objective_id>/"
@@ -63,11 +92,10 @@ def homepage_objectives(objective_id=1):
 @auth_required
 @sugar.templated("objectives/view.html")
 def view(objective_id,
-         so1_id=None, so2_id = None, so3_id = None, so4_id = None):
+    so1_id=None, so2_id = None, so3_id = None, so4_id = None):
 
-    frame = inspect.currentframe()
-    args, _, _, values = inspect.getargvalues(frame)
-    parents = [(i, values[i]) for i in args if values[i] != None]
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] != None]
 
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
 
@@ -82,11 +110,172 @@ def view(objective_id,
             flask.abort(404)
         father = son
 
+    matrix = []
+    for i, x in enumerate(parents):
+        tmp_L = [y for j, y in enumerate(parents) if j < i]
+        tmp_L.append(x)
+
+        # send dict and its label
+        matrix.append((dict(tmp_L), x[1]))
+
+    subobj_parents = {}
+    for s in father['subobjs']:
+        tmp_dict = { myargs[len(parents)]: s['id'] }
+        tmp_dict.update(dict(parents))
+        subobj_parents[s['id']] = tmp_dict
+
     return {
-        "parents": parents,
+        "chain_matrix": matrix,
+        "subobj_parents": subobj_parents,
+        "parents": dict(parents),
         "objective": father,
     }
 
+
+@objectives.route("/admin/objectives/<int:objective_id>/edit",
+                  methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/edit", methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/edit",
+                   methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/edit",
+                  methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/<int:so4_id>"
+                  "/edit", methods=["GET", "POST"])
+@auth_required
+@sugar.templated("objectives/edit.html")
+def edit(objective_id,
+    so1_id=None, so2_id = None, so3_id = None, so4_id = None):
+
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] != None]
+
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    father = objective
+    for i in range(1, len(parents)):
+        son_id = parents[i][1]
+        try:
+            son = [s for s in father['subobjs'] if s['id'] == son_id][0]
+        except IndexError:
+            flask.abort(404)
+        father = son
+
+    matrix = []
+    for i, x in enumerate(parents):
+        tmp_L = [y for j, y in enumerate(parents) if j < i]
+        tmp_L.append(x)
+        matrix.append((dict(tmp_L), x[1]))
+
+    objective_schema = schema.Objective(father)
+
+    # default display language is English
+    try:
+        selected_language = flask.request.args.getlist('lang')[0]
+    except IndexError:
+        selected_language = u'en'
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+        selected_language = data['language']
+
+        objective_schema['title'][selected_language].set(
+                                        data['title-' + selected_language])
+        objective_schema['body'][selected_language].set(
+                                        data['body-' + selected_language])
+
+        if objective_schema.validate():
+            father['title'][selected_language] = data['title-' +
+                                                         selected_language]
+            father['body'][selected_language] = data['body-' +
+                                                        selected_language]
+            flask.flash("Saved changes.", "success")
+            mongo.db.objectives.save(objective)
+
+    return {
+        "parents": dict(parents),
+        "chain_matrix": matrix,
+        "language": selected_language,
+        "objective": father,
+        "schema": objective_schema
+    }
+
+@objectives.route("/admin/objectives/<int:objective_id>/add_subobj",
+                  methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/add_subobj", methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/add_subobj",
+                   methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/add_subobj",
+                  methods=["GET", "POST"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/<int:so4_id>"
+                  "/add_subobj", methods=["GET", "POST"])
+@auth_required
+@sugar.templated("objectives/subobj_add.html")
+def add_subobj(objective_id,
+    so1_id=None, so2_id = None, so3_id = None, so4_id = None):
+
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] != None]
+
+    father = objective
+    for i in range(1, len(parents)):
+        son_id = parents[i][1]
+        try:
+            son = [s for s in father['subobjs'] if s['id'] == son_id][0]
+        except IndexError:
+            flask.abort(404)
+        father = son
+
+    matrix = []
+    for i, x in enumerate(parents):
+        tmp_L = [y for j, y in enumerate(parents) if j < i]
+        tmp_L.append(x)
+        matrix.append((dict(tmp_L), x[1]))
+
+    subobj_schema = schema.Objective({})
+
+    # find its largest existing 'subobjs' index
+    subobj_list = father['subobjs']
+    sorted_list = sorted(subobj_list, key=lambda k: k['id'], reverse=True)
+
+    if sorted_list:
+        new_index = sorted_list[0]['id'] + 1
+    else:
+        new_index = 1
+
+    subobj_schema['id'] = new_index
+    subobj_schema['title']['en'] = "%s " % (new_index)
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+
+        subobj_schema['title']['en'].set(data['title-en'])
+        subobj_schema['body']['en'].set(data['body-en'])
+
+        if subobj_schema.validate():
+            subobj = subobj_schema.flatten()
+            father['subobjs'].append(subobj)
+            flask.flash("Subobjective successfully added.", "success")
+            mongo.db.objectives.save(objective)
+
+            return flask.redirect(flask.url_for('objectives.view', **dict(parents)))
+        else:
+            flask.flash("Error in adding an subobjective.", "error")
+
+    return {
+        "objective": father,
+        "schema": subobj_schema,
+        "parents": dict(parents),
+        "chain_matrix": matrix
+    }
 
 @objectives.route("/admin/objectives")
 @auth_required
@@ -117,155 +306,3 @@ def objective_data():
 
     result = {'result': subobjective['title']['en']}
     return flask.jsonify(result)
-
-
-@objectives.route("/admin/objectives/<int:objective_id>/edit",
-                  methods=["GET", "POST"])
-@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>/edit",
-                  methods=["GET", "POST"])
-@auth_required
-@sugar.templated("objectives/edit.html")
-def edit(objective_id, so1_id=None):
-
-    parent = None
-    parent_id = None
-    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
-
-    if so1_id:
-        try:
-            subobj = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
-        except IndexError:
-            flask.abort(404)
-        parent_id = objective_id
-        parent = objective
-        objective = subobj
-
-    objective_schema = schema.Objective(objective)
-
-    # default display language is English
-    try:
-        selected_language = flask.request.args.getlist('lang')[0]
-    except IndexError:
-        selected_language = u'en'
-
-    if flask.request.method == "POST":
-        data = flask.request.form.to_dict()
-
-        selected_language = data['language']
-
-        objective_schema['title'][selected_language].set(data['title-' +
-                                                         selected_language])
-        objective_schema['body'][selected_language].set(data['body-' +
-                                                        selected_language])
-
-        if objective_schema.validate():
-            objective['title'][selected_language] = data['title-' +
-                                                         selected_language]
-            objective['body'][selected_language] = data['body-' +
-                                                        selected_language]
-
-            flask.flash("Saved changes.", "success")
-            if parent:
-                parent['subobjs'][:] = [d for d in parent['subobjs'] if
-                                        d.get('id') != so1_id]
-                parent['subobjs'].append(objective)
-                mongo.db.objectives.save(parent)
-            else:
-                mongo.db.objectives.save(objective)
-
-    return {
-        "parent": parent_id,
-        "language": selected_language,
-        "objective": objective,
-        "schema": objective_schema
-    }
-
-
-@objectives.route("/admin/objectives/add", methods=["GET", "POST"])
-@auth_required
-@sugar.templated("objectives/add.html")
-def add():
-    objective_schema = schema.Objective({})
-
-    tmp_collection = mongo.db.objectives.find().sort('id', -1)
-    new_index = tmp_collection[0]['id'] + 1
-
-    objective_schema['id'] = new_index
-
-    if flask.request.method == "POST":
-        data = flask.request.form.to_dict()
-
-        objective_schema['title']['en'].set(data['title-en'])
-        objective_schema['body']['en'].set(data['body-en'])
-
-        if objective_schema.validate():
-            objective = objective_schema.flatten()
-            flask.flash("Objective successfully added.", "success")
-            mongo.db.objectives.save(objective)
-            return flask.redirect(flask.url_for('objectives.list_objectives'))
-        else:
-            flask.flash("Error in adding an objective.", "error")
-
-    return {
-        "schema": objective_schema
-    }
-
-@objectives.route("/admin/objectives/<int:objective_id>/add_subobj",
-                  methods=["GET", "POST"])
-@objectives.route("/admin/objectives/<int:objective_id>/<int:so1_id>/add_subobj",
-                  methods=["GET", "POST"])
-@auth_required
-@sugar.templated("objectives/subobj_add.html")
-def add_subobj(objective_id, so1_id=None):
-
-    parent_id = parent = None
-    subobj_schema = schema.Objective({})
-
-    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
-
-    if so1_id:
-        try:
-            so1 = [s for s in objective['subobjs'] if s['id'] == so1_id][0]
-        except IndexError:
-            flask.abort(404)
-
-        parent_id = objective_id
-        parent = objective
-        objective = so1
-
-    subobj_list = objective['subobjs']
-    sorted_list = sorted(subobj_list, key=lambda k: k['id'], reverse=True)
-
-    if sorted_list:
-        new_index = sorted_list[0]['id'] + 1
-    else:
-        new_index = 1
-
-    subobj_schema['id'] = new_index
-    subobj_schema['title']['en'] = "OO. %s.%s " % (objective_id, new_index)
-
-    if flask.request.method == "POST":
-        data = flask.request.form.to_dict()
-
-        subobj_schema['title']['en'].set(data['title-en'])
-        subobj_schema['body']['en'].set(data['body-en'])
-
-        if subobj_schema.validate():
-            subobj = subobj_schema.flatten()
-            flask.flash("Subobjective successfully added.", "success")
-            objective['subobjs'].append(subobj)
-            if parent:
-                parent['subobjs'][:] = [d for d in parent['subobjs'] if
-                                        d.get('id') != so1_id]
-                parent['subobjs'].append(objective)
-                mongo.db.objectives.save(parent)
-            else:
-                mongo.db.objectives.save(objective)
-            return flask.redirect(flask.url_for('objectives.list_objectives'))
-        else:
-            flask.flash("Error in adding an subobjective.", "error")
-
-    return {
-        "objective": objective,
-        "schema": subobj_schema
-    }
