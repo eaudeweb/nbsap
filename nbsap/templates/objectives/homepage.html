@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+{% from "bits.html" import translate_truncated_markdown as _ttm with context %}
 {% from "navigation.html" import homepage_tabs %}
 {{ homepage_tabs('national') }}
 
@@ -19,15 +20,15 @@
     </ul>
 
     <div class="tab-content homepage_view" >
-      <h1>{{objective.title[lang]}}</h1>
+      <h1>{{_t(objective.title)}}</h1>
 
     <div class="element_field well objective-description">
         <div class="snippet">
-          {{ objective.body[lang]|truncate(length=510, end='...')|markdown }}
+          {{ _ttm(objective.body) }}
           <a class="more">{{_('show more')}}</a>
         </div>
         <div class="full">
-          {{ objective.body[lang]|markdown }}
+          {{ _tm(objective.body) }}
           <a class="less">{{_('show less')}}</a>
         </div>
       </div>
@@ -47,14 +48,14 @@
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
         <div class="element_field" id="subobjective_{{ subobj.id }}">
-          <h2>{{subobj.title[lang]}}</h2>
+          <h2>{{_t(subobj.title)}}</h2>
 
           <div class="snippet">
-            {{subobj.body[lang]|truncate(length=510, end='...')|markdown }}
+            {{ _ttm(subobj.body) }}
             <a class="more">{{_('show more')}}</a>
           </div>
           <div class="full">
-            {{ subobj.body[lang]|markdown }}
+            {{ _tm(subobj.body) }}
             <a class="less">{{_('show less')}}</a>
           </div>
 
@@ -71,7 +72,7 @@
                   <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
 
 
-                    <strong>{{_('goal')}} {{m.goal.short_title}}</strong>: {{m.goal.description[lang]|markdown}}
+                    <strong>{{_('goal')}} {{m.goal.short_title}}</strong>: {{_tm(m.goal.description)}}
                   </a>
                 </span>
                 </li>
@@ -81,7 +82,7 @@
                   <a href="{{url_for('goals.homepage_goals',
                     goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
 
-                    <strong>{{_('target')}} {{m.main_target.number}}</strong>: {{m.main_target.description[lang]|markdown}}
+                    <strong>{{_('target')}} {{m.main_target.number}}</strong>: {{_tm(m.main_target.description)}}
                   </a>
                 </span>
                 </li>
@@ -94,7 +95,7 @@
                   <li>
                   <a href="{{url_for('goals.homepage_goals',
                     goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
-                    <strong>{{_('target')}} {{target.number}}</strong>: {{target.description[lang]|markdown}}
+                    <strong>{{_('target')}} {{target.number}}</strong>: {{_tm(target.description)}}
                   </a>
                   </li>
 

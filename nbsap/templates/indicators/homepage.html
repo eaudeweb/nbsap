@@ -38,13 +38,13 @@
 
     <div class="tab-content homepage_view" >
       {% if indicators|length() != 0 %}
-      <h1>{{_('Indicators')}} {{indicators[0].id}} to {{indicators[0].id + indicators|length() - 1}}</h1>
+      <h1>{{_('Indicators')}} {{indicators[0].id}} {{_('to')}} {{indicators[0].id + indicators|length() - 1}}</h1>
 
       <div class="row">
         <ul class="span10">
           {% for indicator in indicators %}
           <li>
-          <a href="#indicator_{{indicator.id}}">{{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}</a>
+          <a href="#indicator_{{indicator.id}}">{{_('Indicator')}} {{indicator.id}}: {{_t(indicator.name)}}</a>
           </li>
           {% endfor %}
         </ul>
@@ -55,14 +55,14 @@
 
       {% for indicator in indicators %}
         <div class="indicator_homepage element_field" id="indicator_{{indicator.id}}">
-          <h2>{{_('Indicator')}} {{indicator.id}}: {{indicator.name[lang]}}</h2>
+          <h2>{{_('Indicator')}} {{indicator.id}}: {{_t(indicator.name)}}</h2>
 
           <table class="indicator_table table table-bordered table-striped">
             <tbody>
               {% for key in order %}
                 {% if key in indicator.keys() %}
                 <tr>
-                  <td class="span4 indicator_field"> {{ transit_dict[key] }} </td>
+                  <td class="span4 indicator_field"> {{ _t(transit_dict[key]) }} </td>
 
                   <!-- Exceptional case: Other Relevant Aichi Targets-->
                   {% if key in key_targets %}
@@ -74,7 +74,7 @@
                                 }}">
                         {{_('Target')}} {{value_element}}</a>
                         : {% for target in targets %}
-                          {{ target.description[lang]|markdown if target.id == value_element }}
+                          {{ _tm(target.description) if target.id == value_element }}
                         {% endfor %}
                        </li>
                     {% endfor %}</ul></td>
@@ -83,7 +83,7 @@
                   {% elif key in key_links %}
                     <td><ul>
                        {% for related_link in indicator[key] %}
-                         <li><a href="{{related_link.url}}">{{related_link.url_name[lang]}}</a></li>
+                         <li><a href="{{related_link.url}}">{{_t(related_link.url_name)}}</a></li>
                        {% endfor %}
                     </ul></td>
                   {% else %}
@@ -96,7 +96,7 @@
                                   }}">
                        {{_('Target')}} {{indicator[key]}}</a>
                         : {% for target in targets %}
-                          {{ target.description[lang]|markdown if target.id == indicator[key] }}
+                          {{ _tm(target.description) if target.id == indicator[key] }}
                         {% endfor %}
                     </td>
 
@@ -105,25 +105,25 @@
                       <td><a href="{{url_for('goals.homepage_goals', goal_short_title=indicator[key])}}">
                           {{_('Goal')}} {{indicator[key]}}</a>
                           : {% for goal in goals %}
-                            {{ goal.description[lang]|markdown if goal.short_title == indicator[key] }}
+                            {{ _tm(goal.description) if goal.short_title == indicator[key] }}
                           {% endfor %}
                       </td>
 
                   <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
                     {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
-                    <td>{{ data[key][indicator[key]][lang] }}</td>
+                    <td>{{ _t(data[key][indicator[key]]) }}</td>
 
                   <!-- Exeptional case: Scale -->
                     {% elif key == 'scale' %}
                     <td><ul>
                       {% for scale in indicator[key] %}
-                        <li>{{ data.scale[scale][lang] }}</li>
+                        <li>{{ _t(data.scale[scale]) }}</li>
                       {% endfor %}
                     </ul></td>
                     {% else %}
 
                   <!-- Regular case -->
-                    <td> {{ indicator[key][lang] }} </td>
+                    <td> {{ _t(indicator[key]) }} </td>
                     {% endif %}
                   {% endif %}
                 </tr>
