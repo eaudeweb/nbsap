@@ -29,8 +29,14 @@
 {%- endmacro %}
 
 {% macro translate_truncated_markdown(data) -%}
-    {% set lang = session.language[0] if session.language else
-                  request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
     {% if data[lang]|markdown == '' %}
       {{ data.en|truncate(length=510, end='...')|markdown }}
     {% else %}
@@ -39,8 +45,14 @@
 {%- endmacro %}
 
 {% macro translate_markdown(data) -%}
-    {% set lang = session.language[0] if session.language else
-                  request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
     {% if data[lang]|markdown == '' %}
       {{ data.en|markdown }}
     {% else %}
@@ -49,8 +61,14 @@
 {%- endmacro %}
 
 {% macro translate(data) -%}
-    {% set lang = session.language[0] if session.language else
-                  request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
     {% if data[lang] == '' %}
       {{ data.en }}
     {% else %}
