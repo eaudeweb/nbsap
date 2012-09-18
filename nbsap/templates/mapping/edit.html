@@ -3,17 +3,22 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
+{% if mapping_id %}
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('goals.mapping'), "Mapping"),
-      (url_for('goals.mapping_edit'), "Edit")
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('goals.mapping'), _("Mapping")),
+      (url_for('goals.mapping_edit', mapping_id=mapping_id), _("Edit"))
       ]) }}
+{% else %}
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('goals.mapping'), _("Mapping")),
+      (url_for('goals.mapping_edit'), _("New"))
+      ]) }}
+{% endif %}
 </ul>
 
-{% from "navigation.html" import nav_tabs %}
-{{ nav_tabs('mapping') }}
-
-<h1>Map National Objectives to Aichi targets</h1>
+<h1>{{_('Map National Objectives to Aichi targets')}}</h1>
 
 <form class="form" method="POST" action="{{url_for('goals.mapping_edit', mapping_id=mapping_id)}}" style="margin-top: 25px">
   <fieldset>
@@ -40,13 +45,13 @@
 
   </fieldset>
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
     {% if mapping_id %}
      <a class="btn btn-danger" href="{{ url_for('goals.mapping_delete', mapping_id=mapping_id) }}">
-       Delete
+       {{_('Delete')}}
      </a>
     {% endif %}
-    <a class="btn" href="{{ url_for('goals.mapping') }}">Cancel</a>
+    <a class="btn" href="{{ url_for('goals.mapping') }}">{{_('Cancel')}}</a>
   </div>
 </form>
 
@@ -59,7 +64,7 @@
   {{script_src('js/mustache.js')}}
 
   <script>
-  $('.chzn-select').attr('data-placeholder', 'Select targets');
+  $('.chzn-select').attr('data-placeholder', '{{_("Select targets")}}');
   $(function () {
 
     $('select[name=objective]').on('change', function () {
@@ -94,13 +99,14 @@
         var output = Mustache.render(html_content, data)
         text.html(output);
       });
-    });
+    }).change();
+
 
     $("#main_target").chained("#goal");
 
     $(".btn-danger").on("click", function (e) {
       e.preventDefault();
-      if(confirm("Are you sure you want to delete this mapping?")) {
+      if(confirm('{{_("Are you sure you want to delete this mapping?")}}')) {
         $.ajax({
           "url": $(this).attr("href"),
           "type": "DELETE",

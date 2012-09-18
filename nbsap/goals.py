@@ -184,9 +184,10 @@ def goal_data():
     except IndexError:
         return flask.jsonify({'result': ''})
 
+    lang = sugar.get_session_language()
     aichi_goal = mongo.db.goals.find_one_or_404({"short_title": goal_short_title})
 
-    result = {'result': aichi_goal['description']['en']}
+    result = {'result': aichi_goal['description'][lang]}
     return flask.jsonify(result)
 
 @goals.route("/admin/goals/<string:goal_id>/edit", methods=["GET", "POST"])

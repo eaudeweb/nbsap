@@ -118,7 +118,8 @@ def objective_data():
     subobjective = [s for s in objective['subobjs'] if
                     s['id'] == subobjective_id][0]
 
-    result = {'result': subobjective['title']['en']}
+    lang = sugar.get_session_language()
+    result = {'result': subobjective['title'][lang]}
     return flask.jsonify(result)
 
 

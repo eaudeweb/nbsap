@@ -24,11 +24,12 @@ def list_targets():
 def target_data():
     target_ids = flask.request.args.getlist('other_targets', None)
     aichi_targets = []
+    lang = sugar.get_session_language()
 
     for target_id in target_ids:
        aichi_target = mongo.db.targets.find_one_or_404({"id": target_id})
-       data = { 'title': aichi_target['title']['en'],
-                'description': aichi_target['description']['en']
+       data = { 'title': aichi_target['title'][lang],
+                'description': aichi_target['description'][lang]
               }
        aichi_targets.append(data)
 
