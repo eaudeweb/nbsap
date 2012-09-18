@@ -4,11 +4,11 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('indicators.list_indicators'), "Indicators"),
-      (url_for('indicators.view', indicator_id=indicator.id), indicator.name[lang]),
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('indicators.list_indicators'), _("Indicators")),
+      (url_for('indicators.view', indicator_id=indicator.id), _t(indicator.name)),
       (url_for('indicators.edit', indicator_id=indicator.id),
-        "Edit Indicator " + indicator.id|string())
+        _("Edit Indicator") + " " + indicator.id|string())
       ]) }}
 </ul>
 
@@ -21,25 +21,25 @@
 <h1>Edit indicator {{ indicator.id }}</h1>
 <form method="POST" class="form-horizontal indicator_form">
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
         <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
-                class="btn" type="button">Cancel</a>
+          class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="language">Language</label>
+      <label class="control-label" for="language">{{_('Language')}}</label>
         <div class="controls">
             <select name="language" id="language">
                 <option value="en"
-                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                {% if language == 'en'%}selected="selected"{% endif %}>{{_('English')}}
                 </option>
 
                 <option value="fr"
-                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                {% if language == 'fr'%}selected="selected"{% endif %}>{{_('French')}}
                 </option>
 
                 <option value="nl"
-                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                {% if language == 'nl'%}selected="selected"{% endif %}>{{_('Dutch')}}
                 </option>
             </select>
         </div>
@@ -50,9 +50,9 @@
     </div>
 
     <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
           <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}"
-                  class="btn" type="button">Cancel</a>
+            class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 </form>
 
@@ -65,8 +65,8 @@
 {{ script_src('js/jquery.autogrow-textarea.js') }}
 
 <script>
-$('#other_targets').attr('data-placeholder', 'Select targets');
-$('#scale').attr('data-placeholder', 'Select scales');
+$('#other_targets').attr('data-placeholder', '{{_("Select targets")}}');
+$('#scale').attr('data-placeholder', '{{_("Select scales")}}');
 
 $(function () {
   $('textarea').autogrow();

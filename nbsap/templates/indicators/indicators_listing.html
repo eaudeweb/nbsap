@@ -4,8 +4,8 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('indicators.list_indicators'), "Indicators")
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('indicators.list_indicators'), _("Indicators"))
       ]) }}
 </ul>
 
@@ -24,15 +24,15 @@
 
     <a href="{{url_for('indicators.edit', indicator_id=indicator.id)}}?lang={{language}}"
        class="btn btn-mini btn-{% if to_translate %}warning{% else %}success{% endif %}"
-       type="button">{% if to_translate %}translate{% else %}translated{% endif %}
+       type="button">{% if to_translate %}{{_('translate')}}{% else %}{{_('translated')}}{% endif %}
     </a>
 {% endmacro %}
 
 <table class="table table-bordered table-striped indicator_listing">
 
   <thead>
-    <th>Id</th>
-    <th>Operational Indicator</th>
+    <th>{{_('Id')}}</th>
+    <th>{{_('Operational Indicator')}}</th>
     <th>NL</th>
     <th>FR</th>
   </thead>
@@ -44,7 +44,7 @@
 
         <td>
           <a href="{{url_for('indicators.view', indicator_id=indicator.id)}}">
-            {{ indicator.name[lang] }}
+            {{ _t(indicator.name) }}
           </a>
         </td>
 
@@ -73,9 +73,9 @@
         "bStateSave": true,
         "sPaginationType": "bootstrap",
         "oLanguage": {
-            "sLengthMenu": "Display _MENU_ indicators per page",
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ indicators",
-            "sZeroRecords": "No matching indicators found"
+          "sLengthMenu": '{{_("Display _MENU_ indicators per page")}}',
+          "sInfo": '{{_("Showing _START_ to _END_ of _TOTAL_ indicators")}}',
+          "sZeroRecords": '{{_("No matching indicators found")}}'
         }
     });
   });
