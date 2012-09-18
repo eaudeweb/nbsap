@@ -15,6 +15,13 @@ def get_session_language():
     else:
         return flask.request.accept_languages.best_match(['en', 'fr', 'nl'])
 
+def translate(field):
+    language = get_session_language()
+    if field[language] == '':
+        return field['en']
+    else:
+        return field[language]
+
 def generate_objectives():
     from nbsap.database import mongo
     objectives = {i['id']:"" for i in mongo.db.objectives.find()}
