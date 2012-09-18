@@ -13,15 +13,15 @@
       ]) }}
 </ul>
 
-<h3>{{subobj.title[lang]}}</h3>
-<p>{{subobj.body[lang]|markdown}}</p>
+<h3>{{subobj.title.en}}</h3>
+<p>{{subobj.body.en|markdown}}</p>
 
 {% if action %}
 <div class="property_list">
     <h3> Actions </h3>
     <a href="{{ url_for('actions.view', objective_id=objective_id,
                                         subobj_id=subobj.id) }}">
-      {{ action.title[lang] }}
+      {{ action.title.en }}
     </a>
 </div>
 {% endif %}

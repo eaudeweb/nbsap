@@ -34,7 +34,7 @@
             {{-objective.id-}}
         </td>
         <td>
-            <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title[lang]}}</a>
+            <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title.en}}</a>
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"
