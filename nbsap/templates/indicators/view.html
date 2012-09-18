@@ -25,7 +25,7 @@
     {% for key in order %}
       {% if key in indicator.keys() %}
       <tr>
-        <td class="indicator_field"> {{ transit_dict[key] }} </td>
+        <td class="indicator_field"> {{ transit_dict[key][lang] }} </td>
         <!-- Exceptional case: Other Relevant Aichi Targets-->
         {% if key in key_targets %}
           <td><ul>
@@ -57,12 +57,12 @@
               : {{goal_description|markdown}}</td>
         <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
             {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
-              <td> {{ indicator[key] }} </td>
+              <td> {{ data[key][indicator[key]][lang] }} </td>
         <!-- Exeptional case: Scale -->
             {% elif key == 'scale' %}
             <td><ul>
               {% for scale in indicator[key] %}
-                <li>{{ scale_labels[scale] }}</li>
+                <li>{{ data.scale[scale][lang] }}</li>
               {% endfor %}
             </ul></td>
         <!-- Regular case -->
