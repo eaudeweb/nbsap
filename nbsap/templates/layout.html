@@ -91,7 +91,8 @@
 
       {{ flash_messages() }}
 
-      {% from 'bits.html' import translate with context -%}
+      {% from 'bits.html' import translate as _t with context -%}
+      {% from 'bits.html' import translate_markdown as _tm with context -%}
 
       {% block content %}
         {{ content }}
@@ -109,7 +110,7 @@
         <li><a href="#" class="CHM-logo">CHM logo</a></li>
       </ul>
     </div>
-      </footer>
+    </footer>
     {% endblock %}
 
     {% block head_scripts %}
