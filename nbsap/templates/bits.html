@@ -28,6 +28,16 @@
   {% endfor %}
 {%- endmacro %}
 
+{% macro translate_truncated_markdown(data) -%}
+    {% set lang = session.language[0] if session.language else
+                  request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
+    {% if data[lang]|markdown == '' %}
+      {{ data.en|truncate(length=510, end='...')|markdown }}
+    {% else %}
+      {{ data[lang]|truncate(length=510, end='...')|markdown }}
+    {% endif %}
+{%- endmacro %}
+
 {% macro translate_markdown(data) -%}
     {% set lang = session.language[0] if session.language else
                   request.accept_languages.best_match(['en', 'fr', 'nl']) or 'en' %}
@@ -37,7 +47,6 @@
       {{ data[lang]|markdown }}
     {% endif %}
 {%- endmacro %}
-
 
 {% macro translate(data) -%}
     {% set lang = session.language[0] if session.language else
