@@ -11,8 +11,8 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('goals.list_goals'), "Goals")
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('goals.list_goals'), _("Goals"))
       ]) }}
 </ul>
 
@@ -22,8 +22,8 @@
 <table class="table table-bordered table-striped goals_listing">
 
     <thead>
-        <th style="width:10px; text-align:center">Id</th>
-        <th>Goals</th>
+        <th style="width:10px; text-align:center">{{_('Id')}}</th>
+        <th>{{_('Goals')}}</th>
         <th style="width:10px; text-align:center">NL</th>
         <th style="width:10px; text-align:center">FR</th>
     </thead>
@@ -36,7 +36,7 @@
         </td>
 
         <td>
-            <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=en">{{goal.title['en']}}</a>
+            <a href="{{url_for('goals.edit', goal_id=goal.id)}}?lang=en">{{_t(goal.title)}}</a>
         </td>
 
         <td style="text-align: center;">
@@ -44,7 +44,7 @@
                class="btn btn-mini btn-{% if goal.title['nl'] and goal.description['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if goal.title['nl'] and goal.description['nl']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
 
@@ -53,7 +53,7 @@
                class="btn btn-mini btn-{% if goal.title['fr'] and goal.description['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if goal.title['fr'] and goal.description['fr']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
       </tr>
@@ -75,8 +75,8 @@
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "bStateSave": true,
         "oLanguage": {
-            "sLengthMenu": "Display _MENU_ objectives per page",
-            "sZeroRecords": "No matching objectives found"
+            "sLengthMenu": {{_("Display _MENU_ objectives per page")}},
+            "sZeroRecords": {{_("No matching objectives found")}}
         }
     });
   });
