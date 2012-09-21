@@ -63,6 +63,7 @@
                         {{-schema.description['en']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
                         {{error(schema.description['en'])}}
                 </div>
             </div>
@@ -85,6 +86,7 @@
                         {{-schema.description['fr']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-fr" class="wmd-panel wmd-preview"></div>
                 </div>
             </div>
 
@@ -106,8 +108,13 @@
                         {{-schema.description['nl']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-nl" class="wmd-panel wmd-preview"></div>
                 </div>
             </div>
+
+            {% from 'bits.html' import markdown_help, markdown_preview -%}
+            {{ markdown_preview() }}
+            {{ markdown_help() }}
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">

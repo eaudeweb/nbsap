@@ -629,6 +629,22 @@ div.element_field {
 .add-button {
     margin-top: 20px;
 }
+
+.modal-backdrop {
+    opacity: 0.2;
+}
+
+#help {
+  top: 30%;
+  left: 45%;
+  width: auto;
+}
+
+#help p {
+  margin: 0 0 5px 0;
+  color: #888;
+}
+
 /* SONIA's styles */
 
 /* header */
