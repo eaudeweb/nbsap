@@ -226,7 +226,7 @@
     <div class="row">
       <div class="span4">
         <p>{{_('Headers')}}</p>
-        <pre>{{_('# This is an &lt;h1&gt; tag')}}<br>{{_('## This is an &lt;h2&gt; tag')}}<br>{{_('###### This is an &lt;h6&gt; tag')}}</pre>
+        <pre>{{ gettext("# This is an %(h1)s tag", h1="<h1>")}}<br>{{ gettext('## This is an %(h2)s tag', h2='<h2>')}}<br>{{ gettext('###### This is an %(h6)s tag', h6='<h6>')}}</pre>
         <p>{{_('Text styles')}}</p>
         <pre>{{_('*This text will be italic*')}}<br>{{_('_This will also be italic_')}}<br>{{_('**This text will be bold**')}}<br>{{_('__This will also be bold__')}}<br><br>{{_('*You **can** combine them*')}}</pre>
         <p>{{_('Links')}}</p>
