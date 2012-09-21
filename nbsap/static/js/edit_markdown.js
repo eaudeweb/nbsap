@@ -29,7 +29,7 @@ $(function() {
   $('#wmd-hr-button-fr').remove();
   $('#wmd-hr-button-nl').remove();
 
-  $('.preview').appendTo($("#wmd-button-row-en"));
+  $('.preview').appendTo("#wmd-button-row-en, #wmd-button-row-fr, #wmd-button-row-nl");
 
   $('.preview').on('click', function () {
     var language = $('#language').val();
