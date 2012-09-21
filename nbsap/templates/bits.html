@@ -134,3 +134,57 @@
     </div>
 </div>
 {% endmacro %}
+
+{% macro markdown_preview() %}
+<div class="modal hide" id="preview">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Preview</h3>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+    <a class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+<a class="btn preview" data-toggle="modal" href="#preview">
+  Preview
+</a>
+{% endmacro %}
+
+{% macro markdown_help() %}
+<div class="modal hide" id="help">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Markdown Cheat Sheet</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="span4">
+        <p>Headers</p>
+        <pre># This is an &lt;h1&gt; tag,<br>## This is an &lt;h2&gt; tag<br>###### This is an &lt;h6&gt; tag</pre>
+        <p>Text styles</p>
+        <pre>*This text will be italic*<br>_This will also be italic_<br>**This text will be bold**<br>__This will also be bold__<br><br>*You **can** combine them*</pre>
+        <p>Links</p>
+        <pre>[Link name](http://example.com)</pre>
+      </div>
+      <div class="span4">
+        <p>Ordered List</p>
+        <pre>1. Item 1<br>2. Item 2<br>3. Item 3<br>   * Item 3a<br>   * Item 3b</pre>
+        <p>Unordered List</p>
+        <pre>* Item 1<br>* Item 2<br>  * Item 2a<br>  * Item 2b</pre>
+        <p>More info</p>
+        <p><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+<a class="btn help" data-toggle="modal" href="#help">
+  <i class="icon-question-sign"></i>
+</a>
+{% endmacro %}

@@ -30,11 +30,12 @@ $(function() {
   $('#wmd-hr-button-nl').remove();
 
   $('.preview').appendTo("#wmd-button-row-en, #wmd-button-row-fr, #wmd-button-row-nl");
+  $('.help').appendTo("#wmd-button-row-en, #wmd-button-row-fr, #wmd-button-row-nl");
 
   $('.preview').on('click', function () {
     var language = $('#language').val();
     var text = $('#wmd-preview-' + language).html();
-    $('.modal-body').find('p').html(text);
+    $('#preview').find('.modal-body').html(text);
     return true;
   });
 });

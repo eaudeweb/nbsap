@@ -112,20 +112,9 @@
                 </div>
             </div>
 
-            <div class="modal hide fade" id="preview">
-              <div class="modal-header">
-                <a class="close" data-dismiss="modal">×</a>
-                <h3>Preview</h3>
-              </div>
-              <div class="modal-body">
-                <p></p>
-              </div>
-              <div class="modal-footer">
-                <a class="btn btn-primary" data-dismiss="modal">Close</a>
-              </div>
-            </div>
-
-            <a class="btn preview" data-toggle="modal" href="#preview" >Preview</a>
+            {% from 'bits.html' import markdown_help, markdown_preview -%}
+            {{ markdown_preview() }}
+            {{ markdown_help() }}
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
