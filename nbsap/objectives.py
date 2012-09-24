@@ -119,12 +119,20 @@ def view(objective_id,
         matrix.append((dict(tmp_L), x[1]))
 
     subobj_parents = {}
-    for s in father['subobjs']:
-        tmp_dict = { myargs[len(parents)]: s['id'] }
-        tmp_dict.update(dict(parents))
-        subobj_parents[s['id']] = tmp_dict
+    hit_max_depth = True if len(parents) >= len(myargs) else False
+
+    if not hit_max_depth:
+        try:
+           tmp_dict = dict(parents)
+           for s in father['subobjs']:
+               subobj_parents[s['id']] = { myargs[len(parents)]: s['id'] }
+               subobj_parents[s['id']].update(tmp_dict)
+        except IndexError:
+           hit_max_depth = True
+           pass
 
     return {
+        "max_depth": hit_max_depth,
         "chain_matrix": matrix,
         "subobj_parents": subobj_parents,
         "parents": dict(parents),
@@ -252,7 +260,6 @@ def add_subobj(objective_id,
         new_index = 1
 
     subobj_schema['id'] = new_index
-    subobj_schema['title']['en'] = "%s " % (new_index)
 
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()

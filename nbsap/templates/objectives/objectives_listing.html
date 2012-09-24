@@ -18,6 +18,10 @@
 {% from "navigation.html" import nav_tabs %}
 {{ nav_tabs('objectives') }}
 
+<div class="add-button">
+    <a class="btn btn-primary add" href="{{url_for('objectives.add')}}">Add objective</a>
+</div>
+
 <table class="table table-bordered table-striped objectives_listing">
 
     <thead>
@@ -59,10 +63,6 @@
 
 </table>
 
-<div class="add-button">
-    <a class="btn btn-primary add" href="{{url_for('objectives.add')}}">Add objective</a>
-</div>
-
 {% endblock content %}
 
 {% block scripts %}
@@ -75,10 +75,11 @@
     $('.objectives_listing').dataTable({
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "bStateSave": true,
+        "iDisplayLength": 25
         "oLanguage": {
             "sLengthMenu": "Display _MENU_ objectives per page",
             "sZeroRecords": "No matching objectives found"
-        }
+        },
     });
   });
 </script>

@@ -20,14 +20,16 @@
     <div class="btn-group">
         <a class="btn btn-primary edit" href="{{url_for('objectives.edit', **(parents))}}">Edit</a>
     </div>
+    {% if not max_depth %}
     <div class="btn-group">
-        <a class="btn btn-primary add" href="{{url_for('objectives.add_subobj', **(parents))}}">Add subobjective</a>
+        <a class="btn btn-primary" href="{{url_for('objectives.add_subobj', **(parents))}}">Add subobjective</a>
     </div>
+    {% endif %}
 </div>
 
 <p>{{objective.body.en|markdown}}</p>
 
-{% if objective.subobjs %}
+{% if objective.subobjs and not max_depth %}
 <div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
