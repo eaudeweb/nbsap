@@ -1,5 +1,18 @@
 from nbsap.database import mongo
 
+def update_objectives():
+    objectives = mongo.db.objectives.find()
+
+    for objective in objectives:
+        if 'subobjs' not in objective.keys():
+            objective['subobjs'] = []
+        else:
+            for subobj in objective['subobjs']:
+               if 'subobjs' not in subobj:
+                   subobj['subobjs'] = []
+
+        mongo.db.objectives.save(objective)
+
 def add_language_fields_to_indicators():
 
     indicators = mongo.db.indicators.find()
@@ -71,5 +84,6 @@ extra_shell_context = {
     "indicator_link_list_to_dict": indicator_link_list_to_dict,
     "update_indicators": update_indicators,
     "split_scale_in_list": split_scale_in_list,
-    "convert_indicator_ids_to_int": convert_indicator_ids_to_int
+    "convert_indicator_ids_to_int": convert_indicator_ids_to_int,
+    "update_objectives": update_objectives
 }

@@ -3,39 +3,68 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
-  {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.view', objective_id=objective.id), "Objective " +
-            objective.id|string())
+  {% set breadcrumbs = [] %}
+  {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
+  {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
+  {% for item_dict, item_label in chain_matrix %}
+        {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
+            item_label|string())) %}
+  {% endfor %}
 
-      ]) }}
+  {{ breadcrumb_items(breadcrumbs) }}
 </ul>
 
 <h3>{{objective.title.en}}</h3>
 
 <div class="btn-toolbar">
     <div class="btn-group">
-        <a class="btn btn-primary edit" href="{{url_for('objectives.edit',objective_id=objective.id)}}">Edit</a>
+        <a class="btn btn-primary edit" href="{{url_for('objectives.edit', **(parents))}}">Edit</a>
     </div>
+    {% if not max_depth %}
+    <div class="btn-group">
+        <a class="btn btn-primary" href="{{url_for('objectives.add_subobj', **(parents))}}">Add subobjective</a>
+    </div>
+    {% endif %}
 </div>
+
 <p>{{objective.body.en|markdown}}</p>
 
-{% if objective.subobjs %}
+{% if objective.subobjs and not max_depth %}
 <div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
+            <th style="width:10px; text-align:center">Id</th>
             <th>Subobjectives</th>
+            <th style="width:10px; text-align:center">NL</th>
+            <th style="width:10px; text-align:center">FR</th>
         </thead>
 
       <tbody>
-        {% for subobj in objective.subobjs %}
+        {% for subobj in objective.subobjs|sort(attribute='id') %}
           <tr>
             <td>
-                <a href="{{url_for('objectives.view_subobj',
-                   objective_id=objective.id, subobj_id=subobj.id)}}">{{subobj.title.en}}
+                {{-subobj['id']-}}
+            </td>
+            <td>
+                <a href="{{url_for('objectives.view', **(subobj_parents[subobj['id']]) )}}">{{subobj.title.en}}
                 </a>
             </td>
+            <td style="text-align: center;">
+                <a href="{{url_for('objectives.edit', **(subobj_parents[subobj['id']]))}}?lang=nl"
+                   class="btn btn-mini btn-{% if subobj['body']['nl'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if subobj['body']['nl'] %}translated {% else %} translate {% endif %}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{url_for('objectives.edit', **(subobj_parents[subobj['id']]))}}?lang=fr"
+                   class="btn btn-mini btn-{% if subobj['body']['fr'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if subobj['body']['fr'] %}translated {% else %} translate {% endif %}
+                </a>
+            </td>
+
           </tr>
         {% endfor %}
       </tbody>
@@ -44,8 +73,7 @@
 </div>
 {% endif %}
 
-{% if actions %}
-<div class="property_list">
+<!--div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
             <th style="width:10px; text-align:center">Id</th>
@@ -88,6 +116,5 @@
 
     </table>
 
-</div>
-{% endif %}
+</div-->
 {% endblock content %}
