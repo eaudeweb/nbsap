@@ -7,13 +7,12 @@
   {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
   {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
   {% for item_dict, item_label in chain_matrix %}
-        {% if loop.last %}
-            {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
-                "Edit objective " + item_label|string())) %}
-            {% continue %}
-        {% endif %}
         {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
             item_label|string())) %}
+        {% if loop.last %}
+            {% do breadcrumbs.append((url_for('objectives.edit',
+            **(item_dict)), "Edit")) %}
+        {% endif %}
   {% endfor %}
 
   {{ breadcrumb_items(breadcrumbs) }}
