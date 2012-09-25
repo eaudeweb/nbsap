@@ -127,6 +127,7 @@ def clean_whitespace():
     from nbsap.schema.refdata import language
     goals = mongo.db.goals.find()
     targets = mongo.db.targets.find()
+    actions = mongo.db.actions.find()
 
     for goal in goals:
         for lang in language.keys():
@@ -139,6 +140,13 @@ def clean_whitespace():
             if target['description'][lang] == '\n\n':
                 target['description'][lang] = ''
                 mongo.db.targets.save(target)
+
+    for action in actions:
+        for sub_action in action['actions']:
+            for lang in language.keys():
+                if sub_action['body'][lang] == '\n\n':
+                    sub_action['body'][lang] = ''
+        mongo.db.actions.save(action)
 
 extra_shell_context = {
     "add_language_fields_to_indicators": add_language_fields_to_indicators,
