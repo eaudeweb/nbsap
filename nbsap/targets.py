@@ -1,4 +1,6 @@
 import flask
+from flaskext.babel import gettext as _
+
 import schema
 import sugar
 from database import mongo
@@ -61,7 +63,7 @@ def edit(target_id):
             target['title'][selected_language] = data['title-' + selected_language]
             target['description'][selected_language] = data['body-' + selected_language]
 
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             mongo.db.targets.save(target)
 
     return {

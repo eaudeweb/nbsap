@@ -1,4 +1,5 @@
 import flask
+from flaskext.babel import gettext as _
 
 from database import oid, User, db_session
 from functools import wraps
@@ -52,7 +53,7 @@ def create_or_login(resp):
     user = User.query.filter_by(openid=resp.identity_url).first()
 
     if user is not None:
-        flask.flash(u'Successfully signed in.', "success")
+        flask.flash(_(u'Successfully signed in.'), "success")
         flask.g.user = user
         return flask.redirect(oid.get_next_url())
 
@@ -63,7 +64,7 @@ def add_new_user():
     if flask.g.user is not None or 'openid' not in flask.session:
         return flask.redirect(oid.get_next_url())
 
-    flask.flash('Newcomer admin. Welcome!', "success")
+    flask.flash(_('Newcomer admin. Welcome!'), "success")
     db_session.add(User(flask.session['openid']))
     db_session.commit()
 
@@ -72,7 +73,7 @@ def add_new_user():
 @auth.route('/logout')
 def logout():
     flask.session.pop('openid', None)
-    flask.flash(u'Successfully signed out.', "success")
+    flask.flash(_(u'Successfully signed out.'), "success")
     return flask.redirect(oid.get_next_url())
 
 

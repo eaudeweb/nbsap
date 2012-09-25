@@ -1,4 +1,6 @@
 import flask
+from flaskext.babel import gettext as _
+
 import sugar
 import schema
 from database import mongo
@@ -139,7 +141,7 @@ def edit(indicator_id):
                     data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             indicator.update(indicator_schema.flatten())
             mongo.db.indicators.save(indicator)
 

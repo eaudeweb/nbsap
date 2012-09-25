@@ -1,4 +1,6 @@
 import flask
+from flaskext.babel import gettext as _
+
 import sugar
 import schema
 from database import mongo
@@ -103,9 +105,9 @@ def mapping_delete(mapping_id):
 
     try:
         mongo.db.mapping.remove(spec_or_id=objectid)
-        flask.flash("Mapping deleted", "success")
+        flask.flash(_("Mapping deleted"), "success")
     except OperationFailure:
-        flask.flash("Errors encountered while deleting mapping", "errors")
+        flask.flash(_("Errors encountered while deleting mapping"), "errors")
 
     return flask.jsonify({'status': 'success'})
 
@@ -164,11 +166,11 @@ def mapping_edit(mapping_id=None):
                 mapping['_id'] = bson.objectid.ObjectId()
 
             mongo.db.mapping.save(mapping)
-            flask.flash("Mapping saved", "success")
+            flask.flash(_("Mapping saved"), "success")
             return flask.redirect(flask.url_for('goals.mapping'))
 
         else:
-            flask.flash("Errors in mapping information", "error")
+            flask.flash(_("Errors in mapping information"), "error")
 
     return {
                  "mk": sugar.MarkupGenerator(
@@ -216,7 +218,7 @@ def edit(goal_id):
             goal['title'][selected_language] = data['title-' + selected_language]
             goal['description'][selected_language] = data['body-' + selected_language]
 
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             mongo.db.goals.save(goal)
 
     return {

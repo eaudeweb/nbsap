@@ -1,6 +1,7 @@
-import inspect
-import schema
 import flask
+from flaskext.babel import gettext as _
+
+import schema
 import sugar
 from database import mongo
 from auth import auth_required
@@ -69,11 +70,11 @@ def add():
 
         if objective_schema.validate():
             objective = objective_schema.flatten()
-            flask.flash("Objective successfully added.", "success")
+            flask.flash(_("Objective successfully added."), "success")
             mongo.db.objectives.save(objective)
             return flask.redirect(flask.url_for('objectives.list_objectives'))
         else:
-            flask.flash("Error in adding an objective.", "error")
+            flask.flash(_("Error in adding an objective."), "error")
 
     return {
         "schema": objective_schema
@@ -219,7 +220,7 @@ def edit(objective_id,
                                                          selected_language]
             father['body'][selected_language] = data['body-' +
                                                         selected_language]
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             mongo.db.objectives.save(objective)
 
     return {
@@ -289,12 +290,12 @@ def add_subobj(objective_id,
         if subobj_schema.validate():
             subobj = subobj_schema.flatten()
             father['subobjs'].append(subobj)
-            flask.flash("Subobjective successfully added.", "success")
+            flask.flash(_("Subobjective successfully added."), "success")
             mongo.db.objectives.save(objective)
 
             return flask.redirect(flask.url_for('objectives.view', **dict(parents)))
         else:
-            flask.flash("Error in adding an subobjective.", "error")
+            flask.flash(_("Error in adding an subobjective."), "error")
 
     return {
         "objective": father,
