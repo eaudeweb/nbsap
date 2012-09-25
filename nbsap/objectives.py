@@ -132,12 +132,23 @@ def view(objective_id,
            hit_max_depth = True
            pass
 
+    actions_parents = {}
+
+    try:
+        tmp_dict = dict(parents)
+        for a in father['actions']:
+            actions_parents[a['id']] = { "action_id": a['id'] }
+            actions_parents[a['id']].update(tmp_dict)
+    except IndexError:
+        flask.abort(404)
+
     return {
         "max_depth": hit_max_depth,
         "chain_matrix": matrix,
         "subobj_parents": subobj_parents,
         "parents": dict(parents),
         "objective": father,
+        "actions_parents": actions_parents,
     }
 
 

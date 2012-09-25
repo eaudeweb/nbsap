@@ -1,4 +1,48 @@
+import schema
+
 from nbsap.database import mongo
+
+def update_actions_into_objectives():
+    actions = mongo.db.actions.find()
+    objectives = mongo.db.objectives.find()
+
+    for objective in objectives:
+        if 'actions' not in objective.keys():
+            objective['actions'] = []
+
+        for subobj1 in objective['subobjs']:
+            if 'actions' not in subobj1.keys():
+                subobj1['actions'] = []
+
+            for subobj2 in subobj1['subobjs']:
+                if 'actions' not in subobj2:
+                    subobj2['actions']= []
+
+                for subobj3 in subobj2['subobjs']:
+                    if 'actions' not in subobj3:
+                        subobj3['actions'] = []
+
+                    for subobj4 in subobj3['subobjs']:
+                        if 'actions' not in subobj4:
+                            subobj4['actions'] = []
+
+        mongo.db.objectives.save(objective)
+
+    for action in actions:
+        obj_id = action['id']
+        for sub_action in action['actions']:
+            subobj_id = sub_action['id']
+
+            objectives = mongo.db.objectives.find()
+
+            for objective in objectives:
+                if objective['id'] == obj_id:
+                    for subobj in objective['subobjs']:
+                        if subobj['id'] == subobj_id:
+                            subobj['actions'].append(sub_action)
+                            subobj['actions'][0]['id'] = 1
+
+                mongo.db.objectives.save(objective)
 
 def update_objectives():
     objectives = mongo.db.objectives.find()
@@ -103,5 +147,6 @@ extra_shell_context = {
     "split_scale_in_list": split_scale_in_list,
     "convert_indicator_ids_to_int": convert_indicator_ids_to_int,
     "update_objectives": update_objectives,
-    "clean_whitespace": clean_whitespace
+    "clean_whitespace": clean_whitespace,
+    "update_actions_into_objectives": update_actions_into_objectives
 }

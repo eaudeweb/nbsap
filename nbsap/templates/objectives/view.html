@@ -73,4 +73,49 @@
 </div>
 {% endif %}
 
+{% if objective.actions %}
+<div class="property_list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th style="width:10px; text-align:center">Id</th>
+            <th>Actions</th>
+            <th style="width:10px; text-align:center">NL</th>
+            <th style="width:10px; text-align:center">FR</th>
+        </thead>
+
+      <tbody>
+    {% for action in objective['actions']|sort(attribute='id') %}
+          <tr>
+            <td>
+                {{-action['id']-}}
+            </td>
+            <td>
+                <a href="{{ url_for('actions.view', **(actions_parents[action['id']])) }}">
+                     {{ action.title.en }}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=nl"
+                   class="btn btn-mini btn-{% if action['body']['nl'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if action['body']['nl'] %}translated {% else %} translate {% endif %}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=fr"
+                   class="btn btn-mini btn-{% if action['body']['fr'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if action['body']['fr'] %}translated {% else %} translate {% endif %}
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+</div>
+{% endif %}
 {% endblock content %}
