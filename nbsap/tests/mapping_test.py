@@ -5,6 +5,7 @@ class MappingTest(_BaseTest):
 
     def test_render_listing_page(self):
 
+        self._create_mapping()
         response = self.client.get('/admin/mapping')
         self.assertEqual(response.status_code, 200)
 

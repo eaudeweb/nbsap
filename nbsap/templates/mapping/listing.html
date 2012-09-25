@@ -36,8 +36,8 @@
     <tr>
       {% set objective_id = mapping.objective[0] %}
       {% set subobjective_id = mapping.objective[1] %}
-      <td><a href="{{url_for('objectives.view_subobj',
-                    objective_id=objective_id, subobj_id=subobjective_id)}}">
+      <td><a href="{{url_for('objectives.view',
+                    objective_id=objective_id, so1_id=subobjective_id)}}">
           {{mapping.objective|join('.')}}
       </a></td>
 
