@@ -4,9 +4,9 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.add'), "Add objective"),
+  (url_for('goals.list_goals'), _("Admin")),
+      (url_for('objectives.list_objectives'), _("Objectives")),
+      (url_for('objectives.add'), _("Add objective")),
       ]) }}
 </ul>
 
@@ -19,20 +19,20 @@
 {% from 'bits.html' import markup_help_button -%}
 {{ markup_help_button() }}
 
-<h1>Add objective</h1>
+<h1>{{_('Add objective')}}</h1>
 <form method="POST">
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
         <a href="{{url_for('objectives.list_objectives')}}"
-                class="btn" type="button">Cancel</a>
+          class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="language">Language</label>
+      <label class="control-label" for="language">{{_('Language')}}</label>
         <div class="controls">
             <select name="language" id="language">
                 <option value="en"
-                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                {% if language == 'en'%}selected="selected"{% endif %}>{{_('English')}}
                 </option>
             </select>
         </div>
@@ -42,7 +42,7 @@
         <div class="span6">
             <div class="language-container language-en">
                 <div class="control-group" >
-                    <label class="control-label" for="title">Title</label>
+                  <label class="control-label" for="title">{{_('Title')}}</label>
                     <div class="controls">
                         <textarea name="title-en" id="title-en" style="width: 100%">
                             {{-schema.title['en']|safe-}}
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
-                    <label class="control-label" for="body">Description</label>
+                  <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-en"></div>
                       <textarea name="body-en" class="wmd-input" id="wmd-input-en"
@@ -58,16 +58,22 @@
                             {{-schema.body['en']|safe-}}
                       </textarea>
                     </div>
-                        {{error(schema.body['en'])}}
+                    <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
+                      {{error(schema.body['en'])}}
                 </div>
             </div>
+
+            {% from 'bits.html' import markdown_help, markdown_preview -%}
+            {{ markdown_preview() }}
+            {{ markdown_help() }}
+
         </div>
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
         <a href="{{url_for('objectives.list_objectives')}}"
-                class="btn" type="button">Cancel</a>
+          class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 </form>
 
@@ -89,8 +95,17 @@
 
 {{ script_src('js/edit_markdown.js') }}
 <script>
+var tag = "{{_('Insert Link')}}";
 
-$('textarea').autogrow();
+$(function() {
+  $('#wmd-link-button-en').on('click', function () {
+    setTimeout( function()
+    {
+      $('h3:contains("Insert Link")').html(tag);
+    }, 0 );
+  });
 
+  $('textarea').autogrow();
+});
 </script>
 {% endblock %}
