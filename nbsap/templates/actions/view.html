@@ -3,16 +3,17 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
-  {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.view', objective_id=objective_id), "Objective " +
-            objective_id|string()),
-      (url_for('objectives.view', objective_id=objective_id,
-            so1_id=subobj_id), "Subobjective " + subobj_id|string()),
-      (url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id),
-            action.title.en)
-      ]) }}
+  {% set breadcrumbs = [] %}
+  {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
+  {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
+  {% for item_dict, item_label in chain_matrix %}
+        {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
+            item_label|string())) %}
+  {% endfor %}
+  {% do breadcrumbs.append((url_for('actions.view', **(action_parents)),
+  "Action " + action['id']|string() )) %}
+
+  {{ breadcrumb_items(breadcrumbs) }}
 </ul>
 
 <h3>{{ action.title.en }}</h3>
@@ -20,7 +21,7 @@
 <div class="btn-toolbar">
     <div class="btn-group">
         <a class="btn btn-primary edit"
-            href="{{url_for('actions.edit',objective_id=objective_id, subobj_id=subobj_id)}}">Edit
+            href="{{url_for('actions.edit', **(action_parents))}}">Edit
         </a>
     </div>
 </div>

@@ -73,7 +73,8 @@
 </div>
 {% endif %}
 
-<!--div class="property_list">
+{% if objective.actions %}
+<div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
             <th style="width:10px; text-align:center">Id</th>
@@ -83,20 +84,19 @@
         </thead>
 
       <tbody>
-    {% for action in actions|sort(attribute='id') %}
+    {% for action in objective['actions']|sort(attribute='id') %}
           <tr>
             <td>
                 {{-action['id']-}}
             </td>
             <td>
-                <a href="{{ url_for('actions.view', objective_id=objective.id,
-                                    subobj_id=action.id) }}">
+                <a href="{{ url_for('actions.view', **(actions_parents[action['id']])) }}">
                      {{ action.title.en }}
                 </a>
             </td>
 
             <td style="text-align: center;">
-                <a href="{{url_for('actions.edit', objective_id=objective.id, subobj_id=action.id)}}?lang=nl"
+                <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=nl"
                    class="btn btn-mini btn-{% if action['body']['nl'] %}success
                               {% else %}warning{% endif %}" type="button">
                               {% if action['body']['nl'] %}translated {% else %} translate {% endif %}
@@ -104,7 +104,7 @@
             </td>
 
             <td style="text-align: center;">
-                <a href="{{url_for('actions.edit', objective_id=objective.id, subobj_id=action.id)}}?lang=fr"
+                <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=fr"
                    class="btn btn-mini btn-{% if action['body']['fr'] %}success
                               {% else %}warning{% endif %}" type="button">
                               {% if action['body']['fr'] %}translated {% else %} translate {% endif %}
@@ -116,5 +116,6 @@
 
     </table>
 
-</div-->
+</div>
+{% endif %}
 {% endblock content %}

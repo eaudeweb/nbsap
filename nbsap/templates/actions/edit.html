@@ -3,18 +3,20 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
-  {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives"),
-      (url_for('objectives.view', objective_id=objective_id), "Objective " +
-            objective_id|string()),
-      (url_for('objectives.view', objective_id=objective_id,
-            so1_id=subobj_id+1), "Subobjective " + (subobj_id+1)|string()),
-      (url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id+1),
-            action['actions'][subobj_id].title.en),
-      (url_for('actions.edit', objective_id=objective_id, subobj_id=subobj_id+1),
-            "Edit " + action['actions'][subobj_id].title.en)
-      ]) }}
+  {% set breadcrumbs = [] %}
+  {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
+  {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
+  {% for item_dict, item_label in chain_matrix %}
+        {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
+            item_label|string())) %}
+  {% endfor %}
+  {% do breadcrumbs.append((url_for('actions.view', **(action_parents)),
+    "Action " + action['id']|string() )) %}
+
+  {% do breadcrumbs.append((url_for('actions.edit', **(action_parents)),
+    "Edit")) %}
+
+  {{ breadcrumb_items(breadcrumbs) }}
 </ul>
 
 {% macro error(field) %}
@@ -26,12 +28,12 @@
 {% from 'bits.html' import markup_help_button -%}
 {{ markup_help_button() }}
 
-<h1>Edit action related to objective {{objective_id}}, subobjective {{subobj_id+1}}</h1>
+<h1>Edit action</h1>
 
 <form method="POST">
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id+1)}}"
+        <a href="{{url_for('actions.view', **(action_parents))}}"
                 class="btn" type="button">Cancel
         </a>
     </div>
@@ -58,27 +60,44 @@
     <div class="row">
         <div class="span6">
             <div class="language-container language-en">
-                <div class="control-group {%- if schema.actions[subobj_id].body.en.errors %} error {%- endif %}">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                           {{-schema.title['en']-}}
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="control-group {%- if schema.body.en.errors %} error {%- endif %}">
                     <label class="control-label" for="body">Description</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-en"></div>
                       <textarea name="body-en" class="wmd-input" id="wmd-input-en"
                             style="width:100%; max-height: 900px;">
-                        {{-schema.actions[subobj_id].body.en|safe-}}
+                        {{-schema.body.en|safe-}}
                       </textarea>
                     </div>
-                        {{error(schema.actions[subobj_id].body.en)}}
+                        {{error(schema.body.en)}}
                 </div>
             </div>
 
             <div class="language-container language-fr">
+                <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-fr" id="title-fr" style="width: 100%; ">
+                           {{-schema.title['fr']-}}
+                        </textarea>
+                    </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label" for="body">Description</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-fr"></div>
                       <textarea name="body-fr" class="wmd-input" id="wmd-input-fr"
                             style="width:100%; max-height: 900px;">
-                        {{-schema.actions[subobj_id].body.fr|safe-}}
+                        {{-schema.body.fr|safe-}}
                       </textarea>
                     </div>
                 </div>
@@ -86,12 +105,21 @@
 
             <div class="language-container language-nl">
                 <div class="control-group">
+                    <label class="control-label" for="title">Title</label>
+                    <div class="controls">
+                        <textarea name="title-nl" id="title-nl" style="width: 100%">
+                           {{-schema.title['nl']-}}
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
                     <label class="control-label" for="body">Description</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-nl"></div>
                       <textarea name="body-nl" class="wmd-input" id="wmd-input-nl"
                             style="width:100%; max-height: 900px;">
-                        {{-schema.actions[subobj_id].body.nl|safe-}}
+                        {{-schema.body.nl|safe-}}
                       </textarea>
                     </div>
                 </div>
@@ -101,14 +129,14 @@
         <div class="span6 original-hideout" style="margin-top: -5px">
             <p>Original body in English</p>
             <div class="well">
-                {{-action.actions[subobj_id].body.en|markdown-}}
+                {{-action.body.en|markdown-}}
             </div>
         </div>
     </div>
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{url_for('actions.view', objective_id=objective_id, subobj_id=subobj_id+1)}}"
+        <a href="{{url_for('actions.view', **(action_parents))}}"
                 class="btn" type="button">Cancel
         </a>
     </div>

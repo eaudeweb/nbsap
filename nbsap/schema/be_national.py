@@ -28,12 +28,6 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
 
 _subobj_list.member_schema = _ObjectiveSchemaDefinition
 
-_ActionsSchemaDefinition = flatland.Dict.of(
-            I18nString.named('title'),
-            CommonInteger.named('id'),
-            CommonList.named('actions').of(_action),
-        )
-
 class Objective(_ObjectiveSchemaDefinition):
 
     def __init__(self, init_objective):
@@ -44,7 +38,7 @@ class Objective(_ObjectiveSchemaDefinition):
     def flatten(self):
         return self.value
 
-class Action(_ActionsSchemaDefinition):
+class Action(_action):
 
     def __init__(self, init_action):
         action = dict(init_action)
