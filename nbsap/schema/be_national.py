@@ -4,6 +4,14 @@ from common import I18nString, CommonString, CommonList, CommonInteger
 
 _subobj_list = CommonList.named('subobjs').with_properties(widget="hidden")
 
+_action = flatland.Dict.of(
+            I18nString.named('title')
+                .using(label=u'Title'),
+            I18nString.named('body')
+                .using(label=u'Description'),
+            CommonInteger.named('id'),
+        )
+
 _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(widget="edit").of(
             I18nString.named('title')
                 .using(label=u'Title')
@@ -15,17 +23,10 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
             CommonInteger.named('id')
                 .with_properties(widget="hidden"),
             _subobj_list,
+            CommonList.named('actions').of(_action)
         )
 
 _subobj_list.member_schema = _ObjectiveSchemaDefinition
-
-_action = flatland.Dict.of(
-            I18nString.named('title')
-                .using(label=u'Title'),
-            I18nString.named('body')
-                .using(label=u'Description'),
-            CommonInteger.named('id'),
-        )
 
 _ActionsSchemaDefinition = flatland.Dict.of(
             I18nString.named('title'),
