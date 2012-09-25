@@ -10,8 +10,8 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('objectives.list_objectives'), "Objectives")
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('objectives.list_objectives'), _("Objectives"))
       ]) }}
 </ul>
 
@@ -19,16 +19,16 @@
 {{ nav_tabs('objectives') }}
 
 <div class="add-button">
-    <a class="btn btn-primary add" href="{{url_for('objectives.add')}}">Add objective</a>
+  <a class="btn btn-primary add" href="{{url_for('objectives.add')}}">{{_('Add objective')}}</a>
 </div>
 
 <table class="table table-bordered table-striped objectives_listing">
 
     <thead>
-        <th>Id</th>
-        <th>Objectives</th>
-        <th>NL</th>
-        <th>FR</th>
+      <th>{{_('Id')}}</th>
+      <th>{{_('Objectives')}}</th>
+      <th>NL</th>
+      <th>FR</th>
     </thead>
 
   <tbody>
@@ -38,14 +38,14 @@
             {{-objective.id-}}
         </td>
         <td>
-            <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{objective.title.en}}</a>
+            <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{_t(objective.title)}}</a>
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"
                class="btn btn-mini btn-{% if objective.title['nl'] and objective.body['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if objective.title['nl'] and objective.body['nl']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
 
@@ -54,7 +54,7 @@
                class="btn btn-mini btn-{% if objective.title['fr'] and objective.body['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if objective.title['fr'] and objective.body['fr']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
       </tr>
@@ -75,10 +75,10 @@
     $('.objectives_listing').dataTable({
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "bStateSave": true,
-        "iDisplayLength": 25
+        "iDisplayLength": 25,
         "oLanguage": {
-            "sLengthMenu": "Display _MENU_ objectives per page",
-            "sZeroRecords": "No matching objectives found"
+          "sLengthMenu": '{{_("Display _MENU_ objectives per page")}}',
+          "sZeroRecords": '{{_("No matching objectives found")}}'
         },
     });
   });
