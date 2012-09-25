@@ -4,14 +4,14 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {% set breadcrumbs = [] %}
-  {% do breadcrumbs.append((url_for('goals.list_goals'), "Admin")) %}
-  {% do breadcrumbs.append((url_for('objectives.list_objectives'), "Objectives")) %}
+  {% do breadcrumbs.append((url_for('goals.list_goals'), _("Admin"))) %}
+  {% do breadcrumbs.append((url_for('objectives.list_objectives'), _("Objectives"))) %}
   {% for item_dict, item_label in chain_matrix %}
         {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
             item_label|string())) %}
         {% if loop.last %}
             {% do breadcrumbs.append((url_for('objectives.edit',
-            **(item_dict)), "Edit")) %}
+            **(item_dict)), _("Edit"))) %}
         {% endif %}
   {% endfor %}
 
@@ -27,28 +27,28 @@
 {% from 'bits.html' import markup_help_button -%}
 {{ markup_help_button() }}
 
-<h1>Edit objective {{objective.id}}</h1>
+<h1>{{_('Edit objective')}} {{objective.id}}</h1>
 <form method="POST">
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
         <a href="{{url_for('objectives.view', **(parents))}}"
-                class="btn" type="button">Cancel</a>
+          class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="language">Language</label>
+      <label class="control-label" for="language">{{_('Language')}}</label>
         <div class="controls">
             <select name="language" id="language">
                 <option value="en"
-                    {% if language == 'en'%}selected="selected"{% endif %}>English
+                {% if language == 'en'%}selected="selected"{% endif %}>{{_('English')}}
                 </option>
 
                 <option value="fr"
-                    {% if language == 'fr'%}selected="selected"{% endif %}>French
+                {% if language == 'fr'%}selected="selected"{% endif %}>{{_('French')}}
                 </option>
 
                 <option value="nl"
-                    {% if language == 'nl'%}selected="selected"{% endif %}>Dutch
+                {% if language == 'nl'%}selected="selected"{% endif %}>{{_('Dutch')}}
                 </option>
             </select>
         </div>
@@ -58,7 +58,7 @@
         <div class="span6">
             <div class="language-container language-en">
                 <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
-                    <label class="control-label" for="title">Title</label>
+                  <label class="control-label" for="title">{{_('Title')}}</label>
                     <div class="controls">
                         <textarea name="title-en" id="title-en" style="width: 100%">
                            {{-schema.title['en']-}}
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
-                    <label class="control-label" for="body">Description</label>
+                  <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-en"></div>
                       <textarea name="body-en" class="wmd-input" id="wmd-input-en"
@@ -75,13 +75,14 @@
                         {{-schema.body['en']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
                         {{error(schema.body['en'])}}
                 </div>
             </div>
 
             <div class="language-container language-fr">
                 <div class="control-group">
-                    <label class="control-label" for="title">Title</label>
+                  <label class="control-label" for="title">{{_('Title')}}</label>
                     <div class="controls">
                         <textarea name="title-fr" id="title-fr" style="width: 100%; ">
                            {{-schema.title['fr']-}}
@@ -89,7 +90,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="body">Description</label>
+                  <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-fr"></div>
                       <textarea name="body-fr" class="wmd-input" id="wmd-input-fr"
@@ -97,12 +98,13 @@
                         {{-schema.body['fr']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-fr" class="wmd-panel wmd-preview"></div>
                 </div>
             </div>
 
             <div class="language-container language-nl">
                 <div class="control-group">
-                    <label class="control-label" for="title">Title</label>
+                  <label class="control-label" for="title">{{_('Title')}}</label>
                     <div class="controls">
                         <textarea name="title-nl" id="title-nl" style="width: 100%">
                            {{-schema.title['nl']-}}
@@ -110,7 +112,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="body">Description</label>
+                  <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-nl"></div>
                       <textarea name="body-nl" class="wmd-input" id="wmd-input-nl"
@@ -118,17 +120,22 @@
                         {{-schema.body['nl']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-nl" class="wmd-panel wmd-preview"></div>
                 </div>
             </div>
 
+            {% from 'bits.html' import markdown_help, markdown_preview -%}
+            {{ markdown_preview() }}
+            {{ markdown_help() }}
+
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
-            <p>Original title in English</p>
+          <p>{{_('Original title in English')}}</p>
             <div class="well">
                 {{-objective.title['en']-}}
             </div>
 
-            <p>Original body in English</p>
+            <p>{{_('Original body in English')}}</p>
             <div class="well">
                 {{-objective.body['en']|markdown-}}
             </div>
@@ -136,9 +143,9 @@
     </div>
 
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
         <a href="{{url_for('objectives.view', **(parents))}}"
-                class="btn" type="button">Cancel</a>
+          class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 </form>
 
@@ -161,8 +168,17 @@
 
 {{ script_src('js/edit_markdown.js') }}
 <script>
+var tag = "{{_('Insert Link')}}";
 
-$('textarea').autogrow();
+$(function() {
+  $('#wmd-link-button-en').on('click', function () {
+    setTimeout( function()
+    {
+      $('h3:contains("Insert Link")').html(tag);
+    }, 0 );
+  });
 
+  $('textarea').autogrow();
+});
 </script>
 {% endblock %}
