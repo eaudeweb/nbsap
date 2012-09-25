@@ -45,10 +45,13 @@ def homepage_objectives(objective_id=1):
                      'description': mongo.db.targets.find_one({'id': m['other_targets'][target]})['description']
                     }
 
+    ids = sugar.generate_objectives()[objective_id]
+    print objective['subobjs']
     return {
         'objective_ids': objective_ids,
         'objective': objective,
-        'mapping': mapping
+        'mapping': mapping,
+        'ids': ids
     }
 
 @objectives.route("/admin/objectives/add", methods=["GET", "POST"])
