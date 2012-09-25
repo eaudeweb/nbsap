@@ -156,8 +156,19 @@
 
 {{ script_src('js/edit_markdown.js') }}
 <script>
+var tag = "{{_('Insert Link')}}";
 
-$('textarea').autogrow();
+$(function() {
+  $('#wmd-link-button-en').on('click', function () {
+    console.log($('h3:contains("Insert Link")'));
+    setTimeout( function()
+    {
+      $('h3:contains("Insert Link")').html(tag);
+    }, 0 );
+  });
+
+  $('textarea').autogrow();
+});
 
 </script>
 {% endblock %}
