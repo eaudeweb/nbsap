@@ -21,8 +21,38 @@ class _BaseTest(unittest.TestCase):
                 "nl": "Dutch mock objective"
             }),
             "id": 1,
-            "subobjs": []
+            "subobjs": [],
+            "actions": [
+                        ImmutableDict({
+                            "title": ImmutableDict({
+                                "en": "Mock title action in subobjective",
+                                "fr": "French title mock action in subobjective",
+                                "nl": "Dutch title mock action in subobjective"
+                            }),
+                            "body": ImmutableDict({
+                                "en": "Mock body action in subobjective",
+                                "fr": "French body mock action in subobjective",
+                                "nl": "Dutch body mock action in subobjective"
+                            }),
+                            "id": 1
+                        }),
+
+                        ImmutableDict({
+                            "title": ImmutableDict({
+                                "en": "Mock title action in subobjective",
+                                "fr": "French title mock action in subobjective",
+                                "nl": "Dutch title mock action in subobjective"
+                            }),
+                            "body": ImmutableDict({
+                                "en": "Mock body action in subobjective",
+                                "fr": "French body mock action in subobjective",
+                                "nl": "Dutch body mock action in subobjective"
+                            }),
+                            "id": 2
+                        })
+            ]
     })}
+
 
     INDICATOR_MOCK = {
         "1": ImmutableDict({
@@ -87,32 +117,6 @@ class _BaseTest(unittest.TestCase):
             "id": 1,
     })}
 
-    ACTION_MOCK = {
-        "1": ImmutableDict({
-            "title": ImmutableDict({
-                "en": "Mock action",
-                "fr": "French mock action",
-                "nl": "Dutch mock action"
-            }),
-            "id": 1,
-            "actions": [
-                ImmutableDict({
-                    "title": ImmutableDict({
-                        "en": "Mock title action in subobjective",
-                        "fr": "French title mock action in subobjective",
-                        "nl": "Dutch title mock action in subobjective"
-                    }),
-                    "body": ImmutableDict({
-                        "en": "Mock body action in subobjective",
-                        "fr": "French body mock action in subobjective",
-                        "nl": "Dutch body mock action in subobjective"
-                    }),
-                    "id": 1
-                })
-            ]
-        })
-    }
-
     GOAL_MOCK = {
         "1": ImmutableDict({
             "title": ImmutableDict({
@@ -171,7 +175,6 @@ class _BaseTest(unittest.TestCase):
        self.client = self.app.test_client()
 
        self._create_objective()
-       self._create_action()
        self._create_goal()
        self._create_target()
        self._create_indicator()
@@ -179,7 +182,6 @@ class _BaseTest(unittest.TestCase):
     def tearDown(self):
         with self.app.test_request_context():
             mongo.db.objectives.remove()
-            mongo.db.actions.remove()
             mongo.db.mapping.remove()
             mongo.db.goals.remove()
             mongo.db.indicators.remove()
@@ -189,11 +191,6 @@ class _BaseTest(unittest.TestCase):
         mock_objective = dict(self.OBJECTIVE_MOCK['1'])
         with self.app.test_request_context():
             mongo.db.objectives.save(mock_objective)
-
-    def _create_action(self):
-        mock_action = dict(self.ACTION_MOCK['1'])
-        with self.app.test_request_context():
-            mongo.db.actions.save(mock_action)
 
     def _create_goal(self):
         mock_goal = dict(self.GOAL_MOCK['1'])

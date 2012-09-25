@@ -154,7 +154,7 @@ extra_shell_context = {
     "update_indicators": update_indicators,
     "split_scale_in_list": split_scale_in_list,
     "convert_indicator_ids_to_int": convert_indicator_ids_to_int,
-    "update_objectives": update_objectives,
     "clean_whitespace": clean_whitespace,
+    "update_objectives": update_objectives,
     "update_actions_into_objectives": update_actions_into_objectives
 }
