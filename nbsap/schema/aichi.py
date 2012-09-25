@@ -170,7 +170,11 @@ class Target(_TargetSchemaDefinition):
 class MappingSchema(_MappingSchema):
 
     def set_objectives(self, objectives):
-        self['objective'].valid_values = [j for i in objectives.keys() for j in objectives[i].values()]
+        self['objective'].valid_values = []
+
+        for id in objectives.keys():
+            self['objective'].valid_values.extend(objectives[id])
+
         self['objective'].properties['groups'] = objectives
         return self
 

@@ -35,12 +35,32 @@
     {% for mapping in mappings %}
     <tr>
       {% set objective_id = mapping.objective[0] %}
-      {% set subobjective_id = mapping.objective[1] %}
-      <td><a href="{{url_for('objectives.view',
-                    objective_id=objective_id, so1_id=subobjective_id)}}">
-          {{mapping.objective|join('.')}}
-      </a></td>
+      {% if mapping.objective[1] %}{% set so1_id = mapping.objective[1] %}{% endif %}
+      {% if mapping.objective[2] %}{% set so2_id = mapping.objective[2] %}{% endif %}
+      {% if mapping.objective[3] %}{% set so3_id = mapping.objective[3] %}{% endif %}
+      {% if mapping.objective[4] %}{% set so4_id = mapping.objective[4] %}{% endif %}
 
+      <td>
+      {% if so2_id %}
+        {% if so3_id %}
+          {% if so4_id %}
+            <a href="{{url_for('objectives.view', objective_id=objective_id,
+                                so1_id=so1_id, so2_id=so2_id, so3_id=so3_id,
+                                so4_id=so4_id)}}">
+          {% else %}
+            <a href="{{url_for('objectives.view', objective_id=objective_id,
+                                so1_id=so1_id, so2_id=so2_id, so3_id=so3_id)}}">
+          {% endif %}
+        {% else %}
+          <a href="{{url_for('objectives.view', objective_id=objective_id,
+                              so1_id=so1_id, so2_id=so2_id)}}">
+        {% endif %}
+      {% else %}
+        <a href="{{url_for('objectives.view', objective_id=objective_id,
+                            so1_id=so1_id)}}">
+      {% endif %}
+        {{mapping.objective|join('.')}}
+      </a></td>
 
       <td><a href="{{url_for('goals.edit', goal_id=mapping.goal.id)}}">
           {{mapping.goal.name}}
