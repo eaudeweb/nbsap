@@ -75,8 +75,7 @@
 
   {% for i in value_groups %}
     <optgroup label="{{_('Objective')}} {{i}}">
-      {% for j in value_groups[i] %}
-        {% set value = value_groups[i][j] %}
+      {% for value in value_groups[i] %}
         {% if field.value and field.value == value %}
           <option value={{value}} selected='selected'>{{_('Subobjective')}} {{value}}</option>
         {% else %}

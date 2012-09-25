@@ -149,12 +149,12 @@ def objective_data():
     except IndexError:
         return flask.jsonify({'result': ''})
 
-    objective_id = int(id_code.split('.')[0])
-    subobjective_id = int(id_code.split('.')[1])
+    objective_ids = map(int, id_code.split('.'))
+    subobjective = mongo.db.objectives.find_one_or_404({"id": objective_ids[0]})
 
-    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
-    subobjective = [s for s in objective['subobjs'] if
-                    s['id'] == subobjective_id][0]
+    for depth in range(len(objective_ids) - 1):
+        subobjective = [s for s in subobjective['subobjs'] if
+                            s['id'] == objective_ids[depth + 1]][0]
 
     result = {'result': sugar.translate(subobjective['title'])}
     return flask.jsonify(result)
