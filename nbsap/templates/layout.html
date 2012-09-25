@@ -43,30 +43,39 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="{{ url_for('goals.homepage_goals') }}">
-            National Biodiversity Strategy and Action Plan (NBSAP)
+            {{_('National Biodiversity Strategy and Action Plan (NBSAP)')}}
           </a>
             <ul class="nav pull-right top-menu">
               {% if g.user %}
               <li>
-                <a href="{{url_for('goals.list_goals')}}"><i class="icon-wrench icon-black"></i> Admin</a>
+              <a href="{{url_for('goals.list_goals')}}"><i class="icon-wrench icon-black"></i>{{_('Admin')}}</a>
               </li>
               <!--li>
                 <a href="#"><i class="icon-question-sign icon-black"></i> Help</a>
               </li-->
               <li>
-                <a href="{{url_for('auth.logout')}}">Logout</a>
+              <a href="{{url_for('auth.logout')}}">{{ _('Logout') }}</a>
               </li>
               {% else %}
               <li><a
-                href="{{url_for('auth.login')}}">Login</a>
+                href="{{url_for('auth.login')}}">{{ _('Login') }}</a>
               </li>
               {% endif %}
               <li class="dropdown">
-                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+              <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{_('Language')}}
+                <b class="caret"></b>
+              </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">English</a></li>
-                  <li><a href="#">French</a></li>
-                  <li><a href="#">Dutch</a></li>
+                  <li><a href="{{url_for('goals.set_language', language="en")}}">
+                    {{ _('English') }}
+                  </a></li>
+                  <li><a href="{{url_for('goals.set_language', language="fr")}}">
+                    {{ _('French') }}
+                  </a></li>
+                  <li><a href="{{url_for('goals.set_language', language="nl")}}">
+                    {{ _('Dutch') }}
+                  </a></li>
                 </ul>
               </li>
            </ul>
@@ -81,6 +90,9 @@
     <div class="container content">
 
       {{ flash_messages() }}
+
+      {% from 'bits.html' import translate as _t with context -%}
+      {% from 'bits.html' import translate_markdown as _tm with context -%}
 
       {% block content %}
         {{ content }}
@@ -98,7 +110,7 @@
         <li><a href="#" class="CHM-logo">CHM logo</a></li>
       </ul>
     </div>
-      </footer>
+    </footer>
     {% endblock %}
 
     {% block head_scripts %}
@@ -110,7 +122,7 @@
     {{ script_src("js/main.js") }}
     {{ script_src("js/jquery.editinplace.js") }}
     {{ script_src("bootstrap/js/bootstrap-collapse.js") }}
- 	{{ script_src("bootstrap/js/bootstrap-dropdown.js") }}
+    {{ script_src("bootstrap/js/bootstrap-dropdown.js") }}
 
     <!--[if lt IE 9]>
       {{ script_src("js/ie.js") }}

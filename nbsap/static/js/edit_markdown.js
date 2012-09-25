@@ -38,4 +38,5 @@ $(function() {
     $('#preview').find('.modal-body').html(text);
     return true;
   });
+
 });

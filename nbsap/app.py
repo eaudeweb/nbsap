@@ -1,6 +1,7 @@
 import flask
 from flaskext.babel import Babel
 from database import mongo, oid, User, db_session
+import sugar
 
 import goals
 import targets
@@ -39,9 +40,10 @@ def create_app(instance_path=None, testing_config=None):
     auth.initialize_app(app)
 
     mongo.init_app(app)
-    babel.init_app(app)
     sentry.init_app(app)
     oid.init_app(app)
+    babel.init_app(app)
+    babel.locale_selector_func = sugar.get_session_language
 
     Markdown(app)
 

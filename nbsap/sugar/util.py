@@ -9,6 +9,19 @@ def get_indicator_editable_fields():
 
     return keys
 
+def get_session_language():
+    if flask.session.get('language'):
+        return flask.session['language'][0]
+    else:
+        return flask.request.accept_languages.best_match(['en', 'fr', 'nl'])
+
+def translate(field):
+    language = get_session_language()
+    if field[language] == '':
+        return field['en']
+    else:
+        return field[language]
+
 def generate_objectives():
     from nbsap.database import mongo
     objectives = {i['id']:"" for i in mongo.db.objectives.find()}
@@ -48,7 +61,8 @@ class MarkupGenerator(flatland.out.markup.Generator):
     def widget(self, element, widget_name=None):
         if widget_name is None:
             widget_name = element.properties.get("widget", "input")
-        widget_macro = getattr(self.template.module, widget_name)
+        session = flask.session
+        widget_macro = getattr(self.template.make_module({'session': session}), widget_name)
         return widget_macro(self, element)
 
     def properties(self, field, id=None):

@@ -10,8 +10,8 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('targets.list_targets'), "Targets")
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('targets.list_targets'), _("Targets"))
       ]) }}
 </ul>
 
@@ -21,10 +21,10 @@
 <table class="table table-bordered table-striped targets_listing">
 
     <thead>
-        <th style="width:10px; text-align:center">Id</th>
-        <th>Targets</th>
-        <th style="width:10px; text-align:center">NL</th>
-        <th style="width:10px; text-align:center">FR</th>
+      <th style="width:10px; text-align:center">{{_('Id')}}</th>
+      <th>{{_('Targets')}}</th>
+      <th style="width:10px; text-align:center">NL</th>
+      <th style="width:10px; text-align:center">FR</th>
     </thead>
 
   <tbody>
@@ -34,14 +34,14 @@
             {{-target.id-}}
         </td>
         <td>
-            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{target.title['en']}}</a>
+            <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=en">{{_t(target.title)}}</a>
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('targets.edit', target_id=target.id)}}?lang=nl"
                class="btn btn-mini btn-{% if target.title['nl'] and target.description['nl'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if target.title['nl'] and target.description['nl']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
 
@@ -50,7 +50,7 @@
                class="btn btn-mini btn-{% if target.title['fr'] and target.description['fr'] %}success
                           {% else %}warning{% endif %}" type="button">
                           {% if target.title['fr'] and target.description['fr']
-                          %}translated {% else %} translate {% endif %}
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
             </a>
         </td>
       </tr>
@@ -73,8 +73,8 @@
         "bStateSave": true,
         "sPaginationType": "bootstrap",
         "oLanguage": {
-            "sLengthMenu": "Display _MENU_ objectives per page",
-            "sZeroRecords": "No matching objectives found"
+          "sLengthMenu": '{{_("Display _MENU_ objectives per page")}}',
+          "sZeroRecords": '{{_("No matching objectives found")}}'
         }
     });
   });

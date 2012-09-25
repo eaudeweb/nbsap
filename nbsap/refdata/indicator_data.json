@@ -1,11 +1,75 @@
 {
     "scale": {
-                "G": "Global",
-                "R": "Regional",
-                "N": "National",
-                "S": "Sub-national"
+                "G": {
+                        "en": "Global",
+                        "fr": "",
+                        "nl": ""
+                     },
+                "R": {
+                        "en": "Regional",
+                        "fr": "",
+                        "nl": ""
+                     },
+                "N": {
+                        "en": "National",
+                        "fr": "",
+                        "nl": ""
+                     },
+                "S": {
+                        "en": "Sub-national",
+                        "fr": "",
+                        "nl": ""
+                     }
              },
-    "sensitivity": ["Low", "Medium", "High"],
-    "validity": ["Low", "Medium", "High"],
-    "ease_of_communication": ["Low", "Medium", "High"]
+    "sensitivity": {
+                      "Low": {
+                                "en": "Low",
+                                "fr": "",
+                                "nl": ""
+                             },
+                      "Medium": {
+                                  "en": "Medium",
+                                  "fr": "",
+                                  "nl": ""
+                                },
+                      "High": {
+                                  "en": "High",
+                                  "fr": "",
+                                  "nl": ""
+                              }
+                   },
+    "validity": {
+                  "Low": {
+                            "en": "Low",
+                            "fr": "",
+                            "nl": ""
+                         },
+                  "Medium": {
+                              "en": "Medium",
+                              "fr": "",
+                              "nl": ""
+                            },
+                  "High": {
+                              "en": "High",
+                              "fr": "",
+                              "nl": ""
+                          }
+                },
+    "ease_of_communication": {
+              "Low": {
+                        "en": "Low",
+                        "fr": "",
+                        "nl": ""
+                     },
+              "Medium": {
+                          "en": "Medium",
+                          "fr": "",
+                          "nl": ""
+                        },
+              "High": {
+                          "en": "High",
+                          "fr": "",
+                          "nl": ""
+                      }
+                              }
 }

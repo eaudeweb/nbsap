@@ -27,8 +27,8 @@ def target_data():
 
     for target_id in target_ids:
        aichi_target = mongo.db.targets.find_one_or_404({"id": target_id})
-       data = { 'title': aichi_target['title']['en'],
-                'description': aichi_target['description']['en']
+       data = { 'title': sugar.translate(aichi_target['title']),
+                'description': sugar.translate(aichi_target['description'])
               }
        aichi_targets.append(data)
 

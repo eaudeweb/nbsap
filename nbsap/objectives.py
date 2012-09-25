@@ -140,6 +140,25 @@ def view(objective_id,
     }
 
 
+@objectives.route("/objectives/data")
+def objective_data():
+
+    try:
+        id_code = flask.request.args.getlist('id_code')[0]
+    except IndexError:
+        return flask.jsonify({'result': ''})
+
+    objective_id = int(id_code.split('.')[0])
+    subobjective_id = int(id_code.split('.')[1])
+
+    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
+    subobjective = [s for s in objective['subobjs'] if
+                    s['id'] == subobjective_id][0]
+
+    result = {'result': sugar.translate(subobjective['title'])}
+    return flask.jsonify(result)
+
+
 @objectives.route("/admin/objectives/<int:objective_id>/edit",
                   methods=["GET", "POST"])
 @objectives.route("/admin/objectives/<int:objective_id>/"
@@ -296,20 +315,3 @@ def list_objectives():
     }
 
 
-@objectives.route("/objectives/data")
-def objective_data():
-
-    try:
-        id_code = flask.request.args.getlist('id_code')[0]
-    except IndexError:
-        return flask.jsonify({'result': ''})
-
-    objective_id = int(id_code.split('.')[0])
-    subobjective_id = int(id_code.split('.')[1])
-
-    objective = mongo.db.objectives.find_one_or_404({"id": objective_id})
-    subobjective = [s for s in objective['subobjs'] if
-                    s['id'] == subobjective_id][0]
-
-    result = {'result': subobjective['title']['en']}
-    return flask.jsonify(result)

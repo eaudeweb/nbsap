@@ -2,25 +2,25 @@
 <ul class="nav nav-tabs">
 
   <li class="{{ 'active' if active == 'goals' else '' }}">
-    <a href="{{ url_for('goals.list_goals') }}">Goals</a>
+  <a href="{{ url_for('goals.list_goals') }}">{{_('Goals')}}</a>
   </li>
 
   <li class="{{ 'active' if active == 'targets' else '' }}">
-    <a href="{{ url_for('targets.list_targets') }}">Targets</a>
+  <a href="{{ url_for('targets.list_targets') }}">{{_('Targets')}}</a>
   </li>
 
   <li class="{{ 'active' if active == 'indicators' else '' }}">
-  <a href="{{ url_for('indicators.list_indicators') }}">Indicators
+  <a href="{{ url_for('indicators.list_indicators') }}">{{_('Indicators')}}
     </a>
   </li>
 
   <li class="{{ 'active' if active == 'objectives' else '' }}">
-  <a href="{{ url_for('objectives.list_objectives') }}">Objectives
+  <a href="{{ url_for('objectives.list_objectives') }}">{{_('Objectives')}}
     </a>
   </li>
 
   <li class="{{ 'active' if active == 'mapping' else '' }}">
-  <a href="{{ url_for('goals.mapping') }}">Mapping
+  <a href="{{ url_for('goals.mapping') }}">{{_('Mapping')}}
     </a>
   </li>
 
@@ -31,12 +31,12 @@
 <ul class="nav nav-tabs">
 
   <li class="{{ 'active' if active == 'aichi' else '' }}">
-    <a href="{{ url_for('goals.homepage_goals') }}">Aichi</a>
+  <a href="{{ url_for('goals.homepage_goals') }}">{{_('Aichi')}}</a>
   </li>
 
   <li class="{{ 'active' if active == 'national' else '' }}">
   <a href="{{ url_for('objectives.homepage_objectives') }}">
-    National Strategy
+    {{_('National Strategy')}}
   </a>
   </li>
 

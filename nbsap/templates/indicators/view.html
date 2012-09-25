@@ -4,15 +4,15 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), "Admin"),
-      (url_for('indicators.list_indicators'), "Indicators"),
-      (url_for('indicators.view', indicator_id=indicator.id), indicator.name.en)
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('indicators.list_indicators'), _("Indicators")),
+      (url_for('indicators.view', indicator_id=indicator.id), _t(indicator.name))
       ]) }}
 </ul>
 
 <div class="btn-toolbar">
   <div class="btn-group">
-    <a class="btn btn-primary edit" href="{{url_for('indicators.edit',indicator_id=indicator.id)}}">Edit</a>
+    <a class="btn btn-primary edit" href="{{url_for('indicators.edit',indicator_id=indicator.id)}}">{{_('Edit')}}</a>
   </div>
 </div>
 
@@ -25,13 +25,13 @@
     {% for key in order %}
       {% if key in indicator.keys() %}
       <tr>
-        <td class="indicator_field"> {{ transit_dict[key] }} </td>
+        <td class="indicator_field"> {{ _t(transit_dict[key]) }} </td>
         <!-- Exceptional case: Other Relevant Aichi Targets-->
         {% if key in key_targets %}
           <td><ul>
             {% for value_element in indicator[key] %}
-              <li><a href="{{url_for('targets.list_targets')}}">Target {{value_element}}</a>
-              : {{other_targets_descriptions[loop.index0]|markdown}}</li>
+            <li><a href="{{url_for('targets.list_targets')}}">{{_('Target')}} {{value_element}}</a>
+              : {{_tm(other_targets_descriptions[loop.index0])}}</li>
             {% endfor %}
           </ul></td>
         <!-- Exceptional case: Related Links -->
@@ -39,7 +39,7 @@
             <td>
                 <ul>
                 {% for related_link in indicator[key] %}
-                    <li><a href="{{related_link.url}}">{{related_link.url_name.en}}</a></li>
+                    <li><a href="{{related_link.url}}">{{_t(related_link.url_name)}}</a></li>
                 {% endfor %}
                 </ul>
             </td>
@@ -48,26 +48,26 @@
             {% if key == 'relevant_target' %}
                 <td>
                   <a href="{{url_for('targets.list_targets')}}">
-                    Target {{indicator[key]}}
-                  </a>: {{main_target_description|markdown}}
+                    {{_('Target')}} {{indicator[key]}}
+                  </a>: {{_tm(main_target_description)}}
                 </td>
         <!-- Exeptional case: Goal -->
             {% elif key == 'goal' %}
-            <td><a href="{{url_for('goals.list_goals')}}">Goal {{indicator[key]}}</a>
-              : {{goal_description|markdown}}</td>
+            <td><a href="{{url_for('goals.list_goals')}}">{{_('Goal')}} {{indicator[key]}}</a>
+              : {{_tm(goal_description)}}</td>
         <!-- Exeptional case: Sensitivty, Ease of communication, Validity -->
             {% elif key in ['sensitivity', 'ease_of_communication', 'validity'] %}
-              <td> {{ indicator[key] }} </td>
+              <td> {{ _t(data[key][indicator[key]]) }} </td>
         <!-- Exeptional case: Scale -->
             {% elif key == 'scale' %}
             <td><ul>
               {% for scale in indicator[key] %}
-                <li>{{ scale_labels[scale] }}</li>
+                <li>{{ _t(data.scale[scale]) }}</li>
               {% endfor %}
             </ul></td>
         <!-- Regular case -->
             {% else %}
-              <td> {{ indicator[key].en }} </td>
+              <td> {{ _t(indicator[key]) }} </td>
             {% endif %}
         {% endif %}
       </tr>

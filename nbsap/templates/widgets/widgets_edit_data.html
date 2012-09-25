@@ -49,6 +49,7 @@
 
 
 {% macro list(mk, field) %}
+  {% from 'bits.html' import translate as _t with context %}
   {% set valid_values = field.properties.valid_values %}
   {% set value_labels = field.properties.value_labels %}
 
@@ -58,9 +59,9 @@
   {% for value in field.properties.valid_values %}
     {% set value_label = (value_labels[value] if value_labels else value) %}
     {% if value|string() in field.value %}
-      {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
+      {{ mk.option(value=value|string(), contents=_t(value_label), selected='selected') }}
     {% else %}
-      {{ mk.option(value=value|string(), contents=value_label) }}
+      {{ mk.option(value=value|string(), contents=_t(value_label)) }}
     {% endif %}
   {% endfor %}
 
@@ -73,13 +74,13 @@
   {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class) }}
 
   {% for i in value_groups %}
-    <optgroup label="Objective {{i}}">
+    <optgroup label="{{_('Objective')}} {{i}}">
       {% for j in value_groups[i] %}
         {% set value = value_groups[i][j] %}
         {% if field.value and field.value == value %}
-          <option value={{value}} selected='selected'>Subobjective {{value}}</option>
+          <option value={{value}} selected='selected'>{{_('Subobjective')}} {{value}}</option>
         {% else %}
-          <option value={{value}}>Subobjective {{value}}</option>
+          <option value={{value}}>{{_('Subobjective')}} {{value}}</option>
         {% endif %}
       {% endfor %}
     </optgroup>
@@ -90,6 +91,7 @@
 
 
 {% macro select(mk, field) %}
+  {% from 'bits.html' import translate as _t with context %}
   {% set valid_values = field.valid_values %}
   {% set value_labels = field.properties.value_labels or
                         field.value_labels or None %}
@@ -106,16 +108,16 @@
     {% if field.properties.mapping %}
       {% if value == field.value %}
         {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
-                     contents=value_label, selected='selected') }}
+                     contents=_t(value_label), selected='selected') }}
       {% else %}
         {{ mk.option(class=field.properties.mapping[value|string()], value=value|string(),
-                     contents=value_label) }}
+                     contents=_t(value_label)) }}
       {% endif %}
     {% else %}
       {% if value == field.value %}
-        {{ mk.option(value=value|string(), contents=value_label, selected='selected') }}
+        {{ mk.option(value=value|string(), contents=_t(value_label), selected='selected') }}
       {% else %}
-        {{ mk.option(value=value|string(), contents=value_label) }}
+        {{ mk.option(value=value|string(), contents=_t(value_label)) }}
       {% endif %}
     {% endif %}
   {% endfor %}

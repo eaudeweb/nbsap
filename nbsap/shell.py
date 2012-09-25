@@ -79,11 +79,29 @@ def update_indicators():
     split_scale_in_list()
     convert_indicator_ids_to_int()
 
+def clean_whitespace():
+    from nbsap.schema.refdata import language
+    goals = mongo.db.goals.find()
+    targets = mongo.db.targets.find()
+
+    for goal in goals:
+        for lang in language.keys():
+            if goal['description'][lang] == '\n\n':
+                goal['description'][lang] = ''
+                mongo.db.goals.save(goal)
+
+    for target in targets:
+        for lang in language.keys():
+            if target['description'][lang] == '\n\n':
+                target['description'][lang] = ''
+                mongo.db.targets.save(target)
+
 extra_shell_context = {
     "add_language_fields_to_indicators": add_language_fields_to_indicators,
     "indicator_link_list_to_dict": indicator_link_list_to_dict,
     "update_indicators": update_indicators,
     "split_scale_in_list": split_scale_in_list,
     "convert_indicator_ids_to_int": convert_indicator_ids_to_int,
-    "update_objectives": update_objectives
+    "update_objectives": update_objectives,
+    "clean_whitespace": clean_whitespace
 }

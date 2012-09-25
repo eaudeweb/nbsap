@@ -42,7 +42,7 @@ def homepage_indicators():
              'targets': targets,
              'transit_dict': aichi_indicator_keys,
              'order': aichi_order['order'],
-             'scale_labels': schema.refdata.indicator_data['scale'],
+             'data': schema.refdata.indicator_data,
              'mapping': mapping
            }
 
@@ -63,6 +63,7 @@ def list_indicators():
 @auth_required
 @sugar.templated("indicators/view.html")
 def view(indicator_id):
+
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
     aichi_indicator_keys = _load_json("../refdata/aichi_indicator_keys.json")
     aichi_order = _load_json("../refdata/aichi_indicator_keys_order.json")
@@ -77,16 +78,16 @@ def view(indicator_id):
 
     other_targets_descriptions = []
     if indicator.get('other_targets'):
-        other_targets_descriptions = [target['description']['en'] for target in
+        other_targets_descriptions = [target['description'] for target in
                 mongo.db.targets.find({'id': {'$in': indicator.get('other_targets')}})]
 
     return {
             "indicator": indicator,
             "transit_dict": aichi_indicator_keys,
             "order": aichi_order['order'],
-            "scale_labels": schema.refdata.indicator_data['scale'],
-            "goal_description": goal_description['description']['en'],
-            "main_target_description": main_target_description['description']['en'],
+            "data": schema.refdata.indicator_data,
+            "goal_description": goal_description['description'],
+            "main_target_description": main_target_description['description'],
             "other_targets_descriptions": other_targets_descriptions
            }
 
@@ -134,7 +135,8 @@ def edit(indicator_id):
 
         for i in range(len(indicator_schema['links'])):
             indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
-            indicator_schema['links'][i]['url_name'][selected_language].set(data['url_name_' + selected_language + '_' + str(i)])
+            indicator_schema['links'][i]['url_name'][selected_language].set(\
+                    data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
             flask.flash("Saved changes.", "success")

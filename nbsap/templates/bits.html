@@ -28,6 +28,69 @@
   {% endfor %}
 {%- endmacro %}
 
+{% macro get_lang() %}
+{% endmacro %}
+
+{% macro translate_truncated_markdown(data) -%}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if lang is none %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if data[lang]|markdown == '' %}
+      {{ data.en|truncate(length=510, end='...')|markdown }}
+    {% else %}
+      {{ data[lang]|truncate(length=510, end='...')|markdown }}
+    {% endif %}
+{%- endmacro %}
+
+{% macro translate_markdown(data) -%}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if lang is none %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if data[lang]|markdown == '' %}
+      {{ data.en|markdown }}
+    {% else %}
+      {{ data[lang]|markdown }}
+    {% endif %}
+{%- endmacro %}
+
+{% macro translate(data) -%}
+    {% if session.language is defined %}
+      {% set lang = session.language[0] %}
+    {% elif request is defined %}
+      {% set lang = request.accept_languages.best_match(['en', 'fr', 'nl']) %}
+    {% else %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if lang is none %}
+      {% set lang = 'en' %}
+    {% endif %}
+
+    {% if data[lang] == '' %}
+      {{ data.en }}
+    {% else %}
+      {{ data[lang] }}
+    {% endif %}
+{%- endmacro %}
+
 {% macro markup_help_button() %}
 <div class="markdown_container">
     <div class="markdown_less">
@@ -139,17 +202,17 @@
 <div class="modal hide" id="preview">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Preview</h3>
+    <h3>{{_('Preview')}}</h3>
   </div>
   <div class="modal-body">
   </div>
   <div class="modal-footer">
-    <a class="btn" data-dismiss="modal">Close</a>
+    <a class="btn" data-dismiss="modal">{{_('Close')}}</a>
   </div>
 </div>
 
 <a class="btn preview" data-toggle="modal" href="#preview">
-  Preview
+  {{_('Preview')}}
 </a>
 {% endmacro %}
 
@@ -157,30 +220,30 @@
 <div class="modal hide" id="help">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Markdown Cheat Sheet</h3>
+    <h3>{{_('Markdown Cheat Sheet')}}</h3>
   </div>
   <div class="modal-body">
     <div class="row">
       <div class="span4">
-        <p>Headers</p>
-        <pre># This is an &lt;h1&gt; tag,<br>## This is an &lt;h2&gt; tag<br>###### This is an &lt;h6&gt; tag</pre>
-        <p>Text styles</p>
-        <pre>*This text will be italic*<br>_This will also be italic_<br>**This text will be bold**<br>__This will also be bold__<br><br>*You **can** combine them*</pre>
-        <p>Links</p>
-        <pre>[Link name](http://example.com)</pre>
+        <p>{{_('Headers')}}</p>
+        <pre>{{ gettext("# This is an %(h1)s tag", h1="<h1>")}}<br>{{ gettext('## This is an %(h2)s tag', h2='<h2>')}}<br>{{ gettext('###### This is an %(h6)s tag', h6='<h6>')}}</pre>
+        <p>{{_('Text styles')}}</p>
+        <pre>{{_('*This text will be italic*')}}<br>{{_('_This will also be italic_')}}<br>{{_('**This text will be bold**')}}<br>{{_('__This will also be bold__')}}<br><br>{{_('*You **can** combine them*')}}</pre>
+        <p>{{_('Links')}}</p>
+        <pre>[{{_('Link name')}}]({{_('http://example.com')}})</pre>
       </div>
       <div class="span4">
-        <p>Ordered List</p>
-        <pre>1. Item 1<br>2. Item 2<br>3. Item 3<br>   * Item 3a<br>   * Item 3b</pre>
-        <p>Unordered List</p>
-        <pre>* Item 1<br>* Item 2<br>  * Item 2a<br>  * Item 2b</pre>
-        <p>More info</p>
+        <p>{{_('Ordered List')}}</p>
+        <pre>1. {{_('Item')}} 1<br>2. {{_('Item')}} 2<br>3. {{_('Item')}} 3<br>   * {{_('Item')}} 3a<br>   * {{_('Item')}} 3b</pre>
+        <p>{{_('Unordered List')}}</p>
+        <pre>* {{_('Item')}} 1<br>* {{_('Item')}} 2<br>  * {{_('Item')}} 2a<br>  * {{_('Item')}} 2b</pre>
+        <p>{{_('More info')}}</p>
         <p><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></p>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal">Close</button>
+    <button class="btn" data-dismiss="modal">{{_('Close')}}</button>
   </div>
 </div>
 

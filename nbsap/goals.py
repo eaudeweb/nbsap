@@ -8,8 +8,8 @@ goals = flask.Blueprint("goals", __name__)
 
 
 def initialize_app(app):
-    _my_extensions = app.jinja_options["extensions"] + \
-                        ["jinja2.ext.do"] + ["jinja2.ext.loopcontrols"]
+    _my_extensions = app.jinja_options["extensions"] + ["jinja2.ext.do"] + \
+                        ["jinja2.ext.loopcontrols"] + ["jinja2.ext.i18n"]
     app.jinja_options = dict(app.jinja_options, extensions=_my_extensions)
     app.register_blueprint(goals)
 
@@ -19,6 +19,11 @@ def initialize_app(app):
 def admin():
     return flask.redirect(flask.url_for('goals.list_goals'))
 
+@goals.route("/set_language", methods=['POST', 'GET'])
+def set_language():
+    language = flask.request.args.getlist('language')
+    flask.session['language'] = language
+    return flask.redirect(flask.request.referrer)
 
 @goals.route("/")
 @goals.route("/goals")
@@ -182,7 +187,7 @@ def goal_data():
 
     aichi_goal = mongo.db.goals.find_one_or_404({"short_title": goal_short_title})
 
-    result = {'result': aichi_goal['description']['en']}
+    result = {'result': sugar.translate(aichi_goal['description'])}
     return flask.jsonify(result)
 
 @goals.route("/admin/goals/<string:goal_id>/edit", methods=["GET", "POST"])
