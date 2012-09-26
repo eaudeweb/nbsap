@@ -46,7 +46,7 @@ def homepage_objectives(objective_id=1):
                     }
 
     ids = sugar.generate_objectives()[objective_id]
-    print objective['subobjs']
+
     return {
         'objective_ids': objective_ids,
         'objective': objective,
