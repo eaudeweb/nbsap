@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-09-25 15:13+0300\n"
+"POT-Creation-Date: 2012-09-26 16:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+
+#: ../nbsap/actions.py:138 ../nbsap/actions.py:203 ../nbsap/goals.py:221
+#: ../nbsap/indicators.py:144 ../nbsap/objectives.py:237 ../nbsap/targets.py:66
+msgid "Saved changes."
+msgstr ""
 
 #: ../nbsap/auth.py:56
 msgid "Successfully signed in."
@@ -45,52 +50,55 @@ msgstr ""
 msgid "Errors in mapping information"
 msgstr ""
 
-#: ../nbsap/goals.py:221 ../nbsap/indicators.py:144 ../nbsap/objectives.py:223
-#: ../nbsap/targets.py:66
-msgid "Saved changes."
-msgstr ""
-
-#: ../nbsap/objectives.py:73
+#: ../nbsap/objectives.py:76
 msgid "Objective successfully added."
 msgstr ""
 
-#: ../nbsap/objectives.py:77
+#: ../nbsap/objectives.py:80
 msgid "Error in adding an objective."
 msgstr ""
 
-#: ../nbsap/objectives.py:293
+#: ../nbsap/objectives.py:307
 msgid "Subobjective successfully added."
 msgstr ""
 
-#: ../nbsap/objectives.py:298
+#: ../nbsap/objectives.py:312
 msgid "Error in adding an subobjective."
 msgstr ""
 
 #: ../nbsap/schema/aichi.py:11 ../nbsap/schema/aichi.py:103
-#: ../nbsap/templates/goals/edit.html:49 ../nbsap/templates/goals/edit.html:73
-#: ../nbsap/templates/goals/edit.html:95
-#: ../nbsap/templates/objectives/add.html:45
-#: ../nbsap/templates/objectives/edit.html:61
-#: ../nbsap/templates/objectives/edit.html:85
-#: ../nbsap/templates/objectives/edit.html:107
-#: ../nbsap/templates/objectives/subobj_add.html:53
-#: ../nbsap/templates/targets/edit.html:49
-#: ../nbsap/templates/targets/edit.html:73
-#: ../nbsap/templates/targets/edit.html:95
+#: ../nbsap/templates/actions/add.html:50
+#: ../nbsap/templates/actions/edit.html:61
+#: ../nbsap/templates/actions/edit.html:86
+#: ../nbsap/templates/actions/edit.html:108
+#: ../nbsap/templates/goals/edit.html:46 ../nbsap/templates/goals/edit.html:70
+#: ../nbsap/templates/goals/edit.html:92
+#: ../nbsap/templates/objectives/add.html:42
+#: ../nbsap/templates/objectives/edit.html:58
+#: ../nbsap/templates/objectives/edit.html:82
+#: ../nbsap/templates/objectives/edit.html:104
+#: ../nbsap/templates/objectives/subobj_add.html:50
+#: ../nbsap/templates/targets/edit.html:46
+#: ../nbsap/templates/targets/edit.html:70
+#: ../nbsap/templates/targets/edit.html:92
 msgid "Title"
 msgstr ""
 
 #: ../nbsap/schema/aichi.py:13 ../nbsap/schema/aichi.py:105
-#: ../nbsap/templates/goals/edit.html:58 ../nbsap/templates/goals/edit.html:81
-#: ../nbsap/templates/goals/edit.html:103
-#: ../nbsap/templates/objectives/add.html:53
-#: ../nbsap/templates/objectives/edit.html:70
-#: ../nbsap/templates/objectives/edit.html:93
-#: ../nbsap/templates/objectives/edit.html:115
-#: ../nbsap/templates/objectives/subobj_add.html:61
-#: ../nbsap/templates/targets/edit.html:58
-#: ../nbsap/templates/targets/edit.html:81
-#: ../nbsap/templates/targets/edit.html:103
+#: ../nbsap/templates/actions/add.html:60
+#: ../nbsap/templates/actions/edit.html:71
+#: ../nbsap/templates/actions/edit.html:94
+#: ../nbsap/templates/actions/edit.html:117
+#: ../nbsap/templates/goals/edit.html:55 ../nbsap/templates/goals/edit.html:78
+#: ../nbsap/templates/goals/edit.html:100
+#: ../nbsap/templates/objectives/add.html:50
+#: ../nbsap/templates/objectives/edit.html:67
+#: ../nbsap/templates/objectives/edit.html:90
+#: ../nbsap/templates/objectives/edit.html:112
+#: ../nbsap/templates/objectives/subobj_add.html:58
+#: ../nbsap/templates/targets/edit.html:55
+#: ../nbsap/templates/targets/edit.html:78
+#: ../nbsap/templates/targets/edit.html:100
 msgid "Description"
 msgstr ""
 
@@ -163,7 +171,7 @@ msgstr ""
 msgid "Other conventions/processes using indicator"
 msgstr ""
 
-#: ../nbsap/schema/aichi.py:92 ../nbsap/templates/bits.html:233
+#: ../nbsap/schema/aichi.py:92 ../nbsap/templates/bits.html:126
 msgid "Link name"
 msgstr ""
 
@@ -205,82 +213,82 @@ msgstr ""
 msgid "Select at least one value"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:205 ../nbsap/templates/bits.html:215
+#: ../nbsap/templates/bits.html:98 ../nbsap/templates/bits.html:108
 msgid "Preview"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:210 ../nbsap/templates/bits.html:246
+#: ../nbsap/templates/bits.html:103 ../nbsap/templates/bits.html:139
 msgid "Close"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:223
+#: ../nbsap/templates/bits.html:116
 msgid "Markdown Cheat Sheet"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:228
+#: ../nbsap/templates/bits.html:121
 msgid "Headers"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:229
+#: ../nbsap/templates/bits.html:122
 #, python-format
 msgid "# This is an %(h1)s tag"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:229
+#: ../nbsap/templates/bits.html:122
 #, python-format
 msgid "## This is an %(h2)s tag"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:229
+#: ../nbsap/templates/bits.html:122
 #, python-format
 msgid "###### This is an %(h6)s tag"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:230
+#: ../nbsap/templates/bits.html:123
 msgid "Text styles"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:231
+#: ../nbsap/templates/bits.html:124
 msgid "*This text will be italic*"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:231
+#: ../nbsap/templates/bits.html:124
 msgid "_This will also be italic_"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:231
+#: ../nbsap/templates/bits.html:124
 msgid "**This text will be bold**"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:231
+#: ../nbsap/templates/bits.html:124
 msgid "__This will also be bold__"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:231
+#: ../nbsap/templates/bits.html:124
 msgid "*You **can** combine them*"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:232
+#: ../nbsap/templates/bits.html:125
 msgid "Links"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:233
+#: ../nbsap/templates/bits.html:126
 msgid "http://example.com"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:236
+#: ../nbsap/templates/bits.html:129
 msgid "Ordered List"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:237 ../nbsap/templates/bits.html:239
+#: ../nbsap/templates/bits.html:130 ../nbsap/templates/bits.html:132
 msgid "Item"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:238
+#: ../nbsap/templates/bits.html:131
 msgid "Unordered List"
 msgstr ""
 
-#: ../nbsap/templates/bits.html:240
+#: ../nbsap/templates/bits.html:133
 msgid "More info"
 msgstr ""
 
@@ -368,7 +376,9 @@ msgstr ""
 msgid "National Biodiversity Strategy and Action Plan (NBSAP)"
 msgstr ""
 
-#: ../nbsap/templates/layout.html:51 ../nbsap/templates/goals/edit.html:7
+#: ../nbsap/templates/layout.html:51 ../nbsap/templates/actions/add.html:7
+#: ../nbsap/templates/actions/edit.html:7
+#: ../nbsap/templates/actions/view.html:7 ../nbsap/templates/goals/edit.html:7
 #: ../nbsap/templates/goals/goals_listing.html:14
 #: ../nbsap/templates/indicators/edit.html:7
 #: ../nbsap/templates/indicators/indicators_listing.html:7
@@ -394,35 +404,41 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: ../nbsap/templates/layout.html:66 ../nbsap/templates/goals/edit.html:27
+#: ../nbsap/templates/layout.html:66 ../nbsap/templates/actions/add.html:36
+#: ../nbsap/templates/actions/edit.html:39
+#: ../nbsap/templates/goals/edit.html:24
 #: ../nbsap/templates/indicators/edit.html:30
-#: ../nbsap/templates/objectives/add.html:31
-#: ../nbsap/templates/objectives/edit.html:39
-#: ../nbsap/templates/objectives/subobj_add.html:39
-#: ../nbsap/templates/targets/edit.html:27
+#: ../nbsap/templates/objectives/add.html:28
+#: ../nbsap/templates/objectives/edit.html:36
+#: ../nbsap/templates/objectives/subobj_add.html:36
+#: ../nbsap/templates/targets/edit.html:24
 msgid "Language"
 msgstr ""
 
-#: ../nbsap/templates/layout.html:71 ../nbsap/templates/goals/edit.html:31
+#: ../nbsap/templates/layout.html:71 ../nbsap/templates/actions/add.html:40
+#: ../nbsap/templates/actions/edit.html:43
+#: ../nbsap/templates/goals/edit.html:28
 #: ../nbsap/templates/indicators/edit.html:34
-#: ../nbsap/templates/objectives/add.html:35
-#: ../nbsap/templates/objectives/edit.html:43
-#: ../nbsap/templates/objectives/subobj_add.html:43
-#: ../nbsap/templates/targets/edit.html:31
+#: ../nbsap/templates/objectives/add.html:32
+#: ../nbsap/templates/objectives/edit.html:40
+#: ../nbsap/templates/objectives/subobj_add.html:40
+#: ../nbsap/templates/targets/edit.html:28
 msgid "English"
 msgstr ""
 
-#: ../nbsap/templates/layout.html:74 ../nbsap/templates/goals/edit.html:35
+#: ../nbsap/templates/layout.html:74 ../nbsap/templates/actions/edit.html:47
+#: ../nbsap/templates/goals/edit.html:32
 #: ../nbsap/templates/indicators/edit.html:38
-#: ../nbsap/templates/objectives/edit.html:47
-#: ../nbsap/templates/targets/edit.html:35
+#: ../nbsap/templates/objectives/edit.html:44
+#: ../nbsap/templates/targets/edit.html:32
 msgid "French"
 msgstr ""
 
-#: ../nbsap/templates/layout.html:77 ../nbsap/templates/goals/edit.html:39
+#: ../nbsap/templates/layout.html:77 ../nbsap/templates/actions/edit.html:51
+#: ../nbsap/templates/goals/edit.html:36
 #: ../nbsap/templates/indicators/edit.html:42
-#: ../nbsap/templates/objectives/edit.html:51
-#: ../nbsap/templates/targets/edit.html:39
+#: ../nbsap/templates/objectives/edit.html:48
+#: ../nbsap/templates/targets/edit.html:36
 msgid "Dutch"
 msgstr ""
 
@@ -462,7 +478,9 @@ msgstr ""
 msgid "Targets"
 msgstr ""
 
-#: ../nbsap/templates/navigation.html:18
+#: ../nbsap/templates/navigation.html:18 ../nbsap/templates/actions/add.html:8
+#: ../nbsap/templates/actions/edit.html:8
+#: ../nbsap/templates/actions/view.html:8
 #: ../nbsap/templates/objectives/add.html:8
 #: ../nbsap/templates/objectives/edit.html:8
 #: ../nbsap/templates/objectives/homepage.html:11
@@ -487,65 +505,102 @@ msgstr ""
 msgid "National Strategy"
 msgstr ""
 
+#: ../nbsap/templates/actions/add.html:14
+msgid "Action add"
+msgstr ""
+
+#: ../nbsap/templates/actions/add.html:25
+#: ../nbsap/templates/objectives/view.html:29
+msgid "Add action"
+msgstr ""
+
+#: ../nbsap/templates/actions/add.html:29
+#: ../nbsap/templates/actions/add.html:81
+#: ../nbsap/templates/actions/edit.html:32
+#: ../nbsap/templates/actions/edit.html:143
+#: ../nbsap/templates/goals/edit.html:131
+#: ../nbsap/templates/indicators/edit.html:24
+#: ../nbsap/templates/indicators/edit.html:53
+#: ../nbsap/templates/mapping/edit.html:48
+#: ../nbsap/templates/objectives/add.html:22
+#: ../nbsap/templates/objectives/add.html:71
+#: ../nbsap/templates/objectives/edit.html:30
+#: ../nbsap/templates/objectives/edit.html:143
+#: ../nbsap/templates/objectives/subobj_add.html:30
+#: ../nbsap/templates/objectives/subobj_add.html:79
+#: ../nbsap/templates/targets/edit.html:131
+msgid "Save"
+msgstr ""
+
+#: ../nbsap/templates/actions/add.html:31
+#: ../nbsap/templates/actions/add.html:83
+#: ../nbsap/templates/actions/edit.html:34
+#: ../nbsap/templates/actions/edit.html:145
+#: ../nbsap/templates/goals/edit.html:133
+#: ../nbsap/templates/indicators/edit.html:26
+#: ../nbsap/templates/indicators/edit.html:55
+#: ../nbsap/templates/mapping/edit.html:54
+#: ../nbsap/templates/objectives/add.html:24
+#: ../nbsap/templates/objectives/add.html:73
+#: ../nbsap/templates/objectives/edit.html:32
+#: ../nbsap/templates/objectives/edit.html:145
+#: ../nbsap/templates/objectives/subobj_add.html:32
+#: ../nbsap/templates/objectives/subobj_add.html:81
+#: ../nbsap/templates/targets/edit.html:133
+msgid "Cancel"
+msgstr ""
+
+#: ../nbsap/templates/actions/edit.html:17
+#: ../nbsap/templates/actions/view.html:24
+#: ../nbsap/templates/indicators/view.html:15
+#: ../nbsap/templates/mapping/edit.html:10
+#: ../nbsap/templates/mapping/listing.html:30
+#: ../nbsap/templates/objectives/edit.html:14
+#: ../nbsap/templates/objectives/view.html:21
+msgid "Edit"
+msgstr ""
+
+#: ../nbsap/templates/actions/edit.html:28
+msgid "Edit action"
+msgstr ""
+
+#: ../nbsap/templates/actions/edit.html:135
+#: ../nbsap/templates/objectives/edit.html:135
+msgid "Original body in English"
+msgstr ""
+
 #: ../nbsap/templates/goals/edit.html:9
 msgid "Edit Goal"
 msgstr ""
 
-#: ../nbsap/templates/goals/edit.html:24
+#: ../nbsap/templates/goals/edit.html:21
 msgid "Edit goal"
 msgstr ""
 
-#: ../nbsap/templates/goals/edit.html:121
-#: ../nbsap/templates/objectives/edit.html:133
-#: ../nbsap/templates/targets/edit.html:121
+#: ../nbsap/templates/goals/edit.html:118
+#: ../nbsap/templates/objectives/edit.html:130
+#: ../nbsap/templates/targets/edit.html:118
 msgid "Original title in English"
 msgstr ""
 
-#: ../nbsap/templates/goals/edit.html:126
-#: ../nbsap/templates/targets/edit.html:126
+#: ../nbsap/templates/goals/edit.html:123
+#: ../nbsap/templates/targets/edit.html:123
 msgid "Original description in English"
 msgstr ""
 
-#: ../nbsap/templates/goals/edit.html:134
-#: ../nbsap/templates/indicators/edit.html:24
-#: ../nbsap/templates/indicators/edit.html:53
-#: ../nbsap/templates/mapping/edit.html:48
-#: ../nbsap/templates/objectives/add.html:25
-#: ../nbsap/templates/objectives/add.html:74
-#: ../nbsap/templates/objectives/edit.html:33
-#: ../nbsap/templates/objectives/edit.html:146
-#: ../nbsap/templates/objectives/subobj_add.html:33
-#: ../nbsap/templates/objectives/subobj_add.html:82
-#: ../nbsap/templates/targets/edit.html:134
-msgid "Save"
-msgstr ""
-
-#: ../nbsap/templates/goals/edit.html:136
-#: ../nbsap/templates/indicators/edit.html:26
-#: ../nbsap/templates/indicators/edit.html:55
-#: ../nbsap/templates/mapping/edit.html:54
-#: ../nbsap/templates/objectives/add.html:27
-#: ../nbsap/templates/objectives/add.html:76
-#: ../nbsap/templates/objectives/edit.html:35
-#: ../nbsap/templates/objectives/edit.html:148
-#: ../nbsap/templates/objectives/subobj_add.html:35
-#: ../nbsap/templates/objectives/subobj_add.html:84
-#: ../nbsap/templates/targets/edit.html:136
-msgid "Cancel"
-msgstr ""
-
-#: ../nbsap/templates/goals/edit.html:159
-#: ../nbsap/templates/objectives/add.html:98
-#: ../nbsap/templates/objectives/edit.html:171
-#: ../nbsap/templates/objectives/subobj_add.html:106
-#: ../nbsap/templates/targets/edit.html:159
+#: ../nbsap/templates/goals/edit.html:155
+#: ../nbsap/templates/objectives/add.html:94
+#: ../nbsap/templates/objectives/edit.html:167
+#: ../nbsap/templates/objectives/subobj_add.html:102
+#: ../nbsap/templates/targets/edit.html:155
 msgid "Insert Link"
 msgstr ""
 
 #: ../nbsap/templates/goals/goals_listing.html:25
 #: ../nbsap/templates/indicators/indicators_listing.html:34
 #: ../nbsap/templates/objectives/objectives_listing.html:28
-#: ../nbsap/templates/objectives/view.html:36
+#: ../nbsap/templates/objectives/view.html:40
+#: ../nbsap/templates/objectives/view.html:84
 #: ../nbsap/templates/targets/targets_listing.html:24
 msgid "Id"
 msgstr ""
@@ -555,8 +610,10 @@ msgstr ""
 #: ../nbsap/templates/indicators/indicators_listing.html:27
 #: ../nbsap/templates/objectives/objectives_listing.html:48
 #: ../nbsap/templates/objectives/objectives_listing.html:57
-#: ../nbsap/templates/objectives/view.html:56
-#: ../nbsap/templates/objectives/view.html:64
+#: ../nbsap/templates/objectives/view.html:60
+#: ../nbsap/templates/objectives/view.html:68
+#: ../nbsap/templates/objectives/view.html:106
+#: ../nbsap/templates/objectives/view.html:115
 #: ../nbsap/templates/targets/targets_listing.html:44
 #: ../nbsap/templates/targets/targets_listing.html:53
 msgid "translated"
@@ -567,8 +624,10 @@ msgstr ""
 #: ../nbsap/templates/indicators/indicators_listing.html:27
 #: ../nbsap/templates/objectives/objectives_listing.html:48
 #: ../nbsap/templates/objectives/objectives_listing.html:57
-#: ../nbsap/templates/objectives/view.html:56
-#: ../nbsap/templates/objectives/view.html:64
+#: ../nbsap/templates/objectives/view.html:60
+#: ../nbsap/templates/objectives/view.html:68
+#: ../nbsap/templates/objectives/view.html:107
+#: ../nbsap/templates/objectives/view.html:116
 #: ../nbsap/templates/targets/targets_listing.html:44
 #: ../nbsap/templates/targets/targets_listing.html:53
 msgid "translate"
@@ -618,14 +677,6 @@ msgstr ""
 msgid "No matching indicators found"
 msgstr ""
 
-#: ../nbsap/templates/indicators/view.html:15
-#: ../nbsap/templates/mapping/edit.html:10
-#: ../nbsap/templates/mapping/listing.html:30
-#: ../nbsap/templates/objectives/edit.html:14
-#: ../nbsap/templates/objectives/view.html:21
-msgid "Edit"
-msgstr ""
-
 #: ../nbsap/templates/mapping/edit.html:16
 msgid "New"
 msgstr ""
@@ -640,7 +691,7 @@ msgid "Delete"
 msgstr ""
 
 #: ../nbsap/templates/mapping/edit.html:109
-#: ../nbsap/templates/mapping/listing.html:104
+#: ../nbsap/templates/mapping/listing.html:124
 msgid "Are you sure you want to delete this mapping?"
 msgstr ""
 
@@ -663,42 +714,38 @@ msgstr ""
 msgid "Other relevant targets"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:62
+#: ../nbsap/templates/mapping/listing.html:82
 msgid "edit"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:69
+#: ../nbsap/templates/mapping/listing.html:89
 msgid "delete"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:80
+#: ../nbsap/templates/mapping/listing.html:100
 msgid "Add mapping"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:96
+#: ../nbsap/templates/mapping/listing.html:116
 msgid "Display _MENU_ mappings per page"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:97
+#: ../nbsap/templates/mapping/listing.html:117
 msgid "Showing _START_ to _END_ of _TOTAL_ mappings"
 msgstr ""
 
-#: ../nbsap/templates/mapping/listing.html:98
+#: ../nbsap/templates/mapping/listing.html:118
 msgid "No matching mappings found"
 msgstr ""
 
 #: ../nbsap/templates/objectives/add.html:9
-#: ../nbsap/templates/objectives/add.html:22
+#: ../nbsap/templates/objectives/add.html:19
 #: ../nbsap/templates/objectives/objectives_listing.html:22
 msgid "Add objective"
 msgstr ""
 
-#: ../nbsap/templates/objectives/edit.html:30
+#: ../nbsap/templates/objectives/edit.html:27
 msgid "Edit objective"
-msgstr ""
-
-#: ../nbsap/templates/objectives/edit.html:138
-msgid "Original body in English"
 msgstr ""
 
 #: ../nbsap/templates/objectives/homepage.html:28
@@ -741,20 +788,24 @@ msgid "No matching objectives found"
 msgstr ""
 
 #: ../nbsap/templates/objectives/subobj_add.html:14
-#: ../nbsap/templates/objectives/subobj_add.html:30
+#: ../nbsap/templates/objectives/subobj_add.html:27
 #: ../nbsap/templates/objectives/view.html:25
 msgid "Add subobjective"
 msgstr ""
 
-#: ../nbsap/templates/objectives/view.html:37
+#: ../nbsap/templates/objectives/view.html:41
 msgid "Subobjectives"
+msgstr ""
+
+#: ../nbsap/templates/objectives/view.html:85
+msgid "Actions"
 msgstr ""
 
 #: ../nbsap/templates/targets/edit.html:9
 msgid "Edit Target"
 msgstr ""
 
-#: ../nbsap/templates/targets/edit.html:24
+#: ../nbsap/templates/targets/edit.html:21
 msgid "Edit target"
 msgstr ""
 
@@ -766,8 +817,8 @@ msgstr ""
 msgid "No matching targets found"
 msgstr ""
 
-#: ../nbsap/templates/widgets/widgets_edit_data.html:81
-#: ../nbsap/templates/widgets/widgets_edit_data.html:83
+#: ../nbsap/templates/widgets/widgets_edit_data.html:80
+#: ../nbsap/templates/widgets/widgets_edit_data.html:82
 msgid "Subobjective"
 msgstr ""
 

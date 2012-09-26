@@ -81,8 +81,8 @@
 <div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
-            <th style="width:10px; text-align:center">Id</th>
-            <th>Actions</th>
+            <th style="width:10px; text-align:center">{{_('Id')}}</th>
+            <th>{{_('Actions')}}</th>
             <th style="width:10px; text-align:center">NL</th>
             <th style="width:10px; text-align:center">FR</th>
         </thead>
@@ -95,7 +95,7 @@
             </td>
             <td>
                 <a href="{{ url_for('actions.view', **(actions_parents[action['id']])) }}">
-                     {{ action.title.en }}
+                     {{ _t(action.title) }}
                 </a>
             </td>
 
@@ -103,7 +103,8 @@
                 <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=nl"
                    class="btn btn-mini btn-{% if action['body']['nl'] %}success
                               {% else %}warning{% endif %}" type="button">
-                              {% if action['body']['nl'] %}translated {% else %} translate {% endif %}
+                              {% if action['body']['nl'] %}{{_('translated')}}
+                              {% else %}{{_('translate')}} {% endif %}
                 </a>
             </td>
 
@@ -111,7 +112,8 @@
                 <a href="{{url_for('actions.edit', **(actions_parents[action['id']]))}}?lang=fr"
                    class="btn btn-mini btn-{% if action['body']['fr'] %}success
                               {% else %}warning{% endif %}" type="button">
-                              {% if action['body']['fr'] %}translated {% else %} translate {% endif %}
+                              {% if action['body']['fr'] %}{{_('translated')}}
+                              {% else %}{{_('translate')}} {% endif %}
                 </a>
             </td>
           </tr>

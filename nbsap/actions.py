@@ -1,9 +1,11 @@
 import flask
 
-import schema
 import sugar
+import schema
 from database import mongo
 from auth import auth_required
+from flaskext.babel import gettext as _
+
 
 actions = flask.Blueprint("actions", __name__)
 
@@ -133,7 +135,7 @@ def edit(objective_id, action_id,
 
             father['actions'][idx]['title'][lang] = data['title-' + lang]
             father['actions'][idx]['body'][lang] = data['body-' + lang]
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             mongo.db.objectives.save(objective)
 
     return {
@@ -198,7 +200,7 @@ def add(objective_id,
 
         if action_schema.validate():
             father['actions'].append(action_schema.flatten())
-            flask.flash("Saved changes.", "success")
+            flask.flash(_("Saved changes."), "success")
             mongo.db.objectives.save(objective)
 
     return {
