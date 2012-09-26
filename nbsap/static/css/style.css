@@ -536,64 +536,6 @@ div.element_field {
   border-bottom: 0;
 }
 
-.markdown_less {
-    background: url('../MarkdownHelp_button.png') no-repeat;
-    height: 102px;
-    width: 44px;
-    cursor: pointer;
-    position: fixed;
-    right: 0px;
-    top: 280px;
-    z-index: 0;
-}
-
-.markdown_all {
-    color: black;
-    height: 550px;
-    width: 350px;
-    background-color: #5BC0DE;
-    border: 2px solid #CCC;
-    position: fixed;
-    right: 0px;
-    top: 80px;
-    display: none;
-    z-index: 0;
-}
-
-.markdown_on .markdown_all {
-    display: block;
-    z-index: 1;
-}
-
-.markdown_on .markdown_less {
-    right: 350px;
-    z-index: 1;
-}
-.markdown_all h3 {
-    padding-left: 10px;
-    margin: 10px 0px;
-    color: white;
-}
-
-.markdown_all p {
-    text-align: left;
-    margin-top: 10px;
-    padding-left: 10px;
-    color: #555;
-}
-
-.markdown_all table {
-    margin-left: 10px;
-    font-size: 11px;
-    width: 90%;
-}
-
-.markdown_all td {
-    padding: 4px 6px;
-    border: 1px solid #5BC0DE;
-    background: white;
-}
-
 .login-container {
     margin-top: 8px;
 }
