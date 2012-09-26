@@ -35,19 +35,19 @@
 
       <div class="row">
       <ul class="span2">
-        {% for subobj in objective.subobjs|sort(attribute='id') %}
+        {% for id in ids|sort() %}
           {% if loop.index0 % 4 == 0 and not loop.first %}
             </ul><ul class="span2">
           {% endif %}
           <li>
-          <a href="#subobjective_{{subobj.id}}">{{_('Objective')}} {{objective.id}}.{{subobj.id}}</a>
+          <a href="#{{id}}">{{_('Objective')}} {{id}}</a>
           </li>
         {% endfor %}
       </ul>
       </div>
 
       {% for subobj in objective.subobjs|sort(attribute='id') %}
-        <div class="element_field" id="subobjective_{{ subobj.id }}">
+        <div class="element_field" id="{{[objective.id, subobj.id]|join('.')}}">
           <h2>{{_t(subobj.title)}}</h2>
 
           <div class="snippet">

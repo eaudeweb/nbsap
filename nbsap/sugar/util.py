@@ -22,12 +22,24 @@ def translate(field):
     else:
         return field[language]
 
+def subobj_dfs(mask, index, objective, subobjective):
+    objective[index].append(mask + '.' + str(subobjective['id']))
+    for s in subobjective['subobjs']:
+        new_mask = mask + '.' + str(subobjective['id'])
+        subobj_dfs(new_mask, index, objective, s)
+
+
 def generate_objectives():
     from nbsap.database import mongo
     objectives = {i['id']:"" for i in mongo.db.objectives.find()}
+
     for id in objectives.keys():
-        objectives[id] = {i['id']:"%s.%s" % (id, i['id'])
-                            for i in mongo.db.objectives.find_one({"id": id})['subobjs']}
+        objectives[id] = []
+
+        for subobj in mongo.db.objectives.find_one({'id': id})['subobjs']:
+            mask = str(id)
+            subobj_dfs(mask, id, objectives, subobj)
+
     return objectives
 
 def templated(template=None):
