@@ -65,6 +65,7 @@
                         {{-schema.body['en']|safe-}}
                       </textarea>
                     </div>
+                    <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
                         {{error(schema.body['en'])}}
                 </div>
             </div>
@@ -90,7 +91,6 @@
 {{ super() }}
 {% from 'bits.html' import script_src -%}
 {{ script_src('js/jquery.autogrow-textarea.js') }}
-{{ script_src('js/markdown.js') }}
 {{ script_src('js/language.js') }}
 
 {{ script_src('js/Markdown.Converter.js') }}
