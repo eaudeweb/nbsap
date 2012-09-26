@@ -148,3 +148,66 @@ def edit(objective_id, action_id,
                 "schema": action_schema,
                 "action_parents": action_parents,
     }
+
+
+@actions.route("/admin/objectives/<int:objective_id>/"
+                  "action/add", methods=["GET", "POST"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/action/add", methods=["GET", "POST"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/action"
+                  "/add", methods=["GET", "POST"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>"
+                  "/action/add", methods=["GET", "POST"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/"
+                  "<int:so4_id>/action/add", methods=["GET", "POST"])
+@auth_required
+@sugar.templated("actions/add.html")
+def add(objective_id,
+        so1_id=None, so2_id = None, so3_id = None, so4_id = None):
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] != None]
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    father = objective
+    for i in range(1, len(parents)):
+        son_id = parents[i][1]
+        try:
+            son = [s for s in father['subobjs'] if s['id'] == son_id][0]
+        except IndexError:
+            flask.abort(404)
+        father = son
+
+    matrix = []
+    for i, x in enumerate(parents):
+        tmp_L = [y for j, y in enumerate(parents) if j < i]
+        tmp_L.append(x)
+        matrix.append((dict(tmp_L), x[1]))
+
+    try:
+        current_index = max(v['id'] for idx, v in enumerate(father['actions']))
+    except ValueError:
+        current_index = 0
+    new_index = current_index + 1
+    action_schema = schema.Action({})
+    action_schema['id'] = new_index
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+        selected_language = data['language']
+
+        action_schema['title'][selected_language].set(data['title-' + selected_language])
+        action_schema['body'][selected_language].set(data['body-' + selected_language])
+
+        if action_schema.validate():
+            father['actions'].append(action_schema.flatten())
+            flask.flash("Saved changes.", "success")
+            mongo.db.objectives.save(objective)
+
+    return {
+                "chain_matrix": matrix,
+                "parents": dict(parents),
+                "schema": action_schema,
+    }
