@@ -25,6 +25,10 @@
       <a class="btn btn-primary" href="{{url_for('objectives.add_subobj', **(parents))}}">{{_('Add subobjective')}}</a>
     </div>
     {% endif %}
+    <div class="btn-group">
+      <a class="btn btn-primary edit" href="{{url_for('actions.add', **(parents))}}">{{_('Add action')}}</a>
+    </div>
+
 </div>
 
 <p>{{_tm(objective.body)}}</p>
