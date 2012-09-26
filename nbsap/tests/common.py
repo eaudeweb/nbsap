@@ -39,13 +39,13 @@ class _BaseTest(unittest.TestCase):
 
                         ImmutableDict({
                             "title": ImmutableDict({
-                                "en": "Mock title action in subobjective",
-                                "fr": "French title mock action in subobjective",
+                                "en": "Mock2 title action in subobjective",
+                                "fr": "",
                                 "nl": "Dutch title mock action in subobjective"
                             }),
                             "body": ImmutableDict({
                                 "en": "Mock body action in subobjective",
-                                "fr": "French body mock action in subobjective",
+                                "fr": "",
                                 "nl": "Dutch body mock action in subobjective"
                             }),
                             "id": 2
