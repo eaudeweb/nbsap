@@ -21,7 +21,38 @@ class _BaseTest(unittest.TestCase):
                 "nl": "Dutch mock objective"
             }),
             "id": 1,
-            "subobjs": [],
+            "subobjs": [
+                ImmutableDict({
+                    "title": ImmutableDict({
+                        "en": "Mock subobjective title",
+                        "fr": "Frenche mock subobjective title",
+                        "nl": "Dutch mock subobjective title"
+                    }),
+                    "body": ImmutableDict({
+                        "en": "Mock subobjective body",
+                        "fr": "French submock objective",
+                        "nl": "Dutch mock subobjective"
+                    }),
+                    "id": 1,
+                    "subobjs": [],
+                    "actions": []
+                }),
+                ImmutableDict({
+                    "title": ImmutableDict({
+                        "en": "Mock2 subobjective title",
+                        "fr": "Frenche mock2 subobjective title",
+                        "nl": "Dutch mock2 subobjective title"
+                    }),
+                    "body": ImmutableDict({
+                        "en": "Mock2 subobjective body",
+                        "fr": "French submock2 objective",
+                        "nl": "Dutch mock2 subobjective"
+                    }),
+                    "id": 2,
+                    "subobjs": [],
+                    "actions": []
+                }),
+            ],
             "actions": [
                         ImmutableDict({
                             "title": ImmutableDict({
