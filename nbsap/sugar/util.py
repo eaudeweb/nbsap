@@ -22,6 +22,28 @@ def translate(field):
     else:
         return field[language]
 
+def actions_dfs(mask, objective, result_list):
+
+    for a in objective['actions']:
+        action = {}
+        action['key'] = ".".join([mask, str(a['id'])])
+        action['value'] = a
+        result_list.append(action)
+
+    for s in objective['subobjs']:
+        new_mask = ".".join([mask, str(s['id'])])
+        actions_dfs(new_mask, s, result_list)
+
+def get_actions_by_dfs(o_id):
+    from nbsap.database import mongo
+    objective = mongo.db.objectives.find_one_or_404({'id': o_id})
+
+    action_list = []
+    mask = str(objective['id'])
+
+    actions_dfs(mask, objective, action_list)
+    return action_list
+
 def subobj_dfs(mask, index, objective, subobjective):
     objective[index].append(mask + '.' + str(subobjective['id']))
     for s in subobjective['subobjs']:
