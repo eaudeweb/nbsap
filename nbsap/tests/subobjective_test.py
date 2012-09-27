@@ -65,6 +65,7 @@ class SubobjectiveAddTest(_BaseTest):
                 }
 
         response = self.client.post("/admin/objectives/1/add_subobj", data=mydata)
+        self.assertIn("Error in adding an subobjective.", response.data)
         self.assertIn("Description is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 

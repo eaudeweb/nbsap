@@ -137,6 +137,8 @@ def edit(objective_id, action_id,
             father['actions'][idx]['body'][lang] = data['body-' + lang]
             flask.flash(_("Saved changes."), "success")
             mongo.db.objectives.save(objective)
+        else:
+            flask.flash(_("Error in editing an action."), "error")
 
     return {
         "language": lang,
@@ -200,8 +202,13 @@ def add(objective_id,
 
         if action_schema.validate():
             father['actions'].append(action_schema.flatten())
-            flask.flash(_("Saved changes."), "success")
+            flask.flash(_("Action successfully added."), "success")
             mongo.db.objectives.save(objective)
+
+            return flask.redirect(flask.url_for('objectives.view',
+                                                **dict(parents)))
+        else:
+            flask.flash(_("Error in adding an action."), "error")
 
     return {
         "chain_matrix": matrix,

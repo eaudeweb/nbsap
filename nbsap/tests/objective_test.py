@@ -11,6 +11,54 @@ class ObjectiveListingTest(_BaseTest):
         self.assertIn("btn-success", response.data)
         self.assertNotIn("btn-warning", response.data)
 
+class ObjectiveAddTest(_BaseTest):
+
+    def test_view_from_objective_homepage(self):
+
+        response = self.client.get('/admin/objectives')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("href=\"/admin/objectives/add\"", response.data)
+
+    def test_subobjective_render_page(self):
+
+        response = self.client.get('admin/objectives/add')
+        self.assertEqual(response.status_code, 200)
+
+    def test_error_message_displayed_when_body_blank(self):
+
+        mydata = {
+                    "language": "en",
+                    "title-en": "Testing 1,2,3",
+                    "body-en": ""
+                }
+
+        response = self.client.post("admin/objectives/add", data=mydata)
+        self.assertIn("Error in adding an objective.", response.data)
+        self.assertIn("Description is required", response.data)
+        self.assertNotIn("Objective successfully added.", response.data)
+
+    def test_error_message_missing_when_successfull_add(self):
+
+        mydata = {
+                    "language": "en",
+                    "title-en": "Foo bar subobjective title",
+                    "body-en": "Foo bar subobjective body"
+                }
+
+        response = self.client.post("admin/objectives/add", data=mydata)
+        self.assertNotIn("Description is required", response.data)
+        self.assertNotIn("Title is required", response.data)
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            tmp_collection = mongo.db.objectives.find().sort('id', -1)
+            added_id = tmp_collection[0]['id']
+            objective = mongo.db.objectives.find_one_or_404({'id': added_id})
+
+            self.assertIn(mydata['title-en'], objective['title']['en'])
+            self.assertIn(mydata['body-en'], objective['body']['en'])
+
+
 class ObjectiveEditTest(_BaseTest):
 
     def test_objective_render_page(self):
@@ -27,6 +75,7 @@ class ObjectiveEditTest(_BaseTest):
                  }
 
         response = self.client.post("/admin/objectives/1/edit", data=mydata)
+        self.assertIn("Error in editing an objective.", response.data)
         self.assertIn("Title is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 

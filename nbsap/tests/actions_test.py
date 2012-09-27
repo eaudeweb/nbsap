@@ -66,7 +66,6 @@ class ActionAddTest(_BaseTest):
         response = self.client.post("/admin/objectives/1/action/add", data=mydata)
         self.assertNotIn("Description is required", response.data)
         self.assertNotIn("Title is required", response.data)
-        self.assertIn("Saved changes.", response.data)
 
         from nbsap.database import mongo
         with self.app.test_request_context():
@@ -105,6 +104,7 @@ class ActionEditTest(_BaseTest):
                 }
 
         response = self.client.post("/admin/objectives/1/action/1/edit", data=mydata)
+        self.assertIn("Error in editing an action.", response.data)
         self.assertIn("Description is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
