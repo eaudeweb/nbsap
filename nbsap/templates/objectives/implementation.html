@@ -21,6 +21,7 @@
 
     <div class="tab-content homepage_view" >
       <h1>{{_t(objective.title)}}</h1>
+      <h2>{{_('Actions related to objective')}} {{ objective.id }}{{_(':')}}</h2>
 
       <div class="row">
       <ul class="span2">
@@ -34,8 +35,7 @@
 
       {% for action in actions %}
         <div class="element_field" id="{{action['key']}}">
-              <h2>{{_t(action['value']['title'])}}</h2>
-
+              <h2>{{_('Action')}} {{action['key']}}</h2>
               <div class="snippet">
                 {{ _ttm(action['value']['body']) }}
                 <a class="more">{{_('show more')}}</a>
