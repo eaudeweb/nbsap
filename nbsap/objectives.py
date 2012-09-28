@@ -48,6 +48,8 @@ def homepage_objectives(objective_id=1):
                     }
 
     ids = sugar.generate_objectives()[objective_id]
+    subobj_list = sugar.get_subobjs_by_dfs(objective['id'])
+    my_actions = sugar.get_actions_by_objective_id(objective['id'])
 
     return {
         "objective_ids": objective_ids,
@@ -55,6 +57,7 @@ def homepage_objectives(objective_id=1):
         "mapping": mapping,
         "ids": ids
     }
+
 
 @objectives.route("/actions")
 @objectives.route("/objectives/<int:objective_id>/actions")
@@ -70,6 +73,7 @@ def homepage_actions(objective_id=1):
         "objective": objective,
         "actions": actions_list
     }
+
 
 @objectives.route("/admin/objectives/add", methods=["GET", "POST"])
 @auth_required

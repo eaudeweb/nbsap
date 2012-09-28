@@ -26,6 +26,20 @@ def translate(field):
         return field[language]
 
 
+def get_actions_by_objective_id(o_id):
+    from nbsap.database import mongo
+    objective = mongo.db.objectives.find_one_or_404({'id': o_id})
+
+    my_actions = []
+    mask = "a%s" % (str(objective['id']))
+    for a in objective['actions']:
+        new_action = {}
+        new_action['key'] = ".".join([mask, str(a['id'])])
+        new_action['value'] = a
+        my_actions.append(new_action)
+
+    return my_actions
+
 def subobjs_dfs(smask, amask, objective, result_list):
     s_list = objective['subobjs']
     s_sorted_list = sorted(s_list, key=lambda k: k['id'])
@@ -36,7 +50,7 @@ def subobjs_dfs(smask, amask, objective, result_list):
         subobjective['value'] = s
         subobjective['actions'] = []
 
-        for act in s['actions']:
+        for a in s['actions']:
             act = {}
             act['key'] = ".".join([(".".join([amask, str(s['id'])])),
                                   str(a['id'])])
@@ -48,11 +62,11 @@ def subobjs_dfs(smask, amask, objective, result_list):
     for s in s_sorted_list:
         new_smask = ".".join([smask, str(s['id'])])
         new_amask = ".".join([amask, str(s['id'])])
-        subobjs_dfs(new_mask, s, result_list)
+        subobjs_dfs(new_smask, new_amask, s, result_list)
 
 
 def get_subobjs_by_dfs(o_id):
-    from nbsap import mongo
+    from nbsap.database import mongo
     objective = mongo.db.objectives.find_one_or_404({'id': o_id})
 
     subobj_list = []
