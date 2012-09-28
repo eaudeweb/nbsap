@@ -22,6 +22,41 @@ def translate(field):
     else:
         return field[language]
 
+def subobjs_dfs(smask, amask, objective, result_list):
+    s_list = objective['subobjs']
+    s_sorted_list = sorted(s_list, key=lambda k: k['id'])
+
+    for s in s_sorted_list:
+        subobjective = {}
+        subobjective['key'] = ".".join([smask, str(s['id'])])
+        subobjective['value'] = s
+        subobjective['actions'] = []
+
+        for act in s['actions']:
+            act = {}
+            act['key'] = ".".join([(".".join([amask, str(s['id'])])),
+                                str(a['id'])])
+            act['value'] = a
+            subobjective['actions'].append(act)
+
+        result_list.append(subobjective)
+
+    for s in s_sorted_list:
+        new_smask = ".".join([smask, str(s['id'])])
+        new_amask = ".".join([amask, str(s['id'])])
+        subobjs_dfs(new_mask, s, result_list)
+
+def get_subobjs_by_dfs(o_id):
+    from nbsap import mongo
+    objective = mongo.db.objectives.find_one_or_404({'id': o_id})
+
+    subobj_list = []
+    smask = "s%s" % (str(objective['id']))
+    amask = "a%s" % (str(objective['id']))
+
+    subobjs_dfs(smask, amask, objective, subobj_list)
+    return subobj_list
+
 def actions_dfs(mask, objective, result_list):
     for a in objective['actions']:
         action = {}
@@ -46,11 +81,11 @@ def get_actions_by_dfs(o_id):
     actions_dfs(mask, objective, action_list)
     return action_list
 
-def subobj_dfs(mask, index, objective, subobjective):
+def mydfs(mask, index, objective, subobjective):
     objective[index].append(mask + '.' + str(subobjective['id']))
     for s in subobjective['subobjs']:
         new_mask = mask + '.' + str(subobjective['id'])
-        subobj_dfs(new_mask, index, objective, s)
+        mydfs(new_mask, index, objective, s)
 
 
 def generate_objectives():
@@ -62,7 +97,7 @@ def generate_objectives():
 
         for subobj in mongo.db.objectives.find_one({'id': id})['subobjs']:
             mask = str(id)
-            subobj_dfs(mask, id, objectives, subobj)
+            mydfs(mask, id, objectives, subobj)
 
     return objectives
 
