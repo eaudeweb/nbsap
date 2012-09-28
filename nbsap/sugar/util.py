@@ -35,6 +35,7 @@ def get_actions_by_objective_id(o_id):
     for a in objective['actions']:
         new_action = {}
         new_action['key'] = ".".join([mask, str(a['id'])])
+        new_action['title-key'] = new_action['key'][1:]
         new_action['value'] = a
         my_actions.append(new_action)
 
@@ -47,6 +48,7 @@ def subobjs_dfs(smask, amask, objective, result_list):
     for s in s_sorted_list:
         subobjective = {}
         subobjective['key'] = ".".join([smask, str(s['id'])])
+        subobjective['title-key'] = subobjective['key'][1:]
         subobjective['value'] = s
         subobjective['actions'] = []
 
@@ -54,6 +56,7 @@ def subobjs_dfs(smask, amask, objective, result_list):
             act = {}
             act['key'] = ".".join([(".".join([amask, str(s['id'])])),
                                   str(a['id'])])
+            act['title-key'] = act['key'][1:]
             act['value'] = a
             subobjective['actions'].append(act)
 

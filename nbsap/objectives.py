@@ -54,8 +54,8 @@ def homepage_objectives(objective_id=1):
     return {
         "objective_ids": objective_ids,
         "objective": objective,
-        "mapping": mapping,
-        "ids": ids
+        "my_actions": my_actions,
+        "subobj_list": subobj_list
     }
 
 
