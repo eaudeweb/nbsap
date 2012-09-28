@@ -536,70 +536,55 @@ div.element_field {
   border-bottom: 0;
 }
 
-.markdown_less {
-    background: url('../MarkdownHelp_button.png') no-repeat;
-    height: 102px;
-    width: 44px;
-    cursor: pointer;
-    position: fixed;
-    right: 0px;
-    top: 280px;
-    z-index: 0;
-}
-
-.markdown_all {
-    color: black;
-    height: 550px;
-    width: 350px;
-    background-color: #5BC0DE;
-    border: 2px solid #CCC;
-    position: fixed;
-    right: 0px;
-    top: 80px;
-    display: none;
-    z-index: 0;
-}
-
-.markdown_on .markdown_all {
-    display: block;
-    z-index: 1;
-}
-
-.markdown_on .markdown_less {
-    right: 350px;
-    z-index: 1;
-}
-.markdown_all h3 {
-    padding-left: 10px;
-    margin: 10px 0px;
-    color: white;
-}
-
-.markdown_all p {
-    text-align: left;
-    margin-top: 10px;
-    padding-left: 10px;
-    color: #555;
-}
-
-.markdown_all table {
-    margin-left: 10px;
-    font-size: 11px;
-    width: 90%;
-}
-
-.markdown_all td {
-    padding: 4px 6px;
-    border: 1px solid #5BC0DE;
-    background: white;
+.login-container {
+    margin-top: 8px;
 }
 
 .login-container label {
     margin-bottom: 6px;
 }
 
+.login-container input {
+    width: 350px;
+}
 .login-container button {
-    margin-bottom: 8px
+    margin-bottom: 8px;
+}
+
+.login-container div.signin-button {
+    margin-top: 10px;
+}
+
+.login-alternative span {
+        font-style: italic;
+}
+
+.login-alternative a {
+        font-style: italic;
+        text-decoration: none;
+}
+
+.wmd-panel .btn-toolbar {
+        margin-bottom: 10px!important;
+}
+
+.add {
+    margin-bottom: 15px;
+}
+
+.modal-backdrop {
+    opacity: 0.2;
+}
+
+#help {
+  top: 30%;
+  left: 45%;
+  width: auto;
+}
+
+#help p {
+  margin: 0 0 5px 0;
+  color: #888;
 }
 
 /* SONIA's styles */
@@ -607,16 +592,27 @@ div.element_field {
 /* header */
 body {
     padding: 0px;
+	background: #4D8584 url('../bg.png') repeat-x;
 }
 
 .navbar-inner {
-    background: #eee; /* fallback color if gradients are not supported */
-    background: linear-gradient(top, white, #EEE);
-    background: -webkit-linear-gradient(top, white, #EEE);
-    background-image: -moz-linear-gradient(top, white, #EEE);
-    background-image: -o-linear-gradient(top, white, #EEE);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#EEE'); /* For Internet Explorer 5.5 - 7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#EEE)"; /* For Internet Explorer 8 */
+	width: 1170px;
+	margin: 0 auto;
+	background: white;
+	padding: 0;
+	border: 0px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar-inner .container {
+	background: url('../024.jpg') no-repeat 100% -73%;
+	height: 99px;
 }
 
 @media (min-width: 1200px) {
@@ -632,8 +628,14 @@ body {
 }
 
 .navbar .brand {
-    color: #555;
+	width: 31%;
+	height: 50px;
     margin-top: 5px;
+	margin-left: 0;
+	padding-left: 67px;
+	padding-top: 36px;
+	color: #014E46;
+	background: url('../CHM_logo_45x70px.png') no-repeat 3% 72%;
 }
 
 .navbar .nav.top-menu {
@@ -692,7 +694,8 @@ footer p {
 }
 
 .container.content {
-    margin-top: 25px;
+    padding-top: 25px;
+	background: #fff;
 }
 
 
@@ -783,13 +786,14 @@ h1 p {
     color: #777;
 }
 
-.table-bordered,
-.table-bordered th,
-.table-bordered td {
+.indicator_table,
+.indicator_table th,
+.indicator_table td {
     border: 0px; /* overrides bootstrap.css 1561, 1572 */
 }
 
-.indicator_table ul {
+.indicator_table ul,
+.indicator_view ul {
 	list-style-type: square;
 }
 
@@ -842,8 +846,4 @@ h1 p {
     display: inline;
     font-size: 11px;
 }
-
-
-
-
 

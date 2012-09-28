@@ -592,16 +592,27 @@ div.element_field {
 /* header */
 body {
     padding: 0px;
+	background: #4D8584 url('../bg.png') repeat-x;
 }
 
 .navbar-inner {
-    background: #eee; /* fallback color if gradients are not supported */
-    background: linear-gradient(top, white, #EEE);
-    background: -webkit-linear-gradient(top, white, #EEE);
-    background-image: -moz-linear-gradient(top, white, #EEE);
-    background-image: -o-linear-gradient(top, white, #EEE);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#EEE'); /* For Internet Explorer 5.5 - 7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#EEE)"; /* For Internet Explorer 8 */
+	width: 1170px;
+	margin: 0 auto;
+	background: white;
+	padding: 0;
+	border: 0px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar-inner .container {
+	background: url('../024.jpg') no-repeat 100% -73%;
+	height: 99px;
 }
 
 @media (min-width: 1200px) {
@@ -617,12 +628,18 @@ body {
 }
 
 .navbar .brand {
-    color: #555;
+	width: 31%;
+	height: 50px;
     margin-top: 5px;
+	margin-left: 0;
+	padding-left: 67px;
+	padding-top: 36px;
+	color: #014E46;
+	background: url('../CHM_logo_45x70px.png') no-repeat 3% 72%;
 }
 
 .navbar .nav.top-menu {
-    margin-top: 10px;
+    margin-top: -10px;
 }
 
 .navbar .nav > li > a {
@@ -677,7 +694,8 @@ footer p {
 }
 
 .container.content {
-    margin-top: 25px;
+    padding-top: 25px;
+	background: #fff;
 }
 
 
