@@ -29,13 +29,13 @@ def homepage_objectives(objective_id=1):
             m['goal'] = {
                 'short_title': m['goal'],
                 'description':
-                mongo.db.goals.find_one(
+                mongo.db.goals.find_one_or_404(
                     {'short_title': m['goal']}
                 )['description']
             }
             m['main_target'] = {
                 'number': m['main_target'],
-                'description': mongo.db.targets.find_one(
+                'description': mongo.db.targets.find_one_or_404(
                     {'id': m['main_target']})['description']
             }
 
@@ -43,7 +43,7 @@ def homepage_objectives(objective_id=1):
                 m['other_targets'][target] = \
                     {
                         'number': m['other_targets'][target],
-                        'description': mongo.db.targets.find_one(
+                        'description': mongo.db.targets.find_one_or_404(
                             {'id': m['other_targets'][target]})['description']
                     }
 
