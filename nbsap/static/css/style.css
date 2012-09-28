@@ -697,7 +697,7 @@ footer {
 }
 
 footer ul {
-    width: 250px;
+    width: 190px;
 }
 
 footer ul li {
@@ -721,13 +721,9 @@ footer p {
 
 .museum-logo {
     background: url('../logo_irscnb.png') no-repeat 85% 50%;
-    height: 68px;
-    width: 160px;
+    height: 70px;
+    width: 94px;
     text-indent: -9999px;
-}
-
-footer .pull-right:hover {
-	 background: none;
 }
 
 .CHM-logo {
@@ -735,6 +731,7 @@ footer .pull-right:hover {
     height: 70px;
     width: 45px;
     text-indent: -9999px;
+	margin-left: 15px;
 }
 
 .container.content {
@@ -742,6 +739,10 @@ footer .pull-right:hover {
 	background: #fff;
 	padding-left: 5px;
 	padding-right: 10px;
+}
+
+footer .nav > li > a:hover {
+	background-color: transparent;
 }
 
 
