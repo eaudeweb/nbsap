@@ -40,6 +40,12 @@
   </a>
   </li>
 
+  <li class="{{ 'active' if active == 'implementation' else '' }}">
+  <a href="{{ url_for('objectives.homepage_actions') }}">
+    {{_('Implementation')}}
+  </a>
+  </li>
+
 </ul>
 {%- endmacro %}
 

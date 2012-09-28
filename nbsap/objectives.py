@@ -29,13 +29,13 @@ def homepage_objectives(objective_id=1):
             m['goal'] = {
                 'short_title': m['goal'],
                 'description':
-                mongo.db.goals.find_one(
+                mongo.db.goals.find_one_or_404(
                     {'short_title': m['goal']}
                 )['description']
             }
             m['main_target'] = {
                 'number': m['main_target'],
-                'description': mongo.db.targets.find_one(
+                'description': mongo.db.targets.find_one_or_404(
                     {'id': m['main_target']})['description']
             }
 
@@ -43,19 +43,33 @@ def homepage_objectives(objective_id=1):
                 m['other_targets'][target] = \
                     {
                         'number': m['other_targets'][target],
-                        'description': mongo.db.targets.find_one(
+                        'description': mongo.db.targets.find_one_or_404(
                             {'id': m['other_targets'][target]})['description']
                     }
 
     ids = sugar.generate_objectives()[objective_id]
 
     return {
-        'objective_ids': objective_ids,
-        'objective': objective,
-        'mapping': mapping,
-        'ids': ids
+        "objective_ids": objective_ids,
+        "objective": objective,
+        "mapping": mapping,
+        "ids": ids
     }
 
+@objectives.route("/actions")
+@objectives.route("/objectives/<int:objective_id>/actions")
+@sugar.templated("/objectives/implementation.html")
+def homepage_actions(objective_id=1):
+    objective_ids = mongo.db.objectives.find({}, {'id': 1})
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    actions_list = sugar.get_actions_by_dfs(objective['id'])
+
+    return {
+        "objective_ids": objective_ids,
+        "objective": objective,
+        "actions": actions_list
+    }
 
 @objectives.route("/admin/objectives/add", methods=["GET", "POST"])
 @auth_required
