@@ -3,11 +3,13 @@ from functools import wraps
 import flask
 import flatland.out.markup
 
+
 def get_indicator_editable_fields():
     keys = ["status", "classification", "sources", "question", "measurer",
             "sub_indicator", "head_indicator", "requirements", "name"]
 
     return keys
+
 
 def get_session_language():
     if flask.session.get('language'):
@@ -15,12 +17,14 @@ def get_session_language():
     else:
         return flask.request.accept_languages.best_match(['en', 'fr', 'nl'])
 
+
 def translate(field):
     language = get_session_language()
     if field[language] == '':
         return field['en']
     else:
         return field[language]
+
 
 def subobjs_dfs(smask, amask, objective, result_list):
     s_list = objective['subobjs']
@@ -35,7 +39,7 @@ def subobjs_dfs(smask, amask, objective, result_list):
         for act in s['actions']:
             act = {}
             act['key'] = ".".join([(".".join([amask, str(s['id'])])),
-                                str(a['id'])])
+                                  str(a['id'])])
             act['value'] = a
             subobjective['actions'].append(act)
 
@@ -45,6 +49,7 @@ def subobjs_dfs(smask, amask, objective, result_list):
         new_smask = ".".join([smask, str(s['id'])])
         new_amask = ".".join([amask, str(s['id'])])
         subobjs_dfs(new_mask, s, result_list)
+
 
 def get_subobjs_by_dfs(o_id):
     from nbsap import mongo
@@ -56,6 +61,7 @@ def get_subobjs_by_dfs(o_id):
 
     subobjs_dfs(smask, amask, objective, subobj_list)
     return subobj_list
+
 
 def actions_dfs(mask, objective, result_list):
     for a in objective['actions']:
@@ -71,15 +77,17 @@ def actions_dfs(mask, objective, result_list):
         new_mask = ".".join([mask, str(s['id'])])
         actions_dfs(new_mask, s, result_list)
 
+
 def get_actions_by_dfs(o_id):
     from nbsap.database import mongo
     objective = mongo.db.objectives.find_one_or_404({'id': o_id})
 
     action_list = []
     mask = str(objective['id'])
-
     actions_dfs(mask, objective, action_list)
+
     return action_list
+
 
 def mydfs(mask, index, objective, subobjective):
     objective[index].append(mask + '.' + str(subobjective['id']))
@@ -90,16 +98,16 @@ def mydfs(mask, index, objective, subobjective):
 
 def generate_objectives():
     from nbsap.database import mongo
-    objectives = {i['id']:"" for i in mongo.db.objectives.find()}
+    objectives = {i['id']: "" for i in mongo.db.objectives.find()}
 
     for id in objectives.keys():
         objectives[id] = []
-
         for subobj in mongo.db.objectives.find_one({'id': id})['subobjs']:
             mask = str(id)
             mydfs(mask, id, objectives, subobj)
 
     return objectives
+
 
 def templated(template=None):
     def decorator(f):
@@ -111,14 +119,15 @@ def templated(template=None):
                 ctx = {}
             elif not isinstance(ctx, dict):
                 return ctx
-            if template_name is None: template_name = ctx.pop("template")
+            if template_name is None:
+                template_name = ctx.pop("template")
             return flask.render_template(template_name, **ctx)
         decorated_function.not_templated = f
         return decorated_function
     return decorator
 
-class MarkupGenerator(flatland.out.markup.Generator):
 
+class MarkupGenerator(flatland.out.markup.Generator):
     def __init__(self, template):
         super(MarkupGenerator, self).__init__("html")
         self.template = template
@@ -133,7 +142,8 @@ class MarkupGenerator(flatland.out.markup.Generator):
         if widget_name is None:
             widget_name = element.properties.get("widget", "input")
         session = flask.session
-        widget_macro = getattr(self.template.make_module({'session': session}), widget_name)
+        widget_macro = getattr(self.template.make_module({'session': session}),
+                               widget_name)
         return widget_macro(self, element)
 
     def properties(self, field, id=None):
@@ -150,4 +160,3 @@ class MarkupGenerator(flatland.out.markup.Generator):
         if field.properties.get("attr", None):
             properties.update(field.properties["attr"])
         return properties
-
