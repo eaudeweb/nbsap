@@ -483,10 +483,6 @@ p.description {
   font-size: 14px;
 }
 
-div.element_field {
-  padding-top: 50px;
-}
-
 .homepage_view div.row {
   margin-top: 5px;
   position: relative;
@@ -693,6 +689,10 @@ body {
 	padding: 10px 5px 0px;
 	color: #014E46;
 	text-transform: uppercase;
+}
+
+div.element_field.no-padding-top {
+	padding-top: 0;
 }
 
 
