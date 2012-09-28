@@ -23,14 +23,16 @@ def translate(field):
         return field[language]
 
 def actions_dfs(mask, objective, result_list):
-
     for a in objective['actions']:
         action = {}
         action['key'] = ".".join([mask, str(a['id'])])
         action['value'] = a
         result_list.append(action)
 
-    for s in objective['subobjs']:
+    subobj_list = objective['subobjs']
+    subobj_sorted_list = sorted(subobj_list, key=lambda k: k['id'])
+
+    for s in subobj_sorted_list:
         new_mask = ".".join([mask, str(s['id'])])
         actions_dfs(new_mask, s, result_list)
 
