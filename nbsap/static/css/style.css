@@ -659,6 +659,7 @@ body {
 
 .navbar .nav.top-menu {
     margin-top: -7px;
+	font-size: 11px;
 }
 
 .navbar .nav > li > a {
@@ -687,6 +688,13 @@ body {
 .nav-tabs > li > a {
 	color: #014E46;
 }
+
+.navbar .nav > li.language-menu > a {
+	padding: 10px 5px 0px;
+	color: #014E46;
+	text-transform: uppercase;
+}
+
 
 /* footer */
 footer {
