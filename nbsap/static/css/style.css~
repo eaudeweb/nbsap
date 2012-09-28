@@ -617,14 +617,24 @@ body {
 
 @media (min-width: 1200px) {
     .navbar-inner .container {
-	width: 1170px;
+		width: 1170px;
     }
 }
 
 @media (max-width: 1024px) {
-    .navbar-inner .container {
-	width: 940px;
+    
+	.navbar-inner {
+		width: 940px;
     }
+
+	.navbar-inner .container {
+		background: url('../024.jpg') no-repeat 166% -73%;
+		width: 940px;
+	}
+
+	.navbar .brand {
+		width: 35%;
+	}
 }
 
 .navbar .brand {
@@ -639,7 +649,7 @@ body {
 }
 
 .navbar .nav.top-menu {
-    margin-top: 10px;
+    margin-top: -10px;
 }
 
 .navbar .nav > li > a {
