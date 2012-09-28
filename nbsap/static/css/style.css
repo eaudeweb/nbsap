@@ -8,7 +8,6 @@ hgroup {
 }
 
 footer {
-    margin-top: 45px;
     padding: 35px 0 36px;
     border-top: 1px solid #E5E5E5;
 }
@@ -592,37 +591,74 @@ div.element_field {
 /* header */
 body {
     padding: 0px;
+	background: #4D8584 url('../bg.png') repeat-x;
 }
 
 .navbar-inner {
-    background: #eee; /* fallback color if gradients are not supported */
-    background: linear-gradient(top, white, #EEE);
-    background: -webkit-linear-gradient(top, white, #EEE);
-    background-image: -moz-linear-gradient(top, white, #EEE);
-    background-image: -o-linear-gradient(top, white, #EEE);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#EEE'); /* For Internet Explorer 5.5 - 7 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#EEE)"; /* For Internet Explorer 8 */
-}
-
-@media (min-width: 1200px) {
-    .navbar-inner .container {
 	width: 1170px;
-    }
+	margin: 0 auto;
+	background: white;
+	padding: 0;
+	border: 0px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
 }
 
-@media (max-width: 1024px) {
-    .navbar-inner .container {
-	width: 940px;
-    }
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar-inner .container {
+	background: url('../024.jpg') no-repeat 100% -73%;
+	height: 99px;
 }
 
 .navbar .brand {
-    color: #555;
+	width: 31%;
+	height: 50px;
     margin-top: 5px;
+	margin-left: 0;
+	padding-left: 67px;
+	padding-top: 36px;
+	color: #014E46;
+	background: url('../CHM_logo_45x70px.png') no-repeat 3% 72%;
+}
+
+@media (min-width: 1200px) {
+    .navbar-inner .container,
+	footer {
+		width: 1170px;
+    }
+
+	.container.content {
+		width: 1155px;
+	}
+}
+
+@media (max-width: 1024px) {
+
+	.container.content {
+		width: 925px;
+	}
+    
+	.navbar-inner,
+	footer {
+		width: 940px;
+    }
+
+	.navbar-inner .container {
+		background: url('../024.jpg') no-repeat 166% -73%;
+		width: 940px;
+	}
+
+	.navbar .brand {
+		width: 35%;
+	}
 }
 
 .navbar .nav.top-menu {
-    margin-top: 10px;
+    margin-top: -7px;
 }
 
 .navbar .nav > li > a {
@@ -638,11 +674,26 @@ body {
     border-top-color: #000;
 }
 
+.nav-tabs > .active > a, 
+.nav-tabs > .active > a:hover {  
+	border: 1px solid #014E46;
+	border-bottom-color: transparent;
+}
+
+.nav-tabs {
+	border-bottom: 1px solid #014E46;
+}
+
+.nav-tabs > li > a {
+	color: #014E46;
+}
 
 /* footer */
 footer {
-    padding: 0;
+    padding: 10px 0px 0px;
     border-top: 0px;
+	margin: 0 auto;
+	background: white;
 }
 
 footer ul {
@@ -656,6 +707,12 @@ footer ul li {
 
 footer .pull-left {
     margin-top: 20px;
+	font-size: 10px;
+	margin-left: 128px;
+}
+
+footer .pull-left a {
+	color: #014E46;
 }
 
 footer p {
@@ -663,10 +720,14 @@ footer p {
 }
 
 .museum-logo {
-    background: url('../museum-logo.gif') no-repeat;
+    background: url('../logo_irscnb.png') no-repeat 85% 50%;
     height: 68px;
     width: 160px;
     text-indent: -9999px;
+}
+
+footer .pull-right:hover {
+	 background: none;
 }
 
 .CHM-logo {
@@ -677,7 +738,10 @@ footer p {
 }
 
 .container.content {
-    margin-top: 25px;
+    padding-top: 25px;
+	background: #fff;
+	padding-left: 5px;
+	padding-right: 10px;
 }
 
 
