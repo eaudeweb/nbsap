@@ -66,12 +66,40 @@ def homepage_actions(objective_id=1):
     objective_ids = mongo.db.objectives.find({}, {'id': 1})
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
 
+    mapping = schema.refdata.mapping
+
     actions_list = sugar.get_actions_by_dfs(objective['id'])
+    for action in actions_list:
+        code_id = action['corresponding_objective']
+        action['mapping'] = [m for m in
+                             mongo.db.mapping.find({'objective': code_id})]
+        for m in action['mapping']:
+            m['goal'] = {
+                'short_title': m['goal'],
+                'description':
+                mongo.db.goals.find_one_or_404(
+                    {'short_title': m['goal']}
+                )['description']
+            }
+            m['main_target'] = {
+                'number': m['main_target'],
+                'description': mongo.db.targets.find_one_or_404(
+                    {'id': m['main_target']})['description']
+            }
+
+            for target in range(len(m['other_targets'])):
+                m['other_targets'][target] = \
+                    {
+                        'number': m['other_targets'][target],
+                        'description': mongo.db.targets.find_one_or_404(
+                            {'id': m['other_targets'][target]})['description']
+                    }
 
     return {
         "objective_ids": objective_ids,
         "objective": objective,
-        "actions": actions_list
+        "actions": actions_list,
+        "mapping": mapping,
     }
 
 

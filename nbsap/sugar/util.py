@@ -85,6 +85,7 @@ def actions_dfs(mask, objective, result_list):
         action = {}
         action['key'] = ".".join([mask, str(a['id'])])
         action['value'] = a
+        action['corresponding_objective'] = mask
         result_list.append(action)
 
     subobj_list = objective['subobjs']
