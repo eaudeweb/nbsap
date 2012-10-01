@@ -587,16 +587,32 @@ div.element_field {
 }
 
 /* overwrite from bootstrap */
-
 .tooltip {
-    font-size: 12px;
+    font-size: 10px;
+}
+
+.tooltip.in {
+	opacity: 0.95;
+	filter: alpha(opacity=95);
 }
 
 .tooltip-inner {
     max-width: 800px;
     background-color: white;
-    color: #000000;
+    color: #000;
+	border: 1px solid #888;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+.tooltip p {
+	margin-bottom: 0px;
+}
+
 
 /* SONIA's styles */
 
