@@ -34,11 +34,11 @@
     </div>
 
       <div class="row">
-          <ul class="span2">
+          <ul class="span9">
             {% for subobj in subobj_list %}
                 <li>
                     <a href="#{{subobj['key']}}">
-                        {{_('Objective')}} {{subobj['title-key']}}</a>
+                    {{_t(subobj['value']['title'])}}</a>
                 </li>
             {% endfor %}
           </ul>
