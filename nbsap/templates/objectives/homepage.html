@@ -34,85 +34,108 @@
     </div>
 
       <div class="row">
-      <ul class="span2">
-        {% for id in ids|sort() %}
-          {% if loop.index0 % 4 == 0 and not loop.first %}
-            </ul><ul class="span2">
-          {% endif %}
-          <li>
-          <a href="#{{id}}">{{_('Objective')}} {{id}}</a>
-          </li>
-        {% endfor %}
-      </ul>
+          <ul class="span9">
+            {% for subobj in subobj_list %}
+                <li>
+                    <a href="#{{subobj['key']}}">
+                    {{_t(subobj['value']['title'])}}</a>
+                </li>
+            {% endfor %}
+          </ul>
       </div>
 
-      {% for subobj in objective.subobjs|sort(attribute='id') %}
-        <div class="element_field" id="{{[objective.id, subobj.id]|join('.')}}">
-          <h2>{{_t(subobj.title)}}</h2>
+      <div class="row">
+          <ul class="span2">
+            {% for action in my_actions %}
+                <li>
+                    <a href="#{{action['key']}}">
+                        {{_('Action')}} {{action['title-key']}}</a>
+                </li>
+            {% endfor %}
+          </ul>
+      </div>
+
+
+      {% for subobj in subobj_list %}
+        <div class="element_field" id="{{subobj['key']}}">
+          <h2>{{_t(subobj['value']['title'])}}</h2>
 
           <div class="snippet">
-            {{ _ttm(subobj.body) }}
+            {{ _ttm(subobj['value']['body']) }}
             <a class="more">{{_('show more')}}</a>
           </div>
           <div class="full">
-            {{ _tm(subobj.body) }}
+            {{ _tm(subobj['value']['body']) }}
             <a class="less">{{_('show less')}}</a>
           </div>
 
-
           <label>{{_('Mapping with AICHI')}}:</label>
-
-            <div class="row well">
+          <div class="row well">
           {% if subobj.mapping|length() %}
             {% for m in subobj.mapping %}
             <ul class="mapping-list">
-
               <li><span class="mapping-header">{{_('Goal')}}:</span>
                 <span>
                   <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
-
-
                     <strong>{{_('goal')}} {{m.goal.short_title}}</strong>: {{_tm(m.goal.description)}}
                   </a>
                 </span>
-                </li>
-
-                <li><span class="mapping-header">{{_('Most relevant AICHI target')}}:</span>
-                <span>
+              </li>
+              <li><span class="mapping-header">{{_('Most relevant AICHI target')}}:</span>
+              <span>
                   <a href="{{url_for('goals.homepage_goals',
                     goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
-
                     <strong>{{_('target')}} {{m.main_target.number}}</strong>: {{_tm(m.main_target.description)}}
                   </a>
-                </span>
-                </li>
+              </span>
+              </li>
 
                 {% if m.other_targets %}
                 <li><span class="mapping-header">{{_('Other relevant AICHI targets')}}:</span>
-                <ul class="other-targets">
-                  {% for target in m.other_targets %}
-
-                  <li>
-                  <a href="{{url_for('goals.homepage_goals',
-                    goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
-                    <strong>{{_('target')}} {{target.number}}</strong>: {{_tm(target.description)}}
-                  </a>
-                  </li>
-
-                  {% endfor %}
-                </ul>
-
-                  </li>
+                    <ul class="other-targets">
+                      {% for target in m.other_targets %}
+                      <li>
+                        <a href="{{url_for('goals.homepage_goals',
+                        goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
+                        <strong>{{_('target')}} {{target.number}}</strong>: {{_tm(target.description)}}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                </li>
                 {% endif %}
-
             </ul>
             {% endfor %}
           {% else %}
-          {{_('None')}}
+             {{_('None')}}
           {% endif %}
-            </div>
+          </div>
 
+          {% if subobj['actions'] %}
+              <label>{{_('Related actions')}}:</label>
+              {% for action in subobj['actions'] %}
+                <div class="well">
+                    <h2>{{_t(action['value']['title'])}}</h2>
+                    {{_tm(action['value']['body'])}}
+                </div>
+              {% endfor %}
+          {% endif %}
+                <a class="pull-right" href="#top">{{_('Back to top')}}</a>
+        </div>
+      {% endfor %}
 
+      {% for action in my_actions %}
+        <div class="element_field" id="{{action['key']}}">
+          <h2>{{_t(action['value']['title'])}}</h2>
+
+          <div class="snippet">
+            {{ _ttm(action['value']['body']) }}
+            <a class="more">{{_('show more')}}</a>
+          </div>
+          <div class="full">
+            {{ _tm(action['value']['body']) }}
+            <a class="less">{{_('show less')}}</a>
+          </div>
             <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
       {% endfor %}
