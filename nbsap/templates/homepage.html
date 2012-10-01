@@ -46,9 +46,7 @@
 
     {% for target in targets %}
     <div class="element_field" id="target_{{ target.id }}">
-      <h2>{{ _t(target.title) }}</h2>
-
-      <span class="target-description">{{ _tm(target.description) }}</span>
+      <h2>{{ _t(target.title) }}: {{ _tm(target.description) }}</h2>
 
       <label>{{_('Mapping with National strategy')}}:</label>
       <div class="well">
@@ -101,9 +99,11 @@
         </ul>
       </div>
       {% endif %}
-
-      <a class="pull-right" href="#top">{{_('Back to top')}}</a>
+  
     </div>
+	<div class="row">
+		<a class="pull-right" href="#top">{{_('Back to top')}}</a>
+	</div>
     {% endfor %}
 
   </div>
