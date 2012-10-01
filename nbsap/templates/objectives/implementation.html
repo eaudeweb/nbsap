@@ -34,7 +34,7 @@
       </div>
 
       {% for action in actions %}
-        <div class="element_field" id="{{action['key']}}">
+        <div class="element_field well no-padding-top" id="{{action['key']}}">
               <h2>{{_('Action')}} {{action['key']}}</h2>
               <div class="snippet">
                 {{ _ttm(action['value']['body']) }}
