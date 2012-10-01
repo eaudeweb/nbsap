@@ -625,13 +625,15 @@ body {
 }
 
 @media (min-width: 1200px) {
-    .navbar-inner .container,
+    .navbar-inner /*.container*/,
 	footer {
 		width: 1170px;
+		padding-left: 5px;
+		padding-right: 10px;
     }
 
 	.container.content {
-		width: 1155px;
+		/*width: 1155px;*/
 	}
 }
 
@@ -701,7 +703,6 @@ div.element_field.no-padding-top {
 
 /* footer */
 footer {
-    padding: 10px 0px 0px;
     border-top: 0px;
 	margin: 0 auto;
 	background: white;
