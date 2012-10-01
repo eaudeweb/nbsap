@@ -36,7 +36,9 @@
         </ul><ul class="span1">
         {% endif %}
         <li>
-        <a href="#target_{{target.id}}">{{ _t(target.title) }}</a>
+            <a href="#target_{{target.id}}" rel="tooltip"
+            data-placement="right" data-original-title="{{ _tm(target.description) }}">{{ _t(target.title) }}
+            </a>
         </li>
         {% endfor %}
       </ul>
@@ -109,3 +111,16 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src("bootstrap/js/bootstrap-tooltip.js") }}
+
+<script>
+$(function () {
+  $("[rel=tooltip]").tooltip();
+});
+
+</script>
+{% endblock scripts %}

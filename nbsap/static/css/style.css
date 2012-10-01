@@ -585,6 +585,12 @@ div.element_field {
 .hidden {
     display: none;
 }
+
+/* overwrite from bootstrap */
+.tooltip-inner {
+    max-width: 700px;
+}
+
 /* SONIA's styles */
 
 /* header */
