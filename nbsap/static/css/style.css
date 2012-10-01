@@ -625,27 +625,22 @@ body {
 }
 
 @media (min-width: 1200px) {
-    .navbar-inner /*.container*/,
+    .navbar-inner,
 	footer {
 		width: 1170px;
 		padding-left: 5px;
 		padding-right: 10px;
     }
 
-	.container.content {
-		/*width: 1155px;*/
-	}
 }
 
 @media (max-width: 1024px) {
-
-	.container.content {
-		width: 925px;
-	}
-
 	.navbar-inner,
+	.container.content,
 	footer {
 		width: 940px;
+		padding-left: 5px;
+		padding-right: 10px;
     }
 
 	.navbar-inner .container {
