@@ -22,18 +22,12 @@
     <div class="tab-content homepage_view" >
       <h1>{{_t(objective.title)}}</h1>
 
-    <div class="element_field well objective-description">
-        <div class="snippet">
-          {{ _ttm(objective.body) }}
-          <a class="more">{{_('show more')}}</a>
-        </div>
-        <div class="full">
-          {{ _tm(objective.body) }}
-          <a class="less">{{_('show less')}}</a>
-        </div>
+    <div class="element_field objective-description">
+		{{ _tm(objective.body) }}
     </div>
 
       <div class="row">
+		<label>Table of content:</label>
           {% set LENGTH = (subobj_list|length) %}
           {% if LENGTH >= 4 %}
             {% set SIZE = (((subobj_list|length)/3)|int)+1 %}
@@ -132,8 +126,10 @@
                 </div>
               {% endfor %}
           {% endif %}
-                <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
+		<div class="row">
+			<a class="pull-right" href="#top">{{_('Back to top')}}</a>
+		</div>
       {% endfor %}
 
       {% for action in my_actions %}
@@ -148,8 +144,10 @@
             {{ _tm(action['value']['body']) }}
             <a class="less">{{_('show less')}}</a>
           </div>
-            <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
+		<div class="row">
+			<a class="pull-right" href="#top">{{_('Back to top')}}</a>
+		</div>
       {% endfor %}
 
     </div>
