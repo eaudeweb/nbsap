@@ -37,7 +37,8 @@
           <ul class="span2">
             {% for subobj in subobj_list %}
                 <li>
-                    <a href="#{{subobj['key']}}">
+                    <a href="#{{subobj['key']}}" rel="tooltip"
+                    data-placement="right" data-original-title="{{_t(subobj['value']['title'])}}">
                     {{_('Objective')}} {{subobj['title-key']}}</a>
                 </li>
             {% endfor %}
@@ -145,10 +146,15 @@
   </div>
 
 {% endblock content %}
+
 {% block scripts %}
 {{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src("bootstrap/js/bootstrap-tooltip.js") }}
+
 <script>
 $(function () {
+  $("[rel=tooltip]").tooltip();
   $('.more').on('click', function() {
     var parents = $(this).parents('.element_field');
     var snippet = parents.find('.snippet');
