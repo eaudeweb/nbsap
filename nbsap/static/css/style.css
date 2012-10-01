@@ -483,10 +483,6 @@ p.description {
   font-size: 14px;
 }
 
-div.element_field {
-  padding-top: 50px;
-}
-
 .homepage_view div.row {
   margin-top: 5px;
   position: relative;
@@ -662,6 +658,7 @@ body {
 
 .navbar .nav.top-menu {
     margin-top: -7px;
+	font-size: 11px;
 }
 
 .navbar .nav > li > a {
@@ -691,6 +688,17 @@ body {
 	color: #014E46;
 }
 
+.navbar .nav > li.language-menu > a {
+	padding: 10px 5px 0px;
+	color: #014E46;
+	text-transform: uppercase;
+}
+
+div.element_field.no-padding-top {
+	padding-top: 0;
+}
+
+
 /* footer */
 footer {
     padding: 10px 0px 0px;
@@ -700,7 +708,7 @@ footer {
 }
 
 footer ul {
-    width: 250px;
+    width: 190px;
 }
 
 footer ul li {
@@ -724,13 +732,9 @@ footer p {
 
 .museum-logo {
     background: url('../logo_irscnb.png') no-repeat 85% 50%;
-    height: 68px;
-    width: 160px;
+    height: 70px;
+    width: 94px;
     text-indent: -9999px;
-}
-
-footer .pull-right:hover {
-	 background: none;
 }
 
 .CHM-logo {
@@ -738,6 +742,7 @@ footer .pull-right:hover {
     height: 70px;
     width: 45px;
     text-indent: -9999px;
+	margin-left: 15px;
 }
 
 .container.content {
@@ -745,6 +750,10 @@ footer .pull-right:hover {
 	background: #fff;
 	padding-left: 5px;
 	padding-right: 10px;
+}
+
+footer .nav > li > a:hover {
+	background-color: transparent;
 }
 
 

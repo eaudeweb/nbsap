@@ -61,23 +61,16 @@
                 href="{{url_for('auth.login')}}">{{ _('Login') }}</a>
               </li>
               {% endif %}
-              <li class="dropdown">
-              <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{_('Language')}}
-                <b class="caret"></b>
-              </a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{url_for('goals.set_language', language="en")}}">
-                    {{ _('English') }}
-                  </a></li>
-                  <li><a href="{{url_for('goals.set_language', language="fr")}}">
-                    {{ _('French') }}
-                  </a></li>
-                  <li><a href="{{url_for('goals.set_language', language="nl")}}">
-                    {{ _('Dutch') }}
-                  </a></li>
-                </ul>
-              </li>
+
+              <li class="language-menu">
+				<a href="{{url_for('goals.set_language', language="en")}}">{{ _('English') }}</a>
+			  </li>
+              <li class="language-menu">
+				<a href="{{url_for('goals.set_language', language="fr")}}">{{ _('French') }}</a>
+			  </li>
+              <li class="language-menu">
+				<a href="{{url_for('goals.set_language', language="nl")}}">{{ _('Dutch') }}</a>
+			  </li>
            </ul>
 
         </div>
