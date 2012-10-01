@@ -69,14 +69,58 @@
             <a class="less">{{_('show less')}}</a>
           </div>
 
-          {% for action in subobj['actions'] %}
-            <div>
-                <br>
-                <h2>{{_t(action['value']['title'])}}</h2>
-                {{_tm(action['value']['body'])}}
-            </div>
-          {% endfor %}
-            <a class="pull-right" href="#top">{{_('Back to top')}}</a>
+          <label>{{_('Mapping with AICHI')}}:</label>
+          <div class="row well">
+          {% if subobj.mapping|length() %}
+            {% for m in subobj.mapping %}
+            <ul class="mapping-list">
+              <li><span class="mapping-header">{{_('Goal')}}:</span>
+                <span>
+                  <a href="{{url_for('goals.homepage_goals', goal_short_title=m.goal.short_title)}}">
+                    <strong>{{_('goal')}} {{m.goal.short_title}}</strong>: {{_tm(m.goal.description)}}
+                  </a>
+                </span>
+              </li>
+              <li><span class="mapping-header">{{_('Most relevant AICHI target')}}:</span>
+              <span>
+                  <a href="{{url_for('goals.homepage_goals',
+                    goal_short_title=mapping[m.main_target.number], _anchor="target_%s" % m.main_target.number)}}">
+                    <strong>{{_('target')}} {{m.main_target.number}}</strong>: {{_tm(m.main_target.description)}}
+                  </a>
+              </span>
+              </li>
+
+                {% if m.other_targets %}
+                <li><span class="mapping-header">{{_('Other relevant AICHI targets')}}:</span>
+                    <ul class="other-targets">
+                      {% for target in m.other_targets %}
+                      <li>
+                        <a href="{{url_for('goals.homepage_goals',
+                        goal_short_title=mapping[target.number], _anchor="target_%s" % target.number)}}">
+                        <strong>{{_('target')}} {{target.number}}</strong>: {{_tm(target.description)}}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            {% endfor %}
+          {% else %}
+             {{_('None')}}
+          {% endif %}
+          </div>
+
+          {% if subobj['actions'] %}
+              <label>{{_('Related actions')}}:</label>
+              {% for action in subobj['actions'] %}
+                <div class="well">
+                    <h2>{{_t(action['value']['title'])}}</h2>
+                    {{_tm(action['value']['body'])}}
+                </div>
+              {% endfor %}
+          {% endif %}
+                <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
       {% endfor %}
 

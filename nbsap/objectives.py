@@ -21,8 +21,11 @@ def homepage_objectives(objective_id=1):
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     mapping = schema.refdata.mapping
 
-    for subobj in objective['subobjs']:
-        code_id = str(objective['id']) + '.' + str(subobj['id'])
+    subobj_list = sugar.get_subobjs_by_dfs(objective['id'])
+    my_actions = sugar.get_actions_by_objective_id(objective['id'])
+
+    for subobj in subobj_list:
+        code_id = subobj['title-key']
         subobj['mapping'] = [m for m in
                              mongo.db.mapping.find({'objective': code_id})]
         for m in subobj['mapping']:
@@ -47,15 +50,12 @@ def homepage_objectives(objective_id=1):
                             {'id': m['other_targets'][target]})['description']
                     }
 
-    ids = sugar.generate_objectives()[objective_id]
-    subobj_list = sugar.get_subobjs_by_dfs(objective['id'])
-    my_actions = sugar.get_actions_by_objective_id(objective['id'])
-
     return {
         "objective_ids": objective_ids,
         "objective": objective,
         "my_actions": my_actions,
-        "subobj_list": subobj_list
+        "subobj_list": subobj_list,
+        'mapping': mapping
     }
 
 
