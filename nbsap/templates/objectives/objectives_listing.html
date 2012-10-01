@@ -27,6 +27,7 @@
     <thead>
       <th>{{_('Id')}}</th>
       <th>{{_('Objectives')}}</th>
+      <th class="hidden"></th>
       <th>NL</th>
       <th>FR</th>
     </thead>
@@ -39,6 +40,9 @@
         </td>
         <td>
             <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{_t(objective.title)}}</a>
+        </td>
+        <td class="hidden">
+            {{_t(objective.body)}}
         </td>
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"

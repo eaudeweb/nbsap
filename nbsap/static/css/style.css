@@ -586,6 +586,9 @@ div.element_field {
   color: #888;
 }
 
+.hidden {
+    display: none;
+}
 /* SONIA's styles */
 
 /* header */
@@ -641,7 +644,7 @@ body {
 	.container.content {
 		width: 925px;
 	}
-    
+
 	.navbar-inner,
 	footer {
 		width: 940px;
@@ -674,8 +677,8 @@ body {
     border-top-color: #000;
 }
 
-.nav-tabs > .active > a, 
-.nav-tabs > .active > a:hover {  
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover {
 	border: 1px solid #014E46;
 	border-bottom-color: transparent;
 }
