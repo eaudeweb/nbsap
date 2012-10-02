@@ -1,6 +1,7 @@
 body {
     padding-top: 60px;
     padding-bottom: 60px;
+	font-family: Arial, sans-serif !important;
 }
 
 hgroup {
@@ -491,6 +492,9 @@ p.description {
 .homepage_view {
   position: relative;
   display: block;
+  width: 74%;
+  padding-left: 30px;
+  overflow: hidden;
 }
 
 p.description {
@@ -511,6 +515,14 @@ div.element_field {
   font-size: 18px;
   line-height: 27px;
   border-bottom: 1px solid #CCC;
+}
+
+.homepage_view h4 { /* styled as a label, eg. Flanders, Walloon */
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	color: #444;
+	text-transform: uppercase;
 }
 
 .homepage_view div.row {
@@ -889,7 +901,15 @@ h2 p {
 }
 
 .element_field.objective-description {
-    padding: 10px 19px 10px 0px;
+    padding: 0px 19px 10px 0px;
+}
+
+.element_field label {
+	margin-top: 15px;
+}
+
+.row.between-subobj {
+	border-bottom: 1px dashed #bbb;
 }
 
 .more,
@@ -930,4 +950,46 @@ h2 p {
     display: inline;
     font-size: 11px;
 }
+
+
+/* admin pages */
+.original-description {
+	margin-top: 62px;
+}
+
+.original-description,
+.original-title,
+.control-label {
+	font-weight: bold;
+}
+
+h1.small {
+	font-size: 24px;
+	line-height: 27px;
+}
+
+.admin-obj-description,
+.admin-action-description {
+	padding: 1px 30px;
+}
+
+.btn-toolbar {
+	margin-left: 30px;
+}
+
+
+#wmd-button-bar-fr .btn-group + .btn-group,
+#wmd-button-bar-nl .btn-group + .btn-group,
+#wmd-button-bar-en .btn-group + .btn-group  {
+    margin-left: 3px;
+}
+
+#wmd-button-row-fr.btn-toolbar,
+#wmd-button-row-nl.btn-toolbar,
+#wmd-button-row-en.btn-toolbar {
+	margin-left: 0px;
+}
+
+
+
 
