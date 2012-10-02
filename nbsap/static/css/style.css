@@ -505,23 +505,28 @@ div.element_field {
   padding-top: 44px;
 }
 
-.homepage_view h2 {
-  font-size: 14px;
-  line-height: 18px;
-  border-bottom: 1px solid #CCC;
-}
-
 .homepage_view h1 {
   font-size: 18px;
   line-height: 27px;
   border-bottom: 1px solid #CCC;
 }
 
+.homepage_view h2 {
+  font-size: 14px;
+  line-height: 18px;
+  border-bottom: 1px solid #CCC;
+}
+
+.homepage_view h3 {
+	font-size: 12px;
+	line-height: 12px;
+}
+
 .homepage_view h4 { /* styled as a label, eg. Flanders, Walloon */
 	font-size: 11px;
-	font-weight: bold;
 	line-height: 18px;
-	color: #444;
+	font-weight: bold;
+	color: #4D8584;
 	text-transform: uppercase;
 }
 
