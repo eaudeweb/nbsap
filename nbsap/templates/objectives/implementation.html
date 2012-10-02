@@ -25,6 +25,11 @@
 
       <div class="row">
       <ul class="span2">
+      {% set LENGTH = (actions|length) %}
+      {% if LENGTH == 0 %}
+        <li>{{_('No actions found.')}}</li>
+      {% endif %}
+
         {% for action in actions %}
             <li>
                 <a href="#{{action['key']}}">{{_('Action')}} {{action['key']}}</a>

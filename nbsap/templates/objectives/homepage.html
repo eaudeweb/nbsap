@@ -29,6 +29,11 @@
       <div class="row">
 		<label>Table of contents:</label>
           {% set LENGTH = (subobj_list|length) %}
+          {% if LENGTH == 0 %}
+            <ul class="span2">
+                <li>{{_('No subobjectives found.')}}</li>
+            </ul>
+          {% endif %}
           {% if LENGTH >= 4 %}
             {% set SIZE = (((subobj_list|length)/3)|int)+1 %}
           {% else %}
@@ -52,6 +57,11 @@
 
       <div class="row">
           <ul class="span2">
+          {% set LENGTH = (my_actions|length) %}
+          {% if LENGTH == 0 %}
+            <li>{{_('No related actions found.')}}</li>
+          {% endif %}
+
             {% for action in my_actions %}
                 <li>
                     <a href="#{{action['key']}}">
