@@ -18,7 +18,7 @@
   {% endfor %}
 {% endmacro %}
 
-<h1>{{_('Edit target')}} {{target.id}}</h1>
+<h1 class="small">{{_('Edit target')}} {{target.id}}</h1>
 <form method="POST">
     <div class="control-group">
       <label class="control-label" for="language">{{_('Language')}}</label>
@@ -115,12 +115,12 @@
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
-            <p>{{_('Original title in English')}}</p>
+            <p class="original-title">{{_('Original title in English')}}</p>
             <div class="well">
                 {{-target.title['en']-}}
             </div>
 
-            <p>{{_('Original description in English')}}</p>
+            <p class="original-description">{{_('Original description in English')}}</p>
             <div class="well">
                 {{-target.description['en']|markdown-}}
             </div>

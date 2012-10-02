@@ -24,7 +24,7 @@
   {% endfor %}
 {% endmacro %}
 
-<h1>{{_('Edit objective')}} {{objective.id}}</h1>
+<h1 class="small">{{_('Edit objective')}} {{objective.id}}</h1>
 <form method="POST">
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
@@ -127,12 +127,12 @@
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
-          <p>{{_('Original title in English')}}</p>
+          <p class="original-title">{{_('Original title in English')}}</p>
             <div class="well">
                 {{-objective.title['en']-}}
             </div>
 
-            <p>{{_('Original body in English')}}</p>
+            <p class="original-description">{{_('Original description in English')}}</p>
             <div class="well">
                 {{-objective.body['en']|markdown-}}
             </div>
