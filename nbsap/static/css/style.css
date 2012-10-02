@@ -498,7 +498,7 @@ p.description {
 }
 
 div.element_field {
-  padding-top: 50px;
+  padding-top: 44px;
 }
 
 .homepage_view h2 {
@@ -588,7 +588,7 @@ div.element_field {
 
 /* overwrite from bootstrap */
 .tooltip {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .tooltip.in {
@@ -859,7 +859,8 @@ footer .nav > li > a:hover {
     font-weight: bold;
 }
 
-h1 p {
+h1 p,
+h2 p {
     display: inline;
 }
 
@@ -887,8 +888,8 @@ h1 p {
     margin-top: 5px;
 }
 
-.element_field.well.objective-description {
-    padding: 10px 19px;
+.element_field.objective-description {
+    padding: 10px 19px 10px 0px;
 }
 
 .more,
