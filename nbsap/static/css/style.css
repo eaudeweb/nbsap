@@ -513,6 +513,14 @@ div.element_field {
   border-bottom: 1px solid #CCC;
 }
 
+.homepage_view h4 { /* styled as a label, eg. Flanders, Walloon */
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	color: #444;
+	text-transform: uppercase;
+}
+
 .homepage_view div.row {
   margin-top: 5px;
   margin-left: 0px;
@@ -889,7 +897,11 @@ h2 p {
 }
 
 .element_field.objective-description {
-    padding: 10px 19px 10px 0px;
+    padding: 0px 19px 10px 0px;
+}
+
+.row.between-subobj {
+	border-bottom: 1px dashed #bbb;
 }
 
 .more,
