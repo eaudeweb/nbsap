@@ -117,7 +117,7 @@
                     {% elif key == 'scale' %}
                     <td><ul>
                       {% for scale in indicator[key] %}
-                        <li>{{ _t(data.scale[scale]) }}</li>
+                        <li>{{ _t(data['scale'][scale]) }}</li>
                       {% endfor %}
                     </ul></td>
                     {% else %}
