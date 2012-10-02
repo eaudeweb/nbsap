@@ -109,7 +109,10 @@ def homepage_actions(objective_id=1):
 def add():
     objective_schema = schema.Objective({})
     tmp_collection = mongo.db.objectives.find().sort('id', -1)
-    new_index = tmp_collection[0]['id'] + 1
+    try:
+        new_index = tmp_collection[0]['id'] + 1
+    except IndexError:
+        new_index = 1
     objective_schema['id'] = new_index
 
     if flask.request.method == "POST":
