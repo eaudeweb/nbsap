@@ -900,6 +900,10 @@ h2 p {
     padding: 0px 19px 10px 0px;
 }
 
+.element_field label {
+	margin-top: 15px;
+}
+
 .row.between-subobj {
 	border-bottom: 1px dashed #bbb;
 }
