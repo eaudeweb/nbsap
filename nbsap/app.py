@@ -13,9 +13,7 @@ import auth
 from raven.contrib.flask import Sentry
 from flaskext.markdown import Markdown
 
-default_config = {
-        "MONGO_DBNAME": "nbsap",
-}
+default_config = {}
 
 babel = Babel()
 sentry = Sentry()
