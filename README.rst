@@ -32,11 +32,11 @@ NBSAP Quick Installation
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
     echo '# MongoDB repo ###############' >> /etc/apt/sources.list
 
-  7.1 If using Ubuntu >= 9.10 or running Upstart on Debian::
+    7.1 If using Ubuntu >= 9.10 or running Upstart on Debian::
 
     echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' >> /etc/apt/sources.list
 
-  7.2 Otherwise(or using SysV init process)::
+    7.2 Otherwise(or using SysV init process)::
 
     echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' >> /etc/apt/sources.list
 
