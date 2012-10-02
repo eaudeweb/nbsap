@@ -10,6 +10,12 @@ env['nbsap_target_defs'] = {
         'nbsap_instance': '/var/local/nbsap-staging/instance',
         'nbsap_sandbox':  '/var/local/nbsap-staging/sandbox',
     },
+    'demo': {
+        'host_string': 'edw@nbsap.eaudeweb.ro',
+        'nbsap_repo':     '/var/local/nbsap-demo',
+        'nbsap_instance': '/var/local/nbsap-demo/instance',
+        'nbsap_sandbox':  '/var/local/nbsap-demo/sandbox',
+    },
 }
 env['nbsap_default_target'] = 'staging'
 
