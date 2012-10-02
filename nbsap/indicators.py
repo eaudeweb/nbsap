@@ -83,12 +83,15 @@ def view(indicator_id):
         other_targets_descriptions = [target['description'] for target in
                 mongo.db.targets.find({'id': {'$in': indicator.get('other_targets')}})]
 
+    if goal_description is not None:
+        goal_description = goal_description['description']
+
     return {
             "indicator": indicator,
             "transit_dict": aichi_indicator_keys,
             "order": aichi_order['order'],
             "data": schema.refdata.indicator_data,
-            "goal_description": goal_description['description'],
+            "goal_description": goal_description,
             "main_target_description": main_target_description['description'],
             "other_targets_descriptions": other_targets_descriptions
            }
