@@ -41,7 +41,7 @@
       <h1>{{_('Indicators')}} {{indicators[0].id}} {{_('to')}} {{indicators[0].id + indicators|length() - 1}}</h1>
 
       <div class="row">
-        <ul class="span10">
+        <ul class="span8">
           {% for indicator in indicators %}
           <li>
           <a href="#indicator_{{indicator.id}}">{{_('Indicator')}} {{indicator.id}}: {{_t(indicator.name)}}</a>
