@@ -8,7 +8,7 @@
   <div class="tabbable tabs-left">
 
     <ul class="nav nav-tabs nav-stacked local-navigation">
-      <label class="nav-header">{{_('Objectives')}}</label>
+      <label class="nav-header">{{_('Actions related to')}}</label>
       {% for objective_id in objective_ids | sort(attribute='id') %}
         {% set active = 'active' if objective_id.id == objective.id %}
         <li class={{ active }}>
@@ -20,8 +20,7 @@
     </ul>
 
     <div class="tab-content homepage_view" >
-      <h1>{{_t(objective.title)}}</h1>
-      <h2>{{_('Actions related to objective')}} {{ objective.id }}{{_(':')}}</h2>
+      <h1>{{_('Actions related to ')}} {{_t(objective.title)}}</h1>
 
       <div class="row">
       <ul class="span2">
