@@ -1,6 +1,7 @@
 body {
     padding-top: 60px;
     padding-bottom: 60px;
+	font-family: Arial, sans-serif !important;
 }
 
 hgroup {
@@ -491,6 +492,9 @@ p.description {
 .homepage_view {
   position: relative;
   display: block;
+  width: 74%;
+  padding-left: 30px;
+  overflow: hidden;
 }
 
 p.description {
