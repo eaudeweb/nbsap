@@ -12,11 +12,27 @@ objectives = flask.Blueprint("objectives", __name__)
 def initialize_app(app):
     app.register_blueprint(objectives)
 
+@objectives.route("/default_objectives")
+@sugar.templated("/objectives/default_objectives.html")
+def default_objectives_routing():
+    return {}
+
+
+@objectives.route("/default_actions")
+@sugar.templated("/objectives/default_actions.html")
+def default_actions_routing():
+    return {}
+
 
 @objectives.route("/objectives")
 @objectives.route("/objectives/<int:objective_id>")
 @sugar.templated("/objectives/homepage.html")
 def homepage_objectives(objective_id=1):
+    count_entries = mongo.db.objectives.count()
+    if count_entries == 0:
+        return flask.redirect(flask.url_for('objectives.'
+                                            'default_objectives_routing'))
+
     objective_ids = mongo.db.objectives.find({}, {'id': 1})
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
     mapping = schema.refdata.mapping
@@ -63,6 +79,12 @@ def homepage_objectives(objective_id=1):
 @objectives.route("/objectives/<int:objective_id>/actions")
 @sugar.templated("/objectives/implementation.html")
 def homepage_actions(objective_id=1):
+    count_entries = mongo.db.objectives.count()
+    if count_entries == 0:
+        return flask.redirect(flask.url_for('objectives.'
+                                            'default_actions_routing'))
+
+
     objective_ids = mongo.db.objectives.find({}, {'id': 1})
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
 

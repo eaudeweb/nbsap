@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "navigation.html" import homepage_tabs %}
+
+{{ homepage_tabs('implementation') }}
+<p>{{_('Please define your national strategy actions into admin panel.')}}</p>
+{% endblock content %}
