@@ -978,9 +978,17 @@ h1.small {
 }
 
 
+#wmd-button-bar-fr .btn-group + .btn-group,
+#wmd-button-bar-nl .btn-group + .btn-group,
+#wmd-button-bar-en .btn-group + .btn-group  {
+    margin-left: 3px;
+}
 
-
-
+#wmd-button-row-fr.btn-toolbar,
+#wmd-button-row-nl.btn-toolbar,
+#wmd-button-row-en.btn-toolbar {
+	margin-left: 0px;
+}
 
 
 
