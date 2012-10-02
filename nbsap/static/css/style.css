@@ -952,7 +952,7 @@ h2 p {
 }
 
 
-/* admin pages/translate */
+/* admin pages */
 .original-description {
 	margin-top: 62px;
 }
@@ -968,7 +968,14 @@ h1.small {
 	line-height: 27px;
 }
 
+.admin-obj-description,
+.admin-action-description {
+	padding: 1px 30px;
+}
 
+.btn-toolbar {
+	margin-left: 30px;
+}
 
 
 
