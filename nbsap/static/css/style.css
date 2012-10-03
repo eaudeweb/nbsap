@@ -697,6 +697,10 @@ body {
 	.navbar .brand {
 		width: 35%;
 	}
+
+	.login-container input {
+		width: 330px;
+	}
 }
 
 .navbar .nav.top-menu {
@@ -735,10 +739,6 @@ body {
 	padding: 10px 5px 0px;
 	color: #014E46;
 	text-transform: uppercase;
-}
-
-div.element_field.no-padding-top {
-	padding-top: 0;
 }
 
 
@@ -827,7 +827,9 @@ footer .nav > li > a:hover {
     list-style-type: circle;
 }
 
-.well ul {
+.well ul,
+.snippet ul,
+.full ul {
     list-style-type: square;
 }
 
