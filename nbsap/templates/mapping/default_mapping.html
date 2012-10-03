@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.admin'), _("Admin")),
+      (url_for('goals.default_mapping_routing'), _("Default Mapping"))
+      ]) }}
+</ul>
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('mapping') }}
+
+<h1 class="small">{{_('Mappings of National Objectives to Aichi targets')}}</h1>
+ <p>{{_('Please define your national strategy objectives and subobjectives into admin
+ panel.')}}</p>
+
+{% endblock content %}
