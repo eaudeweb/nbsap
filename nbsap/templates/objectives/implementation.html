@@ -38,7 +38,7 @@
       </div>
 
       {% for action in actions %}
-        <div class="element_field well no-padding-top" id="{{action['key']}}">
+        <div class="element_field" id="{{action['key']}}">
               <h2>{{_('Action')}} {{action['key']}}</h2>
               <div class="snippet">
                 {{ _ttm(action['value']['body']) }}
@@ -93,8 +93,10 @@
  				<a class="less">{{_('show less')}}</a>
               </div>
 
-              <a class="pull-right" href="#top">{{_('Back to top')}}</a>
         </div>
+		<div class="row between-subobj">
+			<a class="pull-right" href="#top">Back to top</a>
+		</div>
 
 
       {% endfor %}
