@@ -697,6 +697,10 @@ body {
 	.navbar .brand {
 		width: 35%;
 	}
+
+	.login-container input {
+		width: 330px;
+	}
 }
 
 .navbar .nav.top-menu {
@@ -823,7 +827,9 @@ footer .nav > li > a:hover {
     list-style-type: circle;
 }
 
-.well ul {
+.well ul,
+.snippet ul,
+.full ul {
     list-style-type: square;
 }
 
