@@ -63,6 +63,7 @@ def view(objective_id, action_id,
         "action": related_action,
         "action_parents": action_parents,
         "chain_matrix": matrix,
+        "parents": dict(parents),
     }
 
 
@@ -147,6 +148,53 @@ def edit(objective_id, action_id,
         "schema": action_schema,
         "action_parents": action_parents,
     }
+
+
+@actions.route("/admin/objectives/<int:objective_id>/"
+               "action/<int:action_id>/delete",
+               methods=["GET", "POST", "DELETE"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+               "<int:so1_id>/action/<int:action_id>"
+               "/delete", methods=["GET", "POST", "DELETE"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+               "<int:so1_id>/<int:so2_id>/action/"
+               "<int:action_id>/delete",
+               methods=["GET", "POST", "DELETE"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+               "<int:so1_id>/<int:so2_id>/<int:so3_id>"
+               "/action/<int:action_id>/delete",
+               methods=["GET", "POST", "DELETE"])
+@actions.route("/admin/objectives/<int:objective_id>/"
+               "<int:so1_id>/<int:so2_id>/<int:so3_id>/"
+               "<int:so4_id>/action/<int:action_id>"
+               "/delete", methods=["GET", "POST", "DELETE"])
+@auth_required
+def delete(objective_id, action_id,
+           so1_id=None, so2_id=None, so3_id=None, so4_id=None):
+    from pymongo.errors import OperationFailure
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] is not None]
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    father = objective
+    for i in range(1, len(parents)):
+        son_id = parents[i][1]
+        try:
+            son = [s for s in father['subobjs'] if s['id'] == son_id][0]
+        except IndexError:
+            flask.abort(404)
+        father = son
+
+    father['actions'] = [a for a in father['actions'] if a['id'] != action_id]
+
+    from pymongo.errors import OperationFailure
+    try:
+        mongo.db.objectives.save(objective)
+        flask.flash(_("Action successfully deleted"), "success")
+    except OperationFailure:
+        flask.flash(_("Errors encountered while deleting action"), "errors")
+
+    return flask.jsonify({'status': 'success'})
 
 
 @actions.route("/admin/objectives/<int:objective_id>/"
