@@ -27,9 +27,8 @@
 <table class="table table-bordered table-striped objectives_listing">
 
     <thead>
-      <th>{{_('Id')}}</th>
+      <th class="obj-id">{{_('Id')}}</th>
       <th>{{_('Objectives')}}</th>
-      <th class="hidden"></th>
       <th>NL</th>
       <th>FR</th>
     </thead>
@@ -40,12 +39,14 @@
         <td>
             {{-objective.id-}}
         </td>
+
         <td>
             <a href="{{url_for('objectives.view', objective_id=objective.id)}}">{{_t(objective.title)}}</a>
+ 			<div class="hidden">
+           	 {{_t(objective.body)}}
+        	</div>
         </td>
-        <td class="hidden">
-            {{_t(objective.body)}}
-        </td>
+
         <td style="text-align: center;">
             <a href="{{url_for('objectives.edit', objective_id=objective.id)}}?lang=nl"
                class="btn btn-mini btn-{% if objective.title['nl'] and objective.body['nl'] %}success
