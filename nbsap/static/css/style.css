@@ -737,10 +737,6 @@ body {
 	text-transform: uppercase;
 }
 
-div.element_field.no-padding-top {
-	padding-top: 0;
-}
-
 
 /* footer */
 footer {
