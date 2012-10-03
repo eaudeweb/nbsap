@@ -62,13 +62,22 @@
               </li>
               {% endif %}
 
-              <li class="language-menu">
+              {% if session.language is defined %}
+                {% set lang = session.language[0] %}
+              {% else %}
+                {% set lang = 'en' %}
+              {% endif %}
+              {% if lang is none %}
+                {% set lang = 'en' %}
+              {% endif %}
+
+              <li class="language-menu {% if lang == 'en' %}active{% endif %}">
 				<a href="{{url_for('goals.set_language', language="en")}}">{{ _('English') }}</a>
 			  </li>
-              <li class="language-menu">
+              <li class="language-menu {% if lang == 'fr' %}active{% endif %}">
 				<a href="{{url_for('goals.set_language', language="fr")}}">{{ _('French') }}</a>
 			  </li>
-              <li class="language-menu">
+              <li class="language-menu {% if lang == 'nl' %}active{% endif %}">
 				<a href="{{url_for('goals.set_language', language="nl")}}">{{ _('Dutch') }}</a>
 			  </li>
            </ul>
