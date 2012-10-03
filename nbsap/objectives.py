@@ -12,6 +12,7 @@ objectives = flask.Blueprint("objectives", __name__)
 def initialize_app(app):
     app.register_blueprint(objectives)
 
+
 @objectives.route("/default_objectives")
 @sugar.templated("/objectives/default_objectives.html")
 def default_objectives_routing():
@@ -83,7 +84,6 @@ def homepage_actions(objective_id=1):
     if count_entries == 0:
         return flask.redirect(flask.url_for('objectives.'
                                             'default_actions_routing'))
-
 
     objective_ids = mongo.db.objectives.find({}, {'id': 1})
     objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
@@ -380,6 +380,51 @@ def add_subobj(objective_id,
         "parents": dict(parents),
         "chain_matrix": matrix
     }
+
+
+@objectives.route("/admin/objectives/<int:objective_id>/delete",
+                  methods=["GET", "POST", "DELETE"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/delete", methods=["GET", "POST", "DELETE"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/delete",
+                  methods=["GET", "POST", "DELETE"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/delete",
+                  methods=["GET", "POST", "DELETE"])
+@objectives.route("/admin/objectives/<int:objective_id>/"
+                  "<int:so1_id>/<int:so2_id>/<int:so3_id>/<int:so4_id>"
+                  "/delete", methods=["GET", "POST", "DELETE"])
+@auth_required
+def delete(objective_id,
+           so1_id=None, so2_id=None, so3_id=None, so4_id=None):
+    myargs = ['objective_id', 'so1_id', 'so2_id', 'so3_id', 'so4_id']
+    parents = [(i, locals()[i]) for i in myargs if locals()[i] is not None]
+    objective = mongo.db.objectives.find_one_or_404({'id': objective_id})
+
+    from pymongo.errors import OperationFailure
+
+    if len(parents) == 1:
+        subobj_list = sugar.generate_objectives()[objective_id]
+        # clean up all mappings for subobjectives
+        for subobj_id in subobj_list:
+            mappings = mongo.db.mapping.find()
+            related_mappings_ids = [m['_id'] for m in mappings
+                                    if m['objective'] == subobj_id]
+            for mapping_id in related_mappings_ids:
+                try:
+                    mongo.db.mapping.remove(spec_or_id=mapping_id)
+                except OperationFailure:
+                    pass
+        # clean up entire object
+        try:
+            mongo.db.objectives.remove(spec_or_id=objective['_id'], safe=True)
+            flask.flash(_("Objective deleted."), "success")
+        except OperationFailure:
+            flask.flash(_("Errors foundn when deleting objective."), "errors")
+            pass
+
+    return flask.jsonify({'status': 'success'})
 
 
 @objectives.route("/admin/objectives")
