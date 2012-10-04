@@ -45,6 +45,84 @@ class ObjectiveDeleteTest(_BaseTest):
             if mapping is not None:
                 self.assertEqual(3,4)
 
+     def test_subobjectives_render_page(self):
+
+        import bson
+        # add a mock objective and a corresponding sample mapping
+        mock_objective = dict(self.OBJECTIVE_MOCK['1'])
+        mock_objective['id'] = 2
+
+        mock_mapping1 = dict(self.MAPPING_MOCK['1'])
+        mock_mapping1['objective'] = '2.1'
+        mock_mapping_id1 = mock_mapping1['_id']
+
+        mock_mapping2 = dict(self.MAPPING_MOCK['1'])
+        mock_mapping2['objective'] = '2.2'
+        mock_mapping2['_id'] = bson.objectid.ObjectId()
+        mock_mapping_id2 = mock_mapping2['_id']
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            mongo.db.objectives.save(mock_objective)
+            mongo.db.mapping.save(mock_mapping1)
+            mongo.db.mapping.save(mock_mapping2)
+
+        # test for correct database insertions
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            objective = mongo.db.objectives.find_one({'id': 2})
+            if objective is not None:
+                self.assertIn("Mock objective title", objective['title']['en'])
+                self.assertIn("Mock objective body", objective['body']['en'])
+            else:
+                self.assertEqual(1,2)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id1})
+            if mapping is not None:
+                self.assertIn("A", mapping['goal'])
+                self.assertIn("1", mapping['main_target'])
+                self.assertIn("2.1", mapping['objective'])
+            else:
+                self.assertEqual(3,4)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id2})
+            if mapping is not None:
+                self.assertIn("A", mapping['goal'])
+                self.assertIn("1", mapping['main_target'])
+                self.assertIn("2.2", mapping['objective'])
+            else:
+                self.assertEqual(3,4)
+
+        # erase first subobjective along with its corresponding mapping
+        response = self.client.get('/admin/objectives/2/1/delete')
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            objective = mongo.db.objectives.find_one({'id': 2})
+            try:
+                subobjective = [s for s in objective['subobjs']
+                            if s['id'] == 1][0]
+            except IndexError:
+                pass
+            else:
+                self.assertEqual(1,2)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id1})
+            if mapping is not None:
+                self.assertEqual(3,4)
+
+        # erase second subobjective along with its corresponding mapping
+        response = self.client.get('/admin/objectives/2/2/delete')
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            objective = mongo.db.objectives.find_one({'id': 2})
+            try:
+                subobjective = [s for s in objective['subobjs']
+                            if s['id'] == 2][0]
+            except IndexError:
+                pass
+            else:
+                self.assertEqual(5,6)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id2})
+            if mapping is not None:
+                self.assertEqual(7,8)
+
 
 class ObjectiveListingTest(_BaseTest):
 
