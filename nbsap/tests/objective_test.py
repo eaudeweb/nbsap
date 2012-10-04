@@ -1,6 +1,51 @@
 # encoding: utf-8
 from common import _BaseTest
 
+class ObjectiveDeleteTest(_BaseTest):
+
+     def test_objectives_render_page(self):
+
+        # add a mock objective and a corresponding sample mapping
+        mock_objective = dict(self.OBJECTIVE_MOCK['1'])
+        mock_objective['id'] = 2
+        mock_mapping = dict(self.MAPPING_MOCK['1'])
+        mock_mapping['objective'] = '2.1'
+        mock_mapping_id = mock_mapping['_id']
+
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            mongo.db.objectives.save(mock_objective)
+            mongo.db.mapping.save(mock_mapping)
+
+        # test for correct database insertions
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            objective = mongo.db.objectives.find_one({'id': 2})
+            if objective is not None:
+                self.assertIn("Mock objective title", objective['title']['en'])
+                self.assertIn("Mock objective body", objective['body']['en'])
+            else:
+                self.assertEqual(1,2)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id})
+            if mapping is not None:
+                self.assertIn("A", mapping['goal'])
+                self.assertIn("1", mapping['main_target'])
+                self.assertIn("2.1", mapping['objective'])
+            else:
+                self.assertEqual(3,4)
+
+        # erase it
+        response = self.client.get('/admin/objectives/2/delete')
+        from nbsap.database import mongo
+        with self.app.test_request_context():
+            objective = mongo.db.objectives.find_one({'id': 2})
+            if objective is not None:
+                self.assertEqual(1,2)
+            mapping = mongo.db.mapping.find_one({'_id': mock_mapping_id})
+            if mapping is not None:
+                self.assertEqual(3,4)
+
+
 class ObjectiveListingTest(_BaseTest):
 
      def test_objectives_render_page(self):
