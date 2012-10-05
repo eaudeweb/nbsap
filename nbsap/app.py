@@ -1,6 +1,8 @@
 import flask
 from flaskext.babel import Babel
-from database import mongo, oid, User, db_session
+from sqlalchemy.orm import scoped_session
+from sqlalchemy import create_engine
+from database import mongo, oid, User, db_session, engine, Session, Base
 import sugar
 
 import goals
@@ -30,6 +32,16 @@ def create_app(instance_path=None, testing_config=None):
     else:
         app.config.from_pyfile("settings.py", silent=True)
 
+    # set up users sqlalchemy database
+    users_uri = ''.join([app.config['DATABASE_URI'], instance_path,
+                         app.config['DATABASE_URI_NAME']])
+    engine = create_engine(users_uri)
+    Session.configure(bind=engine)
+    session = Session()
+    db_session = scoped_session(session)
+    Base.query = db_session.query_property()
+
+    # initialize blueprints
     goals.initialize_app(app)
     targets.initialize_app(app)
     indicators.initialize_app(app)

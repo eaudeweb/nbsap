@@ -1,21 +1,24 @@
 from flaskext.openid import OpenID
 from flask.ext.pymongo import PyMongo
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 oid = OpenID()
 mongo = PyMongo()
 
-DATABASE_URI = 'sqlite:////tmp/flask-openid.db'
+#DATABASE_URI = 'sqlite:////tmp/flask-openid.db'
 
-engine = create_engine(DATABASE_URI)
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
+engine = None
+#engine = create_engine(DATABASE_URI)
+Session = sessionmaker(autocommit=False, autoflush=False)
+db_session = None
+#db_session = scoped_session(sessionmaker(autocommit=False,
+#                                         autoflush=False,
+#                                         bind=engine))
 
 Base = declarative_base()
-Base.query = db_session.query_property()
+#Base.query = db_session.query_property()
 
 class User(Base):
     __tablename__ = 'users'
