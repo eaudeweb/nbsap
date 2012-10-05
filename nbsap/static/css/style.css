@@ -997,5 +997,17 @@ h1.small {
 	margin-left: 0px;
 }
 
+body .obj-id {
+	width: 20px;
+}
+
+.obj-title {
+	/*width: 935px;*/
+}
+
+.obj-lang1,
+.obj-lang2 {
+	width: 73px;
+}
 
 
