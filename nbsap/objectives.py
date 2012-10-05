@@ -406,23 +406,50 @@ def delete(objective_id,
 
     if len(parents) == 1:
         subobj_list = sugar.generate_objectives()[objective_id]
-        # clean up all mappings for subobjectives
-        for subobj_id in subobj_list:
-            mappings = mongo.db.mapping.find()
-            related_mappings_ids = [m['_id'] for m in mappings
-                                    if m['objective'] == subobj_id]
-            for mapping_id in related_mappings_ids:
-                try:
-                    mongo.db.mapping.remove(spec_or_id=mapping_id)
-                except OperationFailure:
-                    pass
         # clean up entire object
         try:
             mongo.db.objectives.remove(spec_or_id=objective['_id'], safe=True)
             flask.flash(_("Objective deleted."), "success")
         except OperationFailure:
-            flask.flash(_("Errors foundn when deleting objective."), "errors")
+            flask.flash(_("Errors found when deleting objective."), "errors")
             pass
+    else:
+        mask = str(objective['id'])
+        father = objective
+        parent = objective
+        for i in range(1, len(parents)):
+            son_id = parents[i][1]
+            try:
+                son = [s for s in father['subobjs'] if s['id'] == son_id][0]
+            except IndexError:
+                flask.abort(404)
+            parent = father
+            father = son
+            mask = ".".join([mask, str(son['id'])])
+
+        subobj_list = sugar.get_subobjs_of_subobj(father, mask)
+        # clean up entire subobjective from its parent list
+        parent['subobjs'] = [s for s in parent['subobjs'] if s['id'] !=
+                             father['id']]
+        try:
+            mongo.db.objectives.save(objective, safe=True)
+            flask.flash(_("Objective deleted."), "success")
+        except OperationFailure:
+            flask.flash(_("Errors found when deleting objective."), "errors")
+            pass
+
+    # clean up all mappings for subobjectives
+    for subobj_id in subobj_list:
+        mappings = mongo.db.mapping.find()
+        related_mappings_ids = [m['_id'] for m in mappings
+                                if m['objective'] == subobj_id]
+        for mapping_id in related_mappings_ids:
+            try:
+                mongo.db.mapping.remove(spec_or_id=mapping_id)
+            except OperationFailure:
+                flask.flash(_("Errors found when deleting"
+                              "corresponding mappings."), "errors")
+                pass
 
     return flask.jsonify({'status': 'success'})
 

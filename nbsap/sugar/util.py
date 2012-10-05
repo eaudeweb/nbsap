@@ -41,6 +41,26 @@ def get_actions_by_objective_id(o_id):
 
     return my_actions
 
+
+def sub_subobjs_dfs(mask, objective, result_list):
+    s_list = objective['subobjs']
+    s_sorted_list = sorted(s_list, key=lambda k: k['id'])
+
+    for s in s_sorted_list:
+        his_mask = ".".join([mask, str(s['id'])])
+        result_list.append(his_mask)
+
+    for s in s_sorted_list:
+        new_mask = ".".join([mask, str(s['id'])])
+        sub_subobjs_dfs(new_mask, s, result_list)
+
+
+def get_subobjs_of_subobj(s, mask):
+    subobj_list = [mask]
+    sub_subobjs_dfs(mask, s, subobj_list)
+    return subobj_list
+
+
 def subobjs_dfs(smask, amask, objective, result_list):
     s_list = objective['subobjs']
     s_sorted_list = sorted(s_list, key=lambda k: k['id'])

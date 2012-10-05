@@ -1,14 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <div class="row">
+
+<div class="row">
     <div class="span5 offset3">
         <div class="well">
             <form action="" method=post>
             {% if error %}
               <p class=error><strong>{{_('Error')}}:</strong> {{ error }}</p>
             {% endif %}
-
             <h3>{{_('Sign in')}}</h3>
               <div class="login-container">
                 <label class="control-label">{{_('Username')}}</label>
@@ -34,5 +34,7 @@
               </div>
           </form>
         </div>
-  </div>
-{% endblock %}
+    </div>
+</div>
+
+{% endblock content %}
