@@ -20,16 +20,9 @@ def login():
     # if already logged in, go back to were came from
     if flask.g.user is not None:
         return flask.redirect(oid.get_next_url())
-    if flask.request.method == 'POST':
-        username = flask.request.form.get('username')
-        passwd = flask.request.form.get('password')
-        if username and passwd:
-            # TODO (local authentication)
-            pass
 
     return flask.render_template('login.html', next=oid.get_next_url(),
                             error = oid.fetch_error())
-    #return oid.try_login(COMMON_PROVIDERS['google'])
 
 @auth.route("/google_login", methods=['GET'])
 @oid.loginhandler
@@ -37,7 +30,8 @@ def google_login():
     if flask.g.user is not None:
         return flask.redirect(oid.get_next_url())
 
-    return oid.try_login(COMMON_PROVIDERS['google'])
+    return oid.try_login(COMMON_PROVIDERS['google'], ask_for=['email',
+                         'fullname', 'nickname'])
 
 @auth.route("/yahoo_login", methods=['GET'])
 @oid.loginhandler
@@ -45,7 +39,8 @@ def yahoo_login():
     if flask.g.user is not None:
         return flask.redirect(oid.get_next_url())
 
-    return oid.try_login(COMMON_PROVIDERS['yahoo'])
+    return oid.try_login(COMMON_PROVIDERS['yahoo'], ask_for=['email',
+                         'fullname', 'nickname'])
 
 @oid.after_login
 def create_or_login(resp):
@@ -57,15 +52,17 @@ def create_or_login(resp):
         flask.g.user = user
         return flask.redirect(oid.get_next_url())
 
-    return flask.redirect(flask.url_for('auth.add_new_user', next=oid.get_next_url()))
+    return flask.redirect(flask.url_for('auth.add_new_user',
+                          next=oid.get_next_url(), name=resp.fullname or
+                          resp.nickname, email=resp.email))
 
 @auth.route("/add-new-user", methods=['GET', 'POST'])
-def add_new_user():
+def add_new_user(name=None, email=None):
     if flask.g.user is not None or 'openid' not in flask.session:
         return flask.redirect(oid.get_next_url())
 
     flask.flash(_('Newcomer admin. Welcome!'), "success")
-    db_session.add(User(flask.session['openid']))
+    db_session.add(User(name, email, flask.session['openid']))
     db_session.commit()
 
     return flask.redirect(oid.get_next_url())

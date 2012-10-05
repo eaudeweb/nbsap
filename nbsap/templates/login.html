@@ -2,39 +2,21 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="span5 offset3">
-        <div class="well">
-            <form action="" method=post>
-            {% if error %}
-              <p class=error><strong>{{_('Error')}}:</strong> {{ error }}</p>
-            {% endif %}
-            <h3>{{_('Sign in')}}</h3>
-              <div class="login-container">
-                <label class="control-label">{{_('Username')}}</label>
-                  <input type=text name=username>
-                  <label class="control-label">{{_('Password')}}</label>
-                  <input type=password name=password>
-                  <div class="signin-button">
-                    <button type=submit class="btn btn-primary btn-large disabled">{{_('Sign in')}}</button>
-                  </div>
-                  <input type=hidden name=next value="{{ next }}">
-                  <hr>
-                  <div class="login-alternative">
-                    <span>{{_('Or, sign in with a Google Service')}}</span>
-                        <a href="{{url_for('auth.google_login')}}">
+<div class="row login">
+    <div class="span3 offset2">
+            <a href="{{url_for('auth.google_login')}}">
                             <img alt="Google account" src="{{url_for('static', filename='google_logo.png')}}" title="Google Account">
-                        </a>
-                        <span>{{_('or with a Yahoo Service')}}</span>
-                        <a href="{{url_for('auth.yahoo_login')}}">
-                            <img alt="Google account" src="{{url_for('static', filename='yahoo_logo.png')}}" title="Google Account">
-                        </a>
+            </a>
+            <span class="login-span">{{_('Sign in with a Google Service')}}</span>
+    </div>
 
-                  </div>
-              </div>
-          </form>
-        </div>
+    <div class="span3 offset1">
+            <a href="{{url_for('auth.yahoo_login')}}">
+                <img alt="Yahoo account" src="{{url_for('static', filename='yahoo_logo.png')}}" title="Yahoo Account">
+            </a>
+            <span class="login-span">{{_('Sign in with a Yahoo Service')}}</span>
     </div>
 </div>
+
 
 {% endblock content %}

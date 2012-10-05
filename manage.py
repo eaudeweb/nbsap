@@ -4,7 +4,6 @@ import os.path
 import flask
 import flaskext.script
 
-from nbsap.database import Base, engine
 
 def create_app():
     import nbsap.app
@@ -27,7 +26,8 @@ def make_shell_context():
 @manager.command
 def syncdb():
    # init users database
-   Base.metadata.create_all(bind=engine)
+   from nbsap.database import Base
+   Base.metadata.create_all()
 
 class FcgiCommand(flaskext.script.Command):
 
