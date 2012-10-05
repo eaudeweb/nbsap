@@ -196,7 +196,9 @@ class _BaseTest(unittest.TestCase):
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
         "SECRET_KEY": "something random",
-        "BYPASS_LOGIN": True
+        "BYPASS_LOGIN": True,
+        "DATABASE_URI": "sqlite:///",
+        "DATABASE_URI_NAME": "/testing-users-openid.db",
     }
 
     def setUp(self):

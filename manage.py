@@ -4,6 +4,7 @@ import os.path
 import flask
 import flaskext.script
 
+
 def create_app():
     import nbsap.app
     instance_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'instance'))
@@ -25,8 +26,8 @@ def make_shell_context():
 @manager.command
 def syncdb():
    # init users database
-   from nbsap.database import Base, engine
-   Base.metadata.create_all(bind=engine)
+   from nbsap.database import Base
+   Base.metadata.create_all()
 
 class FcgiCommand(flaskext.script.Command):
 
