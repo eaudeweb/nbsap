@@ -548,32 +548,12 @@ div.element_field {
   border-bottom: 0;
 }
 
-.login-container {
-    margin-top: 8px;
+.login {
+    margin-top: 70px;
 }
 
-.login-container label {
-    margin-bottom: 6px;
-}
-
-.login-container input {
-    width: 350px;
-}
-.login-container button {
-    margin-bottom: 8px;
-}
-
-.login-container div.signin-button {
-    margin-top: 10px;
-}
-
-.login-alternative span {
+.login-span {
         font-style: italic;
-}
-
-.login-alternative a {
-        font-style: italic;
-        text-decoration: none;
 }
 
 .wmd-panel .btn-toolbar {
