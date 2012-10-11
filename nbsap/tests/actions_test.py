@@ -86,6 +86,25 @@ class ActionListingTest(_BaseTest):
         self.assertIn("href=\"/admin/objectives/1/"
                       "action/2/edit\">Edit", response.data)
 
+        response = self.client.get('/admin/objectives/1/action/1')
+        self.assertIn("Mock title action in subobjective", response.data)
+        self.assertIn("Mock body action in subobjective", response.data)
+
+        respose = self.client.get('/set_language?language=fr')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives/1/action/1')
+        self.assertIn("French title mock action in subobjective", response.data)
+        self.assertIn("French body mock action in subobjective", response.data)
+
+        respose = self.client.get('/set_language?language=nl')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives/1/action/1')
+        self.assertIn("Dutch title mock action in subobjective", response.data)
+        self.assertIn("Dutch body mock action in subobjective", response.data)
+
+        respose = self.client.get('/set_language?language=en')
+        self.assertEqual(response.status_code, 200)
+
 
 class ActionAddTest(_BaseTest):
 
@@ -142,6 +161,22 @@ class ActionAddTest(_BaseTest):
                                  "Foo bar action title")
                 self.assertEqual(find_action['body']['en'],
                                  "Foo bar action body")
+
+            response = self.client.get('/admin/objectives/1/action/3')
+            self.assertIn("Foo bar action title", response.data)
+            self.assertIn("Foo bar action body", response.data)
+
+            respose = self.client.get('/set_language?language=fr')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/1/action/3')
+            self.assertIn("Foo bar action title", response.data)
+            self.assertIn("Foo bar action body", response.data)
+
+            respose = self.client.get('/set_language?language=nl')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/1/action/3')
+            self.assertIn("Foo bar action title", response.data)
+            self.assertIn("Foo bar action body", response.data)
 
 
 class ActionEditTest(_BaseTest):

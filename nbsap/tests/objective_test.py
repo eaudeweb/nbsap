@@ -134,6 +134,21 @@ class ObjectiveListingTest(_BaseTest):
         self.assertIn("btn-success", response.data)
         self.assertNotIn("btn-warning", response.data)
 
+     def test_objectives_language(self):
+        response = self.client.get('/admin/objectives')
+        self.assertIn("Mock objective title", response.data)
+        respose = self.client.get('/set_language?language=fr')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives')
+        self.assertIn("Frenche mock objective title", response.data)
+        respose = self.client.get('/set_language?language=nl')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives')
+        self.assertIn("Dutch mock objective title", response.data)
+        respose = self.client.get('/set_language?language=en')
+        self.assertEqual(response.status_code, 200)
+
+
 class ObjectiveAddTest(_BaseTest):
 
     def test_view_from_objective_homepage(self):
@@ -181,6 +196,21 @@ class ObjectiveAddTest(_BaseTest):
             self.assertIn(mydata['title-en'], objective['title']['en'])
             self.assertIn(mydata['body-en'], objective['body']['en'])
 
+            response = self.client.get('/admin/objectives/%s' % (str(added_id)))
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
+
+            respose = self.client.get('/set_language?language=fr')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/%s' % (str(added_id)))
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
+
+            respose = self.client.get('/set_language?language=nl')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/%s' % (str(added_id)))
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
 
 class ObjectiveEditTest(_BaseTest):
 

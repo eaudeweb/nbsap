@@ -40,6 +40,23 @@ class SubobjectiveListingTest(_BaseTest):
         self.assertIn("href=\"/admin/objectives/1/2/"
                       "action/add\"", response.data)
 
+    def test_subobjective_languages(self):
+        response = self.client.get('/admin/objectives/1/1')
+        self.assertIn("Mock subobjective title", response.data)
+        self.assertIn("Mock subobjective body", response.data)
+        respose = self.client.get('/set_language?language=fr')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives/1/1')
+        self.assertIn("Frenche mock subobjective title", response.data)
+        self.assertIn("French submock objective", response.data)
+        respose = self.client.get('/set_language?language=nl')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/admin/objectives/1/1')
+        self.assertIn("Dutch mock subobjective title", response.data)
+        self.assertIn("Dutch mock subobjective", response.data)
+        respose = self.client.get('/set_language?language=en')
+        self.assertEqual(response.status_code, 200)
+
 
 class SubobjectiveAddTest(_BaseTest):
 
@@ -132,6 +149,23 @@ class SubobjectiveAddTest(_BaseTest):
                                  "Foo bar subobjective title")
                 self.assertEqual(find_subobj['body']['en'],
                                  "Foo bar subobjective body")
+
+            response = self.client.get('/admin/objectives/1/1/1')
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
+
+            respose = self.client.get('/set_language?language=fr')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/1/1/1')
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
+
+            respose = self.client.get('/set_language?language=nl')
+            self.assertEqual(response.status_code, 200)
+            response = self.client.get('/admin/objectives/1/1/1')
+            self.assertIn("Foo bar subobjective title", response.data)
+            self.assertIn("Foo bar subobjective body", response.data)
+
 
 
 class SubobjectiveEditTest(_BaseTest):
