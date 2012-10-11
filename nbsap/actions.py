@@ -249,7 +249,9 @@ def add(objective_id,
         action_schema['body'][lang].set(data['body-' + lang])
 
         if action_schema.validate():
-            father['actions'].append(action_schema.flatten())
+            action = action_schema.flatten()
+            sugar.get_none_fields_for_schema(action)
+            father['actions'].append(action)
             flask.flash(_("Action successfully added."), "success")
             mongo.db.objectives.save(objective)
 

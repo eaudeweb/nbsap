@@ -144,6 +144,7 @@ def add():
 
         if objective_schema.validate():
             objective = objective_schema.flatten()
+            sugar.get_none_fields_for_schema(objective)
             flask.flash(_("Objective successfully added."), "success")
             mongo.db.objectives.save(objective)
             return flask.redirect(flask.url_for('objectives.list_objectives'))
@@ -365,6 +366,7 @@ def add_subobj(objective_id,
 
         if subobj_schema.validate():
             subobj = subobj_schema.flatten()
+            sugar.get_none_fields_for_schema(subobj)
             father['subobjs'].append(subobj)
             flask.flash(_("Subobjective successfully added."), "success")
             mongo.db.objectives.save(objective)
