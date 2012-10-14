@@ -1,3 +1,6 @@
+NBSAP (http://nbsap.eaudeweb.ro/) is a website for organizing the implementation
+of Belgium's national biodiversity strategy after AICHI.
+
 NBSAP Quick Installation
 =====
 
@@ -26,8 +29,11 @@ NBSAP Quick Installation
     echo 'SECRET_KEY = "nbsap random stuff"' >> instance/settings.py
     echo 'MONGO_HOST = "0.0.0.0"' >> instance/settings.py
     echo 'MONGO_PORT = 27017' >> instance/settings.py
+    echo 'MONDO_DBNAME' = 'nbsap'
+    echo 'DATABASE_URI = "sqlite:///"'
+    echo 'DATABASE_URI_NAME = "/users-openid.db"'
 
-7. Set up the MongoDB database::
+7. Set up the MongoDB database prerequisites::
 
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
     echo '# MongoDB repo ###############' >> /etc/apt/sources.list
@@ -39,6 +45,9 @@ NBSAP Quick Installation
     7.2 Otherwise(or using SysV init process)::
 
     echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' >> /etc/apt/sources.list
+
+
+8. Install MongoDB database::
 
     sudo apt-get update
     sudo apt-get install mongodb-10gen
