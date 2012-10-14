@@ -52,12 +52,12 @@ NBSAP Quick Installation
     sudo apt-get update
     sudo apt-get install mongodb-10gen
 
-8. Prerequisites for filling database::
+9. Prerequisites for filling database::
 
     ./bash-scripts/mongoimport.sh
     ./manage.py syncdb
 
-9. Run a test server(see http://127.0.0.1:5000 afterwards)::
+10. Run a test server(see http://127.0.0.1:5000 afterwards)::
 
     ./manage.py runserver
 
