@@ -29,9 +29,9 @@ NBSAP Quick Installation
     echo 'SECRET_KEY = "nbsap random stuff"' >> instance/settings.py
     echo 'MONGO_HOST = "0.0.0.0"' >> instance/settings.py
     echo 'MONGO_PORT = 27017' >> instance/settings.py
-    echo 'MONDO_DBNAME' = 'nbsap'
-    echo 'DATABASE_URI = "sqlite:///"'
-    echo 'DATABASE_URI_NAME = "/users-openid.db"'
+    echo 'MONDO_DBNAME = "nbsap"' >> instance/settings.py
+    echo 'DATABASE_URI = "sqlite:///"' >> instance/settings.py
+    echo 'DATABASE_URI_NAME = "/users-openid.db"' >> instance/settings.py
 
 7. Set up the MongoDB database prerequisites::
 
