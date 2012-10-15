@@ -7,12 +7,15 @@ from flaskext.openid import COMMON_PROVIDERS
 
 auth = flask.Blueprint("auth", __name__)
 
+
 def initialize_app(app):
     app.register_blueprint(auth)
+
 
 @auth.route('/index')
 def index():
     return flask.render_template('index.html')
+
 
 @auth.route("/login", methods=['GET', 'POST'])
 @oid.loginhandler
@@ -22,7 +25,8 @@ def login():
         return flask.redirect(oid.get_next_url())
 
     return flask.render_template('login.html', next=oid.get_next_url(),
-                            error = oid.fetch_error())
+                                 error=oid.fetch_error())
+
 
 @auth.route("/google_login", methods=['GET'])
 @oid.loginhandler
@@ -33,6 +37,7 @@ def google_login():
     return oid.try_login(COMMON_PROVIDERS['google'], ask_for=['email',
                          'fullname', 'nickname'])
 
+
 @auth.route("/yahoo_login", methods=['GET'])
 @oid.loginhandler
 def yahoo_login():
@@ -41,6 +46,7 @@ def yahoo_login():
 
     return oid.try_login(COMMON_PROVIDERS['yahoo'], ask_for=['email',
                          'fullname', 'nickname'])
+
 
 @oid.after_login
 def create_or_login(resp):
@@ -56,6 +62,7 @@ def create_or_login(resp):
                           next=oid.get_next_url(), name=resp.fullname or
                           resp.nickname, email=resp.email))
 
+
 @auth.route("/add-new-user", methods=['GET', 'POST'])
 def add_new_user(name=None, email=None):
     if flask.g.user is not None or 'openid' not in flask.session:
@@ -66,6 +73,7 @@ def add_new_user(name=None, email=None):
     db_session.commit()
 
     return flask.redirect(oid.get_next_url())
+
 
 @auth.route('/logout')
 def logout():
