@@ -2,6 +2,7 @@ import schema
 
 from nbsap.database import mongo
 
+
 def update_actions_into_objectives():
     actions = mongo.db.actions.find()
     objectives = mongo.db.objectives.find()
@@ -16,7 +17,7 @@ def update_actions_into_objectives():
 
             for subobj2 in subobj1['subobjs']:
                 if 'actions' not in subobj2:
-                    subobj2['actions']= []
+                    subobj2['actions'] = []
 
                 for subobj3 in subobj2['subobjs']:
                     if 'actions' not in subobj3:
@@ -44,6 +45,7 @@ def update_actions_into_objectives():
 
                 mongo.db.objectives.save(objective)
 
+
 def update_objectives():
     objectives = mongo.db.objectives.find()
 
@@ -52,76 +54,75 @@ def update_objectives():
             objective['subobjs'] = []
         else:
             for subobj in objective['subobjs']:
-               if 'subobjs' not in subobj:
-                   subobj['subobjs'] = []
+                if 'subobjs' not in subobj:
+                    subobj['subobjs'] = []
 
         mongo.db.objectives.save(objective)
 
-def add_language_fields_to_indicators():
 
+def add_language_fields_to_indicators():
     indicators = mongo.db.indicators.find()
-    keys = ["status", "classification", "sources", "question", "measurer",
-            "sub_indicator", "head_indicator", "requirements", "name"]
+    keys = ["status", "classification", "sources",
+            "question", "measurer", "sub_indicator",
+            "head_indicator", "requirements", "name"]
 
     for indicator in indicators:
         for k, v in indicator.items():
             if k in keys:
-                indicator[k] = { "en": v,
-                      "fr": "",
-                      "nl": ""
-                    }
+                indicator[k] = {
+                    "en": v,
+                    "fr": "",
+                    "nl": ""
+                }
 
         if indicator.get('links'):
             for link in indicator["links"]:
-                link[0] = { "en": link[0],
-                            "fr" : "",
-                            "nl": ""
-                          }
+                link[0] = {
+                    "en": link[0],
+                    "fr": "",
+                    "nl": ""
+                }
         mongo.db.indicators.save(indicator)
 
+
 def indicator_link_list_to_dict():
-
     indicators = mongo.db.indicators.find()
-
     for indicator in indicators:
-
         if indicator.get('links'):
-
             old_list = indicator['links']
             indicator['links'] = []
-
             for link in old_list:
-                link = { "url_name": link[0],
-                         "url": link[1]
-                       }
+                link = {
+                    "url_name": link[0],
+                    "url": link[1]
+                }
                 indicator['links'].append(link)
 
         mongo.db.indicators.save(indicator)
 
+
 def split_scale_in_list():
-
     indicators = mongo.db.indicators.find()
-
     for indicator in indicators:
-
         if indicator.get('scale'):
             indicator['scale'] = indicator['scale'].split(', ')
 
         mongo.db.indicators.save(indicator)
 
+
 def convert_indicator_ids_to_int():
-
     indicators = mongo.db.indicators.find()
-
     for indicator in indicators:
         indicator['id'] = int(indicator['id'])
         mongo.db.indicators.save(indicator)
+
 
 def update_indicators():
     add_language_fields_to_indicators()
     indicator_link_list_to_dict()
     split_scale_in_list()
     convert_indicator_ids_to_int()
+
 
 def clean_whitespace():
     from nbsap.schema.refdata import language
@@ -147,6 +148,7 @@ def clean_whitespace():
                 if sub_action['body'][lang] == '\n\n':
                     sub_action['body'][lang] = ''
         mongo.db.actions.save(action)
+
 
 extra_shell_context = {
     "add_language_fields_to_indicators": add_language_fields_to_indicators,

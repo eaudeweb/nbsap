@@ -3,6 +3,7 @@ from fabric.api import *
 from fabric.contrib.files import exists
 from path import path as ppath
 
+
 env['nbsap_target_defs'] = {
     'staging': {
         'host_string': 'edw@nbsap.eaudeweb.ro',
@@ -17,7 +18,10 @@ env['nbsap_target_defs'] = {
         'nbsap_sandbox':  '/var/local/nbsap-demo/sandbox',
     },
 }
+
+
 env['nbsap_default_target'] = 'staging'
+
 
 def choose_target(func):
     @wraps(func)
@@ -37,12 +41,14 @@ def choose_target(func):
 
     return wrapper
 
+
 @task
 @choose_target
 def ssh():
     open_shell("cd '%(nbsap_repo)s' && "
                "source '%(nbsap_sandbox)s'/bin/activate"
                % env)
+
 
 @task
 @choose_target
@@ -65,6 +71,7 @@ def install():
     if not exists(env['nbsap_instance']):
         run("mkdir -p '%s'" % env['nbsap_instance'])
 
+
 @task
 @choose_target
 def start():
@@ -79,6 +86,7 @@ def start():
 def stop():
     run("/sbin/start-stop-daemon --stop --retry 3 --oknodo "
         "--pidfile %(nbsap_instance)s/fcgi.pid" % env)
+
 
 @task
 @choose_target

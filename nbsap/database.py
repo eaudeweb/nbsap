@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
+
 oid = OpenID()
 mongo = PyMongo()
 
@@ -12,6 +13,7 @@ db_session = scoped_session(session_factory)
 
 Base = declarative_base()
 Base.query = db_session.query_property()
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -24,4 +26,3 @@ class User(Base):
         self.name = name
         self.email = email
         self.openid = openid
-

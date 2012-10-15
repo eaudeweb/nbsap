@@ -10,8 +10,10 @@ from schema.refdata import _load_json
 
 indicators = flask.Blueprint("indicators", __name__)
 
+
 def initialize_app(app):
     app.register_blueprint(indicators)
+
 
 @indicators.route("/indicators")
 @sugar.templated("indicators/homepage.html")
@@ -22,13 +24,13 @@ def homepage_indicators():
         return flask.abort(404)
 
     # Use some math to generate the index intervals from the page number.
-    get_start_index = lambda (x) : 20 * x - 19
+    get_start_index = lambda (x): 20 * x - 19
 
     # Render 20 indicators per page.
     start_index = get_start_index(page)
     end_index = start_index + 19
 
-    indicators = [i for i in mongo.db.indicators.find({ '$and': [{'id': {'$gte': start_index}},
+    indicators = [i for i in mongo.db.indicators.find({'$and': [{'id': {'$gte': start_index}},
                                                                  {'id': {'$lte': end_index}}]
                                                      }).sort('id')]
 
@@ -48,6 +50,7 @@ def homepage_indicators():
              'mapping': mapping
            }
 
+
 @indicators.route("/admin/indicators")
 @auth_required
 @sugar.templated("indicators/indicators_listing.html")
@@ -60,6 +63,7 @@ def list_indicators():
             "editable_keys": sugar.get_indicator_editable_fields(),
             "indicators": aichi_indicators
            }
+
 
 @indicators.route("/admin/indicators/<int:indicator_id>")
 @auth_required
@@ -87,16 +91,18 @@ def view(indicator_id):
         goal_description = goal_description['description']
 
     return {
-            "indicator": indicator,
-            "transit_dict": aichi_indicator_keys,
-            "order": aichi_order['order'],
-            "data": schema.refdata.indicator_data,
-            "goal_description": goal_description,
-            "main_target_description": main_target_description['description'],
-            "other_targets_descriptions": other_targets_descriptions
-           }
+        "indicator": indicator,
+        "transit_dict": aichi_indicator_keys,
+        "order": aichi_order['order'],
+        "data": schema.refdata.indicator_data,
+        "goal_description": goal_description,
+        "main_target_description": main_target_description['description'],
+        "other_targets_descriptions": other_targets_descriptions
+    }
 
-@indicators.route("/admin/indicators/<int:indicator_id>/edit", methods=["GET", "POST"])
+
+@indicators.route("/admin/indicators/<int:indicator_id>/edit",
+                  methods=["GET", "POST"])
 @auth_required
 @sugar.templated("indicators/edit.html")
 def edit(indicator_id):
@@ -105,7 +111,8 @@ def edit(indicator_id):
     indicator = mongo.db.indicators.find_one_or_404({'id': indicator_id})
 
     indicator_schema = schema.Indicator(indicator)
-    indicator_schema['relevant_target'].valid_values = map(str, indicator_schema['relevant_target'].valid_values)
+    indicator_schema['relevant_target'].valid_values = \
+        map(str, indicator_schema['relevant_target'].valid_values)
     indicator_schema['relevant_target'].set(str(indicator['relevant_target']))
 
     # default display language is English
@@ -120,15 +127,16 @@ def edit(indicator_id):
         other_targets = flask.request.form.getlist('other_targets')
         scale = flask.request.form.getlist('scale')
 
-        text_keys = ["status", "classification", "sources", "question", "measurer",
-                "sub_indicator", "head_indicator", "requirements", "name"]
+        text_keys = ["status", "classification", "sources",
+                     "question", "measurer", "sub_indicator",
+                     "head_indicator", "requirements", "name"]
 
         for key in text_keys:
             value = data.get(key + '_' + selected_language, '')
             indicator_schema[key][selected_language].set(value)
 
         enum_keys = ["goal", "relevant_target", "sensitivity",
-                    "validity", "ease_of_communication"]
+                     "validity", "ease_of_communication"]
 
         for key in enum_keys:
             value = data.get(key, '')
@@ -140,8 +148,8 @@ def edit(indicator_id):
 
         for i in range(len(indicator_schema['links'])):
             indicator_schema['links'][i]['url'].set(data['url_' + str(i)])
-            indicator_schema['links'][i]['url_name'][selected_language].set(\
-                    data['url_name_' + selected_language + '_' + str(i)])
+            indicator_schema['links'][i]['url_name'][selected_language].\
+                set(data['url_name_' + selected_language + '_' + str(i)])
 
         if indicator_schema.validate():
             flask.flash(_("Saved changes."), "success")
@@ -149,11 +157,9 @@ def edit(indicator_id):
             mongo.db.indicators.save(indicator)
 
     return {
-                "language": selected_language,
-                "indicator": indicator,
-                "schema": indicator_schema,
-                "mk": sugar.MarkupGenerator(
-                    app.jinja_env.get_template("widgets/widgets_edit_data.html")
-                  ),
+        "language": selected_language,
+        "indicator": indicator,
+        "schema": indicator_schema,
+        "mk": sugar.MarkupGenerator(
+            app.jinja_env.get_template("widgets/widgets_edit_data.html")),
     }
-

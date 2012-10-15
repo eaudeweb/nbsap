@@ -3,6 +3,7 @@ from functools import wraps
 import flask
 import flatland.out.markup
 
+
 def get_none_fields_for_schema(schema):
     langs = ('en', 'fr', 'nl')
 
@@ -11,6 +12,7 @@ def get_none_fields_for_schema(schema):
             schema['title'][lang] = u''
         if schema['body'][lang] is None:
             schema['body'][lang] = u''
+
 
 def get_indicator_editable_fields():
     keys = ["status", "classification", "sources", "question", "measurer",
