@@ -1,5 +1,15 @@
-NBSAP (http://nbsap.eaudeweb.ro/) is a website for organizing the implementation
-of Belgium's national biodiversity strategy after AICHI.
+National Biodiversity Strategies and Action Plan (or simply NBSAP) (http://nbsap.eaudeweb.ro/)
+is a platform for organizing the implementation of Belgium's national biodiversity strategy
+after AICHI. It consists of two panels each corresponding an operation: viewing and editing.
+
+The first panel allows anyone to overview the aichi goals, targets and
+indicators along with national strategy mappings (the way a country develops its
+own strategy in terms of objectives and actions) and its implementation.
+
+The second panel(Admin), authentication-available only, allows an user to actually define
+the national strategy. (e.g. add/modify/delete an objective, action or even
+elements from AICHI) in the purpose of building it.
+
 
 NBSAP Quick Installation
 =====
@@ -52,7 +62,7 @@ NBSAP Quick Installation
     sudo apt-get update
     sudo apt-get install mongodb-10gen
 
-9. Prerequisites for filling database::
+9. Prerequisites for filling database(both data and users)::
 
     ./bash-scripts/mongoimport.sh
     ./manage.py syncdb
