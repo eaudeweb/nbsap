@@ -63,10 +63,19 @@ def create_or_login(resp):
                           resp.nickname, email=resp.email))
 
 
-@auth.route("/add-new-user", methods=['GET', 'POST'])
-def add_new_user(name=None, email=None):
+@auth.route("/add-new-user")
+def add_new_user():
     if flask.g.user is not None or 'openid' not in flask.session:
         return flask.redirect(oid.get_next_url())
+
+    try:
+        name = flask.request.args.getlist('name')[0]
+    except IndexError:
+        name = None
+    try:
+        email = flask.request.args.getlist('email')[0]
+    except IndexError:
+        email = None
 
     flask.flash(_('Newcomer admin. Welcome!'), "success")
     db_session.add(User(name, email, flask.session['openid']))
