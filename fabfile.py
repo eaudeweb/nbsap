@@ -80,6 +80,11 @@ def stop():
     run("/sbin/start-stop-daemon --stop --retry 3 --oknodo "
         "--pidfile %(nbsap_instance)s/fcgi.pid" % env)
 
+@task
+@choose_target
+def syncdb():
+    run("%(nbsap_sandbox)s/bin/python %(nbsap_repo)s/manage.py syncdb" % env)
+
 
 @task
 @choose_target
