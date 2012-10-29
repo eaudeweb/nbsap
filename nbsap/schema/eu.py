@@ -3,27 +3,27 @@ import flatland
 from common import I18nString, CommonList, CommonInteger
 
 _EUsubaction = flatland.Dict.of(
-            I18nString.named('body')
-                .using(label=u'Description'),
-            CommonInteger.named('id'),
-       )
+        I18nString.named('body')
+            .using(label=u'Description'),
+        CommonInteger.named('id'),
+   )
 
 _EUaction = flatland.Dict.of(
-            I18nString.named('body')
-                .using(label=u'Description'),
-            CommonInteger.named('id'),
-            CommonList.named('subactions').of(_EUsubaction),
-       )
+        I18nString.named('body')
+            .using(label=u'Description'),
+        CommonInteger.named('id'),
+        CommonList.named('subactions').of(_EUsubaction),
+   )
 
 
 _EUTargetSchemaDefiniton = flatland.Dict.of(
-            I18nString.named('title')
-                .using(label=u'Title'),
-            I18nString.named('body')
-                .using(label=u'Description'),
-            CommonInteger.named('id'),
-            CommonList.named('actions').of(_EUaction),
-       )
+        I18nString.named('title')
+            .using(label=u'Title'),
+        I18nString.named('body')
+            .using(label=u'Description'),
+        CommonInteger.named('id'),
+        CommonList.named('actions').of(_EUaction),
+   )
 
 class EUTarget(_EUTargetSchemaDefiniton):
     def __init__(self, init_target):

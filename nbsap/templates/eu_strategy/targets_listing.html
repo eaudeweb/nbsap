@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<style>
+#DataTables_Table_0_previous {
+    margin-right: 10px;
+}
+</style>
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU targets"))
+      ]) }}
+</ul>
+
+<a class="pull-right btn btn-mini" href={{url_for('goals.homepage_goals')}}>Back to AICHI</a>
+
+{% from "navigation.html" import nav_tabs %}
+{{ nav_tabs('eu_strategy') }}
+
+<div class="add-button">
+    <a class="btn btn-primary add" href="{{url_for('eu_strategy.add_target')}}">{{_('Add target')}}</a>
+</div>
+
+<table class="table table-bordered table-striped targets_listing">
+
+    <thead>
+      <th style="width:10px; text-align:center">{{_('Id')}}</th>
+      <th>{{_('EU Targets')}}</th>
+      <th style="width:10px; text-align:center">NL</th>
+      <th style="width:10px; text-align:center">FR</th>
+    </thead>
+
+  <tbody>
+      {% for target in targets %}
+      <tr>
+        <td>
+            {{-target.id-}}
+        </td>
+        <td>
+            <a href="{{url_for('eu_strategy.view_target', target_id=target.id)}}">{{_t(target.title)}}</a>
+        </td>
+        <td style="text-align: center;">
+            <a href="{{url_for('eu_strategy.edit_target', target_id=target.id)}}?lang=nl"
+               class="btn btn-mini btn-{% if target.title['nl'] and target.body['nl'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if target.title['nl'] and target.body['nl']
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
+            </a>
+        </td>
+
+        <td style="text-align: center;">
+            <a href="{{url_for('eu_strategy.edit_target', target_id=target.id)}}?lang=fr"
+               class="btn btn-mini btn-{% if target.title['fr'] and target.body['fr'] %}success
+                          {% else %}warning{% endif %}" type="button">
+                          {% if target.title['fr'] and target.body['fr']
+                          %}{{_('translated')}} {% else %} {{_('translate')}} {% endif %}
+            </a>
+        </td>
+      </tr>
+    {% endfor %}
+
+  </tbody>
+
+</table>
+
+{% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/lib/datatables/jquery.dataTables.min.js') }}
+{{ script_src('js/lib/datatables/DT_bootstrap.js') }}
+<script>
+
+  $(document).ready(function() {
+    $('.targets_listing').dataTable({
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "bStateSave": true,
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+          "sLengthMenu": '{{_("Display _MENU_ targets per page")}}',
+          "sZeroRecords": '{{_("No matching targets found")}}'
+        }
+    });
+  });
+</script>
+
+{% endblock scripts %}

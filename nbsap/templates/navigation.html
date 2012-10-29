@@ -24,6 +24,11 @@
     </a>
   </li>
 
+  <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
+  <a href="{{ url_for('eu_strategy.list_targets') }}">{{_('EU Strategy')}}
+    </a>
+  </li>
+
 </ul>
 {%- endmacro %}
 
