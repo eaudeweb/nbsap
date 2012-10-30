@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU Targets")),
+      (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
+      (url_for('eu_strategy.view_action',
+        target_id=target.id, action_id=action.id), "Action " + action.id|string()),
+      (url_for('eu_strategy.add_subaction',
+        target_id=target.id, action_id=action.id), "Add subaction")
+    ]) }}
+</ul>
+
+{% macro error(field) %}
+  {% for error in field.errors %}
+    <span class="help-inline">{{error}}</span>
+  {% endfor %}
+{% endmacro %}
+
+<h1 class="small">{{_('Add subaction')}}</h1>
+
+<form method="POST">
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
+        <a href="{{url_for('eu_strategy.view_action',
+            target_id=target.id, action_id=action.id)}}"
+                class="btn" type="button">{{_('Cancel')}}
+        </a>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="language">{{_('Language')}}</label>
+        <div class="controls">
+            <select name="language" id="language">
+                <option value="en"
+                    {% if language == 'en'%}selected="selected"{% endif %}>{{_('English')}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <div class="language-container language-en">
+                <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
+                    <label class="control-label" for="body">{{_('Description')}}</label>
+                    <div class="controls wmd-panel">
+                      <div id="wmd-button-bar-en"></div>
+                      <textarea name="body-en" class="wmd-input" id="wmd-input-en"
+                            style="width:100%; max-height: 900px;">
+                        {{-schema.body['en']|safe-}}
+                      </textarea>
+                    </div>
+                    <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
+                        {{error(schema.body['en'])}}
+                </div>
+            </div>
+
+            {% from 'bits.html' import markdown_help, markdown_preview -%}
+            {{ markdown_preview() }}
+            {{ markdown_help() }}
+
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
+        <a href="{{url_for('eu_strategy.view_action',
+            target_id=target.id, action_id=action.id)}}"
+                class="btn" type="button">{{_('Cancel')}}
+        </a>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src('js/jquery.autogrow-textarea.js') }}
+{{ script_src('js/language.js') }}
+
+{{ script_src('js/Markdown.Converter.js') }}
+{{ script_src('js/Markdown.Sanitizer.js') }}
+{{ script_src('js/Markdown.Editor.js') }}
+{{ script_src('js/less-1.2.2.min.js') }}
+{{ script_src("bootstrap/js/bootstrap-tooltip.js") }}
+{{ script_src("bootstrap/js/bootstrap-modal.js") }}
+{{ css_link ('css/markdown.css') }}
+
+{{ script_src('js/edit_markdown.js') }}
+<script>
+
+$('textarea').autogrow();
+
+
+</script>
+{% endblock %}

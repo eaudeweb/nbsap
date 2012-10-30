@@ -7,66 +7,70 @@
       (url_for('goals.list_goals'), _("Admin")),
       (url_for('eu_strategy.list_targets'), _("EU Targets")),
       (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
+      (url_for('eu_strategy.view_action', target_id=target.id,
+        action_id=action.id), "Action " + action.id|string()),
     ]) }}
 </ul>
 
-<h1 class="small">{{_t(target.title)}}</h1>
-
 <div class="btn-toolbar">
     <div class="btn-group">
-      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_target',
-        target_id=target.id)}}">{{_('Edit')}}</a>
+      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_action',
+        target_id=target.id, action_id=action.id)}}">{{_('Edit')}}</a>
     </div>
     <div class="btn-group">
-      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.add_action',
-            target_id=target.id)}}">{{_('Add action')}}</a>
+      <a class="btn btn-primary edit"
+      href="{{url_for('eu_strategy.add_subaction',
+        target_id=target.id, action_id=action.id)}}">{{_('Add subaction')}}</a>
     </div>
 
 </div>
 
 <div class="admin-obj-description">
-	<p>{{_tm(target.body)}}</p>
+	<p>{{_tm(action.body)}}</p>
 </div>
 
-{% if target.actions %}
+{% if action.subactions %}
 <div class="property_list">
     <table class="table table-bordered table-striped">
         <thead>
             <th style="width:10px; text-align:center">{{_('Id')}}</th>
-            <th>{{_('Actions')}}</th>
+            <th>{{_('Subactions')}}</th>
             <th style="width:10px; text-align:center">NL</th>
             <th style="width:10px; text-align:center">FR</th>
         </thead>
 
       <tbody>
-    {% for action in target['actions']|sort(attribute='id') %}
+    {% for subaction in action['subactions']|sort(attribute='id') %}
           <tr>
             <td>
-                {{-action['id']-}}
+                {{-subaction['id']-}}
             </td>
             <td>
-                <a href="{{ url_for('eu_strategy.view_action',
-                    target_id=target.id, action_id=action.id)}}">
-                     {{ _t(action.body) }}
+                <a href="{{ url_for('eu_strategy.view_subaction',
+                    target_id=target.id, action_id=action.id,
+                    subaction_id=subaction.id)}}">
+                     {{ _t(subaction.body) }}
                 </a>
             </td>
 
             <td style="text-align: center;">
-                <a href="{{url_for('eu_strategy.edit_action',
-                target_id=target.id, action_id=action.id)}}?lang=nl"
-                   class="btn btn-mini btn-{% if action['body']['nl'] %}success
+                <a href="{{url_for('eu_strategy.edit_subaction',
+                target_id=target.id, action_id=action.id,
+                subaction_id=subaction.id)}}?lang=nl"
+                   class="btn btn-mini btn-{% if subaction['body']['nl'] %}success
                               {% else %}warning{% endif %}" type="button">
-                              {% if action['body']['nl'] %}{{_('translated')}}
+                              {% if subaction['body']['nl'] %}{{_('translated')}}
                               {% else %}{{_('translate')}} {% endif %}
                 </a>
             </td>
 
             <td style="text-align: center;">
-                <a href="{{url_for('eu_strategy.edit_action',
-                target_id=target.id, action_id=action.id)}}?lang=fr"
-                   class="btn btn-mini btn-{% if action['body']['fr'] %}success
+                <a href="{{url_for('eu_strategy.edit_subaction',
+                target_id=target.id, action_id=action.id,
+                subaction_id=subaction.id)}}?lang=fr"
+                   class="btn btn-mini btn-{% if subaction['body']['fr'] %}success
                               {% else %}warning{% endif %}" type="button">
-                              {% if action['body']['fr'] %}{{_('translated')}}
+                              {% if subaction['body']['fr'] %}{{_('translated')}}
                               {% else %}{{_('translate')}} {% endif %}
                 </a>
             </td>
