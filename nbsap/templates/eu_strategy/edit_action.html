@@ -51,6 +51,15 @@
     <div class="row">
         <div class="span6">
             <div class="language-container language-en">
+                <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
+                  <label class="control-label" for="title">{{_('Title')}}</label>
+                    <div class="controls">
+                        <textarea name="title-en" id="title-en" style="width: 100%">
+                           {{-schema.title['en']-}}
+                        </textarea>
+                        {{error(schema.title['en'])}}
+                    </div>
+                </div>
                 <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
                   <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
@@ -67,6 +76,14 @@
 
             <div class="language-container language-fr">
                 <div class="control-group">
+                  <label class="control-label" for="title">{{_('Title')}}</label>
+                    <div class="controls">
+                        <textarea name="title-fr" id="title-fr" style="width: 100%">
+                           {{-schema.title['fr']-}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="control-group">
                   <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-fr"></div>
@@ -80,6 +97,14 @@
             </div>
 
             <div class="language-container language-nl">
+                <div class="control-group">
+                  <label class="control-label" for="title">{{_('Title')}}</label>
+                    <div class="controls">
+                        <textarea name="title-nl" id="title-nl" style="width: 100%">
+                           {{-schema.title['nl']-}}
+                        </textarea>
+                    </div>
+                </div>
                 <div class="control-group">
                   <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
@@ -99,6 +124,10 @@
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
+            <p class="original-title">{{_('Original title in English')}}</p>
+            <div class="well">
+                {{-action.title['en']-}}
+            </div>
             <p class="original-description">{{_('Original description in English')}}</p>
             <div class="well">
                 {{-action.body['en']|markdown-}}

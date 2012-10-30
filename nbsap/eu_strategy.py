@@ -74,6 +74,7 @@ def add_action(target_id):
         data = flask.request.form.to_dict()
         lang = data['language']
 
+        action_schema['title'][lang].set(data['title-' + lang])
         action_schema['body'][lang].set(data['body-' + lang])
 
         if action_schema.validate():
@@ -121,6 +122,7 @@ def add_subaction(target_id, action_id):
         data = flask.request.form.to_dict()
         lang = data['language']
 
+        subaction_schema['title'][lang].set(data['title-' + lang])
         subaction_schema['body'][lang].set(data['body-' + lang])
 
         if subaction_schema.validate():
@@ -258,9 +260,11 @@ def edit_action(target_id, action_id):
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
         lang = data['language']
+        action_schema['title'][lang].set(data['title-' + lang])
         action_schema['body'][lang].set(data['body-' + lang])
 
         if action_schema.validate():
+            related_action['title'][lang] = data['title-' + lang]
             related_action['body'][lang] = data['body-' + lang]
             flask.flash(_("Saved changes."), "success")
             mongo.db.eu_targets.save(target)
@@ -303,9 +307,11 @@ def edit_subaction(target_id, action_id, subaction_id):
     if flask.request.method == "POST":
         data = flask.request.form.to_dict()
         lang = data['language']
+        subaction_schema['title'][lang].set(data['title-' + lang])
         subaction_schema['body'][lang].set(data['body-' + lang])
 
         if subaction_schema.validate():
+            related_subaction['title'][lang] = data['title-' + lang]
             related_subaction['body'][lang] = data['body-' + lang]
             flask.flash(_("Saved changes."), "success")
             mongo.db.eu_targets.save(target)

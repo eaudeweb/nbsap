@@ -12,6 +12,8 @@
     ]) }}
 </ul>
 
+<h3>{{ _t(action.title) }}</h3>
+
 <div class="btn-toolbar">
     <div class="btn-group">
       <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_action',
@@ -49,7 +51,7 @@
                 <a href="{{ url_for('eu_strategy.view_subaction',
                     target_id=target.id, action_id=action.id,
                     subaction_id=subaction.id)}}">
-                     {{ _t(subaction.body) }}
+                     {{ _t(subaction.title) }}
                 </a>
             </td>
 
