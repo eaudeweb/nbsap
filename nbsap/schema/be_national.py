@@ -1,6 +1,6 @@
 import flatland
 
-from common import I18nString, CommonString, CommonList, CommonInteger
+from common import I18nString, CommonString, CommonList, CommonInteger, I18nStringOptional
 
 _subobj_list = CommonList.named('subobjs').with_properties(widget="hidden")
 
@@ -16,7 +16,7 @@ _ObjectiveSchemaDefinition = flatland.Dict.named("objective").with_properties(wi
             I18nString.named('title')
                 .using(label=u'Title')
                 .with_properties(css_class="span4"),
-            I18nString.named('body')
+            I18nStringOptional.named('body')
                 .using(label=u'Description')
                 .with_properties(field_widget="edit_textarea",
                                  css_class="input-xlarge"),

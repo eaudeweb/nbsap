@@ -162,17 +162,17 @@ class ObjectiveAddTest(_BaseTest):
         response = self.client.get('admin/objectives/add')
         self.assertEqual(response.status_code, 200)
 
-    def test_error_message_displayed_when_body_blank(self):
+    def test_error_message_displayed_when_title_blank(self):
 
         mydata = {
                     "language": "en",
-                    "title-en": "Testing 1,2,3",
-                    "body-en": ""
+                    "title-en": "",
+                    "body-en": "Testing 1,2,3"
                 }
 
         response = self.client.post("admin/objectives/add", data=mydata)
         self.assertIn("Error in adding an objective.", response.data)
-        self.assertIn("Description is required", response.data)
+        self.assertIn("Title is required", response.data)
         self.assertNotIn("Objective successfully added.", response.data)
 
     def test_error_message_missing_when_successfull_add(self):
@@ -240,25 +240,6 @@ class ObjectiveEditTest(_BaseTest):
         self.assertEqual(objectives[0]['title']['en'], 'Mock objective title')
         self.assertNotEqual(objectives[0]['body']['en'], 'Some body text in english')
 
-    def test_error_message_displayed_when_body_blank(self):
-
-        mydata = {
-                    "language": "en",
-                    "title-en": "Some title text in english",
-                    "body-en": ""
-                }
-
-        response = self.client.post("/admin/objectives/1/edit", data=mydata)
-        self.assertIn("Description is required", response.data)
-        self.assertNotIn("Saved changes.", response.data)
-
-        from nbsap.database import mongo
-        with self.app.test_request_context():
-            objectives = [o for o in mongo.db.objectives.find()]
-
-        self.assertEqual(len(objectives), 1)
-        self.assertEqual(objectives[0]['body']['en'], 'Mock objective body')
-        self.assertNotEqual(objectives[0]['title']['en'], 'Some title text in english')
 
     def test_error_message_missing_when_title_blank(self):
 

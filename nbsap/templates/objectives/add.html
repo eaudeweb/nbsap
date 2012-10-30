@@ -38,15 +38,16 @@
     <div class="row">
         <div class="span6">
             <div class="language-container language-en">
-                <div class="control-group" >
+                <div class="control-group {%- if schema.title['en'].errors %} error {%- endif %}">
                   <label class="control-label" for="title">{{_('Title')}}</label>
                     <div class="controls">
                         <textarea name="title-en" id="title-en" style="width: 100%">
                             {{-schema.title['en']|safe-}}
                         </textarea>
+                        {{error(schema.title['en'])}}
                     </div>
                 </div>
-                <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
+                <div class="control-group">
                   <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-en"></div>
@@ -56,7 +57,6 @@
                       </textarea>
                     </div>
                     <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
-                      {{error(schema.body['en'])}}
                 </div>
             </div>
 
