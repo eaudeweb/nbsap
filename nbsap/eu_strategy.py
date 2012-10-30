@@ -69,5 +69,31 @@ def view_target(target_id):
 @auth_required
 @sugar.templated("eu_strategy/edit_target.html")
 def edit_target(target_id):
+    target = mongo.db.eu_targets.find_one_or_404({'id': target_id})
+    target_schema = schema.EUTarget(target)
+
+    #default display language is English
+    try:
+        lang = flask.request.args.getlist('lang')[0]
+    except IndexError:
+        lang = u'en'
+
+    if flask.request.method == "POST":
+        data = flask.request.form.to_dict()
+        lang = data['language']
+        target_schema['title'][lang].set(data['title-' + lang])
+        target_schema['body'][lang].set(data['body-' + lang])
+
+        if target_schema.validate():
+            target['title'][lang] = data['title-' + lang]
+            target['body'][lang] = data['body-' + lang]
+            flask.flash(_("Saved changes."), "success")
+            mongo.db.eu_targets.save(target)
+        else:
+            flask.flash(_("Error in editing an EU target."), "error")
+
     return {
+        "target": target,
+        "schema": target_schema,
+        "language": lang,
     }

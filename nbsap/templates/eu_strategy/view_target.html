@@ -4,9 +4,9 @@
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
   {{ breadcrumb_items([
-      (url_for('goals.list_goals'), _("Admin")),
-      (url_for('eu_strategy.list_targets'), _("EU targets"))
-      (url_for('eu_strategy.edit', target_id=target.id), target.id|string())
+  (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU Targets")),
+      (url_for('eu_strategy.add_target'), _("Add EU target")),
       ]) }}
 </ul>
 
@@ -14,7 +14,7 @@
 
 <div class="btn-toolbar">
     <div class="btn-group">
-      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit',
+      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_target',
         target_id=target.id)}}">{{_('Edit')}}</a>
     </div>
 </div>
