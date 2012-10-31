@@ -13,6 +13,52 @@ def initialize_app(app):
     app.register_blueprint(eu_strategy)
 
 
+@eu_strategy.route("/default_eutargets")
+@sugar.templated("/eu_strategy/default_homepage.html")
+def homepage_default():
+    return {}
+
+
+@eu_strategy.route("/eu_targets")
+@eu_strategy.route("/eu_targets/<int:target_id>")
+@sugar.templated("eu_strategy/homepage.html")
+def homepage_eutargets(target_id=1):
+    count_entries = mongo.db.eu_targets.count()
+    if count_entries == 0:
+        return flask.redirect(flask.url_for('eu_strategy.homepage_default'))
+
+    target_ids = mongo.db.eu_targets.find({}, {'id': 1})
+    target = mongo.db.eu_targets.find_one_or_404({'id': target_id})
+
+    actions_list = []
+    amask = "a%s" % (str(target['id']))
+
+    # iterate over actions
+    a_list = target['actions']
+    a_sorted_list = sorted(a_list, key=lambda k: k['id'])
+    for a in a_sorted_list:
+        action = {}
+        action['key'] = ".".join([amask, str(a['id'])])
+        action['title-key'] = action['key'][1:]
+        action['value'] = a
+        actions_list.append(action)
+
+        sa_list = a['subactions']
+        sa_sorted_list = sorted(sa_list, key=lambda k: k['id'])
+        for sa in sa_sorted_list:
+            saction = {}
+            saction['key'] = ".".join([action['key'], str(sa['id'])])
+            saction['title-key'] = saction['key'][1:]
+            saction['value'] = sa
+            actions_list.append(saction)
+
+    return {
+        "target_ids": target_ids,
+        "target": target,
+        "actions_list": actions_list,
+    }
+
+
 @eu_strategy.route("/admin/eu_targets")
 @auth_required
 @sugar.templated("eu_strategy/targets_listing.html")

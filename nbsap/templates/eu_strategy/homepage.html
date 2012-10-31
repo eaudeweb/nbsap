@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from "bits.html" import translate_truncated_markdown as _ttm with context %}
+{% from "navigation.html" import homepage_tabs %}
+{{ homepage_tabs('eu_strategy') }}
+
+  <div class="tabbable tabs-left">
+
+    <ul class="nav nav-tabs nav-stacked local-navigation">
+      <label class="nav-header">{{_('EU Targets')}}</label>
+      {% for target_id in target_ids | sort(attribute='id') %}
+        {% set active = 'active' if target_id.id == target.id %}
+        <li class={{ active }}>
+        <a href="{{ url_for('eu_strategy.homepage_eutargets', target_id=target_id.id) }}">
+          {{_('Target')}} {{ target_id.id }}
+        </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="tab-content homepage_view" >
+      <h1>{{_t(target.title)}}</h1>
+        <div class="element_field objective-description">
+		    {{ _tm(target.body) }}
+        </div>
+
+         <div class="row">
+           <label>Table of contents:</label>
+             {% set LENGTH = (actions_list|length) %}
+             {% if LENGTH == 0 %}
+               <ul class="span2">
+                   <li>{{_('No actions found.')}}</li>
+               </ul>
+             {% endif %}
+             {% if LENGTH >= 4 %}
+               {% set SIZE = (((actions_list|length)/3)|int)+1 %}
+             {% else %}
+               {% set SIZE = LENGTH %}
+             {% endif %}
+               {% for action in actions_list %}
+                   {% if loop.index0 % SIZE == 0 and loop.first %}
+                   <ul class="span2">
+                   {% endif %}
+                   {% if loop.index0 % SIZE == 0 and not loop.first %}
+                   </ul><ul class="span2">
+                   {% endif %}
+                   <li>
+                       <a href="#{{action['key']}}" rel="tooltip"
+                       data-placement="right"
+                       data-original-title="{{_t(action['value']['body'])}}">
+                       {{_('Action')}} {{action['title-key']}}</a>
+                   </li>
+               {% endfor %}
+               </ul>
+         </div>
+
+        {% for action in actions_list %}
+        <div class="element_field" id="{{action['key']}}">
+          <h2>{{_t(action['value']['title'])}}</h2>
+
+          <div class="">
+            {{ _ttm(action['value']['body']) }}
+          </div>
+        </div>
+		<div class="row between-subobj">
+			<a class="pull-right" href="#top">{{_('back to top')}}</a>
+		</div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+{% from 'bits.html' import script_src -%}
+{{ script_src("bootstrap/js/bootstrap-tooltip.js") }}
+
+<script>
+$(function () {
+  $("[rel=tooltip]").tooltip();
+});
+
+</script>
+{% endblock scripts %}
