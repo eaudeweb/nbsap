@@ -2,7 +2,7 @@
 {% block content %}
 
 {% from "bits.html" import translate_truncated_markdown as _ttm with context %}
-{% from "navigation.html" import homepage_tabs %}
+{% from "navigation.html" import homepage_tabs with context %}
 {{ homepage_tabs('eu_strategy') }}
 
   <div class="tabbable tabs-left">

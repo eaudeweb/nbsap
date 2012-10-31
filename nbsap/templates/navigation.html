@@ -43,11 +43,13 @@
     </a>
   </li>
 
+  {% if config.EU_STRATEGY %}
   <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
     <a href="{{ url_for('eu_strategy.homepage_eutargets') }}">
-        {{_('EU Targets')}}
+        {{_('EU Strategy')}}
     </a>
   </li>
+  {% endif %}
 
   <li class="{{ 'active' if active == 'national' else '' }}">
     <a href="{{ url_for('objectives.homepage_objectives') }}">
