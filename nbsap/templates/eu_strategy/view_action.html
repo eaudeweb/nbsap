@@ -8,7 +8,7 @@
       (url_for('eu_strategy.list_targets'), _("EU Targets")),
       (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
       (url_for('eu_strategy.view_action', target_id=target.id,
-        action_id=action.id), "Action " + action.id|string()),
+        action_id=action.id), _t(action.title)),
     ]) }}
 </ul>
 
