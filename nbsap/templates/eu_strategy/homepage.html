@@ -63,11 +63,11 @@
             {{ _ttm(action['value']['body']) }}
           </div>
         </div>
-		<div class="row between-subobj">
+		{% endfor %}
+
+        <div class="row between-subobj">
 			<a class="pull-right" href="#top">{{_('back to top')}}</a>
 		</div>
-      {% endfor %}
-
     </div>
   </div>
 
