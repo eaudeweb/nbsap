@@ -48,8 +48,8 @@
                    <li>
                        <a href="#{{action['key']}}" rel="tooltip"
                        data-placement="right"
-                       data-original-title="{{_t(action['value']['body'])}}">
-                       {{_t(action['value']['title'])}}</a>
+                       data-original-title="{{_t(action['body'])}}">
+                       {{_t(action['title'])}}</a>
                    </li>
                {% endfor %}
                </ul>
@@ -57,10 +57,10 @@
 
         {% for action in actions_list %}
         <div class="element_field" id="{{action['key']}}">
-          <h2>{{_t(action['value']['title'])}}</h2>
+          <h2>{{_t(action['title'])}}</h2>
 
           <div class="">
-            {{ _ttm(action['value']['body']) }}
+            {{ _ttm(action['body']) }}
           </div>
         </div>
 		{% endfor %}

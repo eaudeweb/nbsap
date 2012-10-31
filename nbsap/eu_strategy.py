@@ -34,22 +34,23 @@ def homepage_eutargets(target_id=1):
     amask = "a%s" % (str(target['id']))
 
     # iterate over actions
-    a_list = target['actions']
-    a_sorted_list = sorted(a_list, key=lambda k: k['id'])
-    for a in a_sorted_list:
+    a_list = sorted(target['actions'], key=lambda k: k['id'])
+    for a in a_list:
         action = {}
         action['key'] = ".".join([amask, str(a['id'])])
         action['title-key'] = action['key'][1:]
-        action['value'] = a
+        action['body'] = a['body']
+        action['title'] = a['title']
         actions_list.append(action)
 
-        sa_list = a['subactions']
-        sa_sorted_list = sorted(sa_list, key=lambda k: k['id'])
-        for sa in sa_sorted_list:
+        # for each action iterate over subactions
+        sa_list = sorted(a['subactions'], key=lambda k: k['id'])
+        for sa in sa_list:
             saction = {}
             saction['key'] = ".".join([action['key'], str(sa['id'])])
             saction['title-key'] = saction['key'][1:]
-            saction['value'] = sa
+            saction['body'] = sa['body']
+            saction['title'] = sa['title']
             actions_list.append(saction)
 
     return {
