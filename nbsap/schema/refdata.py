@@ -21,4 +21,3 @@ targets = {k:v['name'] for k, v in goal_target_mapping.items()}
 targets = {int(k): targets[k] for k in targets.keys()}
 
 indicator_data = _load_json("../refdata/indicator_data.json")
-

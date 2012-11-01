@@ -4,6 +4,8 @@ from flatland.validation import Validator
 from flatland.schema.base import NotEmpty
 from flatland.signals import validator_validated
 
+from .refdata import language
+
 @validator_validated.connect
 def validated(sender, element, result, **kwargs):
     if sender is NotEmpty:
@@ -80,6 +82,63 @@ CommonList = flatland.List.using(optional=True)
 CommonEnum = flatland.Enum.using(optional=True)\
                         .including_validators(EnumValue())\
                         .with_properties(value_labels=None)
+
+
+def split_after_colon(mystring):
+    if mystring == '' or mystring is None:
+        return mystring
+    if mystring.find(':') < 0:
+        raise ValueError('Wrong title naming. Usage <Title (nr): (desc)>')
+    return mystring.split(':')[0]
+
+
+def shorten_title(i18nstring):
+    for k in language.keys():
+        i18nstring[k] = split_after_colon(i18nstring[k])
+
+
+def get_targets():
+    from nbsap.database import mongo
+    targets = {t['id']: t['title'] for t in mongo.db.eu_targets.find()}
+    for value in targets.values():
+        shorten_title(value)
+    return targets
+
+def get_actions():
+    from nbsap.database import mongo
+    targets = mongo.db.eu_targets.find()
+    actions = []
+
+    for target in targets:
+        amask = "a%s" % (str(target['id']))
+        tmp_list = sorted(target['actions'], key=lambda k: k['id'])
+        for action in tmp_list:
+            act = {
+                'key': ".".join([amask, str(action['id'])]),
+                'title': action['title'],
+            }
+            actions.append(act)
+            stmp_list = sorted(action['subactions'], key=lambda k: k['id'])
+            for saction in stmp_list:
+                sact = {
+                    'key': ".".join([act['key'], str(saction['id'])]),
+                    'title': saction['title'],
+                }
+                actions.append(sact)
+
+    result = {a['key']:a['title'] for a in actions}
+    return result
+
+class MyCommonEnum(CommonEnum):
+    @property
+    def valid_values(self):
+        targets = get_targets()
+        return tuple(sorted(targets.keys()))
+
+    @property
+    def value_labels(self):
+        return get_targets()
+
 
 I18nStringOptional = flatland.Dict.with_properties(widget="i18nstring").of(
             CommonString.named("en")
