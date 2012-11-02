@@ -372,3 +372,16 @@ def edit_subaction(target_id, action_id, subaction_id):
         "schema": subaction_schema,
         "language": lang,
     }
+
+@eu_strategy.route("/eu_targets/data")
+def eu_targets_data():
+    try:
+        eu_target_id = flask.request.args.getlist('eu_target_id')[0]
+    except IndexError:
+        return flask.jsonify({'result': ''})
+
+    eu_target = mongo.db.eu_targets.find_one_or_404({'id': int(eu_target_id)})
+    result = {'result': sugar.translate(eu_target['title'])}
+
+    return flask.jsonify(result)
+

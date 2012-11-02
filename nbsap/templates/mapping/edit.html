@@ -64,7 +64,8 @@
   {{script_src('js/mustache.js')}}
 
   <script>
-  $('.chzn-select').attr('data-placeholder', '{{_("Select targets")}}');
+  $('.chzn-select').eq(0).attr('data-placeholder', '{{_("Select targets")}}');
+  $('.chzn-select').eq(1).attr('data-placeholder', '{{_("Select actions")}}');
   $(function () {
 
     $('select[name=objective]').on('change', function () {
@@ -98,6 +99,14 @@
         var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
         var output = Mustache.render(html_content, data)
         text.html(output);
+      });
+    }).change();
+
+    $('select[name=main_eu_target]').on('change', function () {
+      var option = $(this).val();
+      var text = $(this).parents('.control-group').find('.mapping_text');
+      $.get("{{url_for('eu_strategy.eu_targets_data')}}", {'eu_target_id': option}, function (data) {
+       text.html('<p>' + data['result'] + '</p>');
       });
     }).change();
 
