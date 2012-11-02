@@ -104,7 +104,7 @@ def get_eu_targets_from_db():
         shorten_title(value)
     return targets
 
-def get_eu_actions_from_db():
+def get_full_eu_actions_from_db():
     from nbsap.database import mongo
     targets = mongo.db.eu_targets.find()
     actions = []
@@ -116,6 +116,7 @@ def get_eu_actions_from_db():
             act = {
                 'key': ".".join([amask, str(action['id'])]),
                 'title': action['title'],
+                'body': action['body'],
             }
             actions.append(act)
             stmp_list = sorted(action['subactions'], key=lambda k: k['id'])
@@ -123,9 +124,24 @@ def get_eu_actions_from_db():
                 sact = {
                     'key': ".".join([act['key'], str(saction['id'])]),
                     'title': saction['title'],
+                    'body': saction['body'],
                 }
                 actions.append(sact)
 
+    return actions
+
+def get_bodies_for_actions():
+    actions = get_full_eu_actions_from_db()
+    result = {
+                a['key']: {
+                    'body': a['body'],
+                    'title': a['title']
+                } for a in actions
+             }
+    return result
+
+def get_eu_actions_from_db():
+    actions = get_full_eu_actions_from_db()
     result = {a['key']:a['title'] for a in actions}
     return result
 

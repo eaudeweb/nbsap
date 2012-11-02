@@ -110,7 +110,15 @@
       });
     }).change();
 
-
+    $('select[name=eu_actions]').on('change', function () {
+        var options = $(this).serialize();
+        var text = $(this).parents('.control-group').find('.mapping_text');
+        $.get("{{url_for('eu_strategy.eu_actions_data')}}", options, function (data) {
+          var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+          var output = Mustache.render(html_content, data)
+          text.html(output);
+      });
+    });
     $("#main_target").chained("#goal");
 
     $(".btn-danger").on("click", function (e) {

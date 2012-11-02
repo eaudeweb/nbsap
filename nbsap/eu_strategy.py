@@ -385,3 +385,20 @@ def eu_targets_data():
 
     return flask.jsonify(result)
 
+
+@eu_strategy.route("/eu_actions/data")
+def eu_actions_data():
+    myactions = schema.common.get_bodies_for_actions()
+    actions_ids = flask.request.args.getlist('eu_actions', None)
+
+    eu_actions = []
+
+    for action_id in actions_ids:
+        data = {
+            'title': sugar.translate(myactions[action_id]['title']),
+            'description': sugar.translate(myactions[action_id]['body'])
+        }
+        eu_actions.append(data)
+
+    result = {'result': eu_actions}
+    return flask.jsonify(result)
