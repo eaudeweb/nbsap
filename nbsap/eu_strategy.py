@@ -386,6 +386,22 @@ def eu_targets_data():
     return flask.jsonify(result)
 
 
+@eu_strategy.route("/eu_targets_for_actions/data")
+def eu_targets_for_actions():
+    try:
+        eu_target_id = flask.request.args.getlist('eu_target_id')[0]
+    except IndexError:
+        return flask.jsonify({'result': ''})
+
+    all_actions = schema.common.get_full_eu_actions_from_db()
+    result = [{
+                'name': a['key'],
+                'value': sugar.translate(a['title'])
+              } for a in all_actions if
+              a['key'].startswith('a%s' % int(eu_target_id))]
+    import json
+    return json.dumps(result)
+
 @eu_strategy.route("/eu_actions/data")
 def eu_actions_data():
     myactions = schema.common.get_bodies_for_actions()

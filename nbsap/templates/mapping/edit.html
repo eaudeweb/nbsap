@@ -108,6 +108,15 @@
       $.get("{{url_for('eu_strategy.eu_targets_data')}}", {'eu_target_id': option}, function (data) {
        text.html('<p>' + data['result'] + '</p>');
       });
+      $.get("{{url_for('eu_strategy.eu_targets_for_actions')}}", {'eu_target_id': option}, function (data) {
+        $('select[name=eu_actions]').html('');
+        data = $.parseJSON(data);
+        $.each(data, function (i, d) {
+            var html = $('<option />').attr('value', d.name).text(d.value);
+            $('select[name=eu_actions]').append(html);
+        });
+        $("select[name=eu_actions]").trigger("liszt:updated");
+      });
     }).change();
 
     $('select[name=eu_actions]').on('change', function () {
