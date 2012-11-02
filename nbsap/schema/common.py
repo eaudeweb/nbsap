@@ -97,14 +97,14 @@ def shorten_title(i18nstring):
         i18nstring[k] = split_after_colon(i18nstring[k])
 
 
-def get_targets():
+def get_eu_targets_from_db():
     from nbsap.database import mongo
     targets = {t['id']: t['title'] for t in mongo.db.eu_targets.find()}
     for value in targets.values():
         shorten_title(value)
     return targets
 
-def get_actions():
+def get_eu_actions_from_db():
     from nbsap.database import mongo
     targets = mongo.db.eu_targets.find()
     actions = []
@@ -129,16 +129,26 @@ def get_actions():
     result = {a['key']:a['title'] for a in actions}
     return result
 
+
 class MyCommonEnum(CommonEnum):
     @property
     def valid_values(self):
-        targets = get_targets()
+        targets = get_eu_targets_from_db()
         return tuple(sorted(targets.keys()))
 
     @property
     def value_labels(self):
-        return get_targets()
+        return get_eu_targets_from_db()
 
+class MyCommonList(CommonList):
+    @property
+    def valid_values(self):
+        actions  = get_eu_actions_from_db()
+        return tuple(sorted(actions.keys()))
+
+    @property
+    def value_labels(self):
+        return get_eu_actions_from_db()
 
 I18nStringOptional = flatland.Dict.with_properties(widget="i18nstring").of(
             CommonString.named("en")

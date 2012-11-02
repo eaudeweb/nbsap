@@ -50,13 +50,15 @@
 
 {% macro list(mk, field) %}
   {% from 'bits.html' import translate as _t with context %}
-  {% set valid_values = field.properties.valid_values %}
-  {% set value_labels = field.properties.value_labels %}
+  {% set valid_values = field.properties.valid_values or
+                        field.valid_values %}
+  {% set value_labels = field.properties.value_labels or
+                        field.value_labels %}
 
   {{ mk.select.open(name=field.name, id=field.name, class=field.properties.css_class,
                              multiple=field.properties.multiple) }}
 
-  {% for value in field.properties.valid_values %}
+  {% for value in field.valid_values %}
     {% set value_label = (value_labels[value] if value_labels else value) %}
     {% if value|string() in field.value %}
       {{ mk.option(value=value|string(), contents=_t(value_label), selected='selected') }}
