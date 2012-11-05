@@ -1,4 +1,6 @@
+import flask
 import flatland
+import nbsap.sugar
 
 from flatland.validation import Validator
 from flatland.schema.base import NotEmpty
@@ -34,12 +36,10 @@ class GoalEnumValue(Validator):
         return True
 
 class EnumValue(Validator):
-
     fail = None
 
     def validate(self, element, state):
         self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
-
         if element.valid_values:
             if element.value not in map(str, element.valid_values):
                 return self.note_error(element, state, 'fail')
@@ -76,6 +76,20 @@ class ListValue(Validator):
 
         return True
 
+class RuntimeListValue(Validator):
+
+    fail = None
+
+    def validate(self, element, state):
+        self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
+
+        for e in element.value:
+            if e not in map(str, element.valid_values):
+                return self.note_error(element, state, 'fail')
+
+        return True
+
+
 CommonInteger = flatland.Integer.using(optional=True)
 CommonString = flatland.String.using(optional=True)
 CommonList = flatland.List.using(optional=True)
@@ -99,7 +113,7 @@ def shorten_title(i18nstring):
 
 def get_eu_targets_from_db():
     from nbsap.database import mongo
-    targets = {t['id']: t['title'] for t in mongo.db.eu_targets.find()}
+    targets = {str(t['id']): t['title'] for t in mongo.db.eu_targets.find()}
     for value in targets.values():
         shorten_title(value)
     return targets
@@ -117,6 +131,9 @@ def get_full_eu_actions_from_db():
                 'key': ".".join([amask, str(action['id'])]),
                 'title': action['title'],
                 'body': action['body'],
+                'url': flask.url_for('eu_strategy.view_action',
+                                     target_id=target['id'],
+                                     action_id=action['id']),
             }
             actions.append(act)
             stmp_list = sorted(action['subactions'], key=lambda k: k['id'])
@@ -125,10 +142,24 @@ def get_full_eu_actions_from_db():
                     'key': ".".join([act['key'], str(saction['id'])]),
                     'title': saction['title'],
                     'body': saction['body'],
+                    'url': flask.url_for('eu_strategy.view_subaction',
+                                         target_id=target['id'],
+                                         action_id=action['id'],
+                                         subaction_id=saction['id']),
                 }
                 actions.append(sact)
 
     return actions
+
+def get_urls_for_actions():
+    actions = get_full_eu_actions_from_db()
+    result = {
+                a['key']: {
+                    'url': a['url'],
+                    'title': nbsap.sugar.translate(a['title']),
+                } for a in actions
+             }
+    return result
 
 def get_bodies_for_actions():
     actions = get_full_eu_actions_from_db()
@@ -146,7 +177,7 @@ def get_eu_actions_from_db():
     return result
 
 
-class MyCommonEnum(CommonEnum):
+class RuntimeCommonEnum(CommonEnum):
     @property
     def valid_values(self):
         targets = get_eu_targets_from_db()
@@ -156,7 +187,7 @@ class MyCommonEnum(CommonEnum):
     def value_labels(self):
         return get_eu_targets_from_db()
 
-class MyCommonList(CommonList):
+class RuntimeCommonList(CommonList):
     @property
     def valid_values(self):
         actions  = get_eu_actions_from_db()

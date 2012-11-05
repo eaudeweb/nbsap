@@ -66,6 +66,7 @@
   <script>
   $('.chzn-select').eq(0).attr('data-placeholder', '{{_("Select targets")}}');
   $('.chzn-select').eq(1).attr('data-placeholder', '{{_("Select actions")}}');
+
   $(function () {
 
     $('select[name=objective]').on('change', function () {
@@ -75,6 +76,7 @@
         text.html('<p>' + data['result'] + '</p>');
       });
     }).change();
+
 
     $('select[name=goal]').on('change', function () {
       var option = $(this).val();
@@ -102,6 +104,7 @@
       });
     }).change();
 
+
     $('select[name=main_eu_target]').on('change', function () {
       var option = $(this).val();
       var text = $(this).parents('.control-group').find('.mapping_text');
@@ -118,6 +121,7 @@
         $("select[name=eu_actions]").trigger("liszt:updated");
       });
     }).change();
+
 
     $('select[name=eu_actions]').on('change', function () {
         var options = $(this).serialize();

@@ -3,7 +3,7 @@ from flaskext.babel import gettext as _
 
 from common import I18nString, CommonString, CommonEnum, CommonList, ListValue,\
                    GoalEnumValue, CommonI18nString, CommonInteger, EnumValue, \
-                   MyCommonEnum, MyCommonList
+                   RuntimeCommonEnum, RuntimeCommonList, RuntimeListValue
 from .refdata import goals, targets, mapping, indicator_data
 
 _GoalSchemaDefinition = flatland.Dict.of(
@@ -136,13 +136,13 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                             value_labels=targets,
                             css_class="chzn-select",
                             multiple="multiple"),
-            MyCommonEnum.named('main_eu_target')
+            RuntimeCommonEnum.named('main_eu_target')
                         .using(label=_("EU strategic target"), optional=False)
                         .with_properties(widget="select",
                             css_class="span2"),
-            MyCommonList.named('eu_actions')
+            RuntimeCommonList.named('eu_actions')
                         .of(CommonString.named('eu_actions'))
-                        #.including_validators(ListValue())
+                        .including_validators(RuntimeListValue())
                         .using(label=_("EU related actions"))
                         .with_properties(widget="list",
                             css_class="chzn-select",
