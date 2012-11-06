@@ -174,6 +174,7 @@ def get_urls_for_actions():
     result = {
                 a['key']: {
                     'url': a['url'],
+                    'body': nbsap.sugar.translate(a['body']),
                     'title': nbsap.sugar.translate(a['title']),
                 } for a in actions
              }
