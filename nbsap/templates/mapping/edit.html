@@ -104,35 +104,43 @@
       });
     }).change();
 
-
-    $('select[name=main_eu_target]').on('change', function () {
+    $('select[name=main_eu_target]').on('change.text', function () {
       var option = $(this).val();
       var text = $(this).parents('.control-group').find('.mapping_text');
       $.get("{{url_for('eu_strategy.eu_targets_data')}}", {'eu_target_id': option}, function (data) {
-       text.html('<p>' + data['result'] + '</p>');
+        text.html('<p>' + data['result'] + '</p>');
       });
+     }).change();
+
+    $('select[name=main_eu_target]').on('change.data', function () {
+      var option = $(this).val();
       $.get("{{url_for('eu_strategy.eu_targets_for_actions')}}", {'eu_target_id': option}, function (data) {
         $('select[name=eu_actions]').html('');
         data = $.parseJSON(data);
         $.each(data, function (i, d) {
-            var html = $('<option />').attr('value', d.name).text(d.value);
-            $('select[name=eu_actions]').append(html);
+          var html = $('<option />').attr('value', d.name).text(d.value);
+          $('select[name=eu_actions]').append(html);
         });
         $("select[name=eu_actions]").trigger("liszt:updated");
+        $("select[name=eu_actions]").change();
+      });
+    });
+
+    $('select[name=eu_actions]').on('change', function () {
+      var options = $(this).serialize();
+      var text = $(this).parents('.control-group').find('.mapping_text');
+      $.get("{{url_for('eu_strategy.eu_actions_data')}}", options, function (data) {
+        var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+        var output = Mustache.render(html_content, data)
+        text.html(output);
       });
     }).change();
 
-
-    $('select[name=eu_actions]').on('change', function () {
-        var options = $(this).serialize();
-        var text = $(this).parents('.control-group').find('.mapping_text');
-        $.get("{{url_for('eu_strategy.eu_actions_data')}}", options, function (data) {
-          var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
-          var output = Mustache.render(html_content, data)
-          text.html(output);
-      });
-    });
     $("#main_target").chained("#goal");
+
+    {% if not mapping_id %}
+        $('select[name=main_eu_target]').trigger('change.data');
+    {% endif %}
 
     $(".btn-danger").on("click", function (e) {
       e.preventDefault();

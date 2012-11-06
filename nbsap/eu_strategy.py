@@ -386,7 +386,7 @@ def eu_targets_data():
     return flask.jsonify(result)
 
 
-@eu_strategy.route("/eu_targets_for_actions/data")
+@eu_strategy.route("/eu_targets/for_actions/data")
 def eu_targets_for_actions():
     try:
         eu_target_id = flask.request.args.getlist('eu_target_id')[0]
