@@ -40,6 +40,22 @@ class EnumValue(Validator):
 
     def validate(self, element, state):
         self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
+
+        if element.valid_values:
+            if element.value not in map(str, element.valid_values):
+                return self.note_error(element, state, 'fail')
+
+        return True
+
+class RuntimeEnumValue(Validator):
+    fail = None
+
+    def validate(self, element, state):
+        self.fail = flatland.validation.base.N_(u'%(u)s is not a valid value for %(label)s')
+
+        if element.value is None:
+            return True
+
         if element.valid_values:
             if element.value not in map(str, element.valid_values):
                 return self.note_error(element, state, 'fail')
@@ -113,9 +129,11 @@ def shorten_title(i18nstring):
 
 def get_eu_targets_from_db():
     from nbsap.database import mongo
+    default_target = {u'en': u'--', u'fr': u'--', u'nl': u'--'}
     targets = {str(t['id']): t['title'] for t in mongo.db.eu_targets.find()}
     for value in targets.values():
         shorten_title(value)
+    targets['0'] = default_target
     return targets
 
 def get_full_eu_actions_from_db():

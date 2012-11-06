@@ -143,6 +143,8 @@ def mapping_edit(mapping_id=None):
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(mapping['main_target'])
+        if ms['main_eu_target'].value is None:
+            ms['main_eu_target'].set(u'0')
     else:
         ms = schema.MappingSchema({})
         ms.set_objectives(objectives)
@@ -168,6 +170,11 @@ def mapping_edit(mapping_id=None):
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(form_data['main_target'])
+
+        if initial_form['main_eu_target'] == u'0':
+            ms['main_eu_target'].set(None)
+        else:
+            ms['main_eu_target'].set(form_data['main_eu_target'])
 
         if ms.validate():
             if mapping_id:

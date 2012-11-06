@@ -380,8 +380,11 @@ def eu_targets_data():
     except IndexError:
         return flask.jsonify({'result': ''})
 
-    eu_target = mongo.db.eu_targets.find_one_or_404({'id': int(eu_target_id)})
-    result = {'result': sugar.translate(eu_target['title'])}
+    if eu_target_id == '0':
+        result = {'result': ''}
+    else:
+        eu_target = mongo.db.eu_targets.find_one_or_404({'id': int(eu_target_id)})
+        result = {'result': sugar.translate(eu_target['title'])}
 
     return flask.jsonify(result)
 
