@@ -5,7 +5,8 @@ from nbsap.database import mongo
 def update_mappings():
     mappings = mongo.db.mapping.find()
     for m in mappings:
-        m['eu_targets'] = []
+        if 'main_eu_target' in m.keys():
+            del(m['main_eu_target'])
         mongo.db.mapping.save(m)
 
 def update_actions_into_objectives():
