@@ -18,7 +18,7 @@
 {% endif %}
 </ul>
 
-<h1 class="small">{{_('Map National Objectives to Aichi targets')}}</h1>
+<h1 class="small">{{_('Mapping National Objectives')}}</h1>
 
 <form class="form" method="POST" action="{{url_for('goals.mapping_edit', mapping_id=mapping_id)}}" style="margin-top: 25px">
   <fieldset>
@@ -28,6 +28,9 @@
     {% set field = mapping_schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
+    {% if field.name == 'eu_targets' or field.name == 'goal' %}
+        <hr>
+    {% endif %}
     {% if field.properties.widget != 'hidden' %}
     <div class="control-group {{ error_cls }} row">
       <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
