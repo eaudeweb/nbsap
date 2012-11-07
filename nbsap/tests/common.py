@@ -193,6 +193,68 @@ class _BaseTest(unittest.TestCase):
         })
     }
 
+    EU_TARGET = {
+        "1": ImmutableDict({
+            "title": ImmutableDict({
+                "en": "Mock EU target title",
+                "fr": "French EU mock target title",
+                "nl": "Dutch EU mock target title"
+            }),
+            "id": "1",
+            "body": ImmutableDict({
+                "en": "Mock EU target description",
+                "fr": "French mock EU target description",
+                "nl": "Dutch mock EU target description"
+
+            }),
+            "actions": [
+                ImmutableDict({
+                    "title": ImmutableDict({
+                        "en": "Mock EU action title",
+                        "fr": "French EU mock action title",
+                        "nl": "Dutch EU mock action title"
+                    }),
+                    "id": "1",
+                    "body": ImmutableDict({
+                        "en": "Mock EU action description",
+                        "fr": "French mock EU action description",
+                        "nl": "Dutch mock EU action description"
+
+                    }),
+                    "subactions": [
+                        ImmutableDict({
+                            "title": ImmutableDict({
+                                "en": "Mock EU subaction title",
+                                "fr": "French EU mock subaction title",
+                                "nl": "Dutch EU mock subaction title"
+                            }),
+                            "id": "1",
+                            "body": ImmutableDict({
+                                "en": "Mock EU subaction description",
+                                "fr": "French mock EU subaction description",
+                                "nl": "Dutch mock EU subaction description"
+
+                            }),
+                        }),
+                        ImmutableDict({
+                            "title": ImmutableDict({
+                                "en": "Mock EU subaction title",
+                                "fr": "French EU mock subaction title",
+                                "nl": "Dutch EU mock subaction title"
+                            }),
+                            "id": "2",
+                            "body": ImmutableDict({
+                                "en": "Mock EU subaction description",
+                                "fr": "French mock EU subaction description",
+                                "nl": "Dutch mock EU subaction description"
+
+                            }),
+                        }),
+                    ]}),
+            ],
+        })
+    }
+
     testing_config = {
         "MONGO_DBNAME": "testing-nbsap",
         "SECRET_KEY": "something random",
