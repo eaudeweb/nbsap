@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU Targets")),
+      (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
+      (url_for('eu_strategy.view_action', target_id=target.id,
+        action_id=action.id), _t(action.title)),
+    ]) }}
+</ul>
+
+<h3>{{ _t(action.title) }}</h3>
+
+<div class="btn-toolbar">
+    <div class="btn-group">
+      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_action',
+        target_id=target.id, action_id=action.id)}}">{{_('Edit')}}</a>
+    </div>
+    <!--div class="btn-group">
+      <a class="btn btn-primary edit"
+      href="{{url_for('eu_strategy.add_subaction',
+        target_id=target.id, action_id=action.id)}}">{{_('Add subaction')}}</a>
+    </div-->
+
+</div>
+
+<div class="admin-obj-description">
+	<p>{{_tm(action.body)}}</p>
+</div>
+
+{% if action.subactions %}
+<div class="property_list">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th style="width:10px; text-align:center">{{_('Id')}}</th>
+            <th>{{_('Subactions')}}</th>
+            <th style="width:10px; text-align:center">NL</th>
+            <th style="width:10px; text-align:center">FR</th>
+        </thead>
+
+      <tbody>
+    {% for subaction in action['subactions']|sort(attribute='id') %}
+          <tr>
+            <td>
+                {{-subaction['id']-}}
+            </td>
+            <td>
+                <a href="{{ url_for('eu_strategy.view_subaction',
+                    target_id=target.id, action_id=action.id,
+                    subaction_id=subaction.id)}}">
+                     {{ _t(subaction.title) }}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{url_for('eu_strategy.edit_subaction',
+                target_id=target.id, action_id=action.id,
+                subaction_id=subaction.id)}}?lang=nl"
+                   class="btn btn-mini btn-{% if subaction['body']['nl'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if subaction['body']['nl'] %}{{_('translated')}}
+                              {% else %}{{_('translate')}} {% endif %}
+                </a>
+            </td>
+
+            <td style="text-align: center;">
+                <a href="{{url_for('eu_strategy.edit_subaction',
+                target_id=target.id, action_id=action.id,
+                subaction_id=subaction.id)}}?lang=fr"
+                   class="btn btn-mini btn-{% if subaction['body']['fr'] %}success
+                              {% else %}warning{% endif %}" type="button">
+                              {% if subaction['body']['fr'] %}{{_('translated')}}
+                              {% else %}{{_('translate')}} {% endif %}
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+</div>
+{% endif %}
+
+{% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+<script>
+  $(function () {
+    $(".btn-danger").on("click", function (e) {
+      e.preventDefault();
+      if(confirm('{{_("Are you sure you want to delete this ta?")}}')) {
+        $.ajax({
+          "url": $(this).attr("href"),
+          "type": "DELETE",
+          "success": function (data) {
+            if(data.status == "success") window.location = "{{url_for('objectives.list_objectives')}}";
+          }
+        });
+      }
+    });
+});
+</script>
+
+{% endblock scripts %}

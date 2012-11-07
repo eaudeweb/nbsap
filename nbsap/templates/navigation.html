@@ -24,6 +24,13 @@
     </a>
   </li>
 
+  {% if config.EU_STRATEGY %}
+  <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
+  <a href="{{ url_for('eu_strategy.list_targets') }}">{{_('EU Strategy')}}
+    </a>
+  </li>
+  {% endif %}
+
 </ul>
 {%- endmacro %}
 
@@ -31,19 +38,29 @@
 <ul class="nav nav-tabs">
 
   <li class="{{ 'active' if active == 'aichi' else '' }}">
-  <a href="{{ url_for('goals.homepage_goals') }}">{{_('Aichi')}}</a>
+    <a href="{{ url_for('goals.homepage_goals') }}">
+        {{_('Aichi')}}
+    </a>
   </li>
 
+  {% if config.EU_STRATEGY %}
+  <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
+    <a href="{{ url_for('eu_strategy.homepage_eutargets') }}">
+        {{_('EU Strategy')}}
+    </a>
+  </li>
+  {% endif %}
+
   <li class="{{ 'active' if active == 'national' else '' }}">
-  <a href="{{ url_for('objectives.homepage_objectives') }}">
+    <a href="{{ url_for('objectives.homepage_objectives') }}">
     {{_('National Strategy')}}
-  </a>
+    </a>
   </li>
 
   <li class="{{ 'active' if active == 'implementation' else '' }}">
-  <a href="{{ url_for('objectives.homepage_actions') }}">
+    <a href="{{ url_for('objectives.homepage_actions') }}">
     {{_('Implementation')}}
-  </a>
+    </a>
   </li>
 
 </ul>

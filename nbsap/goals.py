@@ -98,7 +98,8 @@ def mapping():
         mapping['goal'] = {'id': goal_id, 'name': mapping['goal']}
 
     return {
-        "mappings": mappings
+        "mappings": mappings,
+        "eu_actions_urls": schema.common.get_urls_for_actions(),
     }
 
 
@@ -150,6 +151,8 @@ def mapping_edit(mapping_id=None):
         initial_form = flask.request.form
         form_data = initial_form.to_dict()
         targets_list = initial_form.getlist('other_targets')
+        eu_actions_list = initial_form.getlist('eu_actions')
+        eu_targets_list = initial_form.getlist('eu_targets')
         try:
             targets_list.remove(form_data['main_target'])
         except ValueError:
@@ -157,11 +160,13 @@ def mapping_edit(mapping_id=None):
         if mapping_id:
             ms['goal'].set(form_data['goal'])
         else:
-            ms = schema.MappingSchema(form_data)
+            ms = schema.MappingSchema.from_flat(form_data)
             ms.set_objectives(objectives)
 
         ms['objective'].set(form_data['objective'])
         ms['other_targets'].set(targets_list)
+        ms['eu_actions'].set(eu_actions_list)
+        ms['eu_targets'].set(eu_targets_list)
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(form_data['main_target'])

@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+{% from 'bits.html' import breadcrumb_items -%}
+<ul class="breadcrumb">
+  {{ breadcrumb_items([
+      (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU Targets")),
+      (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
+      (url_for('eu_strategy.view_action', target_id=target.id,
+        action_id=action.id), _t(action.title)),
+      (url_for('eu_strategy.view_subaction', target_id=target.id,
+        action_id=action.id, subaction_id=subaction.id), _t(subaction.title)),
+    ]) }}
+</ul>
+
+<h3>{{ _t(subaction.title) }}</h3>
+
+<div class="btn-toolbar">
+    <div class="btn-group">
+      <a class="btn btn-primary edit" href="{{url_for('eu_strategy.edit_subaction',
+        target_id=target.id, action_id=action.id, subaction_id=subaction.id)}}">{{_('Edit')}}</a>
+    </div>
+</div>
+
+<div class="admin-obj-description">
+	<p>{{_tm(subaction.body)}}</p>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+{% from 'bits.html' import script_src -%}
+<script>
+  $(function () {
+    $(".btn-danger").on("click", function (e) {
+      e.preventDefault();
+      if(confirm('{{_("Are you sure you want to delete this ta?")}}')) {
+        $.ajax({
+          "url": $(this).attr("href"),
+          "type": "DELETE",
+          "success": function (data) {
+            if(data.status == "success") window.location = "{{url_for('objectives.list_objectives')}}";
+          }
+        });
+      }
+    });
+});
+</script>
+
+{% endblock scripts %}

@@ -17,10 +17,14 @@
 
 <a class="pull-right btn btn-mini" href={{url_for('goals.homepage_goals')}}>Back to AICHI</a>
 
-{% from "navigation.html" import nav_tabs %}
+{% from "navigation.html" import nav_tabs with context %}
 {{ nav_tabs('mapping') }}
 
-<h1 class="small">{{_('Mappings of National Objectives to Aichi targets')}}</h1>
+<h1 class="small">{{_('Mappings of National Objectives to Aichi and EU targets')}}</h1>
+
+<div class="add-button">
+    <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">{{_('Add mapping')}}</a>
+</div>
 
 <table class="table table-bordered table-striped mapping_listing">
 
@@ -29,6 +33,8 @@
     <th>{{_('Goal')}}</th>
     <th>{{_('Most relevant target')}}</th>
     <th>{{_('Other relevant targets')}}</th>
+    <th>{{_('EU targets')}}</th>
+    <th>{{_('EU actions')}}</th>
     <th>{{_('Edit')}}</th>
     <th>{{_('Delete')}}</th>
   </thead>
@@ -78,6 +84,26 @@
         </a>{% if not loop.last %},{% endif %}
       {% endfor %}</td>
 
+      <td>
+        {% if mapping.eu_targets %}
+            {% for eu_target in mapping.eu_targets %}
+                <a href="{{url_for('eu_strategy.view_target', target_id=eu_target)}}">
+                  {{eu_target}}
+                </a>{% if not loop.last %},{%endif%}
+            {% endfor %}
+        {% endif %}
+      </td>
+
+      <td>
+        {% if mapping.eu_actions %}
+            {% for eu_action in mapping.eu_actions %}
+                <a href="{{eu_actions_urls[eu_action]['url']}}">
+                    {{eu_actions_urls[eu_action]['title']}}
+                </a>{% if not loop.last %},{%endif%}
+            {% endfor %}
+        {% endif %}
+      </td>
+
       <td style="text-align: center;">
         <a class="btn btn-mini btn-primary"
           href="{{ url_for('goals.mapping_edit', mapping_id=mapping._id) }}">
@@ -96,12 +122,6 @@
   </tbody>
 
 </table>
-
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">{{_('Add mapping')}}</a>
-  </div>
-</div>
 
 {% endblock content %}
 {% block scripts %}

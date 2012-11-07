@@ -73,17 +73,17 @@ class SubobjectiveAddTest(_BaseTest):
         response = self.client.get('/admin/objectives/1/add_subobj')
         self.assertEqual(response.status_code, 200)
 
-    def test_error_message_displayed_when_body_blank(self):
+    def test_error_message_displayed_when_title_blank(self):
 
         mydata = {
                     "language": "en",
-                    "title-en": "Testing 1,2,3",
-                    "body-en": ""
+                    "body-en": "Testing 1,2,3",
+                    "title-en": ""
                 }
 
         response = self.client.post("/admin/objectives/1/add_subobj", data=mydata)
         self.assertIn("Error in adding an subobjective.", response.data)
-        self.assertIn("Description is required", response.data)
+        self.assertIn("Title is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
     def test_error_message_missing_when_successfull_add(self):
@@ -178,16 +178,16 @@ class SubobjectiveEditTest(_BaseTest):
         response = self.client.get('/admin/objectives/1/2/edit')
         self.assertEqual(response.status_code, 200)
 
-    def test_error_message_displayed_when_body_blank(self):
+    def test_error_message_displayed_when_title_blank(self):
 
         mydata = {
                     "language": "en",
-                    "title-en": "Testing 1,2,3",
-                    "body-en": ""
+                    "body-en": "Testing 1,2,3",
+                    "title-en": ""
                 }
 
         response = self.client.post("/admin/objectives/1/1/edit", data=mydata)
-        self.assertIn("Description is required", response.data)
+        self.assertIn("Title is required", response.data)
         self.assertNotIn("Saved changes.", response.data)
 
         from nbsap.database import mongo

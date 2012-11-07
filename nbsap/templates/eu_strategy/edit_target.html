@@ -3,19 +3,12 @@
 
 {% from 'bits.html' import breadcrumb_items -%}
 <ul class="breadcrumb">
-  {% set breadcrumbs = [] %}
-  {% do breadcrumbs.append((url_for('goals.list_goals'), _("Admin"))) %}
-  {% do breadcrumbs.append((url_for('objectives.list_objectives'), _("Objectives"))) %}
-  {% for item_dict, item_label in chain_matrix %}
-        {% do breadcrumbs.append((url_for('objectives.view', **(item_dict)),
-            item_label|string())) %}
-        {% if loop.last %}
-            {% do breadcrumbs.append((url_for('objectives.edit',
-            **(item_dict)), _("Edit"))) %}
-        {% endif %}
-  {% endfor %}
-
-  {{ breadcrumb_items(breadcrumbs) }}
+  {{ breadcrumb_items([
+  (url_for('goals.list_goals'), _("Admin")),
+      (url_for('eu_strategy.list_targets'), _("EU Targets")),
+      (url_for('eu_strategy.view_target', target_id=target.id), target.id|string()),
+      (url_for('eu_strategy.edit_target', target_id=target.id), _("Edit " + target.id|string())),
+      ]) }}
 </ul>
 
 {% macro error(field) %}
@@ -24,11 +17,11 @@
   {% endfor %}
 {% endmacro %}
 
-<h1 class="small">{{_('Edit objective')}} {{objective.id}}</h1>
+<h1 class="small">{{_('Edit target')}} {{target.id}}</h1>
 <form method="POST">
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
-        <a href="{{url_for('objectives.view', **(parents))}}"
+        <a href="{{url_for('eu_strategy.view_target', target_id=target.id)}}"
           class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 
@@ -63,7 +56,7 @@
                         {{error(schema.title['en'])}}
                     </div>
                 </div>
-                <div class="control-group">
+                <div class="control-group {%- if schema.body['en'].errors %} error {%- endif %}">
                   <label class="control-label" for="body">{{_('Description')}}</label>
                     <div class="controls wmd-panel">
                       <div id="wmd-button-bar-en"></div>
@@ -73,6 +66,7 @@
                       </textarea>
                     </div>
                     <div id="wmd-preview-en" class="wmd-panel wmd-preview"></div>
+                        {{error(schema.body['en'])}}
                 </div>
             </div>
 
@@ -126,21 +120,21 @@
 
         </div>
         <div class="span6 original-hideout" style="margin-top: -5px">
-          <p class="original-title">{{_('Original title in English')}}</p>
+            <p class="original-title">{{_('Original title in English')}}</p>
             <div class="well">
-                {{-objective.title['en']-}}
+                {{-target.title['en']-}}
             </div>
 
             <p class="original-description">{{_('Original description in English')}}</p>
             <div class="well">
-                {{-objective.body['en']|markdown-}}
+                {{-target.body['en']|markdown-}}
             </div>
         </div>
     </div>
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary">{{_('Save')}}</button>
-        <a href="{{url_for('objectives.view', **(parents))}}"
+        <a href="{{url_for('eu_strategy.view_target', target_id=target.id)}}"
           class="btn" type="button">{{_('Cancel')}}</a>
     </div>
 </form>

@@ -2,7 +2,7 @@
 {% block content %}
 
 {% from "bits.html" import translate_truncated_markdown as _ttm with context %}
-{% from "navigation.html" import homepage_tabs %}
+{% from "navigation.html" import homepage_tabs with context %}
 {{ homepage_tabs('national') }}
 
   <div class="tabbable tabs-left">
@@ -122,6 +122,51 @@
                 {% endif %}
             </ul>
             {% endfor %}
+          {% else %}
+             {{_('None')}}
+          {% endif %}
+          </div>
+
+          <label>{{_('Mapping with EU')}}:</label>
+          <div class="row well">
+          {% if subobj.mapping|length() %}
+            {% set has_targets = [] %}
+            {% for m in subobj.mapping %}
+                {% if m.eu_targets %}
+                    {% do has_targets.append(1) %}
+                {% endif %}
+            {% endfor %}
+
+            {% if has_targets %}
+                {% for m in subobj.mapping %}
+                <ul class="mapping-list">
+                  <li><span class="mapping-header">{{_('Targets')}}:</span>
+                   {% for t in m['eu_targets'] %}
+                        <span>
+                          <a href="{{url_for('eu_strategy.homepage_eutargets', target_id=t['id'])}}">
+                            <strong>{{_('target')}}
+                            {{t['id']}}</strong>:
+                            {{_tm(t['description'])}}
+                          </a>
+                        </span>
+                  {% endfor %}
+                  </li>
+                  <li><span class="mapping-header">{{_('Related EU actions')}}:</span>
+                    {% for a in m['eu_actions'] %}
+                    <span>
+                      <a href="{{url_for('eu_strategy.homepage_eutargets',
+                        target_id=actions_urls[a]['father'])}}#{{a}}">
+                        <strong>{{actions_urls[a]['title']}}</strong>:
+                        {{actions_urls[a]['body']}}
+                      </a>
+                    </span>
+                    {% endfor %}
+                  </li>
+                </ul>
+                {% endfor %}
+            {% else %}
+             {{_('None')}}
+            {% endif %}
           {% else %}
              {{_('None')}}
           {% endif %}

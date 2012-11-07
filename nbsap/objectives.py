@@ -40,7 +40,10 @@ def homepage_objectives(objective_id=1):
 
     subobj_list = sugar.get_subobjs_by_dfs(objective['id'])
     my_actions = sugar.get_actions_by_objective_id(objective['id'])
-
+    eu_targets = { str(t['id']): t['title'] for t in
+                             mongo.db.eu_targets.find()
+    }
+    actions_urls = schema.common.get_urls_for_actions()
     for subobj in subobj_list:
         code_id = subobj['title-key']
         subobj['mapping'] = [m for m in
@@ -67,12 +70,21 @@ def homepage_objectives(objective_id=1):
                             {'id': m['other_targets'][target]})['description']
                     }
 
+            _tmp = []
+            for eu_target in m['eu_targets']:
+                _tmp.append({
+                        'id': str(eu_target),
+                        'description': eu_targets[eu_target],
+                 })
+            m['eu_targets'] = _tmp
+
     return {
         "objective_ids": objective_ids,
         "objective": objective,
         "my_actions": my_actions,
         "subobj_list": subobj_list,
-        'mapping': mapping
+        "mapping": mapping,
+        "actions_urls": actions_urls,
     }
 
 

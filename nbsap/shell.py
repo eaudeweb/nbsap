@@ -2,6 +2,12 @@ import schema
 
 from nbsap.database import mongo
 
+def update_mappings():
+    mappings = mongo.db.mapping.find()
+    for m in mappings:
+        if 'main_eu_target' in m.keys():
+            del(m['main_eu_target'])
+        mongo.db.mapping.save(m)
 
 def update_actions_into_objectives():
     actions = mongo.db.actions.find()
@@ -158,5 +164,7 @@ extra_shell_context = {
     "convert_indicator_ids_to_int": convert_indicator_ids_to_int,
     "clean_whitespace": clean_whitespace,
     "update_objectives": update_objectives,
-    "update_actions_into_objectives": update_actions_into_objectives
+    "update_actions_into_objectives": update_actions_into_objectives,
+    "update_mappings": update_mappings,
+
 }

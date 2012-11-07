@@ -9,7 +9,7 @@
       ]) }}
 </ul>
 
-{% from "navigation.html" import nav_tabs %}
+{% from "navigation.html" import nav_tabs with context %}
 {{ nav_tabs('mapping') }}
 
 <h1 class="small">{{_('Mappings of National Objectives to Aichi targets')}}</h1>

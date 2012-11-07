@@ -8,10 +8,12 @@ def get_none_fields_for_schema(schema):
     langs = ('en', 'fr', 'nl')
 
     for lang in langs:
-        if schema['title'][lang] is None:
-            schema['title'][lang] = u''
-        if schema['body'][lang] is None:
-            schema['body'][lang] = u''
+        if 'title' in schema:
+            if schema['title'][lang] is None:
+                schema['title'][lang] = u''
+        if 'body' in schema:
+            if schema['body'][lang] is None:
+                schema['body'][lang] = u''
 
 
 def get_indicator_editable_fields():

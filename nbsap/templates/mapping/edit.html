@@ -18,7 +18,7 @@
 {% endif %}
 </ul>
 
-<h1 class="small">{{_('Map National Objectives to Aichi targets')}}</h1>
+<h1 class="small">{{_('Mapping National Objectives')}}</h1>
 
 <form class="form" method="POST" action="{{url_for('goals.mapping_edit', mapping_id=mapping_id)}}" style="margin-top: 25px">
   <fieldset>
@@ -28,6 +28,9 @@
     {% set field = mapping_schema[name] %}
     {% set error_cls = 'error' if field.errors else '' %}
 
+    {% if field.name == 'eu_targets' or field.name == 'goal' %}
+        <hr>
+    {% endif %}
     {% if field.properties.widget != 'hidden' %}
     <div class="control-group {{ error_cls }} row">
       <label class="control-label span2" for="{{field.name}}">{{ field.label }}</label>
@@ -64,7 +67,10 @@
   {{script_src('js/mustache.js')}}
 
   <script>
-  $('.chzn-select').attr('data-placeholder', '{{_("Select targets")}}');
+  $('.chzn-select').eq(0).attr('data-placeholder', '{{_("Select targets")}}');
+  $('.chzn-select').eq(1).attr('data-placeholder', '{{_("Select EU targets")}}');
+  $('.chzn-select').eq(2).attr('data-placeholder', '{{_("Select EU actions")}}');
+
   $(function () {
 
     $('select[name=objective]').on('change', function () {
@@ -74,6 +80,7 @@
         text.html('<p>' + data['result'] + '</p>');
       });
     }).change();
+
 
     $('select[name=goal]').on('change', function () {
       var option = $(this).val();
@@ -102,7 +109,47 @@
     }).change();
 
 
+    $('select[name=eu_targets]').on('change.text', function () {
+      var options = $(this).serialize();
+      var text = $(this).parents('.control-group').find('.mapping_text');
+      $.get("{{url_for('eu_strategy.eu_targets_data')}}", options, function (data) {
+        var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+        var output = Mustache.render(html_content, data)
+        text.html(output);
+      });
+    }).change();
+
+    $('select[name=eu_targets]').on('change.data', function () {
+      var options = $(this).serialize();
+      $.get("{{url_for('eu_strategy.eu_targets_for_actions')}}", options, function (data) {
+        $('select[name=eu_actions]').html('');
+        data = $.parseJSON(data);
+        $.each(data, function (i, d) {
+          var html = $('<option />').attr('value', d.name).text(d.value);
+          $('select[name=eu_actions]').append(html);
+        });
+        $("select[name=eu_actions]").trigger("liszt:updated");
+        $("select[name=eu_actions]").change();
+      });
+    });
+
+    $('select[name=eu_actions]').on('change', function () {
+      var options = $(this).serialize();
+      var text = $(this).parents('.control-group').find('.mapping_text');
+      $.get("{{url_for('eu_strategy.eu_actions_data')}}", options, function (data) {
+        var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+        var output = Mustache.render(html_content, data)
+        text.html(output);
+      });
+    }).change();
+
     $("#main_target").chained("#goal");
+
+
+    {% if not mapping_id %}
+        $('select[name=eu_targets]').trigger('change.data');
+    {% endif %}
+
 
     $(".btn-danger").on("click", function (e) {
       e.preventDefault();

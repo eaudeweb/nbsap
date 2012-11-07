@@ -9,6 +9,7 @@ import targets
 import indicators
 import objectives
 import actions
+import eu_strategy
 import auth
 
 from raven.contrib.flask import Sentry
@@ -48,6 +49,7 @@ def create_app(instance_path=None, testing_config=None):
     indicators.initialize_app(app)
     objectives.initialize_app(app)
     actions.initialize_app(app)
+    eu_strategy.initialize_app(app)
     auth.initialize_app(app)
 
     mongo.init_app(app)

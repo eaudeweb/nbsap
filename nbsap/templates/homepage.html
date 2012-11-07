@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-{% from "navigation.html" import homepage_tabs %}
+{% from "navigation.html" import homepage_tabs with context %}
 {{ homepage_tabs('aichi') }}
 
 <div class="tabbable tabs-left">
@@ -99,7 +99,7 @@
         </ul>
       </div>
       {% endif %}
-  
+
     </div>
 	<div class="row">
 		<a class="pull-right" href="#top">{{_('Back to top')}}</a>
