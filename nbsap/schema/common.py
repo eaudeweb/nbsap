@@ -131,6 +131,7 @@ def get_full_eu_actions_from_db():
                 'key': ".".join([amask, str(action['id'])]),
                 'title': action['title'],
                 'body': action['body'],
+                'father': str(target['id']),
                 'url': flask.url_for('eu_strategy.view_action',
                                      target_id=target['id'],
                                      action_id=action['id']),
@@ -142,6 +143,7 @@ def get_full_eu_actions_from_db():
                     'key': ".".join([act['key'], str(saction['id'])]),
                     'title': saction['title'],
                     'body': saction['body'],
+                    'father': str(target['id']),
                     'url': flask.url_for('eu_strategy.view_subaction',
                                          target_id=target['id'],
                                          action_id=action['id'],
@@ -157,6 +159,7 @@ def get_urls_for_actions():
                 a['key']: {
                     'url': a['url'],
                     'body': nbsap.sugar.translate(a['body']),
+                    'father': a['father'],
                     'title': nbsap.sugar.translate(a['title']),
                 } for a in actions
              }
