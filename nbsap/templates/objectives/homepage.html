@@ -142,7 +142,7 @@
                 <ul class="mapping-list">
                   <li><span class="mapping-header">{{_('Target')}}:</span>
                     <span>
-                      <a href="{{url_for('eu_strategy.view_target', target_id=m['main_eu_target']['id'])}}">
+                      <a href="{{url_for('eu_strategy.homepage_eutargets', target_id=m['main_eu_target']['id'])}}">
                         <strong>{{_('target')}}
                         {{m['main_eu_target']['id']}}</strong>:
                         {{_tm(m['main_eu_target']['description'])}}
@@ -152,7 +152,8 @@
                   <li><span class="mapping-header">{{_('Related EU actions')}}:</span>
                     {% for a in m['eu_actions'] %}
                     <span>
-                      <a href="{{actions_urls[a]['url']}}">
+                      <a href="{{url_for('eu_strategy.homepage_eutargets',
+                        target_id=m['main_eu_target']['id'])}}#{{a}}">
                         <strong>{{actions_urls[a]['title']}}</strong>:
                         {{actions_urls[a]['body']}}
                       </a>
