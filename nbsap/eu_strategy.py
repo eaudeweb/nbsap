@@ -375,33 +375,33 @@ def edit_subaction(target_id, action_id, subaction_id):
 
 @eu_strategy.route("/eu_targets/data")
 def eu_targets_data():
-    try:
-        eu_target_id = flask.request.args.getlist('eu_target_id')[0]
-    except IndexError:
-        return flask.jsonify({'result': ''})
+    targets_ids = flask.request.args.getlist('eu_targets', None)
 
-    if eu_target_id == '0':
-        result = {'result': ''}
-    else:
-        eu_target = mongo.db.eu_targets.find_one_or_404({'id': int(eu_target_id)})
-        result = {'result': sugar.translate(eu_target['title'])}
+    eu_targets = []
 
+    for target_id in targets_ids:
+        db_target = mongo.db.eu_targets.find_one_or_404({'id': int(target_id)})
+        data = {
+            'description': sugar.translate(db_target['title']),
+        }
+        eu_targets.append(data)
+
+    result = {'result': eu_targets}
     return flask.jsonify(result)
 
-
-@eu_strategy.route("/eu_targets/for_actions/data")
+@eu_strategy.route("/eu_targets_for_actions/data")
 def eu_targets_for_actions():
-    try:
-        eu_target_id = flask.request.args.getlist('eu_target_id')[0]
-    except IndexError:
-        return flask.jsonify({'result': ''})
+    targets_ids = flask.request.args.getlist('eu_targets', None)
 
     all_actions = schema.common.get_full_eu_actions_from_db()
-    result = [{
-                'name': a['key'],
-                'value': sugar.translate(a['title'])
-              } for a in all_actions if
-              a['key'].startswith('a%s' % int(eu_target_id))]
+    result = []
+    for target_id in targets_ids:
+        result.extend([{
+                    'name': a['key'],
+                    'value': sugar.translate(a['title'])
+                  } for a in all_actions if
+                  a['key'].startswith('a%s' % int(target_id))])
+
     import json
     return json.dumps(result)
 

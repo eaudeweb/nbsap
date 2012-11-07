@@ -65,7 +65,8 @@
 
   <script>
   $('.chzn-select').eq(0).attr('data-placeholder', '{{_("Select targets")}}');
-  $('.chzn-select').eq(1).attr('data-placeholder', '{{_("Select actions")}}');
+  $('.chzn-select').eq(1).attr('data-placeholder', '{{_("Select EU targets")}}');
+  $('.chzn-select').eq(2).attr('data-placeholder', '{{_("Select EU actions")}}');
 
   $(function () {
 
@@ -104,17 +105,20 @@
       });
     }).change();
 
-    $('select[name=main_eu_target]').on('change.text', function () {
-      var option = $(this).val();
-      var text = $(this).parents('.control-group').find('.mapping_text');
-      $.get("{{url_for('eu_strategy.eu_targets_data')}}", {'eu_target_id': option}, function (data) {
-        text.html('<p>' + data['result'] + '</p>');
-      });
-     }).change();
 
-    $('select[name=main_eu_target]').on('change.data', function () {
-      var option = $(this).val();
-      $.get("{{url_for('eu_strategy.eu_targets_for_actions')}}", {'eu_target_id': option}, function (data) {
+    $('select[name=eu_targets]').on('change.text', function () {
+      var options = $(this).serialize();
+      var text = $(this).parents('.control-group').find('.mapping_text');
+      $.get("{{url_for('eu_strategy.eu_targets_data')}}", options, function (data) {
+        var html_content = "{% raw %}{{#result}}<h5>{{title}}</h5><p>{{description}}</p>{{/result}}{% endraw %}"
+        var output = Mustache.render(html_content, data)
+        text.html(output);
+      });
+    }).change();
+
+    $('select[name=eu_targets]').on('change.data', function () {
+      var options = $(this).serialize();
+      $.get("{{url_for('eu_strategy.eu_targets_for_actions')}}", options, function (data) {
         $('select[name=eu_actions]').html('');
         data = $.parseJSON(data);
         $.each(data, function (i, d) {
@@ -138,9 +142,11 @@
 
     $("#main_target").chained("#goal");
 
+
     {% if not mapping_id %}
-        $('select[name=main_eu_target]').trigger('change.data');
+        $('select[name=eu_targets]').trigger('change.data');
     {% endif %}
+
 
     $(".btn-danger").on("click", function (e) {
       e.preventDefault();

@@ -143,8 +143,6 @@ def mapping_edit(mapping_id=None):
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(mapping['main_target'])
-        if ms['main_eu_target'].value is None:
-            ms['main_eu_target'].set(u'0')
     else:
         ms = schema.MappingSchema({})
         ms.set_objectives(objectives)
@@ -154,6 +152,7 @@ def mapping_edit(mapping_id=None):
         form_data = initial_form.to_dict()
         targets_list = initial_form.getlist('other_targets')
         eu_actions_list = initial_form.getlist('eu_actions')
+        eu_targets_list = initial_form.getlist('eu_targets')
         try:
             targets_list.remove(form_data['main_target'])
         except ValueError:
@@ -167,14 +166,10 @@ def mapping_edit(mapping_id=None):
         ms['objective'].set(form_data['objective'])
         ms['other_targets'].set(targets_list)
         ms['eu_actions'].set(eu_actions_list)
+        ms['eu_targets'].set(eu_targets_list)
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(form_data['main_target'])
-
-        if initial_form['main_eu_target'] == u'0':
-            ms['main_eu_target'].set(None)
-        else:
-            ms['main_eu_target'].set(form_data['main_eu_target'])
 
         if ms.validate():
             if mapping_id:

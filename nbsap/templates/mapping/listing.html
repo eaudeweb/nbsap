@@ -33,7 +33,7 @@
     <th>{{_('Goal')}}</th>
     <th>{{_('Most relevant target')}}</th>
     <th>{{_('Other relevant targets')}}</th>
-    <th>{{_('EU target')}}</th>
+    <th>{{_('EU targets')}}</th>
     <th>{{_('EU actions')}}</th>
     <th>{{_('Edit')}}</th>
     <th>{{_('Delete')}}</th>
@@ -85,10 +85,12 @@
       {% endfor %}</td>
 
       <td>
-        {% if mapping.main_eu_target %}
-        <a href="{{url_for('eu_strategy.view_target', target_id=mapping.main_eu_target)}}">
-          {{mapping.main_eu_target}}
-        </a>
+        {% if mapping.eu_targets %}
+            {% for eu_target in mapping.eu_targets %}
+                <a href="{{url_for('eu_strategy.view_target', target_id=eu_target)}}">
+                  {{eu_target}}
+                </a>{% if not loop.last %},{%endif%}
+            {% endfor %}
         {% endif %}
       </td>
 
