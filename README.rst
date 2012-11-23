@@ -8,19 +8,17 @@ Min. hardware resources
 
     * [CPU] Single Core >= 2.5 GHz
     * [RAM] 512 MB
-    * [Hard disc]:
-        ** current necessary < 5GB
-        ** 6 months forecast <= 20 GB
+    * [Hard disc] current necessary < 5GB
+    * [Hard disc] 6 months forecast <= 20 GB
     * [NIC] 100 Mbit
 
 Min. software resources
 -------
 
-    * Stated below in a step-by-step short guide
-    * Brief summary:
-        ** UNIX (kernel version >= 2.6)
-        ** mongodb database
-        ** all other dependecies are stated in the requirements-dev.txt file
+    * Software dependencies stated below in a step-by-step short guide
+    * UNIX (kernel version >= 2.6)
+    * mongodb database
+    * all other dependecies are stated in the requirements-dev.txt file
 
 
 About
