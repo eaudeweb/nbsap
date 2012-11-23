@@ -1,3 +1,32 @@
+Product owner:
+-------
+    * Franz Daffner
+    * franz.daffner@eea.europa.eu
+    * ++45 3336 7163
+
+Resources: (minimum system requirements)
+Min. hardware resources
+-------
+
+    * [CPU] Single Core >= 2.5 GHz
+    * [RAM] 512 MB
+    * [Hard disc]:
+        -> current necessary < 5GB
+        -> 6 months forecast <= 20 GB
+    * [NIC] 100 Mbit
+
+Min. software resources
+-------
+
+    * Stated below in a step-by-step short guide
+    * Brief summary:
+        -> UNIX (kernel version >= 2.6)
+        -> mongodb database
+        -> all other dependecies are stated in the requirements-dev.txt file
+
+
+About
+-------
 National Biodiversity Strategies and Action Plan (or simply NBSAP) (http://nbsap.eaudeweb.ro/)
 is a platform for organizing the implementation of Belgium's national biodiversity strategy
 after AICHI. It consists of two panels each corresponding an operation: viewing and editing.
@@ -11,7 +40,7 @@ the national strategy. (e.g. add/modify/delete an objective, action or even
 elements from AICHI) in the purpose of building it.
 
 
-NBSAP Quick Installation
+NBSAP Quick Installation Guide
 =====
 
 1. Clone the repository::
@@ -43,6 +72,12 @@ NBSAP Quick Installation
     echo 'DATABASE_URI = "sqlite:///"' >> instance/settings.py
     echo 'DATABASE_URI_NAME = "/users-openid.db"' >> instance/settings.py
 
+    5.1 If you want the EU strategy stuff available
+    echo 'EU_STRATEGY = True' >> instance/settings.py
+
+    5.2 Otherwise
+    echo 'EU_STRATEGY = False' >> instance/settings.py
+
 7. Set up the MongoDB database prerequisites::
 
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
@@ -62,7 +97,7 @@ NBSAP Quick Installation
     sudo apt-get update
     sudo apt-get install mongodb-10gen
 
-9. Prerequisites for filling database(both data and users)::
+9. Prerequisites for creating & filling databases(both data and users)::
 
     ./bash-scripts/mongoimport.sh
     ./manage.py syncdb
