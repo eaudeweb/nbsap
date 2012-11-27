@@ -24,7 +24,7 @@ Min. software resources
 
 About
 -------
-National Biodiversity Strategies and Action Plan (or simply NBSAP) (http://nbsap.eaudeweb.ro/)
+National Biodiversity Strategies and Action Plan (or simply NBSAP)
 is a platform for organizing the implementation of Belgium's national biodiversity strategy
 after AICHI. It consists of two panels each corresponding an operation: viewing and editing.
 
