@@ -78,8 +78,9 @@ NBSAP Quick Installation Guide
 
 5.1 Set up MongoDB database for Debian based systems::
 
+    5.1.0 Add keyserver for repo::
+
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-    echo '# MongoDB repo ###############' >> /etc/apt/sources.list
 
     5.1.1 If using Ubuntu >= 9.10 or running Upstart on Debian::
 
@@ -89,7 +90,7 @@ NBSAP Quick Installation Guide
 
     echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' >> /etc/apt/sources.list
 
-    5.1.3 Issue the following command (as root or with sudo) to install the
+    5.1.3 After updating repos, issue the following command (as root or with sudo) to install the
     latest stable version of MongoDB and the associated tools:
 
     sudo apt-get install mongodb-10gen
