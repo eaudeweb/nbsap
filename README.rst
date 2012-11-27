@@ -116,7 +116,7 @@ NBSAP Quick Installation Guide
     ./bin/mongoimport.sh
     ./manage.py syncdb
 
-10. Run a test server(see http://127.0.0.1:5000 afterwards)::
+7. Run a test server(see http://127.0.0.1:5000 afterwards)::
 
     ./manage.py runserver
 
