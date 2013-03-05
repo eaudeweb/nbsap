@@ -20,7 +20,11 @@
 {% from "navigation.html" import nav_tabs with context %}
 {{ nav_tabs('mapping') }}
 
+{% if config.DISPLAY_EU_STRATEGY %}
 <h1 class="small">{{_('Mappings of National Objectives to Aichi and EU targets')}}</h1>
+{% else %}
+<h1 class="small">{{_('Mappings of National Objectives to Aichi')}}</h1>
+{% endif %}
 
 <div class="add-button">
     <a class="btn btn-primary" href="{{ url_for('goals.mapping_edit') }}">{{_('Add mapping')}}</a>
