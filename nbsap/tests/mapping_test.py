@@ -16,9 +16,7 @@ class MappingTest(_BaseTest):
                 "main_target": "1",
                 "other_targets": ["2", "3"],
                 "objective": "1.1",
-                "main_eu_target": "0",
-                "eu_actions": [],
-             }
+        }
 
         response = self.client.post("/admin/mapping/new", data=data)
         self.assertEqual(response.status_code, 302)
@@ -37,9 +35,13 @@ class MappingTest(_BaseTest):
                 "main_target": "1",
                 "other_targets": [],
                 "objective": "1.1",
-                "main_eu_target": "0",
-                "eu_actions": [],
-      }
+        }
+
+        if self.app.config['DISPLAY_EU_STRATEGY']:
+            data.update({
+                         "eu_targets": [],
+                         "eu_actions": []
+            })
 
         response = self.client.post("/admin/mapping/new", data=data)
         self.assertEqual(response.status_code, 302)
@@ -51,9 +53,13 @@ class MappingTest(_BaseTest):
                 "main_target": "20",
                 "other_targets": [],
                 "objective": "1.1",
-                "main_eu_target": "0",
-                "eu_actions": [],
         }
+
+        if self.app.config['DISPLAY_EU_STRATEGY']:
+            data.update({
+                         "eu_targets": [],
+                         "eu_actions": []
+            })
 
         response = self.client.post("/admin/mapping/new", data=data)
         self.assertIn("Z is not a valid value for AICHI strategic goal", response.data)
@@ -71,10 +77,13 @@ class MappingTest(_BaseTest):
                 "main_target": "20",
                 "other_targets": [],
                 "objective": "1.1",
-                "main_eu_target": "0",
-                "eu_actions": [],
+        }
 
-               }
+        if self.app.config['DISPLAY_EU_STRATEGY']:
+            data.update({
+                         "eu_targets": [],
+                         "eu_actions": []
+            })
 
         response = self.client.post("/admin/mapping/new", data=data)
         self.assertIn("Target 20 is not related to Goal A", response.data)
@@ -108,9 +117,13 @@ class MappingTest(_BaseTest):
                 "main_target": "5",
                 "other_targets": [],
                 "objective": "1.1",
-                "main_eu_target": "0",
-                "eu_actions": [],
-               }
+        }
+
+        if self.app.config['DISPLAY_EU_STRATEGY']:
+            data.update({
+                         "eu_targets": [],
+                         "eu_actions": []
+            })
 
         response = self.client.post("/admin/mapping/%s/edit" % mapping_id, data=data)
         self.assertEqual(response.status_code, 302)

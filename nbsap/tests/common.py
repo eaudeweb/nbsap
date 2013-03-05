@@ -261,6 +261,7 @@ class _BaseTest(unittest.TestCase):
         "BYPASS_LOGIN": True,
         "DATABASE_URI": "sqlite:///",
         "DATABASE_URI_NAME": "/testing-users-openid.db",
+        "DISPLAY_EU_STRATEGY": False,
     }
 
     def setUp(self):

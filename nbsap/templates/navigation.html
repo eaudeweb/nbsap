@@ -24,7 +24,7 @@
     </a>
   </li>
 
-  {% if config.EU_STRATEGY %}
+  {% if config.DISPLAY_EU_STRATEGY %}
   <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
   <a href="{{ url_for('eu_strategy.list_targets') }}">{{_('EU Strategy')}}
     </a>
@@ -43,7 +43,7 @@
     </a>
   </li>
 
-  {% if config.EU_STRATEGY %}
+  {% if config.DISPLAY_EU_STRATEGY %}
   <li class="{{ 'active' if active == 'eu_strategy' else '' }}">
     <a href="{{ url_for('eu_strategy.homepage_eutargets') }}">
         {{_('EU Strategy')}}

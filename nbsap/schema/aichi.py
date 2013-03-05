@@ -135,6 +135,37 @@ _MappingSchema = flatland.Dict.with_properties(widget="form").of(
                             valid_values=targets.keys(),
                             value_labels=targets,
                             css_class="chzn-select",
+                            multiple="multiple")
+            )
+
+_FullMappingSchema = flatland.Dict.with_properties(widget="form").of(
+            CommonString.named('_id')
+                .with_properties(widget="hidden"),
+            CommonEnum.named('objective')
+                        .using(label=_("National Objective"), optional=False)
+                        .with_properties(widget="obj_select"),
+            CommonEnum.named('goal')
+                        .using(label=_("AICHI strategic goal"), optional=False)
+                        .valued(*sorted(goals.keys()))
+                        .with_properties(widget="select",
+                            value_labels=goals,
+                            css_class="span2"),
+            CommonEnum.named('main_target')
+                        .including_validators(GoalEnumValue())
+                        .using(label=_("Relevant AICHI target"), optional=False)
+                        .valued(*sorted(targets.keys()))
+                        .with_properties(widget="select",
+                            mapping=mapping,
+                            value_labels=targets,
+                            css_class="span2"),
+            CommonList.named('other_targets')
+                        .of(CommonString.named('other_targets'))
+                        .including_validators(ListValue())
+                        .using(label=_("Other AICHI targets"))
+                        .with_properties(widget="list",
+                            valid_values=targets.keys(),
+                            value_labels=targets,
+                            css_class="chzn-select",
                             multiple="multiple"),
             RuntimeTargetsCommonList.named('eu_targets')
                         .of(CommonString.named('eu_target'))
@@ -197,3 +228,23 @@ class MappingSchema(_MappingSchema):
     def flatten(self):
         return self.value
 
+class FullMappingSchema(_FullMappingSchema):
+
+    def set_objectives(self, objectives):
+        self['objective'].valid_values = []
+
+        for id in objectives.keys():
+            self['objective'].valid_values.extend(objectives[id])
+
+        self['objective'].properties['groups'] = objectives
+        return self
+
+    def flatten(self):
+        return self.value
+
+def get_mapping_schema(show_eu=True, based_on={}):
+
+    if show_eu:
+        return FullMappingSchema(based_on)
+    else:
+        return MappingSchema(based_on)

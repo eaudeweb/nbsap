@@ -127,6 +127,7 @@
           {% endif %}
           </div>
 
+         {% if config.DISPLAY_EU_STRATEGY %}
           <label>{{_('Mapping with EU')}}:</label>
           <div class="row well">
           {% if subobj.mapping|length() %}
@@ -171,6 +172,7 @@
              {{_('None')}}
           {% endif %}
           </div>
+         {% endif %}
 
           {% if subobj['actions'] %}
               <label>{{_('Related actions')}}:</label>

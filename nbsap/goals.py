@@ -3,6 +3,7 @@ from flaskext.babel import gettext as _
 
 import sugar
 import schema
+from schema.aichi import get_mapping_schema
 from database import mongo
 from auth import auth_required
 
@@ -132,27 +133,32 @@ def mapping_edit(mapping_id=None):
     import bson
     app = flask.current_app
     objectives = sugar.generate_objectives()
+    eu_display = flask.current_app.config['DISPLAY_EU_STRATEGY']
 
     if mapping_id:
         objectid = bson.objectid.ObjectId(oid=mapping_id)
         mapping = mongo.db.mapping.find_one_or_404({'_id': objectid})
 
-        ms = schema.MappingSchema(mapping)
+        ms = get_mapping_schema(show_eu=eu_display,
+                                based_on=mapping)
         ms.set_objectives(objectives)
         ms['objective'].set(mapping['objective'])
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(mapping['main_target'])
     else:
-        ms = schema.MappingSchema({})
+        ms = get_mapping_schema(show_eu=eu_display)
         ms.set_objectives(objectives)
 
     if flask.request.method == "POST":
         initial_form = flask.request.form
         form_data = initial_form.to_dict()
         targets_list = initial_form.getlist('other_targets')
-        eu_actions_list = initial_form.getlist('eu_actions')
-        eu_targets_list = initial_form.getlist('eu_targets')
+
+        if app.config['DISPLAY_EU_STRATEGY']:
+            eu_actions_list = initial_form.getlist('eu_actions')
+            eu_targets_list = initial_form.getlist('eu_targets')
+
         try:
             targets_list.remove(form_data['main_target'])
         except ValueError:
@@ -160,13 +166,17 @@ def mapping_edit(mapping_id=None):
         if mapping_id:
             ms['goal'].set(form_data['goal'])
         else:
-            ms = schema.MappingSchema.from_flat(form_data)
+            ms = get_mapping_schema(show_eu=eu_display,
+                                    based_on=form_data)
             ms.set_objectives(objectives)
 
         ms['objective'].set(form_data['objective'])
         ms['other_targets'].set(targets_list)
-        ms['eu_actions'].set(eu_actions_list)
-        ms['eu_targets'].set(eu_targets_list)
+
+        if app.config['DISPLAY_EU_STRATEGY']:
+            ms['eu_actions'].set(eu_actions_list)
+            ms['eu_targets'].set(eu_targets_list)
+
         ms['main_target'].valid_values = map(str,
                                              ms['main_target'].valid_values)
         ms['main_target'].set(form_data['main_target'])
