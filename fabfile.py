@@ -6,16 +6,26 @@ from path import path as ppath
 
 env['nbsap_target_defs'] = {
     'staging': {
-        'host_string': 'edw@nbsap.eaudeweb.ro',
-        'nbsap_repo':     '/var/local/nbsap-staging',
-        'nbsap_instance': '/var/local/nbsap-staging/instance',
-        'nbsap_sandbox':  '/var/local/nbsap-staging/sandbox',
-    },
-    'demo': {
-        'host_string': 'edw@nbsap.eaudeweb.ro',
-        'nbsap_repo':     '/var/local/nbsap-demo',
-        'nbsap_instance': '/var/local/nbsap-demo/instance',
-        'nbsap_sandbox':  '/var/local/nbsap-demo/sandbox',
+        'host_string': 'edw@rom.edw.ro',
+        'nbsap_repo':     '/var/local/nbsap',
+        'nbsap_instance': '/var/local/nbsap/instance',
+        'nbsap_sandbox':  '/var/local/nbsap/sandbox',
+        'nbsap_client_root': '/var/local/nbsap/instance_',
+        'nbsap_clients': [
+                            'burundi',
+                            'cameroun',
+                            'benin',
+                            'niger',
+                            'madagascar',
+                            'rdc',
+                            'burkinafaso',
+                            'cotedivoire',
+                            'comifac',
+                            'algerie',
+                            'cbd',
+                            'maroc',
+                            'training'
+                        ]
     },
 }
 
@@ -71,6 +81,12 @@ def install():
     if not exists(env['nbsap_instance']):
         run("mkdir -p '%s'" % env['nbsap_instance'])
 
+    """
+    for country in env['nbsap_clients']:
+        i = "".join([env['nbsap_client_root'], country])
+        if not exists(i):
+            run("mkdir -p '%s'" % i)
+    """
 
 @task
 @choose_target
@@ -80,6 +96,15 @@ def start():
         "--exec %(nbsap_sandbox)s/bin/python %(nbsap_repo)s/manage.py fcgi"
         % env, pty=False)
 
+    """
+    for country in env['nbsap_clients']:
+        i = "".join([env['nbsap_client_root'], country])
+        run("/sbin/start-stop-daemon --start --background "
+            "--pidfile {0}/fcgi.pid --make-pidfile "
+            "--exec {1}/bin/python {2}/manage_{3}.py fcgi".format(i,
+            env['nbsap_sandbox'], env['nbsap_repo'], country), pty=False)
+    """
+
 
 @task
 @choose_target
@@ -87,6 +112,12 @@ def stop():
     run("/sbin/start-stop-daemon --stop --retry 3 --oknodo "
         "--pidfile %(nbsap_instance)s/fcgi.pid" % env)
 
+    """
+    for country in env['nbsap_clients']:
+        i = "".join([env['nbsap_client_root'], country])
+        run("/sbin/start-stop-daemon --stop --retry 3 --oknodo "
+            "--pidfile %s/fcgi.pid" % i)
+    """
 
 @task
 @choose_target

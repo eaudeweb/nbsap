@@ -114,7 +114,7 @@ NBSAP Quick Installation Guide
 
 6. Prerequisites for creating & filling databases(both data and users)::
 
-    ./bin/mongoimport.sh
+    ./bin/mongoimport.sh nbsap
     ./manage.py syncdb
 
 7. Run a test server(see http://127.0.0.1:5000 afterwards)::
